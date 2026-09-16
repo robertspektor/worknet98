@@ -1,0 +1,135 @@
+.app-pad {
+    padding: 10px 12px;
+}
+
+.app-heading {
+    margin: 0 0 2px;
+    font:
+        600 22px / 1.1 'Pixelify Sans',
+        Tahoma,
+        sans-serif;
+}
+
+.muted {
+    color: #505050;
+}
+
+.app-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 10px;
+}
+
+.app-actions-end {
+    justify-content: flex-end;
+}
+
+.app-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.field {
+    display: grid;
+    gap: 3px;
+    margin-top: 10px;
+}
+
+.field-error {
+    color: #c00000;
+}
+
+.checkbox-field {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-top: 10px;
+    cursor: pointer;
+}
+
+.checkbox-field input {
+    margin: 0;
+}
+
+.select {
+    width: 100%;
+    padding: 3px 4px;
+    border: 0;
+    font: inherit;
+    background: #fff;
+    box-shadow: var(--bevel-in);
+}
+
+.notice {
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+    padding: 8px;
+    margin-top: 10px;
+    border: 1px solid #000;
+    background: #ffffe1;
+}
+
+.property-list {
+    display: grid;
+    grid-template-columns: max-content 1fr;
+    gap: 6px 14px;
+    margin: 0;
+    padding: 10px;
+}
+
+.property-list dt {
+    font-weight: bold;
+}
+
+.property-list dd {
+    margin: 0;
+}
+
+.file-list {
+    height: 150px;
+    margin: 0;
+    padding: 6px;
+    overflow: auto;
+    list-style: none;
+}
+
+.file-list li {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 2px 0;
+}
+
+/* Setup */
+
+.setup-screen {
+    position: absolute;
+    inset: 0;
+    display: grid;
+    place-items: center;
+    background: #008080;
+    font:
+        12px / 1.35 Tahoma,
+        Verdana,
+        'Segoe UI',
+        sans-serif;
+}
+
+.setup-window {
+    position: relative;
+    width: 440px;
+}
+
+.setup-body {
+    display: flex;
+    gap: 14px;
+    padding: 14px 12px 12px;
+}
+
+.setup-body p {
+    margin: 0 0 8px;
+}

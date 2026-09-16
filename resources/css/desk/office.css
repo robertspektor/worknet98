@@ -1,0 +1,298 @@
+.room.is-office {
+    --plastic-light: #e6e8e4;
+    --plastic: #cdd0cb;
+    --plastic-dark: #aeb2ac;
+    --plastic-shadow: #858a84;
+    --plastic-text: #5d625c;
+    background:
+        radial-gradient(ellipse 60% 16% at 50% 0%, #f4f6ea99, #0000),
+        linear-gradient(#8f948e, #6c716c 70%);
+}
+
+.room.is-office::before {
+    content: '';
+    position: absolute;
+    inset: auto 0 12vh 0;
+    height: 60vh;
+    background:
+        repeating-linear-gradient(45deg, #0000 0 2px, #ffffff0a 2px 3px),
+        repeating-linear-gradient(-45deg, #0000 0 2px, #00000012 2px 3px),
+        linear-gradient(#5d6d7b, #46535e);
+    box-shadow:
+        inset 0 1vh 0 #b4b9bd,
+        inset 0 calc(1vh + 2px) 0 #6f757a,
+        0 -6px 24px #0003;
+}
+
+.room.is-office .desk {
+    background: linear-gradient(#a9aca8, #717470);
+    box-shadow:
+        0 -3px 0 #c9ccc7,
+        0 -30px 60px #0004;
+}
+
+.asset-tag {
+    position: absolute;
+    top: calc(var(--monitor-width) * 0.021);
+    left: 50%;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    padding: 1px 4px;
+    border: 1px solid #8a9098;
+    border-radius: 2px;
+    background: linear-gradient(#f1f3f4, #bfc4c9);
+    box-shadow: 0 1px 1px #0003;
+    transform: translate(-50%, -50%);
+    white-space: nowrap;
+}
+
+.asset-tag-text {
+    font:
+        700 clamp(5px, 0.55vw, 8px) / 1 Tahoma,
+        sans-serif;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: #2b3036;
+}
+
+.asset-tag-barcode {
+    width: clamp(12px, 1.6vw, 22px);
+    height: clamp(5px, 0.6vw, 8px);
+    background: repeating-linear-gradient(
+        90deg,
+        #2b3036 0 1px,
+        #0000 1px 2px,
+        #2b3036 2px 4px,
+        #0000 4px 5px
+    );
+}
+
+.in-tray {
+    bottom: 5vh;
+    left: max(calc(var(--side-space) / 2), 5.5em);
+    width: 9em;
+    height: 5.4em;
+    transform: translateX(-50%);
+}
+
+.tray-paper {
+    position: absolute;
+    bottom: 1.6em;
+    left: 0.7em;
+    width: 7.6em;
+    height: 3.6em;
+    border: 1px solid #d4d0c3;
+    background:
+        repeating-linear-gradient(
+                #0000 0 0.55em,
+                #b9c3cf 0.55em calc(0.55em + 1px)
+            )
+            0 0.9em / 100% 100% no-repeat,
+        #fbfaf4;
+}
+
+.tray-paper + .tray-paper {
+    bottom: 1.4em;
+    left: 0.9em;
+    transform: rotate(-4deg);
+}
+
+.tray-front {
+    position: absolute;
+    inset: auto 0 0 0;
+    display: grid;
+    place-items: center;
+    height: 2.6em;
+    font:
+        700 0.8em Tahoma,
+        sans-serif;
+    letter-spacing: 0.25em;
+    color: #d9dcd6;
+    background: linear-gradient(#50565c, #2f3439);
+    clip-path: polygon(0 0, 100% 0, 96% 100%, 4% 100%);
+}
+
+.house-keys {
+    bottom: 1vh;
+    left: max(calc(var(--side-space) / 2 + 8.5em), 13em);
+    display: grid;
+    justify-items: center;
+    transform: translateX(-50%);
+}
+
+.house-keys svg {
+    width: 6.5em;
+    overflow: visible;
+    filter: drop-shadow(0 0.2em 0.2em #0007);
+}
+
+.key-ring {
+    fill: none;
+    stroke: #c3c8cc;
+    stroke-width: 2.5;
+}
+
+.key {
+    fill: #d6b24c;
+    stroke: #8c6f22;
+    stroke-width: 1;
+}
+
+.key-small {
+    fill: #c9ced3;
+    stroke: #7d848b;
+}
+
+.key-tag {
+    margin-top: -0.3em;
+    padding: 0.15em 0.7em 0.05em;
+    font:
+        600 1.7em / 1 'Caveat',
+        cursive;
+    white-space: nowrap;
+    color: #3a3520;
+    background: linear-gradient(#f7ecc4, #e6d59c);
+    box-shadow: 0 0.15em 0.3em #0006;
+    transform: rotate(4deg);
+}
+
+.name-plate {
+    bottom: 1vh;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.name-plate-face {
+    display: block;
+    padding: 0.5em 1.6em;
+    font:
+        700 1em Tahoma,
+        sans-serif;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    white-space: nowrap;
+    color: #3d3214;
+    text-shadow: 0 1px 0 #fff7;
+    background: linear-gradient(#efe2ad, #bd9f52 55%, #dcc88a);
+    border: 0.35em solid #2b2622;
+    box-shadow: 0 0.3em 0.5em #0007;
+    clip-path: polygon(3% 0, 97% 0, 100% 100%, 0 100%);
+}
+
+.coffee-mug {
+    right: max(calc(var(--side-space) / 2), 4em);
+    bottom: 3vh;
+    width: 5.6em;
+    height: 7em;
+    transform: translateX(50%);
+}
+
+.mug-body {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    display: grid;
+    place-items: center;
+    width: 4.2em;
+    height: 5em;
+    padding: 0.8em 0.3em 0.3em;
+    box-sizing: border-box;
+    border-radius: 0 0 0.9em 0.9em;
+    background: linear-gradient(90deg, #d4d4cd, #fbfbf7 40%, #dfdfd8);
+    box-shadow: 0 0.3em 0.5em #0006;
+}
+
+.mug-body::before {
+    content: '';
+    position: absolute;
+    top: -0.45em;
+    left: 0;
+    right: 0;
+    height: 0.9em;
+    border: 0.22em solid #efefe9;
+    border-radius: 50%;
+    box-sizing: border-box;
+    background: radial-gradient(#5a3a22, #2e1c10);
+}
+
+.mug-handle {
+    position: absolute;
+    right: 0.1em;
+    bottom: 1.3em;
+    width: 1.6em;
+    height: 2.4em;
+    border: 0.55em solid #dcdcd5;
+    border-left: 0;
+    border-radius: 0 1.2em 1.2em 0;
+    box-sizing: border-box;
+}
+
+.mug-print {
+    font:
+        700 0.55em / 1.1 Tahoma,
+        sans-serif;
+    text-align: center;
+    text-transform: uppercase;
+    overflow-wrap: anywhere;
+    color: #2f5d8a;
+}
+
+.steam {
+    position: absolute;
+    bottom: 5.4em;
+    left: 1.2em;
+    display: flex;
+    gap: 0.7em;
+}
+
+.steam span {
+    width: 0.5em;
+    height: 1.6em;
+    border-left: 2px solid #ffffff80;
+    border-radius: 50%;
+    animation: steam 3.2s ease-in-out infinite;
+}
+
+.steam span + span {
+    animation-delay: 1.4s;
+}
+
+@keyframes steam {
+    0% {
+        opacity: 0;
+        transform: translateY(0.6em) scaleX(1);
+    }
+    40% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+        transform: translateY(-0.8em) scaleX(-1);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .steam span {
+        animation: none;
+        opacity: 0.6;
+    }
+}
+
+@media (max-width: 640px) {
+    .in-tray,
+    .coffee-mug {
+        display: none;
+    }
+
+    .house-keys {
+        left: 5em;
+    }
+
+    .name-plate {
+        left: auto;
+        right: 1em;
+        transform: none;
+    }
+}

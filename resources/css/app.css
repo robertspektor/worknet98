@@ -1,0 +1,11 @@
+@import 'tailwindcss';
+@import './desk/room.css';
+@import './desk/desk-items.css';
+@import './desk/office.css';
+@import './desk/boot.css';
+@import './desk/os.css';
+@import './desk/apps.css';
+@import './desk/worknet.css';
+@import './desk/mail.css';
+
+@source '../views';

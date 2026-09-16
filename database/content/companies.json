@@ -1,0 +1,154 @@
+[
+    {
+        "slug": "flowright-plumbing",
+        "locale": "en",
+        "name": "Flowright Plumbing & Heating",
+        "industry": "Plumbing",
+        "tagline": "Your problem is our pipeline.",
+        "description": "Family business in the third generation. The first generation still comes in every morning to check that nobody touched his stapler.",
+        "hr_contact_name": "Dolores Flowright",
+        "hr_contact_address": "dolores@flowright.wn",
+        "hiring_note": "We have a coffee machine. It works on Tuesdays.",
+        "job_openings": [
+            {
+                "slug": "office-assistant-scheduling",
+                "title": "Office Assistant, Customer Scheduling",
+                "description": "You answer calls from customers with wet floors, find a free technician in the calendar and confirm appointments by mail. Staying calm while someone describes their toilet in great detail is a plus.",
+                "daily_salary": 95
+            }
+        ]
+    },
+    {
+        "slug": "transglobal-logistics",
+        "locale": "en",
+        "name": "TransGlobal Logistics",
+        "industry": "Logistics",
+        "tagline": "We move things. Mostly.",
+        "description": "Parcels, pallets and the occasional misrouted piano. Our motto: every shipment arrives somewhere.",
+        "hr_contact_name": "Brenda Kowalczyk",
+        "hr_contact_address": "brenda.kowalczyk@transglobal.wn",
+        "hiring_note": "Your desk is next to the printer. You will get used to the noise. Nobody has so far, but you might be the first.",
+        "job_openings": [
+            {
+                "slug": "junior-dispatch-coordinator",
+                "title": "Junior Dispatch Coordinator",
+                "description": "Assign drivers to routes, update delivery lists and explain to customers why their parcel visited three countries. Map reading skills welcome, optimism required.",
+                "daily_salary": 120
+            }
+        ]
+    },
+    {
+        "slug": "macrodyne-systems",
+        "locale": "en",
+        "name": "Macrodyne Systems",
+        "industry": "Business software",
+        "tagline": "Solutions for problems you did not know you had.",
+        "description": "Leading provider of enterprise software that nobody fully understands, including us. Voted \"Most Synergistic Workplace\" by our own internal survey.",
+        "hr_contact_name": "Kevin Pratt",
+        "hr_contact_address": "kevin.pratt@macrodyne.wn",
+        "hiring_note": "Casual Friday is suspended until further notice. Please do not ask why.",
+        "job_openings": [
+            {
+                "slug": "helpdesk-associate",
+                "title": "Helpdesk Associate (1st Level)",
+                "description": "Ask people whether they have tried turning it off and on again. Log tickets. Escalate the rest to 2nd level, who will ask the same question more slowly.",
+                "daily_salary": 110
+            }
+        ]
+    },
+    {
+        "slug": "happy-consumer-products",
+        "locale": "en",
+        "name": "Happy Consumer Products",
+        "industry": "Household goods",
+        "tagline": "Happiness, now in a family pack.",
+        "description": "We make kitchen gadgets, cleaning supplies and a self-stirring pot that has been recalled twice. Customer satisfaction is our number one priority, right after margins.",
+        "hr_contact_name": "Pam Whitlock",
+        "hr_contact_address": "pam.whitlock@happyconsumer.wn",
+        "hiring_note": "The team is very excited to meet you. Gerald made a banner. Please act surprised.",
+        "job_openings": [
+            {
+                "slug": "complaints-clerk",
+                "title": "Complaints Department Clerk",
+                "description": "Read complaint letters, pick the right apology template and send vouchers where necessary. You represent our brand, so please smile, even in writing.",
+                "daily_salary": 90
+            }
+        ]
+    },
+    {
+        "slug": "rohrfuchs-sanitaer",
+        "locale": "de",
+        "name": "Rohrfuchs Sanitär & Heizung GmbH",
+        "industry": "Sanitär",
+        "tagline": "Ihr Rohr ist unser Auftrag.",
+        "description": "Familienbetrieb in dritter Generation. Die erste Generation kommt immer noch jeden Morgen vorbei und prüft, ob jemand ihren Tacker angefasst hat.",
+        "hr_contact_name": "Doris Fuchs",
+        "hr_contact_address": "doris.fuchs@rohrfuchs.wn",
+        "hiring_note": "Wir haben eine Kaffeemaschine. Dienstags funktioniert sie.",
+        "job_openings": [
+            {
+                "slug": "buerokraft-terminplanung",
+                "title": "Bürokraft Terminplanung (m/w/d)",
+                "description": "Sie nehmen Anrufe von Kunden mit nassen Fußböden entgegen, finden einen freien Monteur im Kalender und bestätigen Termine per Mail. Ruhe bewahren, während jemand seine Toilette sehr ausführlich beschreibt, ist von Vorteil.",
+                "daily_salary": 95
+            }
+        ]
+    },
+    {
+        "slug": "nordwerk-logistik",
+        "locale": "de",
+        "name": "Nordwerk Logistik AG",
+        "industry": "Logistik",
+        "tagline": "Wir bewegen was. Meistens.",
+        "description": "Pakete, Paletten und gelegentlich ein falsch zugestelltes Klavier. Unser Leitsatz: Jede Sendung kommt irgendwo an.",
+        "hr_contact_name": "Birgit Kowalski",
+        "hr_contact_address": "birgit.kowalski@nordwerk.wn",
+        "hiring_note": "Ihr Schreibtisch steht neben dem Drucker. An den Lärm gewöhnt man sich. Bisher niemand, aber vielleicht sind Sie die erste Person.",
+        "job_openings": [
+            {
+                "slug": "junior-disponent",
+                "title": "Junior-Disponent (m/w/d)",
+                "description": "Sie teilen Fahrer auf Touren ein, pflegen Lieferlisten und erklären Kunden, warum ihr Paket drei Länder besucht hat. Kartenlesen erwünscht, Optimismus Pflicht.",
+                "daily_salary": 120
+            }
+        ]
+    },
+    {
+        "slug": "datenfabrik-kessler",
+        "locale": "de",
+        "name": "Datenfabrik Kessler KG",
+        "industry": "Unternehmenssoftware",
+        "tagline": "Lösungen für Probleme, von denen Sie nichts wussten.",
+        "description": "Führender Anbieter von Unternehmenssoftware, die niemand vollständig versteht, wir eingeschlossen. Laut interner Umfrage der \"synergetischste Arbeitsplatz\" der Firma.",
+        "hr_contact_name": "Jens Pohlmann",
+        "hr_contact_address": "jens.pohlmann@datenfabrik.wn",
+        "hiring_note": "Der Casual Friday ist bis auf Weiteres ausgesetzt. Bitte fragen Sie nicht, warum.",
+        "job_openings": [
+            {
+                "slug": "helpdesk-1st-level",
+                "title": "Helpdesk-Mitarbeiter 1st Level (m/w/d)",
+                "description": "Sie fragen Menschen, ob sie das Gerät schon aus- und wieder eingeschaltet haben. Sie erfassen Tickets. Den Rest eskalieren Sie an den 2nd Level, der dieselbe Frage langsamer stellt.",
+                "daily_salary": 110
+            }
+        ]
+    },
+    {
+        "slug": "frohsinn-haushaltswaren",
+        "locale": "de",
+        "name": "Frohsinn Haushaltswaren GmbH",
+        "industry": "Haushaltswaren",
+        "tagline": "Glück, jetzt in der Familienpackung.",
+        "description": "Wir stellen Küchenhelfer, Putzmittel und einen selbstrührenden Topf her, der schon zweimal zurückgerufen wurde. Kundenzufriedenheit hat für uns oberste Priorität, direkt nach der Marge.",
+        "hr_contact_name": "Petra Wittlich",
+        "hr_contact_address": "petra.wittlich@frohsinn.wn",
+        "hiring_note": "Das Team freut sich sehr auf Sie. Gerd hat ein Banner gebastelt. Bitte tun Sie überrascht.",
+        "job_openings": [
+            {
+                "slug": "reklamationssachbearbeitung",
+                "title": "Reklamationssachbearbeitung (m/w/d)",
+                "description": "Sie lesen Beschwerdebriefe, wählen die passende Entschuldigungsvorlage und verschicken bei Bedarf Gutscheine. Sie repräsentieren unsere Marke, also lächeln Sie bitte, auch schriftlich.",
+                "daily_salary": 90
+            }
+        ]
+    }
+]

@@ -1,0 +1,120 @@
+.desk-item {
+    position: absolute;
+    z-index: 2;
+    font-size: clamp(8px, min(calc(var(--side-space) / 20), 1.5vh), 16px);
+    color: inherit;
+    text-decoration: none;
+}
+
+a.desk-item {
+    transition: translate 120ms ease-out;
+}
+
+a.desk-item:hover {
+    translate: 0 -0.3em;
+}
+
+a.desk-item:focus-visible {
+    outline: 2px dashed #f3e9c6;
+    outline-offset: 4px;
+}
+
+.desk-item-caption {
+    font:
+        600 1.7em / 1 'Caveat',
+        cursive;
+    color: #f3e9c6;
+    text-shadow: 0 2px 3px #000a;
+    white-space: nowrap;
+}
+
+.employee-badge {
+    bottom: 1.5vh;
+    left: max(calc(var(--side-space) / 2), 8em);
+    display: grid;
+    justify-items: center;
+    gap: 0.6em;
+    transform: translateX(-50%);
+}
+
+.lanyard {
+    position: absolute;
+    top: -1.6em;
+    left: -2.4em;
+    width: 6.5em;
+    height: 3.4em;
+    border: 0.5em solid #2f5d8a;
+    border-radius: 50%;
+    box-shadow: inset 0 1px 0 #fff3;
+    transform: rotate(-14deg);
+}
+
+.badge-card {
+    position: relative;
+    display: grid;
+    grid-template-columns: 2.8em 1fr;
+    grid-template-rows: 1fr auto;
+    column-gap: 0.6em;
+    row-gap: 0.4em;
+    width: 9em;
+    height: 5.4em;
+    padding: 1.2em 0.7em 0.6em;
+    box-sizing: border-box;
+    border-radius: 0.45em;
+    background:
+        linear-gradient(#2f5d8a, #2f5d8a) 0 0 / 100% 0.7em no-repeat,
+        linear-gradient(#fbfbf7, #e4e3dc);
+    box-shadow:
+        0 0.3em 0.6em #0008,
+        inset 0 0 0 1px #0002;
+    transform: rotate(-6deg);
+}
+
+.badge-card::before {
+    content: '';
+    position: absolute;
+    top: 0.15em;
+    left: 1em;
+    width: 1.4em;
+    height: 0.35em;
+    border-radius: 1em;
+    background: #1d3d5c;
+}
+
+.badge-photo {
+    grid-row: span 2;
+    background:
+        radial-gradient(circle at 50% 30%, #7d858d 0 0.5em, #0000 0.54em),
+        radial-gradient(ellipse 1.2em 1em at 50% 108%, #7d858d 0 98%, #0000),
+        #c9cfd4;
+}
+
+.badge-company {
+    display: -webkit-box;
+    align-self: start;
+    overflow: hidden;
+    font:
+        700 0.6em / 1.15 Tahoma,
+        sans-serif;
+    text-transform: uppercase;
+    color: #1d3d5c;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+}
+
+.badge-barcode {
+    height: 0.8em;
+    background: repeating-linear-gradient(
+        90deg,
+        #222 0 1px,
+        #0000 1px 3px,
+        #222 3px 5px,
+        #0000 5px 6px
+    );
+}
+
+@media (max-width: 640px) {
+    .desk-item {
+        font-size: 10px;
+    }
+}

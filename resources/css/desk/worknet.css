@@ -1,0 +1,141 @@
+.worknet {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.worknet-banner {
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+    padding: 8px 12px 7px;
+    color: #fff;
+    background: linear-gradient(90deg, var(--title), var(--title-end));
+    border-bottom: 2px solid #ffd800;
+}
+
+.worknet-logo {
+    font:
+        600 24px / 1 'Pixelify Sans',
+        Tahoma,
+        sans-serif;
+    letter-spacing: 0.5px;
+}
+
+.worknet-logo b {
+    color: #ffd800;
+    font-weight: 600;
+}
+
+.worknet-slogan {
+    font-style: italic;
+    color: #dfe8ff;
+}
+
+.worknet-page {
+    flex: 1;
+    min-height: 0;
+    padding: 10px 14px 12px;
+    overflow: auto;
+    background: #fff;
+    box-shadow: var(--bevel-in);
+    user-select: text;
+}
+
+.worknet-page p {
+    margin: 0 0 8px;
+}
+
+.worknet-heading {
+    margin: 2px 0 8px;
+    font:
+        600 18px / 1.15 'Pixelify Sans',
+        Tahoma,
+        sans-serif;
+    color: var(--title);
+}
+
+.worknet-subheading {
+    margin: 12px 0 4px;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.worknet-link {
+    padding: 0;
+    border: 0;
+    font: inherit;
+    color: #0000ee;
+    text-align: left;
+    text-decoration: underline;
+    background: none;
+    cursor: pointer;
+}
+
+.worknet-link:active {
+    color: #ee0000;
+}
+
+.worknet-error,
+.app-loading {
+    padding: 12px 14px;
+}
+
+.job-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.job-table th {
+    padding: 3px 6px;
+    font-weight: normal;
+    text-align: left;
+    background: var(--face);
+    box-shadow: var(--bevel-out);
+}
+
+.job-table td {
+    padding: 5px 6px;
+    vertical-align: top;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.job-company-cell,
+.job-salary {
+    white-space: nowrap;
+}
+
+.job-status {
+    display: table;
+    margin-top: 2px;
+    padding: 0 4px;
+    font-size: 11px;
+    color: #000;
+    background: #ffffe1;
+    border: 1px solid #000;
+}
+
+.job-status.is-accepted {
+    color: #fff;
+    background: #008000;
+    border-color: #004000;
+}
+
+.job-company {
+    margin-bottom: 2px;
+}
+
+.job-tagline {
+    font-style: italic;
+    color: #505050;
+}
+
+.application-form {
+    margin-top: 12px;
+    padding-top: 2px;
+    border-top: 1px solid #c0c0c0;
+}
+
+.application-message {
+    resize: none;
+}

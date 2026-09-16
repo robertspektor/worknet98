@@ -1,0 +1,86 @@
+.mail-app {
+    display: grid;
+    grid-template-rows: 150px 1fr;
+    gap: 4px;
+    height: 100%;
+    padding: 2px;
+}
+
+.email-list {
+    overflow: auto;
+}
+
+.email-row {
+    display: grid;
+    grid-template-columns: 22px 130px 1fr 108px;
+    column-gap: 6px;
+    align-items: center;
+    width: 100%;
+    min-height: 20px;
+    padding: 1px 4px;
+    border: 0;
+    font: inherit;
+    color: #000;
+    text-align: left;
+    background: none;
+    cursor: default;
+}
+
+.email-row > span {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.email-row-header {
+    position: sticky;
+    top: 0;
+    background: var(--face);
+    box-shadow: var(--bevel-out);
+}
+
+.email-row.is-unread {
+    font-weight: bold;
+}
+
+.email-row.is-selected {
+    color: #fff;
+    background: var(--title);
+}
+
+.email-reader {
+    min-height: 0;
+    padding: 8px 10px;
+    overflow: auto;
+    user-select: text;
+}
+
+.email-meta {
+    display: grid;
+    grid-template-columns: max-content 1fr;
+    gap: 2px 8px;
+    margin: 0 0 8px;
+    padding-bottom: 6px;
+    border-bottom: 1px solid #c0c0c0;
+}
+
+.email-meta dt {
+    font-weight: bold;
+}
+
+.email-meta dd {
+    margin: 0;
+}
+
+.email-body {
+    white-space: pre-wrap;
+}
+
+.email-empty {
+    padding: 8px;
+    color: #505050;
+}
+
+.tray-mail {
+    height: 16px;
+}
