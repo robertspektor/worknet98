@@ -9,6 +9,7 @@ import { ControlPanelApp } from './control-panel-app';
 import { CustomerBaseApp } from './customer-base/customer-base-app';
 import { FloppyDriveApp } from './floppy-drive/floppy-drive-app';
 import { MailApp } from './mail/mail-app';
+import { MessengerApp } from './messenger/messenger-app';
 import { MinefieldApp } from './minefield/minefield-app';
 import { MyComputerApp } from './my-computer-app';
 import { NotepadApp } from './notepad/notepad-app';
@@ -43,6 +44,12 @@ export const APPS = {
         icon: 'mail',
         size: { width: 560, height: 400 },
         component: MailApp,
+    },
+    messenger: {
+        titleKey: 'desktop.messenger',
+        icon: 'messenger',
+        size: { width: 470, height: 340 },
+        component: MessengerApp,
     },
     'control-panel': {
         titleKey: 'desktop.control_panel',

@@ -2,6 +2,9 @@
 
 use App\Http\Controllers\Api\V1\AppointmentController;
 use App\Http\Controllers\Api\V1\CalendarEntryController;
+use App\Http\Controllers\Api\V1\ChatMessageController;
+use App\Http\Controllers\Api\V1\ChatReadController;
+use App\Http\Controllers\Api\V1\ChatReplyController;
 use App\Http\Controllers\Api\V1\CompanySoftwareController;
 use App\Http\Controllers\Api\V1\CustomerController;
 use App\Http\Controllers\Api\V1\EmailController;
@@ -30,6 +33,12 @@ Route::prefix('v1')->middleware('auth:sanctum')->name('api.v1.')->group(function
     Route::post('emails/{email}/read', [EmailReadController::class, 'store'])
         ->middleware('can:update,email')
         ->name('emails.read.store');
+
+    Route::get('chat-messages', [ChatMessageController::class, 'index'])->name('chat-messages.index');
+    Route::post('chat-messages/read', [ChatReadController::class, 'store'])->name('chat-messages.read.store');
+    Route::post('chat-messages/{chatMessage}/replies', [ChatReplyController::class, 'store'])
+        ->middleware('can:reply,chatMessage')
+        ->name('chat-messages.replies.store');
 
     Route::get('shift', [ShiftController::class, 'show'])->name('shift.show');
     Route::post('shift/clock-in', [ShiftController::class, 'clockIn'])->name('shift.clock-in');

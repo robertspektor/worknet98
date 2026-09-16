@@ -6,6 +6,7 @@
         "records": "CustomerBase",
         "scheduler": "ServicePlan"
     },
+    "colleagues": [{ "slug": "bev-mercer", "name": "Bev Mercer" }],
     "technicians": [
         {
             "slug": "stan-kowalski",

@@ -446,6 +446,24 @@ export const ICONS = {
         '...kkkkkkkkkkkkk',
         '................',
     ],
+    messenger: [
+        '................',
+        '.kkkkkkkkk......',
+        '.kwwwwwwwk......',
+        '.kwkkkkkwk......',
+        '.kwwwwwwwk......',
+        '.kwkkkkwwkkkkkk.',
+        '.kwwwwwwwkBBBBk.',
+        '.kkkkkkkkkBBBBk.',
+        '..kk..kBBBBBBBk.',
+        '..k...kBwwwwwBk.',
+        '......kBBBBBBBk.',
+        '......kBwwwwBBk.',
+        '......kBBBBBBBk.',
+        '......kkkkkkkkk.',
+        '............kk..',
+        '................',
+    ],
 } satisfies Record<string, string[]>;
 
 export type IconName = keyof typeof ICONS;

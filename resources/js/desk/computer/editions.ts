@@ -38,6 +38,7 @@ export const BUSINESS_EDITION: Edition = {
     ],
     apps: [
         'mail',
+        'messenger',
         'records',
         'scheduler',
         'calendar',

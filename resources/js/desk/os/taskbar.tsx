@@ -9,6 +9,7 @@ import { useWindowManager } from '../windows/window-manager';
 import { StartMenu } from './start-menu';
 import { TrayClock } from './tray-clock';
 import { TrayMail } from './tray-mail';
+import { TrayMessenger } from './tray-messenger';
 
 export function Taskbar({
     onLogOff,
@@ -65,6 +66,7 @@ export function Taskbar({
                     })}
                 </div>
                 <div className="tray">
+                    <TrayMessenger />
                     <TrayMail />
                     <TrayClock />
                 </div>

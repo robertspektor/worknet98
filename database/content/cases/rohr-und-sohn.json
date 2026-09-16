@@ -19,6 +19,51 @@
                 "customer": "margarete-hollmann"
             }
         ],
+        "messages": [
+            {
+                "slug": "bruno-warning",
+                "trigger": "case_opened",
+                "delay_seconds": 30,
+                "sender": "bettina-mertens",
+                "body": "psst. hab die Mail von Frau Hollmann gesehen. egal was du machst, schick nicht den Heinz. Bruno und Heinz haben eine Vorgeschichte. da war eine Leiter im Spiel.",
+                "replies": [
+                    {
+                        "slug": "thanks",
+                        "text": "Danke für die Warnung!",
+                        "answer": "gern. wir passen hier aufeinander auf. anders als die Kaffeemaschine."
+                    },
+                    {
+                        "slug": "ladder",
+                        "text": "Was war denn mit der Leiter?",
+                        "answer": "über die Leiter reden wir nicht."
+                    }
+                ]
+            },
+            {
+                "slug": "heinz-booked",
+                "trigger": "appointment_booked",
+                "delay_seconds": 20,
+                "sender": "bettina-mertens",
+                "when": {
+                    "type": "technician_is",
+                    "customer": "margarete-hollmann",
+                    "technician": "heinz-kowalczyk"
+                },
+                "body": "moment. hast du grad den HEINZ zu Frau Hollmann eingeteilt?? Bruno jagt ihn wieder die Leiter hoch. nimm die Rita, glaub mir",
+                "replies": [
+                    {
+                        "slug": "rebook",
+                        "text": "Mach ich, ich plane um.",
+                        "answer": "gute Entscheidung. Heinz schuldet dir was. er wird es nie erfahren."
+                    },
+                    {
+                        "slug": "professional",
+                        "text": "Heinz ist ein Profi.",
+                        "answer": "Bruno auch."
+                    }
+                ]
+            }
+        ],
         "outcomes": [
             {
                 "when": {
@@ -53,6 +98,17 @@
                 "otherwise": { "punctuality": -1 },
                 "feedback": "Und schnell. So mag ich das.",
                 "otherwise_feedback": "Das ist eine tropfende Spüle. Bis wir da sind, hat sie einen Teich. Vielleicht mit Ente."
+            },
+            {
+                "when": {
+                    "type": "technician_is",
+                    "customer": "margarete-hollmann",
+                    "technician": "heinz-kowalczyk"
+                },
+                "effects": { "customer_satisfaction": -2 },
+                "otherwise": {},
+                "feedback": "Außerdem hat Bruno den Heinz wieder die Leiter hochgejagt. Heinz geht es gut. Der Leiter nicht. Frau Hollmann hat zur Entschuldigung einen Kuchen geschickt. An Heinz, nicht an uns.",
+                "otherwise_feedback": "Und niemand wurde eine Leiter hochgejagt. Für Frau Hollmann ist das ein richtig guter Tag."
             }
         ],
         "feedback_mail": {

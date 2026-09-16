@@ -6,6 +6,7 @@
         "records": "KundenKartei",
         "scheduler": "Einsatzplaner"
     },
+    "colleagues": [{ "slug": "bettina-mertens", "name": "Bettina Mertens" }],
     "technicians": [
         {
             "slug": "heinz-kowalczyk",

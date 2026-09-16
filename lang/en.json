@@ -256,5 +256,16 @@
     "calculator.error": "Error",
     "notepad.saving": "Saving...",
     "notepad.saved": "Saved",
-    "notepad.placeholder": "Write something down..."
+    "notepad.placeholder": "Write something down...",
+    "desktop.messenger": "Messenger",
+    "messenger.refusal.already_replied": "You already answered this message.",
+    "messenger.refusal.unknown_reply": "This reply is not available.",
+    "messenger.empty": "No messages. Enjoy the silence while it lasts.",
+    "messenger.contacts": "Contacts",
+    "messenger.you_say": "You say:",
+    "messenger.says": ":name says:",
+    "messenger.reply_with": "Reply with:",
+    "messenger.typing": ":name is typing...",
+    "messenger.toast": ":name sent you a message",
+    "messenger.unread": ":count unread chat message(s)"
 }

@@ -4,10 +4,12 @@ import { logout } from '@/routes';
 import { CompanySoftwareProvider } from '../company-software/company-software-provider';
 import { DialogProvider, useDialogs } from '../dialogs/dialog-provider';
 import { MailboxProvider } from '../mailbox/mailbox-provider';
+import { MessengerProvider } from '../messenger/messenger-provider';
 import { WindowLayer } from '../windows/window-layer';
 import { WindowManagerProvider } from '../windows/window-manager';
 import { DesktopIcons } from './desktop-icons';
 import { FloppyAutoplay } from './floppy-autoplay';
+import { MessengerToast } from './messenger-toast';
 import { Taskbar } from './taskbar';
 
 function DesktopSurface({ onShutDown }: { onShutDown: () => void }) {
@@ -33,6 +35,7 @@ function DesktopSurface({ onShutDown }: { onShutDown: () => void }) {
             <FloppyAutoplay />
             <DesktopIcons />
             <WindowLayer />
+            <MessengerToast />
             <Taskbar onLogOff={() => void logOff()} onShutDown={onShutDown} />
         </>
     );
@@ -44,9 +47,11 @@ export function Desktop({ onShutDown }: { onShutDown: () => void }) {
             <WindowManagerProvider>
                 <CompanySoftwareProvider>
                     <MailboxProvider>
-                        <DialogProvider>
-                            <DesktopSurface onShutDown={onShutDown} />
-                        </DialogProvider>
+                        <MessengerProvider>
+                            <DialogProvider>
+                                <DesktopSurface onShutDown={onShutDown} />
+                            </DialogProvider>
+                        </MessengerProvider>
                     </MailboxProvider>
                 </CompanySoftwareProvider>
             </WindowManagerProvider>

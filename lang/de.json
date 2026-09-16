@@ -256,5 +256,16 @@
     "calculator.error": "Fehler",
     "notepad.saving": "Speichert...",
     "notepad.saved": "Gespeichert",
-    "notepad.placeholder": "Schreib etwas auf..."
+    "notepad.placeholder": "Schreib etwas auf...",
+    "desktop.messenger": "Messenger",
+    "messenger.refusal.already_replied": "Auf diese Nachricht hast du schon geantwortet.",
+    "messenger.refusal.unknown_reply": "Diese Antwort steht nicht zur Auswahl.",
+    "messenger.empty": "Keine Nachrichten. Genieß die Ruhe, solange sie hält.",
+    "messenger.contacts": "Kontakte",
+    "messenger.you_say": "Du schreibst:",
+    "messenger.says": ":name schreibt:",
+    "messenger.reply_with": "Antworten mit:",
+    "messenger.typing": ":name schreibt gerade...",
+    "messenger.toast": ":name hat dir eine Nachricht geschickt",
+    "messenger.unread": ":count ungelesene Chatnachricht(en)"
 }

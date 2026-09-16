@@ -8,7 +8,6 @@ use App\Models\Customer;
 use App\Models\Email;
 use App\Models\Employment;
 use App\Models\JobOpening;
-use App\Models\Technician;
 use App\Models\User;
 use App\Models\WorkCase;
 use Database\Seeders\CompanySeeder;
@@ -26,16 +25,6 @@ beforeEach(function () {
     $this->player = User::findOrFail($employment->user_id);
     $this->hollis = Customer::query()->where('slug', 'margaret-hollis')->sole();
 });
-
-function workAs(User $player, string $method, string $route, array $data = []): void
-{
-    test()->actingAs($player)->json($method, route($route), $data)->assertSuccessful();
-}
-
-function technician(string $slug): Technician
-{
-    return Technician::query()->where('slug', $slug)->sole();
-}
 
 function handleHollisCase(User $player, Customer $hollis, string $technician, string $date, string $slot): void
 {
@@ -96,6 +85,16 @@ it('charges extra cost when the wrong technician is sent', function () {
 
     expect(app(MetricBook::class)->valueOf($this->employment, Metric::Cost))->toBe(-2)
         ->and(Email::query()->where('subject', 'Re: Mrs. Hollis')->sole()->body)->toContain('You sent a heating guy');
+});
+
+it('upsets the customer when Stan is sent despite the warning', function () {
+    workAs($this->player, 'POST', 'api.v1.shift.clock-in');
+    handleHollisCase($this->player, $this->hollis, 'stan-kowalski', '2026-09-24', '08:00');
+
+    workAs($this->player, 'POST', 'api.v1.shift.clock-out');
+
+    expect(app(MetricBook::class)->valueOf($this->employment, Metric::CustomerSatisfaction))->toBe(0)
+        ->and(Email::query()->where('subject', 'Re: Mrs. Hollis')->sole()->body)->toContain('Duke chased Stan');
 });
 
 it('keeps the case open and sends a reminder when a step is missing', function () {

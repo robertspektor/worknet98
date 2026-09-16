@@ -30,6 +30,17 @@ class Sound {
         );
     }
 
+    chat(): void {
+        this.play(
+            [
+                [740, 0, 0.06],
+                [740, 0.11, 0.06],
+            ],
+            'triangle',
+            0.07,
+        );
+    }
+
     floppySeek(): void {
         this.play(
             [

@@ -4,6 +4,7 @@ namespace App\Workplace;
 
 use App\Models\Company;
 use Illuminate\Support\Facades\File;
+use InvalidArgumentException;
 use SplFileInfo;
 
 class CompanySoftwareCatalog
@@ -28,6 +29,14 @@ class CompanySoftwareCatalog
     {
         /** @var array<string, string> */
         return $this->contentFor($company)['app_names'] ?? [];
+    }
+
+    public function colleagueName(Company $company, string $slug): string
+    {
+        /** @var list<array{slug: string, name: string}> $colleagues */
+        $colleagues = $this->contentFor($company)['colleagues'] ?? [];
+
+        return collect($colleagues)->firstWhere('slug', $slug)['name'] ?? throw new InvalidArgumentException("Unknown colleague [{$slug}].");
     }
 
     /**

@@ -19,6 +19,51 @@
                 "customer": "margaret-hollis"
             }
         ],
+        "messages": [
+            {
+                "slug": "duke-warning",
+                "trigger": "case_opened",
+                "delay_seconds": 30,
+                "sender": "bev-mercer",
+                "body": "psst. saw the Hollis mail come in. whatever you do, don't send Stan. Duke and Stan have history. there was a ladder involved.",
+                "replies": [
+                    {
+                        "slug": "thanks",
+                        "text": "Thanks for the heads-up!",
+                        "answer": "np. we look out for each other here. unlike the coffee machine."
+                    },
+                    {
+                        "slug": "ladder",
+                        "text": "What happened with the ladder?",
+                        "answer": "we don't talk about the ladder."
+                    }
+                ]
+            },
+            {
+                "slug": "stan-booked",
+                "trigger": "appointment_booked",
+                "delay_seconds": 20,
+                "sender": "bev-mercer",
+                "when": {
+                    "type": "technician_is",
+                    "customer": "margaret-hollis",
+                    "technician": "stan-kowalski"
+                },
+                "body": "wait. did you just put STAN on Hollis?? Duke is going to chase him up the ladder again. rebook it with Rita, trust me",
+                "replies": [
+                    {
+                        "slug": "rebook",
+                        "text": "On it, I will rebook.",
+                        "answer": "good call. Stan owes you one. he will never know."
+                    },
+                    {
+                        "slug": "professional",
+                        "text": "Stan is a professional.",
+                        "answer": "so is Duke."
+                    }
+                ]
+            }
+        ],
         "outcomes": [
             {
                 "when": {
@@ -53,6 +98,17 @@
                 "otherwise": { "punctuality": -1 },
                 "feedback": "And fast. Love to see it.",
                 "otherwise_feedback": "It is a leaking sink. By the time we get there, she will have a pond. Maybe a duck."
+            },
+            {
+                "when": {
+                    "type": "technician_is",
+                    "customer": "margaret-hollis",
+                    "technician": "stan-kowalski"
+                },
+                "effects": { "customer_satisfaction": -2 },
+                "otherwise": {},
+                "feedback": "Also, Duke chased Stan up his ladder again. Stan is fine. The ladder is not. Mrs. Hollis sent a cake to apologize. To Stan, not to us.",
+                "otherwise_feedback": "And nobody got chased up a ladder. By Hollis standards, that is a great day."
             }
         ],
         "feedback_mail": {

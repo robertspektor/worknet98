@@ -3,6 +3,7 @@
 namespace App\Cases;
 
 use App\Cases\Conditions\ConditionFactory;
+use App\Messenger\CannedReply;
 use App\Models\Company;
 use Illuminate\Support\Facades\File;
 
@@ -41,6 +42,8 @@ class CaseCatalog
     {
         /** @var list<array<string, mixed>> $goals */
         $goals = $data['goals'];
+        /** @var list<array<string, mixed>> $messages */
+        $messages = $data['messages'] ?? [];
         /** @var list<array<string, mixed>> $outcomes */
         $outcomes = $data['outcomes'];
         /** @var array{customer: string, subject: string, body: string} $requestMail */
@@ -55,9 +58,31 @@ class CaseCatalog
             shift: (int) $data['shift'],
             requestMail: $requestMail,
             goals: array_map($this->conditions->make(...), $goals),
+            messages: array_map($this->message(...), $messages),
             outcomes: array_map($this->outcome(...), $outcomes),
             feedbackMail: $feedbackMail,
             reminderMail: $reminderMail,
+        );
+    }
+
+    /**
+     * @param  array<string, mixed>  $data
+     */
+    private function message(array $data): CaseMessage
+    {
+        /** @var array<string, mixed>|null $when */
+        $when = $data['when'] ?? null;
+        /** @var list<array{slug: string, text: string, answer: string}> $replies */
+        $replies = $data['replies'] ?? [];
+
+        return new CaseMessage(
+            slug: (string) $data['slug'],
+            trigger: MessageTrigger::from((string) $data['trigger']),
+            delaySeconds: (int) ($data['delay_seconds'] ?? 0),
+            sender: (string) $data['sender'],
+            when: $when === null ? null : $this->conditions->make($when),
+            body: (string) $data['body'],
+            replies: array_map(CannedReply::fromArray(...), $replies),
         );
     }
 
