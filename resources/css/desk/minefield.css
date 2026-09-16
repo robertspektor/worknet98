@@ -1,0 +1,98 @@
+.minefield {
+    display: grid;
+    gap: 6px;
+    padding: 6px;
+}
+
+.minefield-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 5px 6px;
+    background: var(--face);
+}
+
+.minefield-counter {
+    min-width: 39px;
+    padding: 0 3px;
+    font:
+        28px / 1 'VT323',
+        monospace;
+    text-align: right;
+    color: #ff2a2a;
+    background: #000;
+}
+
+.minefield-face.button {
+    width: 28px;
+    min-width: 0;
+    height: 28px;
+    padding: 0;
+}
+
+.minefield-face.button:active {
+    padding: 2px 0 0 2px;
+}
+
+.minefield-grid {
+    display: grid;
+    justify-content: start;
+    padding: 3px;
+    background: var(--face);
+}
+
+.minefield-cell {
+    display: grid;
+    place-items: center;
+    width: 22px;
+    height: 22px;
+    padding: 0;
+    border: 0;
+    font:
+        bold 14px / 1 Tahoma,
+        sans-serif;
+    background: var(--face);
+    box-shadow: var(--bevel-out);
+}
+
+.minefield-cell.is-open {
+    box-shadow:
+        inset 1px 1px 0 var(--shadow),
+        inset -1px 0 0 #0000;
+}
+
+.minefield-cell.is-exploded {
+    background: #ff2020;
+}
+
+.minefield-cell.is-1 {
+    color: #0000ff;
+}
+
+.minefield-cell.is-2 {
+    color: #008000;
+}
+
+.minefield-cell.is-3 {
+    color: #ff0000;
+}
+
+.minefield-cell.is-4 {
+    color: #000080;
+}
+
+.minefield-cell.is-5 {
+    color: #800000;
+}
+
+.minefield-cell.is-6 {
+    color: #008080;
+}
+
+.minefield-cell.is-8 {
+    color: #808080;
+}
+
+.minefield-status {
+    margin: 0;
+}

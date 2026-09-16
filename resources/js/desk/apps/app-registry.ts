@@ -2,7 +2,9 @@ import type { ComponentType } from 'react';
 import type { IconName } from '../ui/pixel-art';
 import type { Size } from '../windows/window-state';
 import { ControlPanelApp } from './control-panel-app';
+import { FloppyDriveApp } from './floppy-drive/floppy-drive-app';
 import { MailApp } from './mail/mail-app';
+import { MinefieldApp } from './minefield/minefield-app';
 import { MyComputerApp } from './my-computer-app';
 import { RecycleBinApp } from './recycle-bin-app';
 import { TimeClockApp } from './time-clock/time-clock-app';
@@ -51,6 +53,18 @@ export const APPS = {
         icon: 'clock',
         size: { width: 340, height: 196 },
         component: TimeClockApp,
+    },
+    'floppy-drive': {
+        titleKey: 'desktop.floppy_drive',
+        icon: 'floppy',
+        size: { width: 360, height: 264 },
+        component: FloppyDriveApp,
+    },
+    minefield: {
+        titleKey: 'desktop.minefield',
+        icon: 'mine',
+        size: { width: 236, height: 330 },
+        component: MinefieldApp,
     },
 } satisfies Record<string, AppDefinition>;
 

@@ -55,6 +55,14 @@ class User extends Authenticatable
     }
 
     /**
+     * @return HasMany<InstalledProgram, $this>
+     */
+    public function installedPrograms(): HasMany
+    {
+        return $this->hasMany(InstalledProgram::class);
+    }
+
+    /**
      * @return array<string, string>
      */
     protected function casts(): array

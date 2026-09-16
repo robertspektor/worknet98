@@ -1,0 +1,23 @@
+[
+    {
+        "slug": "retrotron-welcome",
+        "kind": "story",
+        "color": "black",
+        "program": null,
+        "is_starter": true
+    },
+    {
+        "slug": "minefield",
+        "kind": "game",
+        "color": "blue",
+        "program": "minefield",
+        "is_starter": true
+    },
+    {
+        "slug": "backup",
+        "kind": "data",
+        "color": "red",
+        "program": null,
+        "is_starter": true
+    }
+]

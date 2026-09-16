@@ -14,7 +14,14 @@ export const HOME_EDITION: Edition = {
         'splash.status_3',
         'splash.status_4',
     ],
-    apps: ['my-computer', 'worknet', 'mail', 'control-panel', 'recycle-bin'],
+    apps: [
+        'my-computer',
+        'floppy-drive',
+        'worknet',
+        'mail',
+        'control-panel',
+        'recycle-bin',
+    ],
 };
 
 export const BUSINESS_EDITION: Edition = {

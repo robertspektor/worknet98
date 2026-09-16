@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\Api\V1\EmailController;
 use App\Http\Controllers\Api\V1\EmailReadController;
+use App\Http\Controllers\Api\V1\FloppyDiskController;
+use App\Http\Controllers\Api\V1\InstalledProgramController;
 use App\Http\Controllers\Api\V1\JobApplicationController;
 use App\Http\Controllers\Api\V1\JobOpeningController;
 use App\Http\Controllers\Api\V1\PlayerController;
@@ -23,4 +25,10 @@ Route::prefix('v1')->middleware('auth:sanctum')->name('api.v1.')->group(function
     Route::get('shift', [ShiftController::class, 'show'])->name('shift.show');
     Route::post('shift/clock-in', [ShiftController::class, 'clockIn'])->name('shift.clock-in');
     Route::post('shift/clock-out', [ShiftController::class, 'clockOut'])->name('shift.clock-out');
+
+    Route::get('floppy-disks', [FloppyDiskController::class, 'index'])->name('floppy-disks.index');
+    Route::get('installed-programs', [InstalledProgramController::class, 'index'])->name('installed-programs.index');
+    Route::post('floppy-disks/{floppyDisk}/installation', [InstalledProgramController::class, 'store'])
+        ->middleware('can:install,floppyDisk')
+        ->name('floppy-disks.installation.store');
 });

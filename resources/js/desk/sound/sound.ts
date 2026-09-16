@@ -30,6 +30,31 @@ class Sound {
         );
     }
 
+    floppySeek(): void {
+        this.play(
+            [
+                [95, 0, 0.07],
+                [70, 0.09, 0.07],
+                [95, 0.18, 0.07],
+                [70, 0.27, 0.07],
+                [110, 0.42, 0.12],
+            ],
+            'square',
+            0.035,
+        );
+    }
+
+    floppyEject(): void {
+        this.play(
+            [
+                [320, 0, 0.04],
+                [170, 0.05, 0.09],
+            ],
+            'square',
+            0.04,
+        );
+    }
+
     startup(): void {
         this.play(
             [

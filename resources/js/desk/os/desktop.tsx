@@ -6,6 +6,7 @@ import { MailboxProvider } from '../mailbox/mailbox-provider';
 import { WindowLayer } from '../windows/window-layer';
 import { WindowManagerProvider } from '../windows/window-manager';
 import { DesktopIcons } from './desktop-icons';
+import { FloppyAutoplay } from './floppy-autoplay';
 import { Taskbar } from './taskbar';
 
 function DesktopSurface({ onShutDown }: { onShutDown: () => void }) {
@@ -28,6 +29,7 @@ function DesktopSurface({ onShutDown }: { onShutDown: () => void }) {
 
     return (
         <>
+            <FloppyAutoplay />
             <DesktopIcons />
             <WindowLayer />
             <Taskbar onLogOff={() => void logOff()} onShutDown={onShutDown} />

@@ -1,0 +1,525 @@
+.floppy-disk,
+.floppy-box-disk {
+    --disk-color: #2b2b30;
+    --disk-edge: #151518;
+}
+
+.is-blue {
+    --disk-color: #2f4f8f;
+    --disk-edge: #1d335e;
+}
+
+.is-red {
+    --disk-color: #a3312f;
+    --disk-edge: #6d1f1d;
+}
+
+/* Floppy disk */
+
+.floppy-disk {
+    position: relative;
+    display: block;
+    width: 7.5em;
+    height: 7.75em;
+    border-radius: 0.2em;
+    background: linear-gradient(
+        160deg,
+        var(--disk-color) 60%,
+        var(--disk-edge)
+    );
+    clip-path: polygon(0 0, 91% 0, 100% 7%, 100% 100%, 0 100%);
+    box-shadow: inset 0 0 0 1px #fff2;
+}
+
+.floppy-shutter {
+    position: absolute;
+    top: 0;
+    left: 24%;
+    width: 50%;
+    height: 38%;
+    border-radius: 0 0 0.12em 0.12em;
+    background: linear-gradient(
+        90deg,
+        #8f969c,
+        #e4e7e9 35%,
+        #b3b9be 70%,
+        #8f969c
+    );
+}
+
+.floppy-shutter::after {
+    content: '';
+    position: absolute;
+    top: 18%;
+    left: 62%;
+    width: 20%;
+    height: 58%;
+    background: var(--disk-edge);
+}
+
+.floppy-label {
+    position: absolute;
+    right: 9%;
+    bottom: 0;
+    left: 9%;
+    display: grid;
+    place-items: center;
+    height: 52%;
+    padding: 0 0.25em;
+    overflow: hidden;
+    border-radius: 0.15em 0.15em 0 0;
+    font:
+        600 1.1em / 0.9 'Caveat',
+        cursive;
+    text-align: center;
+    color: #1f2a44;
+    background:
+        repeating-linear-gradient(
+            #0000 0 0.9em,
+            #9fb3d680 0.9em calc(0.9em + 1px)
+        ),
+        #f6f3e8;
+}
+
+/* PC tower */
+
+.pc-tower {
+    bottom: 7vh;
+    left: calc(100% - var(--side-space) / 2);
+    width: 15em;
+    translate: -50% 0;
+}
+
+.tower-case {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    height: 34em;
+    padding: 1.8em 1.2em 2.2em;
+    box-sizing: border-box;
+    border-radius: 0.6em 0.6em 0.3em 0.3em;
+    background: linear-gradient(
+        90deg,
+        var(--plastic-dark),
+        var(--plastic-light) 10%,
+        var(--plastic) 55%,
+        var(--plastic-dark)
+    );
+    box-shadow:
+        inset 0 2px 0 #fff9,
+        inset 0 -0.4em 0 #0002,
+        0 2em 3em #000a;
+}
+
+.tower-bay {
+    height: 2.6em;
+    border-radius: 0.15em;
+    background:
+        linear-gradient(#0000 45%, var(--plastic-shadow) 45% 52%, #0000 52%),
+        linear-gradient(#e6dfca, #cbc2aa);
+    box-shadow:
+        inset 0 0 0 1px var(--plastic-shadow),
+        inset 0 1px 0 #fff8;
+}
+
+.floppy-drive {
+    position: relative;
+    height: 3.2em;
+    border-radius: 0.15em;
+    background: linear-gradient(#e6dfca, #cbc2aa);
+    box-shadow:
+        inset 0 0 0 1px var(--plastic-shadow),
+        inset 0 1px 0 #fff8;
+}
+
+.drive-slot {
+    position: absolute;
+    top: 1.1em;
+    left: 12%;
+    width: 56%;
+    height: 0.5em;
+    border-radius: 0.25em;
+    background: #1e1b16;
+    box-shadow:
+        inset 0 0.15em 0.2em #000,
+        0 1px 0 #fff9;
+}
+
+.drive-slot.is-loaded {
+    background: linear-gradient(#1e1b16 55%, #4a4a4f 55%);
+}
+
+.drive-window {
+    position: absolute;
+    bottom: calc(100% - 1.35em);
+    left: 12%;
+    width: 56%;
+    height: 8em;
+    overflow: hidden;
+    pointer-events: none;
+}
+
+.drive-disk {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    translate: -50% 0;
+    transform: translateY(100%);
+}
+
+.drive-disk.is-inserting {
+    animation: disk-insert var(--disk-slide, 700ms) ease-in forwards;
+}
+
+.drive-disk.is-ejecting {
+    animation: disk-eject var(--disk-slide, 700ms) ease-out forwards;
+}
+
+@keyframes disk-insert {
+    0% {
+        opacity: 0;
+        transform: translateY(-25%);
+    }
+    30% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    100% {
+        transform: translateY(100%);
+    }
+}
+
+@keyframes disk-eject {
+    0% {
+        transform: translateY(100%);
+    }
+    55% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    100% {
+        opacity: 0;
+        transform: translateY(-25%);
+    }
+}
+
+.drive-led {
+    position: absolute;
+    top: 0.5em;
+    right: 9%;
+    width: 0.7em;
+    height: 0.35em;
+    border-radius: 0.1em;
+    background: var(--led-off);
+    box-shadow: inset 0 1px 1px #000a;
+}
+
+.drive-led.is-busy {
+    animation: drive-led 180ms steps(2) infinite;
+}
+
+@keyframes drive-led {
+    0% {
+        background: var(--led-off);
+    }
+    100% {
+        background: #ffb020;
+        box-shadow: 0 0 0.5em #ffb020;
+    }
+}
+
+.drive-eject {
+    position: absolute;
+    top: 1.6em;
+    right: 7%;
+    width: 2em;
+    height: 0.8em;
+    padding: 0;
+    border: 0;
+    border-radius: 0.15em;
+    background: linear-gradient(#eee7d4, #bfb69e);
+    box-shadow:
+        0 0.12em 0 var(--plastic-shadow),
+        inset 0 1px 0 #fff;
+    cursor: pointer;
+}
+
+.drive-eject:active:not(:disabled) {
+    translate: 0 0.1em;
+    box-shadow: inset 0 1px 0 #fff;
+}
+
+.drive-eject:disabled {
+    cursor: default;
+}
+
+.drive-eject:focus-visible {
+    outline: 2px dashed var(--plastic-text);
+    outline-offset: 2px;
+}
+
+.tower-brand {
+    margin-top: auto;
+    font:
+        600 0.9em 'Pixelify Sans',
+        sans-serif;
+    letter-spacing: 0.2em;
+    text-align: center;
+    color: var(--plastic-text);
+    text-shadow: 0 1px 0 #fff8;
+}
+
+.tower-vents {
+    height: 5em;
+    margin: 0 1.2em;
+    border-radius: 0.2em;
+    background: repeating-linear-gradient(
+        #0000 0 0.55em,
+        var(--plastic-shadow) 0.55em 0.85em
+    );
+    box-shadow: 0 1px 0 #fff5;
+}
+
+/* Floppy box */
+
+.floppy-box {
+    bottom: 1.5vh;
+    left: calc(100% - var(--side-space) / 2 - 7.5em);
+    translate: -50% 0;
+}
+
+.floppy-box-body {
+    position: relative;
+    display: block;
+    width: 13em;
+    height: 9.5em;
+    padding: 0;
+    border: 0;
+    font-size: inherit;
+    background: none;
+    cursor: pointer;
+}
+
+.floppy-box-body:focus-visible {
+    outline: 2px dashed #f3e9c6;
+    outline-offset: 4px;
+}
+
+.floppy-box-disks {
+    position: absolute;
+    inset: 0 1em 3em;
+}
+
+.floppy-box-disk {
+    position: absolute;
+    bottom: calc(var(--stack) * -0.8em);
+    left: calc(var(--stack) * 0.3em);
+    width: 10.4em;
+    height: 5em;
+    border-radius: 0.2em 0.2em 0 0;
+    background: linear-gradient(var(--disk-color), var(--disk-edge));
+    box-shadow:
+        inset 0 1px 0 #fff3,
+        0 -0.1em 0.3em #0006;
+    transition: translate 120ms ease-out;
+}
+
+.floppy-box-body:hover .floppy-box-disk,
+.floppy-box-body.is-open .floppy-box-disk {
+    translate: 0 -0.4em;
+}
+
+.floppy-box-front {
+    position: absolute;
+    inset: auto 0 0;
+    display: grid;
+    place-items: center;
+    height: 5em;
+    border-radius: 0.2em 0.2em 0.4em 0.4em;
+    background: linear-gradient(#59626c, #353c44);
+    box-shadow:
+        inset 0 1px 0 #ffffff40,
+        0 0.6em 1em #0009;
+}
+
+.floppy-box-label {
+    padding: 0.1em 0.7em;
+    font:
+        600 1.5em / 1 'Caveat',
+        cursive;
+    color: #2c2a24;
+    background: #f3eedd;
+    box-shadow: 0 0.1em 0.2em #0006;
+    rotate: -3deg;
+}
+
+.disk-picker {
+    position: absolute;
+    right: -8.5em;
+    bottom: calc(100% + 0.4em);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    gap: 0.8em;
+    width: max-content;
+    max-width: calc(100vw - 32px);
+}
+
+.disk-picker-item {
+    padding: 0;
+    border: 0;
+    font-size: inherit;
+    background: none;
+    filter: drop-shadow(0 0.3em 0.4em #0009);
+    cursor: pointer;
+    transition: translate 120ms ease-out;
+}
+
+.disk-picker-item:hover:not(:disabled) {
+    translate: 0 -0.4em;
+}
+
+.disk-picker-item:disabled {
+    cursor: not-allowed;
+    opacity: 0.55;
+}
+
+.disk-picker-item:focus-visible {
+    outline: 2px dashed #f3e9c6;
+    outline-offset: 3px;
+}
+
+.disk-picker-hint {
+    flex-basis: 100%;
+    text-align: right;
+}
+
+@media (max-width: 900px), (max-aspect-ratio: 5/4) {
+    .pc-tower {
+        bottom: 1vh;
+        left: auto;
+        right: 12px;
+        translate: none;
+    }
+
+    .tower-case {
+        height: auto;
+        padding: 0.6em;
+    }
+
+    .tower-bay,
+    .tower-brand,
+    .tower-vents {
+        display: none;
+    }
+
+    .floppy-box {
+        left: 12px;
+        translate: none;
+    }
+
+    .disk-picker {
+        right: auto;
+        left: 0;
+        justify-content: flex-start;
+    }
+
+    .disk-picker-hint {
+        text-align: left;
+    }
+}
+
+/* Floppy drive app */
+
+.drive-volume {
+    margin: 0 0 6px;
+    font-weight: bold;
+}
+
+.drive-message {
+    margin: 0 0 4px;
+}
+
+.disk-file-list {
+    display: flex;
+    flex-wrap: wrap;
+    align-content: flex-start;
+    gap: 6px;
+    height: 176px;
+    margin: 0;
+    padding: 8px;
+    overflow: auto;
+    list-style: none;
+}
+
+.disk-file {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    width: 76px;
+    padding: 4px 2px;
+    border: 0;
+    font: inherit;
+    color: #000;
+    background: none;
+    cursor: default;
+}
+
+.disk-file:focus-visible {
+    outline: none;
+}
+
+.disk-file-name {
+    padding: 0 2px;
+}
+
+.disk-file.is-selected .disk-file-name {
+    color: #fff;
+    background: var(--title);
+    outline: 1px dotted #ffff80;
+}
+
+.disk-file.is-selected .pixel-icon {
+    filter: sepia(1) hue-rotate(190deg) saturate(4) brightness(0.7);
+}
+
+.readme-text {
+    height: 150px;
+    margin: 0;
+    padding: 6px 8px;
+    overflow: auto;
+    font:
+        17px / 1.05 'VT323',
+        monospace;
+    white-space: pre-wrap;
+    user-select: text;
+}
+
+.setup-progress p {
+    margin: 0 0 10px;
+}
+
+.progress-bar {
+    height: 20px;
+    padding: 3px;
+    box-sizing: border-box;
+}
+
+.progress-fill {
+    display: block;
+    width: 0;
+    height: 100%;
+    background: repeating-linear-gradient(
+        90deg,
+        var(--title) 0 9px,
+        #0000 9px 11px
+    );
+    animation: progress-fill var(--duration) steps(22) forwards;
+}
+
+@keyframes progress-fill {
+    to {
+        width: 100%;
+    }
+}
