@@ -1,12 +1,16 @@
 import type { ComponentType } from 'react';
+import type { SoftwareType } from '@/types';
 import type { IconName } from '../ui/pixel-art';
 import type { Size } from '../windows/window-state';
+import { CalendarApp } from './calendar/calendar-app';
 import { ControlPanelApp } from './control-panel-app';
+import { CustomerBaseApp } from './customer-base/customer-base-app';
 import { FloppyDriveApp } from './floppy-drive/floppy-drive-app';
 import { MailApp } from './mail/mail-app';
 import { MinefieldApp } from './minefield/minefield-app';
 import { MyComputerApp } from './my-computer-app';
 import { RecycleBinApp } from './recycle-bin-app';
+import { ServicePlanApp } from './service-plan/service-plan-app';
 import { TimeClockApp } from './time-clock/time-clock-app';
 import { WorkNetApp } from './worknet/worknet-app';
 
@@ -15,6 +19,7 @@ export type AppDefinition = {
     icon: IconName;
     size: Size;
     component: ComponentType;
+    softwareType?: SoftwareType;
 };
 
 export const APPS = {
@@ -47,6 +52,26 @@ export const APPS = {
         icon: 'trash',
         size: { width: 380, height: 236 },
         component: RecycleBinApp,
+    },
+    records: {
+        titleKey: 'desktop.records',
+        icon: 'records',
+        size: { width: 560, height: 380 },
+        component: CustomerBaseApp,
+        softwareType: 'records',
+    },
+    scheduler: {
+        titleKey: 'desktop.scheduler',
+        icon: 'scheduler',
+        size: { width: 660, height: 332 },
+        component: ServicePlanApp,
+        softwareType: 'scheduler',
+    },
+    calendar: {
+        titleKey: 'desktop.calendar',
+        icon: 'calendar',
+        size: { width: 420, height: 400 },
+        component: CalendarApp,
     },
     'time-clock': {
         titleKey: 'desktop.time_clock',

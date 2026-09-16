@@ -1,9 +1,11 @@
+import type { MailboxScope } from '@/types';
 import type { AppId } from '../apps/app-registry';
 
 export type Edition = {
     subtitleKey: string;
     bootStatusKeys: string[];
     apps: AppId[];
+    mailbox: MailboxScope;
 };
 
 export const HOME_EDITION: Edition = {
@@ -22,6 +24,7 @@ export const HOME_EDITION: Edition = {
         'control-panel',
         'recycle-bin',
     ],
+    mailbox: 'private',
 };
 
 export const BUSINESS_EDITION: Edition = {
@@ -32,5 +35,13 @@ export const BUSINESS_EDITION: Edition = {
         'splash.business_status_3',
         'splash.status_4',
     ],
-    apps: ['time-clock', 'recycle-bin'],
+    apps: [
+        'mail',
+        'records',
+        'scheduler',
+        'calendar',
+        'time-clock',
+        'recycle-bin',
+    ],
+    mailbox: 'work',
 };

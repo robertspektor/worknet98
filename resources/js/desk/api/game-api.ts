@@ -26,6 +26,14 @@ export function postJson<T>(url: string, body: object = {}): Promise<T> {
     );
 }
 
+export function deleteJson(url: string): Promise<void> {
+    return request<void>(
+        url,
+        { method: 'DELETE' },
+        { 'X-XSRF-TOKEN': readCookie(XSRF_COOKIE) },
+    );
+}
+
 async function request<T>(
     url: string,
     init: Pick<RequestInit, 'method' | 'body'>,

@@ -1,11 +1,11 @@
-import { useTranslation } from '@/i18n/use-translation';
 import { APPS } from '../apps/app-registry';
 import type { AppId } from '../apps/app-registry';
+import { useAppTitle } from '../apps/use-app-title';
 import { useWindowManager } from './window-manager';
 import { WindowFrame } from './window-frame';
 
 export function WindowLayer() {
-    const { t } = useTranslation();
+    const appTitle = useAppTitle();
     const windows = useWindowManager();
 
     return (
@@ -18,7 +18,7 @@ export function WindowLayer() {
                     <WindowFrame
                         key={entry.id}
                         entry={entry}
-                        title={t(app.titleKey)}
+                        title={appTitle(entry.id as AppId)}
                         icon={app.icon}
                         isFocused={windows.focusedId === entry.id}
                         onFocus={() => windows.focus(entry.id)}

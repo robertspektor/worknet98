@@ -11,6 +11,10 @@ function email(id: number, isRead = false): Email {
         body: 'Welcome.',
         received_at: '2026-09-17T09:00:00+00:00',
         is_read: isRead,
+        folder: 'inbox',
+        recipient_name: null,
+        recipient_address: null,
+        action: null,
     };
 }
 

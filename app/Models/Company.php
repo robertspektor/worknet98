@@ -20,10 +20,13 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  * @property string $hr_contact_name
  * @property string $hr_contact_address
  * @property string $hiring_note
+ * @property string|null $office_address
+ * @property string|null $manager_name
+ * @property string|null $manager_address
  * @property CarbonImmutable|null $created_at
  * @property CarbonImmutable|null $updated_at
  */
-#[Fillable(['slug', 'locale', 'name', 'industry', 'tagline', 'description', 'hr_contact_name', 'hr_contact_address', 'hiring_note'])]
+#[Fillable(['slug', 'locale', 'name', 'industry', 'tagline', 'description', 'hr_contact_name', 'hr_contact_address', 'hiring_note', 'office_address', 'manager_name', 'manager_address'])]
 class Company extends Model
 {
     /** @use HasFactory<CompanyFactory> */
@@ -35,5 +38,21 @@ class Company extends Model
     public function jobOpenings(): HasMany
     {
         return $this->hasMany(JobOpening::class);
+    }
+
+    /**
+     * @return HasMany<Customer, $this>
+     */
+    public function customers(): HasMany
+    {
+        return $this->hasMany(Customer::class);
+    }
+
+    /**
+     * @return HasMany<Technician, $this>
+     */
+    public function technicians(): HasMany
+    {
+        return $this->hasMany(Technician::class);
     }
 }

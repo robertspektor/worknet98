@@ -12,7 +12,7 @@ class DatabaseSeeder extends Seeder
 
     public function run(): void
     {
-        $this->call([CompanySeeder::class, FloppyDiskSeeder::class]);
+        $this->call([CompanySeeder::class, CompanySoftwareSeeder::class, FloppyDiskSeeder::class]);
 
         User::factory()->create(['email' => 'player@desklife98.test']);
     }

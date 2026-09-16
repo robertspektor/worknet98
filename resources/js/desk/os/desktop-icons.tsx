@@ -1,13 +1,13 @@
 import { useState } from 'react';
-import { useTranslation } from '@/i18n/use-translation';
 import { APPS } from '../apps/app-registry';
 import type { AppId } from '../apps/app-registry';
+import { useAppTitle } from '../apps/use-app-title';
 import { useEdition } from '../computer/edition-context';
 import { PixelIcon } from '../ui/pixel-icon';
 import { useWindowManager } from '../windows/window-manager';
 
 export function DesktopIcons() {
-    const { t } = useTranslation();
+    const appTitle = useAppTitle();
     const { apps } = useEdition();
     const windows = useWindowManager();
     const [selected, setSelected] = useState<AppId | null>(null);
@@ -29,9 +29,7 @@ export function DesktopIcons() {
                     }
                 >
                     <PixelIcon name={APPS[id].icon} />
-                    <span className="desktop-icon-label">
-                        {t(APPS[id].titleKey)}
-                    </span>
+                    <span className="desktop-icon-label">{appTitle(id)}</span>
                 </button>
             ))}
         </div>

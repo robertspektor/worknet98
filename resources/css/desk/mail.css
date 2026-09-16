@@ -1,9 +1,55 @@
 .mail-app {
-    display: grid;
-    grid-template-rows: 150px 1fr;
+    display: flex;
+    flex-direction: column;
     gap: 4px;
     height: 100%;
     padding: 2px;
+}
+
+.mail-toolbar {
+    display: flex;
+    gap: 4px;
+}
+
+.mail-toolbar-separator {
+    width: 2px;
+    margin: 0 3px;
+    box-shadow:
+        inset 1px 0 var(--shadow),
+        inset -1px 0 var(--highlight);
+}
+
+.mail-panes {
+    display: grid;
+    flex: 1;
+    grid-template-rows: 150px 1fr;
+    gap: 4px;
+    min-height: 0;
+}
+
+.compose-form {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    gap: 4px;
+    min-height: 0;
+    padding: 4px 2px 2px;
+}
+
+.compose-field {
+    display: grid;
+    grid-template-columns: 70px 1fr;
+    align-items: center;
+}
+
+.compose-body {
+    flex: 1;
+    min-height: 0;
+    resize: none;
+}
+
+.compose-form .app-actions {
+    margin-top: 2px;
 }
 
 .email-list {

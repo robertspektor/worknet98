@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useTranslation } from '@/i18n/use-translation';
 import { APPS } from '../apps/app-registry';
 import type { AppId } from '../apps/app-registry';
+import { useAppTitle } from '../apps/use-app-title';
 import { sound } from '../sound/sound';
 import { PixelIcon } from '../ui/pixel-icon';
 import { useWindowManager } from '../windows/window-manager';
@@ -17,6 +18,7 @@ export function Taskbar({
     onShutDown: () => void;
 }) {
     const { t } = useTranslation();
+    const appTitle = useAppTitle();
     const windows = useWindowManager();
     const [isStartMenuOpen, setStartMenuOpen] = useState(false);
 
@@ -57,7 +59,7 @@ export function Taskbar({
                                 onClick={() => toggleTask(entry.id)}
                             >
                                 <PixelIcon name={app.icon} size={16} />
-                                <span>{t(app.titleKey)}</span>
+                                <span>{appTitle(entry.id as AppId)}</span>
                             </button>
                         );
                     })}

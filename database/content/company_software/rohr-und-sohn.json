@@ -1,0 +1,107 @@
+{
+    "office_address": "buero@rohrundsohn.wn",
+    "manager_name": "Bernd Rohr",
+    "manager_address": "bernd.rohr@rohrundsohn.wn",
+    "app_names": {
+        "records": "KundenKartei",
+        "scheduler": "Einsatzplaner"
+    },
+    "technicians": [
+        {
+            "slug": "heinz-kowalczyk",
+            "name": "Heinz Kowalczyk",
+            "skills": ["plumbing"],
+            "busy_slots": [
+                { "weekday": 1, "slot": "08:00" },
+                { "weekday": 1, "slot": "10:00" },
+                { "weekday": 2, "slot": "08:00" },
+                { "weekday": 2, "slot": "10:00" },
+                { "weekday": 3, "slot": "08:00" },
+                { "weekday": 3, "slot": "10:00" },
+                { "weekday": 4, "slot": "13:00" },
+                { "weekday": 5, "slot": "15:00" }
+            ]
+        },
+        {
+            "slug": "rita-vogt",
+            "name": "Rita Vogt",
+            "skills": ["plumbing", "heating"],
+            "busy_slots": [
+                { "weekday": 1, "slot": "08:00" },
+                { "weekday": 1, "slot": "15:00" },
+                { "weekday": 2, "slot": "13:00" },
+                { "weekday": 2, "slot": "15:00" },
+                { "weekday": 3, "slot": "08:00" },
+                { "weekday": 3, "slot": "15:00" },
+                { "weekday": 4, "slot": "13:00" },
+                { "weekday": 4, "slot": "15:00" },
+                { "weekday": 5, "slot": "08:00" },
+                { "weekday": 5, "slot": "15:00" }
+            ]
+        },
+        {
+            "slug": "dieter-pruss",
+            "name": "Dieter Pruß",
+            "skills": ["heating"],
+            "busy_slots": [
+                { "weekday": 1, "slot": "13:00" },
+                { "weekday": 1, "slot": "15:00" },
+                { "weekday": 2, "slot": "13:00" },
+                { "weekday": 2, "slot": "15:00" },
+                { "weekday": 3, "slot": "13:00" },
+                { "weekday": 3, "slot": "15:00" },
+                { "weekday": 4, "slot": "13:00" },
+                { "weekday": 4, "slot": "15:00" },
+                { "weekday": 5, "slot": "13:00" },
+                { "weekday": 5, "slot": "15:00" }
+            ]
+        }
+    ],
+    "customers": [
+        {
+            "slug": "margarete-hollmann",
+            "name": "Margarete Hollmann",
+            "street": "Birkenweg 14",
+            "city": "Ahornfelde",
+            "phone": "0555 0142",
+            "email_address": "m.hollmann@post.wn",
+            "notes": "Hat einen sehr lauten Dackel namens Bruno. Bruno ist freundlich. Bruno ist auch sehr laut."
+        },
+        {
+            "slug": "martin-hollmeier",
+            "name": "Martin Hollmeier",
+            "street": "Hafenstraße 88",
+            "city": "Ahornfelde",
+            "phone": "0555 0188",
+            "email_address": "hollmeier@hafennetz.wn",
+            "notes": "Fragt immer nach Rabatt. Hat nie einen bekommen. Fragt trotzdem weiter."
+        },
+        {
+            "slug": "priya-raman",
+            "name": "Priya Raman",
+            "street": "Obstgartenhof 3",
+            "city": "Grünau",
+            "phone": "0555 0103",
+            "email_address": "priya.raman@post.wn",
+            "notes": "Neuer Heizkessel seit letztem Frühjahr. Sehr zufrieden. Schickt zu Weihnachten Plätzchen."
+        },
+        {
+            "slug": "walter-beck",
+            "name": "Walter Beck",
+            "street": "Mühlenstraße 51",
+            "city": "Ahornfelde",
+            "phone": "0555 0151",
+            "email_address": "w.beck@altpost.wn",
+            "notes": "Rentner. Ruft jede Woche wegen seines Heizkörpers an. Der Heizkörper ist in Ordnung. Freundlich bleiben."
+        },
+        {
+            "slug": "denise-okafor",
+            "name": "Denise Okafor",
+            "street": "Bahnhofsallee 220, Whg. 4B",
+            "city": "Grünau",
+            "phone": "0555 0220",
+            "email_address": "d.okafor@post.wn",
+            "notes": "Vermieter geht nicht ans Telefon. Bitte sie anrufen, nicht den Vermieter."
+        }
+    ]
+}

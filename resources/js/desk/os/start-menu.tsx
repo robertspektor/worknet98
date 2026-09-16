@@ -2,6 +2,7 @@ import { useEffect, useRef } from 'react';
 import { useTranslation } from '@/i18n/use-translation';
 import { APPS } from '../apps/app-registry';
 import type { AppId } from '../apps/app-registry';
+import { useAppTitle } from '../apps/use-app-title';
 import { useEdition } from '../computer/edition-context';
 import type { IconName } from '../ui/pixel-art';
 import { PixelIcon } from '../ui/pixel-icon';
@@ -41,6 +42,7 @@ export function StartMenu({
     onClose: () => void;
 }) {
     const { t } = useTranslation();
+    const appTitle = useAppTitle();
     const { apps } = useEdition();
     const menuRef = useRef<HTMLElement>(null);
 
@@ -78,7 +80,7 @@ export function StartMenu({
                     <MenuItem
                         key={id}
                         icon={APPS[id].icon}
-                        label={t(APPS[id].titleKey)}
+                        label={appTitle(id)}
                         onSelect={select(() => onOpenApp(id))}
                     />
                 ))}

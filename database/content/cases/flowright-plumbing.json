@@ -1,0 +1,68 @@
+[
+    {
+        "slug": "hollis-leaking-sink",
+        "shift": 1,
+        "request_mail": {
+            "customer": "margaret-hollis",
+            "subject": "Water under my kitchen sink!!",
+            "body": "Hello,\n\nThere is water under my kitchen sink and it is getting worse. I put a salad bowl under it, but it is my good salad bowl.\n\nCan someone come as soon as possible? I am only home in the mornings. In the afternoons I volunteer at the library.\n\nThank you,\nMargaret Hollis"
+        },
+        "goals": [
+            { "type": "appointment_booked", "customer": "margaret-hollis" },
+            {
+                "type": "email_sent",
+                "customer": "margaret-hollis",
+                "action": "confirm_appointment"
+            },
+            {
+                "type": "calendar_entry_for_appointment",
+                "customer": "margaret-hollis"
+            }
+        ],
+        "outcomes": [
+            {
+                "when": {
+                    "type": "appointment_between",
+                    "customer": "margaret-hollis",
+                    "from": "08:00",
+                    "to": "12:00"
+                },
+                "effects": { "customer_satisfaction": 2 },
+                "otherwise": { "customer_satisfaction": -2 },
+                "feedback": "Mrs. Hollis called to say the morning appointment is perfect. She called us \"a gem\". I am choosing to believe she meant me.",
+                "otherwise_feedback": "Mrs. Hollis called. She is not home in the afternoons. She volunteers at the library. She then explained the entire library schedule to me. Forty minutes."
+            },
+            {
+                "when": {
+                    "type": "technician_has_skill",
+                    "customer": "margaret-hollis",
+                    "skill": "plumbing"
+                },
+                "effects": {},
+                "otherwise": { "cost": -2 },
+                "feedback": "Good pick on the technician, too.",
+                "otherwise_feedback": "You sent a heating guy to a leaking sink. He will look at it, call a plumber and drive out again. Two trips. I am not angry. I am disappointed."
+            },
+            {
+                "when": {
+                    "type": "appointment_within_work_days",
+                    "customer": "margaret-hollis",
+                    "days": 2
+                },
+                "effects": { "punctuality": 1 },
+                "otherwise": { "punctuality": -1 },
+                "feedback": "And fast. Love to see it.",
+                "otherwise_feedback": "It is a leaking sink. By the time we get there, she will have a pond. Maybe a duck."
+            }
+        ],
+        "feedback_mail": {
+            "subject": "Re: Mrs. Hollis",
+            "intro": "Hey champ,\n\nQuick one about Mrs. Hollis and her sink.",
+            "outro": "My door is always open. Literally. The hinge is broken.\n\nGary"
+        },
+        "reminder_mail": {
+            "subject": "Mrs. Hollis?",
+            "body": "Hey,\n\nMrs. Hollis called again. Something about a salad bowl. Is she scheduled yet?\n\nAppointment in ServicePlan, confirmation mail to her, and put it in your calendar. You know the drill. Or you will. Tomorrow.\n\nGary"
+        }
+    }
+]

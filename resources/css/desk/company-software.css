@@ -1,0 +1,272 @@
+.company-app {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    height: 100%;
+    padding: 0 4px 4px;
+}
+
+.company-app-bar {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    margin: 0 -4px;
+    padding: 4px 8px;
+    color: #fff;
+    background: #404040;
+    border-bottom: 2px solid #808080;
+}
+
+.company-app-name {
+    font:
+        600 16px / 1 'Pixelify Sans',
+        Tahoma,
+        sans-serif;
+}
+
+.company-app-company {
+    font-size: 11px;
+    color: #d0d0d0;
+}
+
+/* Records */
+
+.records-search {
+    display: grid;
+    grid-template-columns: max-content 1fr;
+    align-items: center;
+    gap: 6px;
+}
+
+.records-body {
+    display: grid;
+    flex: 1;
+    grid-template-columns: 210px 1fr;
+    gap: 6px;
+    min-height: 0;
+}
+
+.records-list,
+.records-detail {
+    overflow: auto;
+}
+
+.records-row {
+    display: grid;
+    grid-template-columns: 1fr max-content;
+    gap: 6px;
+    width: 100%;
+    padding: 2px 5px;
+    border: 0;
+    font: inherit;
+    color: #000;
+    text-align: left;
+    background: none;
+    cursor: default;
+}
+
+.records-row.is-selected {
+    color: #fff;
+    background: var(--title);
+}
+
+.records-empty,
+.records-detail > .muted {
+    padding: 8px;
+}
+
+.records-detail {
+    padding: 8px 10px;
+    user-select: text;
+}
+
+.records-detail-title {
+    margin: 0 0 6px;
+    font-size: 14px;
+}
+
+.records-detail .property-list {
+    padding: 0;
+}
+
+/* Scheduler */
+
+.day-tabs {
+    display: flex;
+    gap: 2px;
+}
+
+.day-tab {
+    flex: 1;
+    padding: 3px 4px;
+    border: 0;
+    font: inherit;
+    background: var(--face);
+    box-shadow: var(--bevel-out);
+    cursor: pointer;
+}
+
+.day-tab.is-active {
+    font-weight: bold;
+    box-shadow: var(--bevel-in);
+    background: #fff;
+}
+
+.schedule-body {
+    overflow: auto;
+}
+
+.schedule-grid {
+    width: 100%;
+    border-collapse: collapse;
+    table-layout: fixed;
+}
+
+.schedule-grid th,
+.schedule-grid td {
+    padding: 2px;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.schedule-grid thead th {
+    font-weight: normal;
+    background: var(--face);
+    box-shadow: var(--bevel-out);
+}
+
+.schedule-grid tbody th {
+    padding: 4px 6px;
+    text-align: left;
+}
+
+.schedule-grid thead th:first-child {
+    width: 150px;
+}
+
+.schedule-technician {
+    display: block;
+    font-weight: bold;
+}
+
+.schedule-skills {
+    display: block;
+    font-size: 11px;
+    font-weight: normal;
+    color: #505050;
+}
+
+.schedule-cell {
+    display: block;
+    width: 100%;
+    min-height: 34px;
+    padding: 2px 4px;
+    overflow: hidden;
+    border: 1px solid transparent;
+    font: inherit;
+    font-size: 11px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    cursor: pointer;
+}
+
+.schedule-cell.is-free {
+    color: #006000;
+    background: #eaf7ea;
+}
+
+.schedule-cell.is-busy {
+    color: #707070;
+    background: repeating-linear-gradient(
+        45deg,
+        #e4e4e4 0 4px,
+        #d0d0d0 4px 8px
+    );
+    cursor: not-allowed;
+}
+
+.schedule-cell.is-booked {
+    font-weight: bold;
+    color: #fff;
+    background: var(--title);
+}
+
+.schedule-cell.is-selected {
+    border: 1px dotted #000;
+    outline: 1px solid #ffd800;
+}
+
+.booking-panel {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 6px 10px;
+    min-height: 34px;
+}
+
+.booking-panel p {
+    margin: 0;
+}
+
+.booking-customer {
+    display: flex;
+    flex: 1;
+    align-items: center;
+    gap: 6px;
+    min-width: 220px;
+}
+
+.schedule-hint {
+    margin: 0;
+    font-size: 11px;
+}
+
+/* Calendar */
+
+.calendar-app {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    height: 100%;
+    padding: 6px;
+}
+
+.calendar-form {
+    display: grid;
+    grid-template-columns: 110px 70px 1fr max-content;
+    gap: 4px;
+}
+
+.calendar-form .button {
+    min-width: 0;
+}
+
+.calendar-list {
+    flex: 1;
+    margin: 0;
+    padding: 4px;
+    overflow: auto;
+    list-style: none;
+}
+
+.calendar-entry {
+    display: grid;
+    grid-template-columns: 120px 1fr 18px;
+    align-items: center;
+    gap: 6px;
+    padding: 3px 2px;
+    border-bottom: 1px solid #e8e8e8;
+}
+
+.calendar-when {
+    font-weight: bold;
+}
+
+.calendar-title {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.calendar-empty {
+    padding: 6px;
+}

@@ -1,6 +1,7 @@
 import { router } from '@inertiajs/react';
 import { useTranslation } from '@/i18n/use-translation';
 import { logout } from '@/routes';
+import { CompanySoftwareProvider } from '../company-software/company-software-provider';
 import { DialogProvider, useDialogs } from '../dialogs/dialog-provider';
 import { MailboxProvider } from '../mailbox/mailbox-provider';
 import { WindowLayer } from '../windows/window-layer';
@@ -41,11 +42,13 @@ export function Desktop({ onShutDown }: { onShutDown: () => void }) {
     return (
         <div className="os">
             <WindowManagerProvider>
-                <MailboxProvider>
-                    <DialogProvider>
-                        <DesktopSurface onShutDown={onShutDown} />
-                    </DialogProvider>
-                </MailboxProvider>
+                <CompanySoftwareProvider>
+                    <MailboxProvider>
+                        <DialogProvider>
+                            <DesktopSurface onShutDown={onShutDown} />
+                        </DialogProvider>
+                    </MailboxProvider>
+                </CompanySoftwareProvider>
             </WindowManagerProvider>
         </div>
     );

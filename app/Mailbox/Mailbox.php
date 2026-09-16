@@ -3,13 +3,16 @@
 namespace App\Mailbox;
 
 use App\Models\Email;
+use App\Models\Employment;
 use App\Models\User;
 
 class Mailbox
 {
-    public function deliver(User $player, EmailDraft $draft): Email
+    public function deliver(User $player, EmailDraft $draft, ?Employment $employment = null): Email
     {
         return $player->emails()->create([
+            'employment_id' => $employment?->id,
+            'folder' => EmailFolder::Inbox,
             'sender_name' => $draft->senderName,
             'sender_address' => $draft->senderAddress,
             'subject' => $draft->subject,

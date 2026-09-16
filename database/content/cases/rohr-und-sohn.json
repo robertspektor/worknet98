@@ -1,0 +1,68 @@
+[
+    {
+        "slug": "hollmann-tropfender-siphon",
+        "shift": 1,
+        "request_mail": {
+            "customer": "margarete-hollmann",
+            "subject": "Wasser unter der Spüle!!",
+            "body": "Guten Tag,\n\nunter meiner Küchenspüle steht Wasser, und es wird immer mehr. Ich habe eine Salatschüssel daruntergestellt, aber es ist meine gute Salatschüssel.\n\nKann bitte so schnell wie möglich jemand kommen? Ich bin nur vormittags zu Hause. Nachmittags helfe ich ehrenamtlich in der Bücherei.\n\nMit freundlichen Grüßen\nMargarete Hollmann"
+        },
+        "goals": [
+            { "type": "appointment_booked", "customer": "margarete-hollmann" },
+            {
+                "type": "email_sent",
+                "customer": "margarete-hollmann",
+                "action": "confirm_appointment"
+            },
+            {
+                "type": "calendar_entry_for_appointment",
+                "customer": "margarete-hollmann"
+            }
+        ],
+        "outcomes": [
+            {
+                "when": {
+                    "type": "appointment_between",
+                    "customer": "margarete-hollmann",
+                    "from": "08:00",
+                    "to": "12:00"
+                },
+                "effects": { "customer_satisfaction": 2 },
+                "otherwise": { "customer_satisfaction": -2 },
+                "feedback": "Frau Hollmann hat angerufen, der Vormittagstermin passt perfekt. Sie hat uns \"ein Goldstück\" genannt. Ich beziehe das auf mich.",
+                "otherwise_feedback": "Frau Hollmann hat angerufen. Nachmittags ist sie nicht zu Hause, da ist sie in der Bücherei. Danach hat sie mir den kompletten Dienstplan der Bücherei erklärt. Vierzig Minuten."
+            },
+            {
+                "when": {
+                    "type": "technician_has_skill",
+                    "customer": "margarete-hollmann",
+                    "skill": "plumbing"
+                },
+                "effects": {},
+                "otherwise": { "cost": -2 },
+                "feedback": "Auch beim Monteur gut gewählt.",
+                "otherwise_feedback": "Du hast einen Heizungsmann zu einer tropfenden Spüle geschickt. Der guckt sich das an, ruft einen Sanitärmann und fährt nochmal raus. Zwei Anfahrten. Ich bin nicht sauer. Ich bin enttäuscht."
+            },
+            {
+                "when": {
+                    "type": "appointment_within_work_days",
+                    "customer": "margarete-hollmann",
+                    "days": 2
+                },
+                "effects": { "punctuality": 1 },
+                "otherwise": { "punctuality": -1 },
+                "feedback": "Und schnell. So mag ich das.",
+                "otherwise_feedback": "Das ist eine tropfende Spüle. Bis wir da sind, hat sie einen Teich. Vielleicht mit Ente."
+            }
+        ],
+        "feedback_mail": {
+            "subject": "AW: Frau Hollmann",
+            "intro": "Moin,\n\nkurz wegen Frau Hollmann und ihrer Spüle.",
+            "outro": "Meine Tür steht immer offen. Wörtlich. Das Scharnier ist kaputt.\n\nBernd"
+        },
+        "reminder_mail": {
+            "subject": "Frau Hollmann?",
+            "body": "Moin,\n\nFrau Hollmann hat schon wieder angerufen. Irgendwas mit einer Salatschüssel. Ist sie schon eingeplant?\n\nTermin im Einsatzplaner, Bestätigungsmail an sie, und ab in deinen Kalender. Du kennst das. Oder ab morgen.\n\nBernd"
+        }
+    }
+]

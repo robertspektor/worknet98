@@ -1,0 +1,107 @@
+{
+    "office_address": "office@flowright.wn",
+    "manager_name": "Gary Flowright",
+    "manager_address": "gary@flowright.wn",
+    "app_names": {
+        "records": "CustomerBase",
+        "scheduler": "ServicePlan"
+    },
+    "technicians": [
+        {
+            "slug": "stan-kowalski",
+            "name": "Stan Kowalski",
+            "skills": ["plumbing"],
+            "busy_slots": [
+                { "weekday": 1, "slot": "08:00" },
+                { "weekday": 1, "slot": "10:00" },
+                { "weekday": 2, "slot": "08:00" },
+                { "weekday": 2, "slot": "10:00" },
+                { "weekday": 3, "slot": "08:00" },
+                { "weekday": 3, "slot": "10:00" },
+                { "weekday": 4, "slot": "13:00" },
+                { "weekday": 5, "slot": "15:00" }
+            ]
+        },
+        {
+            "slug": "rita-vance",
+            "name": "Rita Vance",
+            "skills": ["plumbing", "heating"],
+            "busy_slots": [
+                { "weekday": 1, "slot": "08:00" },
+                { "weekday": 1, "slot": "15:00" },
+                { "weekday": 2, "slot": "13:00" },
+                { "weekday": 2, "slot": "15:00" },
+                { "weekday": 3, "slot": "08:00" },
+                { "weekday": 3, "slot": "15:00" },
+                { "weekday": 4, "slot": "13:00" },
+                { "weekday": 4, "slot": "15:00" },
+                { "weekday": 5, "slot": "08:00" },
+                { "weekday": 5, "slot": "15:00" }
+            ]
+        },
+        {
+            "slug": "doug-pruitt",
+            "name": "Doug Pruitt",
+            "skills": ["heating"],
+            "busy_slots": [
+                { "weekday": 1, "slot": "13:00" },
+                { "weekday": 1, "slot": "15:00" },
+                { "weekday": 2, "slot": "13:00" },
+                { "weekday": 2, "slot": "15:00" },
+                { "weekday": 3, "slot": "13:00" },
+                { "weekday": 3, "slot": "15:00" },
+                { "weekday": 4, "slot": "13:00" },
+                { "weekday": 4, "slot": "15:00" },
+                { "weekday": 5, "slot": "13:00" },
+                { "weekday": 5, "slot": "15:00" }
+            ]
+        }
+    ],
+    "customers": [
+        {
+            "slug": "margaret-hollis",
+            "name": "Margaret Hollis",
+            "street": "14 Birch Lane",
+            "city": "Maple Falls",
+            "phone": "555-0142",
+            "email_address": "m.hollis@mail.wn",
+            "notes": "Has a very loud dog named Duke. Duke is friendly. Duke is also very loud."
+        },
+        {
+            "slug": "martin-hollister",
+            "name": "Martin Hollister",
+            "street": "88 Harbor Road",
+            "city": "Maple Falls",
+            "phone": "555-0188",
+            "email_address": "hollister@harbornet.wn",
+            "notes": "Always asks for a discount. Has never received one. Keeps asking."
+        },
+        {
+            "slug": "priya-raman",
+            "name": "Priya Raman",
+            "street": "3 Orchard Court",
+            "city": "Greenvale",
+            "phone": "555-0103",
+            "email_address": "priya.raman@mail.wn",
+            "notes": "New boiler installed last spring. Very happy. Sends cookies at Christmas."
+        },
+        {
+            "slug": "walter-beck",
+            "name": "Walter Beck",
+            "street": "51 Mill Street",
+            "city": "Maple Falls",
+            "phone": "555-0151",
+            "email_address": "w.beck@oldmail.wn",
+            "notes": "Retired. Calls every week about his radiator. The radiator is fine. Be kind."
+        },
+        {
+            "slug": "denise-okafor",
+            "name": "Denise Okafor",
+            "street": "220 Station Avenue, Apt 4B",
+            "city": "Greenvale",
+            "phone": "555-0220",
+            "email_address": "d.okafor@mail.wn",
+            "notes": "Landlord does not answer the phone. Please call her, not the landlord."
+        }
+    ]
+}

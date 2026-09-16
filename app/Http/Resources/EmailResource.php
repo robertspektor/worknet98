@@ -24,6 +24,10 @@ class EmailResource extends JsonResource
             'body' => $this->body,
             'received_at' => $this->received_at->toIso8601String(),
             'is_read' => $this->read_at !== null,
+            'folder' => $this->folder->value,
+            'recipient_name' => $this->recipient_name,
+            'recipient_address' => $this->recipient_address,
+            'action' => $this->action?->value,
         ];
     }
 }

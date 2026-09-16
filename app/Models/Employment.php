@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Attributes\Fillable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 /**
  * @property int $id
@@ -20,12 +21,37 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property CarbonImmutable|null $updated_at
  * @property-read Company $company
  * @property-read JobOpening $jobOpening
+ * @property-read User $user
  */
 #[Fillable(['user_id', 'company_id', 'job_opening_id', 'daily_salary', 'hired_at'])]
 class Employment extends Model
 {
     /** @use HasFactory<EmploymentFactory> */
     use HasFactory;
+
+    /**
+     * @return BelongsTo<User, $this>
+     */
+    public function user(): BelongsTo
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    /**
+     * @return HasMany<Appointment, $this>
+     */
+    public function appointments(): HasMany
+    {
+        return $this->hasMany(Appointment::class);
+    }
+
+    /**
+     * @return HasMany<Email, $this>
+     */
+    public function emails(): HasMany
+    {
+        return $this->hasMany(Email::class);
+    }
 
     /**
      * @return BelongsTo<Company, $this>
