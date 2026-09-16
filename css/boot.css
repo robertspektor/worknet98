@@ -1,0 +1,115 @@
+.bios {
+  position: absolute;
+  inset: 0;
+  padding: 28px 32px;
+  background: #000;
+}
+
+.bios-text {
+  margin: 0;
+  font: 24px / 1.1 'VT323', monospace;
+  color: #c8c8c8;
+  white-space: pre-wrap;
+}
+
+.bios-text::after {
+  content: '_';
+  animation: blink 700ms steps(1) infinite;
+}
+
+@keyframes blink {
+  50% { opacity: 0; }
+}
+
+.splash {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+  overflow: hidden;
+  background:
+    radial-gradient(ellipse 140px 40px at 18% 22%, #ffffffb0 60%, #fff0 62%),
+    radial-gradient(ellipse 100px 30px at 25% 18%, #ffffffb0 60%, #fff0 62%),
+    radial-gradient(ellipse 180px 44px at 80% 74%, #ffffff90 60%, #fff0 62%),
+    radial-gradient(ellipse 120px 30px at 72% 70%, #ffffff90 60%, #fff0 62%),
+    linear-gradient(#2f6fd6, #8fc0ff);
+}
+
+.splash-brand {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+
+.splash-title {
+  font: 600 64px / 1 'Pixelify Sans', sans-serif;
+  color: #fff;
+  text-shadow: 4px 4px 0 #000;
+}
+
+.splash-title b {
+  color: #ffd800;
+}
+
+.splash-title sup {
+  font-size: 28px;
+  margin-left: 4px;
+}
+
+.splash-subtitle {
+  font: 22px 'VT323', monospace;
+  letter-spacing: 0.3em;
+  color: #fff;
+  text-shadow: 2px 2px 0 #000;
+}
+
+.splash-status {
+  min-height: 24px;
+  font: 22px 'VT323', monospace;
+  color: #fff;
+  text-shadow: 2px 2px 0 #000;
+}
+
+.splash-bar {
+  position: absolute;
+  inset: auto 0 0 0;
+  height: 14px;
+  overflow: hidden;
+  background: #000;
+}
+
+.splash-bar span {
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 30%;
+  background: linear-gradient(90deg, #d02020, #ffd800, #20a040, #1060e0);
+  animation: splash-bar 1.2s linear infinite;
+}
+
+@keyframes splash-bar {
+  from { transform: translateX(-100%); }
+  to { transform: translateX(340%); }
+}
+
+.safe-to-turn-off {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  font: 44px / 1.2 'Pixelify Sans', sans-serif;
+  text-align: center;
+  color: #ff9a1f;
+  background: #000;
+}
+
+.safe-to-turn-off small {
+  font: 22px 'VT323', monospace;
+  color: #a86a1a;
+}
