@@ -26,6 +26,17 @@ export function postJson<T>(url: string, body: object = {}): Promise<T> {
     );
 }
 
+export function putJson<T>(url: string, body: object = {}): Promise<T> {
+    return request<T>(
+        url,
+        { method: 'PUT', body: JSON.stringify(body) },
+        {
+            'Content-Type': 'application/json',
+            'X-XSRF-TOKEN': readCookie(XSRF_COOKIE),
+        },
+    );
+}
+
 export function deleteJson(url: string): Promise<void> {
     return request<void>(
         url,

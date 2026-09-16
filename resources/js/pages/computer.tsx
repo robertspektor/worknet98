@@ -3,6 +3,7 @@ import { HomeWorkstation } from '@/desk/computer/home-workstation';
 import { FloppyDriveProvider } from '@/desk/floppy/floppy-drive-provider';
 import { EmployeeBadge } from '@/desk/room/employee-badge';
 import { FloppyBox } from '@/desk/room/floppy-box';
+import { ParcelStack } from '@/desk/room/parcel-stack';
 import { PcTower } from '@/desk/room/pc-tower';
 import { Room } from '@/desk/room/room';
 import { StickyNote } from '@/desk/room/sticky-note';
@@ -24,6 +25,7 @@ export default function Computer() {
                     />
                     <PcTower />
                     {player && <FloppyBox />}
+                    {player && <ParcelStack />}
                     {player?.employer && (
                         <EmployeeBadge company={player.employer} />
                     )}

@@ -20,6 +20,7 @@ export const HOME_EDITION: Edition = {
         'my-computer',
         'floppy-drive',
         'worknet',
+        'browser',
         'mail',
         'control-panel',
         'recycle-bin',

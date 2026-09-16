@@ -1,0 +1,99 @@
+.parcel-stack {
+    bottom: 1.5vh;
+    left: calc(var(--side-space) / 2 + 9em);
+    display: grid;
+    justify-items: center;
+    gap: 0.4em;
+    padding: 0;
+    border: 0;
+    font-size: clamp(8px, min(calc(var(--side-space) / 20), 1.5vh), 16px);
+    background: none;
+    cursor: pointer;
+    translate: -50% 0;
+    transition: translate 120ms ease-out;
+}
+
+.parcel-stack:hover {
+    translate: -50% -0.3em;
+}
+
+.parcel-stack:focus-visible {
+    outline: 2px dashed #f3e9c6;
+    outline-offset: 4px;
+}
+
+.parcel {
+    position: relative;
+    display: block;
+    width: 9em;
+    height: 6em;
+    border-radius: 0.2em;
+    background: linear-gradient(170deg, #c79a5f, #a8783f 70%, #8d6232);
+    box-shadow:
+        inset 0 0.15em 0 #e0b981,
+        0 0.5em 0.9em #0009;
+}
+
+.parcel-behind {
+    position: absolute;
+    top: -1.2em;
+    left: 1.2em;
+    width: 7.5em;
+    height: 5em;
+    filter: brightness(0.8);
+}
+
+.parcel-tape {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 42%;
+    width: 16%;
+    background: #d9c79a99;
+}
+
+.parcel-label {
+    position: absolute;
+    right: 0.6em;
+    bottom: 0.6em;
+    padding: 0.15em 0.45em;
+    font:
+        700 0.8em / 1 Tahoma,
+        sans-serif;
+    color: #1d3d5c;
+    background: #f6f3e8;
+    rotate: -4deg;
+}
+
+.parcel-flap {
+    position: absolute;
+    top: 0;
+    width: 50%;
+    height: 1.4em;
+    background: linear-gradient(#d3a86d, #b98748);
+    transition: rotate 300ms ease-in;
+}
+
+.parcel-flap.is-left {
+    left: 0;
+    transform-origin: 0 0;
+}
+
+.parcel-flap.is-right {
+    right: 0;
+    transform-origin: 100% 0;
+}
+
+.parcel-stack.is-opening .parcel-flap.is-left {
+    rotate: -120deg;
+}
+
+.parcel-stack.is-opening .parcel-flap.is-right {
+    rotate: 120deg;
+}
+
+@media (max-width: 900px), (max-aspect-ratio: 5/4) {
+    .parcel-stack {
+        left: 50%;
+    }
+}

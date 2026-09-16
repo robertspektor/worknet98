@@ -22,7 +22,13 @@ class FloppyDiskFactory extends Factory
             'color' => 'black',
             'program' => null,
             'is_starter' => false,
+            'price' => null,
         ];
+    }
+
+    public function forSale(int $price = 40): static
+    {
+        return $this->state(fn (): array => ['price' => $price]);
     }
 
     public function starter(): static

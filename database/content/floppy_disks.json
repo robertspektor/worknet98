@@ -4,20 +4,39 @@
         "kind": "story",
         "color": "black",
         "program": null,
-        "is_starter": true
+        "is_starter": true,
+        "price": null
     },
     {
         "slug": "minefield",
         "kind": "game",
         "color": "blue",
         "program": "minefield",
-        "is_starter": true
+        "is_starter": true,
+        "price": null
     },
     {
         "slug": "backup",
         "kind": "data",
         "color": "red",
         "program": null,
-        "is_starter": true
+        "is_starter": true,
+        "price": null
+    },
+    {
+        "slug": "calculator",
+        "kind": "program",
+        "color": "green",
+        "program": "calculator",
+        "is_starter": false,
+        "price": 40
+    },
+    {
+        "slug": "notepad",
+        "kind": "program",
+        "color": "yellow",
+        "program": "notepad",
+        "is_starter": false,
+        "price": 60
     }
 ]

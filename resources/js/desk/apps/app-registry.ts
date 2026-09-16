@@ -2,6 +2,8 @@ import type { ComponentType } from 'react';
 import type { SoftwareType } from '@/types';
 import type { IconName } from '../ui/pixel-art';
 import type { Size } from '../windows/window-state';
+import { BrowserApp } from './browser/browser-app';
+import { CalculatorApp } from './calculator/calculator-app';
 import { CalendarApp } from './calendar/calendar-app';
 import { ControlPanelApp } from './control-panel-app';
 import { CustomerBaseApp } from './customer-base/customer-base-app';
@@ -9,6 +11,7 @@ import { FloppyDriveApp } from './floppy-drive/floppy-drive-app';
 import { MailApp } from './mail/mail-app';
 import { MinefieldApp } from './minefield/minefield-app';
 import { MyComputerApp } from './my-computer-app';
+import { NotepadApp } from './notepad/notepad-app';
 import { RecycleBinApp } from './recycle-bin-app';
 import { ServicePlanApp } from './service-plan/service-plan-app';
 import { TimeClockApp } from './time-clock/time-clock-app';
@@ -90,6 +93,24 @@ export const APPS = {
         icon: 'mine',
         size: { width: 236, height: 330 },
         component: MinefieldApp,
+    },
+    browser: {
+        titleKey: 'desktop.browser',
+        icon: 'browser',
+        size: { width: 620, height: 460 },
+        component: BrowserApp,
+    },
+    calculator: {
+        titleKey: 'desktop.calculator',
+        icon: 'calculator',
+        size: { width: 220, height: 280 },
+        component: CalculatorApp,
+    },
+    notepad: {
+        titleKey: 'desktop.notepad',
+        icon: 'notepad',
+        size: { width: 420, height: 320 },
+        component: NotepadApp,
     },
 } satisfies Record<string, AppDefinition>;
 

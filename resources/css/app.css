@@ -10,5 +10,8 @@
 @import './desk/company-software.css';
 @import './desk/floppy.css';
 @import './desk/minefield.css';
+@import './desk/parcel.css';
+@import './desk/browser.css';
+@import './desk/programs.css';
 
 @source '../views';

@@ -10,9 +10,12 @@ use App\Http\Controllers\Api\V1\FloppyDiskController;
 use App\Http\Controllers\Api\V1\InstalledProgramController;
 use App\Http\Controllers\Api\V1\JobApplicationController;
 use App\Http\Controllers\Api\V1\JobOpeningController;
+use App\Http\Controllers\Api\V1\NoteController;
+use App\Http\Controllers\Api\V1\ParcelController;
 use App\Http\Controllers\Api\V1\PlayerController;
 use App\Http\Controllers\Api\V1\ScheduleController;
 use App\Http\Controllers\Api\V1\ShiftController;
+use App\Http\Controllers\Api\V1\ShopController;
 use Illuminate\Support\Facades\Route;
 
 Route::prefix('v1')->middleware('auth:sanctum')->name('api.v1.')->group(function (): void {
@@ -50,4 +53,14 @@ Route::prefix('v1')->middleware('auth:sanctum')->name('api.v1.')->group(function
     Route::post('floppy-disks/{floppyDisk}/installation', [InstalledProgramController::class, 'store'])
         ->middleware('can:install,floppyDisk')
         ->name('floppy-disks.installation.store');
+
+    Route::get('shop/floppy-disks', [ShopController::class, 'index'])->name('shop.floppy-disks.index');
+    Route::post('shop/floppy-disks/{floppyDisk}/orders', [ShopController::class, 'store'])->name('shop.floppy-disks.orders.store');
+    Route::get('parcels', [ParcelController::class, 'index'])->name('parcels.index');
+    Route::post('parcels/{floppyDiskOrder}/unpacking', [ParcelController::class, 'store'])
+        ->middleware('can:unpack,floppyDiskOrder')
+        ->name('parcels.unpacking.store');
+
+    Route::get('note', [NoteController::class, 'show'])->name('note.show');
+    Route::put('note', [NoteController::class, 'update'])->name('note.update');
 });

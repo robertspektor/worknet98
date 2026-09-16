@@ -1,6 +1,6 @@
 import type { ReactNode } from 'react';
 import { createContext, use, useEffect, useReducer, useState } from 'react';
-import type { FloppyDisk } from '@/types';
+import type { FloppyDisk, Parcel } from '@/types';
 import type { AppId } from '../apps/app-registry';
 import { sound } from '../sound/sound';
 import type { DriveState } from './drive-state';
@@ -11,6 +11,7 @@ import {
     installProgramFrom,
 } from './floppy-disk-api';
 import { installedApps } from './installed-apps';
+import { useParcels } from './use-parcels';
 
 export const DISK_SLIDE_MS = 700;
 
@@ -22,6 +23,8 @@ type FloppyDrive = {
     insert: (disk: FloppyDisk) => void;
     eject: () => void;
     install: (disk: FloppyDisk) => Promise<void>;
+    parcels: Parcel[];
+    unpack: (parcel: Parcel) => Promise<void>;
 };
 
 const FloppyDriveContext = createContext<FloppyDrive | null>(null);
@@ -63,14 +66,17 @@ function useDiskBoxContents(isSignedIn: boolean) {
     const [disks, setDisks] = useState<FloppyDisk[]>([]);
     const [programs, setPrograms] = useState<string[]>([]);
 
+    const refreshDisks = () =>
+        void fetchFloppyDisks()
+            .then(setDisks)
+            .catch(() => undefined);
+
     useEffect(() => {
         if (!isSignedIn) {
             return;
         }
 
-        void fetchFloppyDisks()
-            .then(setDisks)
-            .catch(() => undefined);
+        refreshDisks();
         void fetchInstalledPrograms()
             .then(setPrograms)
             .catch(() => undefined);
@@ -83,7 +89,12 @@ function useDiskBoxContents(isSignedIn: boolean) {
         );
     };
 
-    return { disks, installedPrograms: installedApps(programs), install };
+    return {
+        disks,
+        refreshDisks,
+        installedPrograms: installedApps(programs),
+        install,
+    };
 }
 
 export function FloppyDriveProvider({
@@ -94,8 +105,9 @@ export function FloppyDriveProvider({
     children: ReactNode;
 }) {
     const { drive, insert, eject } = useDriveMechanics();
-    const { disks, installedPrograms, install } =
+    const { disks, refreshDisks, installedPrograms, install } =
         useDiskBoxContents(isSignedIn);
+    const { parcels, unpack } = useParcels(isSignedIn, refreshDisks);
     const loadedId = loadedDiskId(drive);
 
     return (
@@ -108,6 +120,8 @@ export function FloppyDriveProvider({
                 insert,
                 eject,
                 install,
+                parcels,
+                unpack,
             }}
         >
             {children}

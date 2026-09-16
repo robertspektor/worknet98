@@ -18,6 +18,10 @@ return Application::configure(basePath: dirname(__DIR__))
     ->withMiddleware(function (Middleware $middleware): void {
         $middleware->statefulApi();
 
+        $middleware->trimStrings(except: [
+            fn (Request $request): bool => $request->is('api/v1/note'),
+        ]);
+
         $middleware->api(append: [
             SetLocale::class,
         ]);
