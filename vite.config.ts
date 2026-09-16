@@ -7,20 +7,22 @@ import laravel from 'laravel-vite-plugin';
 import { bunny } from 'laravel-vite-plugin/fonts';
 import { defineConfig, lazyPlugins } from 'vite-plus';
 
+const fonts = [
+    bunny('Pixelify Sans', {
+        weights: [400, 600],
+    }),
+    bunny('VT323'),
+    bunny('Caveat', {
+        weights: [600],
+    }),
+];
+
 export default defineConfig({
     plugins: lazyPlugins(() => [
         laravel({
             input: ['resources/css/app.css', 'resources/js/app.tsx'],
             refresh: true,
-            fonts: [
-                bunny('Pixelify Sans', {
-                    weights: [400, 600],
-                }),
-                bunny('VT323'),
-                bunny('Caveat', {
-                    weights: [600],
-                }),
-            ],
+            fonts: process.env.VITEST ? [] : fonts,
         }),
         inertia(),
         react(),

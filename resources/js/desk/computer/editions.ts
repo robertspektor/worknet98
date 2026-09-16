@@ -1,4 +1,3 @@
-import { APP_IDS } from '../apps/app-registry';
 import type { AppId } from '../apps/app-registry';
 
 export type Edition = {
@@ -15,7 +14,7 @@ export const HOME_EDITION: Edition = {
         'splash.status_3',
         'splash.status_4',
     ],
-    apps: APP_IDS,
+    apps: ['my-computer', 'worknet', 'mail', 'control-panel', 'recycle-bin'],
 };
 
 export const BUSINESS_EDITION: Edition = {
@@ -26,5 +25,5 @@ export const BUSINESS_EDITION: Edition = {
         'splash.business_status_3',
         'splash.status_4',
     ],
-    apps: ['recycle-bin'],
+    apps: ['time-clock', 'recycle-bin'],
 };

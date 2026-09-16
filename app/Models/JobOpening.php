@@ -16,11 +16,12 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property string $title
  * @property string $description
  * @property int $daily_salary
+ * @property bool $is_open
  * @property CarbonImmutable|null $created_at
  * @property CarbonImmutable|null $updated_at
  * @property-read Company $company
  */
-#[Fillable(['company_id', 'slug', 'title', 'description', 'daily_salary'])]
+#[Fillable(['company_id', 'slug', 'title', 'description', 'daily_salary', 'is_open'])]
 class JobOpening extends Model
 {
     /** @use HasFactory<JobOpeningFactory> */
@@ -32,5 +33,15 @@ class JobOpening extends Model
     public function company(): BelongsTo
     {
         return $this->belongsTo(Company::class);
+    }
+
+    /**
+     * @return array<string, string>
+     */
+    protected function casts(): array
+    {
+        return [
+            'is_open' => 'boolean',
+        ];
     }
 }

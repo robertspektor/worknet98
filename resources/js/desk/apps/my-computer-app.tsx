@@ -1,9 +1,10 @@
 import { useTranslation } from '@/i18n/use-translation';
 import { usePlayerProfile } from '../api/use-player-profile';
+import { formatAmount } from '../ui/format';
 import { PixelIcon } from '../ui/pixel-icon';
 
 export function MyComputerApp() {
-    const { t } = useTranslation();
+    const { t, locale } = useTranslation();
     const player = usePlayerProfile();
 
     return (
@@ -19,6 +20,14 @@ export function MyComputerApp() {
                 <dd>{player?.email ?? '...'}</dd>
                 <dt>{t('my_computer.computer')}</dt>
                 <dd>{t('my_computer.hardware')}</dd>
+                <dt>{t('my_computer.balance')}</dt>
+                <dd>
+                    {player
+                        ? t('money.amount', {
+                              amount: formatAmount(player.balance, locale),
+                          })
+                        : '...'}
+                </dd>
                 <dt>{t('my_computer.status')}</dt>
                 <dd>
                     {player?.employer

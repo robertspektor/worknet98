@@ -3,6 +3,7 @@
 namespace App\Careers;
 
 use App\Careers\Events\JobApplicationSubmitted;
+use App\Game\ActionRefused;
 use App\Models\JobApplication;
 use App\Models\JobOpening;
 use App\Models\User;
@@ -37,7 +38,7 @@ class JobApplicationSubmitter
         $refusal = $this->eligibility->refusalFor($player, $opening);
 
         if ($refusal !== null) {
-            throw new JobApplicationRefused($refusal);
+            throw new ActionRefused($refusal);
         }
     }
 

@@ -5,6 +5,7 @@ import { ControlPanelApp } from './control-panel-app';
 import { MailApp } from './mail/mail-app';
 import { MyComputerApp } from './my-computer-app';
 import { RecycleBinApp } from './recycle-bin-app';
+import { TimeClockApp } from './time-clock/time-clock-app';
 import { WorkNetApp } from './worknet/worknet-app';
 
 export type AppDefinition = {
@@ -44,6 +45,12 @@ export const APPS = {
         icon: 'trash',
         size: { width: 380, height: 236 },
         component: RecycleBinApp,
+    },
+    'time-clock': {
+        titleKey: 'desktop.time_clock',
+        icon: 'clock',
+        size: { width: 340, height: 196 },
+        component: TimeClockApp,
     },
 } satisfies Record<string, AppDefinition>;
 

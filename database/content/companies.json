@@ -14,7 +14,8 @@
                 "slug": "office-assistant-scheduling",
                 "title": "Office Assistant, Customer Scheduling",
                 "description": "You answer calls from customers with wet floors, find a free technician in the calendar and confirm appointments by mail. Staying calm while someone describes their toilet in great detail is a plus.",
-                "daily_salary": 95
+                "daily_salary": 95,
+                "is_open": true
             }
         ]
     },
@@ -33,7 +34,8 @@
                 "slug": "junior-dispatch-coordinator",
                 "title": "Junior Dispatch Coordinator",
                 "description": "Assign drivers to routes, update delivery lists and explain to customers why their parcel visited three countries. Map reading skills welcome, optimism required.",
-                "daily_salary": 120
+                "daily_salary": 120,
+                "is_open": false
             }
         ]
     },
@@ -52,7 +54,8 @@
                 "slug": "helpdesk-associate",
                 "title": "Helpdesk Associate (1st Level)",
                 "description": "Ask people whether they have tried turning it off and on again. Log tickets. Escalate the rest to 2nd level, who will ask the same question more slowly.",
-                "daily_salary": 110
+                "daily_salary": 110,
+                "is_open": false
             }
         ]
     },
@@ -71,26 +74,28 @@
                 "slug": "complaints-clerk",
                 "title": "Complaints Department Clerk",
                 "description": "Read complaint letters, pick the right apology template and send vouchers where necessary. You represent our brand, so please smile, even in writing.",
-                "daily_salary": 90
+                "daily_salary": 90,
+                "is_open": false
             }
         ]
     },
     {
-        "slug": "rohrfuchs-sanitaer",
+        "slug": "rohr-und-sohn",
         "locale": "de",
-        "name": "Rohrfuchs Sanitär & Heizung GmbH",
+        "name": "Rohr & Sohn Gebäudetechnik",
         "industry": "Sanitär",
-        "tagline": "Ihr Rohr ist unser Auftrag.",
-        "description": "Familienbetrieb in dritter Generation. Die erste Generation kommt immer noch jeden Morgen vorbei und prüft, ob jemand ihren Tacker angefasst hat.",
-        "hr_contact_name": "Doris Fuchs",
-        "hr_contact_address": "doris.fuchs@rohrfuchs.wn",
+        "tagline": "Seit drei Generationen dicht.",
+        "description": "Familienbetrieb in dritter Generation. Der Senior kommt immer noch jeden Morgen vorbei und prüft, ob jemand seinen Tacker angefasst hat. Der Sohn heißt übrigens auch Rohr.",
+        "hr_contact_name": "Renate Rohr",
+        "hr_contact_address": "renate.rohr@rohrundsohn.wn",
         "hiring_note": "Wir haben eine Kaffeemaschine. Dienstags funktioniert sie.",
         "job_openings": [
             {
                 "slug": "buerokraft-terminplanung",
                 "title": "Bürokraft Terminplanung (m/w/d)",
                 "description": "Sie nehmen Anrufe von Kunden mit nassen Fußböden entgegen, finden einen freien Monteur im Kalender und bestätigen Termine per Mail. Ruhe bewahren, während jemand seine Toilette sehr ausführlich beschreibt, ist von Vorteil.",
-                "daily_salary": 95
+                "daily_salary": 95,
+                "is_open": true
             }
         ]
     },
@@ -109,7 +114,8 @@
                 "slug": "junior-disponent",
                 "title": "Junior-Disponent (m/w/d)",
                 "description": "Sie teilen Fahrer auf Touren ein, pflegen Lieferlisten und erklären Kunden, warum ihr Paket drei Länder besucht hat. Kartenlesen erwünscht, Optimismus Pflicht.",
-                "daily_salary": 120
+                "daily_salary": 120,
+                "is_open": false
             }
         ]
     },
@@ -128,7 +134,8 @@
                 "slug": "helpdesk-1st-level",
                 "title": "Helpdesk-Mitarbeiter 1st Level (m/w/d)",
                 "description": "Sie fragen Menschen, ob sie das Gerät schon aus- und wieder eingeschaltet haben. Sie erfassen Tickets. Den Rest eskalieren Sie an den 2nd Level, der dieselbe Frage langsamer stellt.",
-                "daily_salary": 110
+                "daily_salary": 110,
+                "is_open": false
             }
         ]
     },
@@ -147,7 +154,8 @@
                 "slug": "reklamationssachbearbeitung",
                 "title": "Reklamationssachbearbeitung (m/w/d)",
                 "description": "Sie lesen Beschwerdebriefe, wählen die passende Entschuldigungsvorlage und verschicken bei Bedarf Gutscheine. Sie repräsentieren unsere Marke, also lächeln Sie bitte, auch schriftlich.",
-                "daily_salary": 90
+                "daily_salary": 90,
+                "is_open": false
             }
         ]
     }

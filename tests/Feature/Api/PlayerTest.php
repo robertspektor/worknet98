@@ -8,7 +8,7 @@ it('returns the signed-in player', function () {
     $this->actingAs($player)
         ->getJson(route('api.v1.player.show'))
         ->assertOk()
-        ->assertExactJson(['data' => ['email' => 'gary@example.com', 'locale' => 'de', 'employer' => null]]);
+        ->assertExactJson(['data' => ['email' => 'gary@example.com', 'locale' => 'de', 'employer' => null, 'balance' => 0]]);
 });
 
 it('requires a signed-in player', function () {

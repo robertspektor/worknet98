@@ -133,3 +133,17 @@
 .setup-body p {
     margin: 0 0 8px;
 }
+
+/* Time clock */
+
+.time-clock-panel {
+    padding: 10px 12px 4px;
+}
+
+.time-clock-status {
+    font-weight: bold;
+}
+
+.time-clock-status.is-on_duty {
+    color: #006000;
+}

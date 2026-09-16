@@ -58,6 +58,12 @@ it('refuses applications to companies in another language', function () {
     expect(JobApplication::count())->toBe(0);
 });
 
+it('refuses applications to closed positions', function () {
+    applyFor(User::factory()->create(), JobOpening::factory()->closed()->create())
+        ->assertUnprocessable()
+        ->assertJsonPath('refusal', 'position_closed');
+});
+
 it('refuses a second application to the same opening', function () {
     $application = JobApplication::factory()->accepted()->create();
 

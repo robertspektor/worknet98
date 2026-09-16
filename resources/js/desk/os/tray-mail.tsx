@@ -1,4 +1,5 @@
 import { useTranslation } from '@/i18n/use-translation';
+import { useEdition } from '../computer/edition-context';
 import { useMailbox } from '../mailbox/mailbox-provider';
 import { PixelIcon } from '../ui/pixel-icon';
 import { useWindowManager } from '../windows/window-manager';
@@ -7,8 +8,9 @@ export function TrayMail() {
     const { t } = useTranslation();
     const mailbox = useMailbox();
     const windows = useWindowManager();
+    const edition = useEdition();
 
-    if (mailbox.unreadCount === 0) {
+    if (mailbox.unreadCount === 0 || !edition.apps.includes('mail')) {
         return null;
     }
 

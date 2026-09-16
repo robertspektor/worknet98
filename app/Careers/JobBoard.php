@@ -16,6 +16,7 @@ class JobBoard
     {
         return JobOpening::query()
             ->with('company')
+            ->where('is_open', true)
             ->whereRelation('company', 'locale', $player->locale)
             ->orderBy(Company::query()->select('name')->whereColumn('companies.id', 'job_openings.company_id'))
             ->orderBy('title')

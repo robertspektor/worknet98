@@ -1,14 +1,14 @@
 <?php
 
-namespace App\Careers;
+namespace App\Game;
 
 use Illuminate\Contracts\Debug\ShouldntReport;
 use Illuminate\Http\JsonResponse;
 use RuntimeException;
 
-class JobApplicationRefused extends RuntimeException implements ShouldntReport
+class ActionRefused extends RuntimeException implements ShouldntReport
 {
-    public function __construct(public readonly ApplicationRefusal $refusal)
+    public function __construct(public readonly Refusal $refusal)
     {
         parent::__construct($refusal->message());
     }

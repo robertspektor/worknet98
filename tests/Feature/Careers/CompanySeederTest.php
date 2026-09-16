@@ -16,6 +16,14 @@ it('seeds companies with job openings for every supported language', function ()
     }
 });
 
+it('opens positions only at playable companies', function () {
+    $this->seed(CompanySeeder::class);
+
+    $openCompanies = Company::query()->whereHas('jobOpenings', fn ($query) => $query->where('is_open', true))->pluck('slug')->sort()->values()->all();
+
+    expect($openCompanies)->toBe(['flowright-plumbing', 'rohr-und-sohn']);
+});
+
 it('can seed the companies repeatedly without duplicates', function () {
     $this->seed(CompanySeeder::class);
     $companies = Company::count();

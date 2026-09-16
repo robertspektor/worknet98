@@ -25,6 +25,12 @@ class JobOpeningFactory extends Factory
             'title' => $title,
             'description' => fake()->paragraph(),
             'daily_salary' => 100,
+            'is_open' => true,
         ];
+    }
+
+    public function closed(): static
+    {
+        return $this->state(fn (): array => ['is_open' => false]);
     }
 }

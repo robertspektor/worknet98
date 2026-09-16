@@ -19,6 +19,16 @@ it('lists the job openings of companies that speak the player language', functio
         ->assertJsonPath('data.0.company.name', 'Rohrfuchs Sanitär');
 });
 
+it('hides closed job openings', function () {
+    $player = User::factory()->create();
+    JobOpening::factory()->create(['title' => 'Office Assistant']);
+    JobOpening::factory()->closed()->create(['title' => 'Helpdesk Associate']);
+
+    $titles = $this->actingAs($player)->getJson(route('api.v1.job-openings.index'))->json('data.*.title');
+
+    expect($titles)->toBe(['Office Assistant']);
+});
+
 it('orders job openings by company and title', function () {
     $player = User::factory()->create();
     $zeta = Company::factory()->create(['name' => 'Zeta Corp']);

@@ -212,6 +212,24 @@ export const ICONS = {
         '.....kkkkkk.....',
         '................',
     ],
+    clock: [
+        '.....kkkkkk.....',
+        '...kkwwwwwwkk...',
+        '..kwwwwkwwwwwk..',
+        '.kwwwwwkwwwwwwk.',
+        '.kwwwwwkwwwwwwk.',
+        'kwwwwwwkwwwwwwwk',
+        'kwwwwwwkwwwwwwwk',
+        'kwkwwwwkkkkkwwkk',
+        'kwwwwwwwwwwwwwwk',
+        'kwwwwwwwwwwwwwwk',
+        '.kwwwwwwwwwwwwk.',
+        '.kwwwwwwwwwwwwk.',
+        '..kwwwwwkwwwwk..',
+        '...kkwwwwwwkk...',
+        '.....kkkkkk.....',
+        '................',
+    ],
 } satisfies Record<string, string[]>;
 
 export type IconName = keyof typeof ICONS;
