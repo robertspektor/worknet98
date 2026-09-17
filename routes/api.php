@@ -66,6 +66,7 @@ Route::prefix('v1')->middleware('auth:sanctum')->name('api.v1.')->group(function
 
     Route::get('shift', [ShiftController::class, 'show'])->name('shift.show');
     Route::post('shift/clock-in', [ShiftController::class, 'clockIn'])->name('shift.clock-in');
+    Route::post('shift/heartbeat', [ShiftController::class, 'heartbeat'])->name('shift.heartbeat');
     Route::post('shift/clock-out', [ShiftController::class, 'clockOut'])->name('shift.clock-out');
 
     Route::get('company-software', [CompanySoftwareController::class, 'show'])->name('company-software.show');

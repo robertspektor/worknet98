@@ -147,3 +147,52 @@
 .time-clock-status.is-on_duty {
     color: #006000;
 }
+
+.time-clock-status,
+.time-clock-note {
+    margin: 0 0 6px;
+}
+
+.work-time-sheet {
+    margin: 10px 0 8px;
+}
+
+.work-time-heading {
+    margin: 0 0 4px;
+    font-size: inherit;
+}
+
+.work-time-bar {
+    height: 18px;
+    padding: 3px;
+    box-sizing: border-box;
+}
+
+.work-time-fill {
+    display: block;
+    width: var(--progress);
+    height: 100%;
+    background: repeating-linear-gradient(
+        90deg,
+        var(--title) 0 9px,
+        #0000 9px 11px
+    );
+}
+
+.work-time-rows {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 2px 12px;
+    margin: 6px 0 0;
+}
+
+.work-time-rows dd {
+    margin: 0;
+    text-align: right;
+    font-variant-numeric: tabular-nums;
+}
+
+.work-time-rows .is-overtime {
+    color: #006000;
+    font-weight: bold;
+}

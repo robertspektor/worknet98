@@ -32,3 +32,10 @@ it('converts game time back to the real time it happens at', function () {
 it('displays real timestamps as game wall time', function () {
     expect(app(GameClock::class)->display(CarbonImmutable::parse('2026-09-14 04:48:00')))->toBe('1998-01-06T09:36:00');
 });
+
+it('runs about one game month per real week at a fractional scale', function () {
+    config(['game.clock.scale' => 4.35]);
+    $this->travelTo('2026-09-21 00:00:00');
+
+    expect(app(GameClock::class)->now()->toDateTimeString())->toBe('1998-02-04 10:48:00');
+});

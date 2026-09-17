@@ -19,13 +19,13 @@ class ShiftFactory extends Factory
         return [
             'employment_id' => Employment::factory(),
             'user_id' => fn (array $attributes): int => Employment::query()->whereKey($attributes['employment_id'])->sole()->user_id,
-            'work_date' => now()->toDateString(),
             'clocked_in_at' => now(),
+            'last_active_at' => fn (array $attributes) => $attributes['clocked_in_at'],
         ];
     }
 
     public function clockedOut(): static
     {
-        return $this->state(fn (): array => ['clocked_out_at' => now()]);
+        return $this->state(fn (array $attributes): array => ['clocked_out_at' => $attributes['last_active_at']]);
     }
 }

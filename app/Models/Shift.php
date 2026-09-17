@@ -13,19 +13,26 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property int $id
  * @property int $user_id
  * @property int $employment_id
- * @property CarbonImmutable $work_date
  * @property CarbonImmutable $clocked_in_at
+ * @property CarbonImmutable $last_active_at
  * @property CarbonImmutable|null $clocked_out_at
+ * @property int $worked_seconds
+ * @property bool $clocked_out_automatically
  * @property CarbonImmutable|null $created_at
  * @property CarbonImmutable|null $updated_at
  * @property-read User $user
  * @property-read Employment $employment
  */
-#[Fillable(['user_id', 'employment_id', 'work_date', 'clocked_in_at', 'clocked_out_at'])]
+#[Fillable(['user_id', 'employment_id', 'clocked_in_at', 'last_active_at', 'clocked_out_at', 'worked_seconds', 'clocked_out_automatically'])]
 class Shift extends Model
 {
     /** @use HasFactory<ShiftFactory> */
     use HasFactory;
+
+    protected $attributes = [
+        'worked_seconds' => 0,
+        'clocked_out_automatically' => false,
+    ];
 
     public function isOnDuty(): bool
     {
@@ -54,9 +61,11 @@ class Shift extends Model
     protected function casts(): array
     {
         return [
-            'work_date' => 'date',
             'clocked_in_at' => 'datetime',
+            'last_active_at' => 'datetime',
             'clocked_out_at' => 'datetime',
+            'worked_seconds' => 'integer',
+            'clocked_out_automatically' => 'boolean',
         ];
     }
 }

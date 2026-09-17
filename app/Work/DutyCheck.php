@@ -8,13 +8,13 @@ use App\Models\User;
 
 class DutyCheck
 {
-    public function __construct(private readonly TodaysShift $todaysShift) {}
+    public function __construct(private readonly OpenShift $openShift) {}
 
     public function employmentOnDuty(User $player): Employment
     {
         $employment = $player->employment ?? throw new ActionRefused(ShiftRefusal::NotEmployed);
 
-        if (! $this->todaysShift->of($employment)?->isOnDuty()) {
+        if ($this->openShift->of($employment) === null) {
             throw new ActionRefused(ShiftRefusal::NotOnDuty);
         }
 

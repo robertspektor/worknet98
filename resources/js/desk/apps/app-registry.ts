@@ -86,7 +86,7 @@ export const APPS = {
     'time-clock': {
         titleKey: 'desktop.time_clock',
         icon: 'clock',
-        size: { width: 340, height: 196 },
+        size: { width: 360, height: 346 },
         component: TimeClockApp,
     },
     'floppy-drive': {

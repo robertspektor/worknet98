@@ -2,36 +2,38 @@
 
 namespace App\Http\Controllers\Api\V1;
 
-use App\Game\ActionRefused;
 use App\Http\Resources\ShiftStatusResource;
-use App\Models\Shift;
+use App\Models\Employment;
 use App\Work\ShiftClock;
-use App\Work\ShiftRefusal;
-use App\Work\ShiftStatus;
-use App\Work\TodaysShift;
+use App\Work\ShiftStatusQuery;
 use Illuminate\Http\Request;
 
 class ShiftController extends ApiController
 {
-    public function show(Request $request, TodaysShift $todaysShift): ShiftStatusResource
-    {
-        $employment = $this->player($request)->employment ?? throw new ActionRefused(ShiftRefusal::NotEmployed);
+    public function __construct(private readonly ShiftStatusQuery $statuses) {}
 
-        return new ShiftStatusResource(new ShiftStatus($employment, $todaysShift->of($employment)));
+    public function show(Request $request): ShiftStatusResource
+    {
+        return $this->statusOf($this->employment($request));
     }
 
     public function clockIn(Request $request, ShiftClock $clock): ShiftStatusResource
     {
-        return $this->statusOf($clock->clockIn($this->player($request)));
+        return $this->statusOf($clock->clockIn($this->player($request))->employment);
+    }
+
+    public function heartbeat(Request $request, ShiftClock $clock): ShiftStatusResource
+    {
+        return $this->statusOf($clock->heartbeat($this->player($request))->employment);
     }
 
     public function clockOut(Request $request, ShiftClock $clock): ShiftStatusResource
     {
-        return $this->statusOf($clock->clockOut($this->player($request)));
+        return $this->statusOf($clock->clockOut($this->player($request))->employment);
     }
 
-    private function statusOf(Shift $shift): ShiftStatusResource
+    private function statusOf(Employment $employment): ShiftStatusResource
     {
-        return new ShiftStatusResource(new ShiftStatus($shift->employment, $shift));
+        return new ShiftStatusResource($this->statuses->for($employment));
     }
 }

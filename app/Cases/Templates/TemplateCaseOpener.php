@@ -11,7 +11,7 @@ use App\Mailbox\Mailbox;
 use App\Models\Branch;
 use App\Models\Customer;
 use App\Models\WorkCase;
-use App\Work\TodaysShift;
+use App\Work\OpenShift;
 use Illuminate\Support\Facades\DB;
 
 class TemplateCaseOpener
@@ -21,7 +21,7 @@ class TemplateCaseOpener
         private readonly TemplateCaseBuilder $builder,
         private readonly CaseMails $mails,
         private readonly Mailbox $mailbox,
-        private readonly TodaysShift $todaysShift,
+        private readonly OpenShift $openShift,
     ) {}
 
     public function open(Branch $branch, CaseTemplate $template, Customer $customer, ?string $demandKey = null): WorkCase
@@ -56,7 +56,7 @@ class TemplateCaseOpener
             'status' => WorkCaseStatus::Open,
             'opened_at' => now(),
             'npc_due_at' => $employment === null ? now()->addSeconds($this->npcDelaySeconds()) : null,
-            'seen_at' => $employment !== null && $this->todaysShift->of($employment)?->isOnDuty() ? now() : null,
+            'seen_at' => $employment !== null && $this->openShift->of($employment) !== null ? now() : null,
         ]);
     }
 

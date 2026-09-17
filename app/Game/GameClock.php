@@ -23,7 +23,7 @@ class GameClock
     {
         $elapsed = $real->getTimestamp() - $this->realEpoch()->getTimestamp();
 
-        return $this->gameEpoch()->addSeconds($elapsed * $this->scale());
+        return $this->gameEpoch()->addSeconds((int) floor($elapsed * $this->scale()));
     }
 
     public function toReal(CarbonInterface $game): CarbonImmutable
@@ -39,7 +39,7 @@ class GameClock
     }
 
     /**
-     * @return array{scale: int, real_epoch: string, game_epoch: string}
+     * @return array{scale: float, real_epoch: string, game_epoch: string}
      */
     public function settings(): array
     {
@@ -50,9 +50,9 @@ class GameClock
         ];
     }
 
-    private function scale(): int
+    private function scale(): float
     {
-        return max(1, (int) config('game.clock.scale'));
+        return max(1.0, (float) config('game.clock.scale'));
     }
 
     private function realEpoch(): CarbonImmutable

@@ -2,22 +2,24 @@
 
 namespace App\Work;
 
-use App\Models\Employment;
 use App\Models\Shift;
 
 readonly class ShiftStatus
 {
     public function __construct(
-        public Employment $employment,
-        public ?Shift $shift,
+        public ?Shift $latestShift,
+        public ContractPeriod $period,
+        public int $workedSeconds,
+        public int $targetSeconds,
     ) {}
 
     public function state(): string
     {
-        return match (true) {
-            $this->shift === null => 'off_duty',
-            $this->shift->isOnDuty() => 'on_duty',
-            default => 'done',
-        };
+        return $this->latestShift?->isOnDuty() ? 'on_duty' : 'off_duty';
+    }
+
+    public function wasClockedOutAutomatically(): bool
+    {
+        return (bool) $this->latestShift?->clocked_out_automatically;
     }
 }
