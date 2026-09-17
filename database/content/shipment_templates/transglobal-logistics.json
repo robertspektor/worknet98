@@ -70,5 +70,113 @@
             "subject": "Complaint: :contents",
             "body": "Hello,\n\nthe :contents were due with us by :due. Until then we had an empty shelf. A customer asked if it was art.\n\nWe would appreciate punctuality. And a shelf sign that says \"Coming soon\".\n\nRegards,\n:recipient"
         }
+    },
+    {
+        "slug": "express-delivery",
+        "responsibility": "dispatch",
+        "due_format": "dddd, MM/DD, HH:mm",
+        "size_labels": {
+            "parcel": "a parcel",
+            "pallet": "a pallet"
+        },
+        "request_mail": {
+            "subject": "URGENT: :contents for :recipient",
+            "body": "Hello,\n\nurgent pickup: :contents, :size.\n\nRecipient: :recipient, :district\nDue by: :due\n\nThis is not a normal job. The goods are needed first thing tomorrow, not at some point tomorrow.\n\nPlease confirm the route by mail.\n\nKind regards,\n:contact\n:sender"
+        },
+        "outcome_feedback": {
+            "vehicle": {
+                "met": "And the right vehicle. Accounting nods.",
+                "missed": "Wrong vehicle. On express jobs we pay the diesel and the customer pays the surcharge. One of those was avoidable."
+            },
+            "punctuality": {
+                "met": "There before the shop opened. That is what :recipient pays the surcharge for.",
+                "missed": "Late. An express job that arrives late is a normal job with a surcharge. :recipient will do that maths for us."
+            }
+        },
+        "feedback_mail": {
+            "subject": "Re: URGENT: :contents",
+            "intro": "Hey,\n\nabout the express job :contents for :recipient.",
+            "outro": "Express jobs belong on the morning route. Always.\n\nTammy"
+        },
+        "reminder_mail": {
+            "subject": "Express job :contents is waiting",
+            "body": "Hey,\n\nthe express job for :recipient is not on a route yet. With \"urgent\" that stands out.\n\nTammy"
+        },
+        "complaint_mail": {
+            "subject": "Complaint: :contents arrived late",
+            "body": "Hello,\n\nwe paid an express surcharge and still got the goods late. The deadline was :due.\n\nWe are happy to pay for speed. We are less happy to pay for excitement.\n\nKind regards,\n:recipient"
+        }
+    },
+    {
+        "slug": "return-pickup",
+        "responsibility": "dispatch",
+        "due_format": "dddd, MM/DD, HH:mm",
+        "size_labels": {
+            "parcel": "a parcel",
+            "pallet": "a pallet"
+        },
+        "request_mail": {
+            "subject": "Return pickup: :contents",
+            "body": "Hello,\n\nplease collect from us: :contents, :size.\n\nBack to the sender: :recipient, :district\nDue by: :due\n\nThe goods are in the way and turn a little more into furniture every day.\n\nPlease confirm the route by mail.\n\nKind regards,\n:contact\n:sender"
+        },
+        "outcome_feedback": {
+            "vehicle": {
+                "met": "And the right vehicle for the return load.",
+                "missed": "Wrong vehicle for the return load. The driver restacked it twice and said something once."
+            },
+            "punctuality": {
+                "met": "Back at :recipient in time. The credit note is on its way.",
+                "missed": "Back at :recipient too late. No goods, no credit note, and that credit note was already in somebody's books."
+            }
+        },
+        "feedback_mail": {
+            "subject": "Re: return :contents",
+            "intro": "Hey,\n\nabout the return of :contents to :recipient.",
+            "outro": "Returns bring no money, but they prevent trouble. Also a currency.\n\nTammy"
+        },
+        "reminder_mail": {
+            "subject": "Return :contents still open",
+            "body": "Hey,\n\nthe return for :recipient is not on a route yet. The goods are still in the aisle.\n\nTammy"
+        },
+        "complaint_mail": {
+            "subject": "Complaint: return of :contents",
+            "body": "Hello,\n\nthe return was due by :due. The goods are still here, now with dust.\n\nWe would like the space back. And the credit note.\n\nKind regards,\n:recipient"
+        }
+    },
+    {
+        "slug": "fragile-delivery",
+        "responsibility": "dispatch",
+        "due_format": "dddd, MM/DD, HH:mm",
+        "size_labels": {
+            "parcel": "a parcel",
+            "pallet": "a pallet"
+        },
+        "request_mail": {
+            "subject": "Fragile: :contents for :recipient",
+            "body": "Hello,\n\nplease collect: :contents, :size. Fragile, please load accordingly.\n\nRecipient: :recipient, :district\nDue by: :due\n\nThe last shipment of this kind arrived as a jigsaw. We would rather not repeat that.\n\nPlease confirm the route by mail.\n\nKind regards,\n:contact\n:sender"
+        },
+        "outcome_feedback": {
+            "vehicle": {
+                "met": "And the right vehicle, neatly loaded.",
+                "missed": "Wrong vehicle for fragile goods. The driver thought of you at every bump in the road."
+            },
+            "punctuality": {
+                "met": "On time and in one piece at :recipient.",
+                "missed": "Late at :recipient. The goods sat in the yard for a long while instead. Fragile goods dislike both."
+            }
+        },
+        "feedback_mail": {
+            "subject": "Re: :contents for :recipient",
+            "intro": "Hey,\n\nabout the fragile load :contents for :recipient.",
+            "outro": "What arrives intact arrives properly.\n\nTammy"
+        },
+        "reminder_mail": {
+            "subject": ":contents not on a route yet",
+            "body": "Hey,\n\nthe shipment :contents for :recipient is not on a route yet. Fragile goods do not get sturdier in the warehouse.\n\nTammy"
+        },
+        "complaint_mail": {
+            "subject": "Complaint: :contents",
+            "body": "Hello,\n\nthe shipment was due here by :due. It was not.\n\nWe postponed the display, and so did the customers. The goods did not.\n\nKind regards,\n:recipient"
+        }
     }
 ]

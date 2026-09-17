@@ -5,7 +5,7 @@
         "recipient": "lindners-department-store",
         "contents": "cookware sets, 24 pieces",
         "size": "pallet",
-        "daily_rate": 0.8,
+        "daily_rate": 0.6,
         "lead_work_days": 2
     },
     {
@@ -14,7 +14,7 @@
         "recipient": "cranes-drugstore",
         "contents": "dish brushes, 1 carton",
         "size": "parcel",
-        "daily_rate": 1.0,
+        "daily_rate": 0.7,
         "lead_work_days": 1
     },
     {
@@ -23,7 +23,7 @@
         "recipient": "harbor-hardware",
         "contents": "drying racks, 12 pieces",
         "size": "pallet",
-        "daily_rate": 0.5,
+        "daily_rate": 0.4,
         "lead_work_days": 2
     },
     {
@@ -41,7 +41,7 @@
         "recipient": "lindners-department-store",
         "contents": "winter sale flyers",
         "size": "parcel",
-        "daily_rate": 0.7,
+        "daily_rate": 0.5,
         "lead_work_days": 1
     },
     {
@@ -70,5 +70,67 @@
         "size": "parcel",
         "daily_rate": 0.4,
         "lead_work_days": 1
+    },
+    {
+        "slug": "wendell-printing-to-cranes-drugstore-express",
+        "supplier": "wendell-printing",
+        "recipient": "cranes-drugstore",
+        "contents": "reprinted sale leaflets",
+        "size": "parcel",
+        "daily_rate": 0.4,
+        "lead_work_days": 1,
+        "template": "express-delivery",
+        "due_time": "10:00"
+    },
+    {
+        "slug": "happy-consumer-products-to-lindners-department-store-express",
+        "supplier": "happy-consumer-products",
+        "recipient": "lindners-department-store",
+        "contents": "thermos flasks, 40 pieces",
+        "size": "pallet",
+        "daily_rate": 0.3,
+        "lead_work_days": 1,
+        "template": "express-delivery",
+        "due_time": "10:00"
+    },
+    {
+        "slug": "lindners-department-store-to-happy-consumer-products-returns",
+        "supplier": "lindners-department-store",
+        "recipient": "happy-consumer-products",
+        "contents": "returns: cookware with dented lids",
+        "size": "pallet",
+        "daily_rate": 0.4,
+        "lead_work_days": 2,
+        "template": "return-pickup"
+    },
+    {
+        "slug": "harbor-hardware-to-keystone-plumbing-supply-returns",
+        "supplier": "harbor-hardware",
+        "recipient": "keystone-plumbing-supply",
+        "contents": "returns: fittings, wrong thread",
+        "size": "parcel",
+        "daily_rate": 0.4,
+        "lead_work_days": 2,
+        "template": "return-pickup"
+    },
+    {
+        "slug": "macrodyne-systems-to-lindners-department-store-fragile",
+        "supplier": "macrodyne-systems",
+        "recipient": "lindners-department-store",
+        "contents": "monitors, 6 pieces",
+        "size": "pallet",
+        "daily_rate": 0.4,
+        "lead_work_days": 2,
+        "template": "fragile-delivery"
+    },
+    {
+        "slug": "happy-consumer-products-to-cranes-drugstore-fragile",
+        "supplier": "happy-consumer-products",
+        "recipient": "cranes-drugstore",
+        "contents": "glass storage jars, 2 cartons",
+        "size": "parcel",
+        "daily_rate": 0.3,
+        "lead_work_days": 2,
+        "template": "fragile-delivery"
     }
 ]

@@ -14,5 +14,7 @@ readonly class SupplyRoute
         public ShipmentSize $size,
         public float $dailyRate,
         public int $leadWorkDays,
+        public string $templateSlug,
+        public string $dueTime,
     ) {}
 }

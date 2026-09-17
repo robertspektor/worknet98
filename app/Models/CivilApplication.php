@@ -20,6 +20,7 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
  * @property string $claimed_street
  * @property string|null $claimed_partner_district
  * @property string|null $claimed_partner_street
+ * @property string|null $detail
  * @property string|null $new_district
  * @property string|null $new_street
  * @property CarbonImmutable $moved_on
@@ -37,7 +38,7 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
  * @property-read Employment|null $decidedBy
  * @property-read Position|null $decidedByPosition
  */
-#[Fillable(['branch_id', 'kind', 'applicant_id', 'partner_id', 'claimed_district', 'claimed_street', 'claimed_partner_district', 'claimed_partner_street', 'new_district', 'new_street', 'moved_on', 'decision', 'matched_registry', 'decided_at', 'decided_by_employment_id', 'decided_by_position_id'])]
+#[Fillable(['branch_id', 'kind', 'applicant_id', 'partner_id', 'claimed_district', 'claimed_street', 'claimed_partner_district', 'claimed_partner_street', 'detail', 'new_district', 'new_street', 'moved_on', 'decision', 'matched_registry', 'decided_at', 'decided_by_employment_id', 'decided_by_position_id'])]
 class CivilApplication extends Model
 {
     public function isDecided(): bool

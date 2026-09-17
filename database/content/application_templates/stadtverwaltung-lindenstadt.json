@@ -48,5 +48,55 @@
             "body": "Guten Tag,\n\ndie Eheschließung von :applicant liegt noch unbearbeitet. Angaben im Register prüfen, genehmigen oder ablehnen. Das Brautpaar wartet.\n\nBrückmann"
         },
         "date_format": "DD.MM.YYYY"
+    },
+    {
+        "slug": "pet-registration",
+        "kind": "pet_registration",
+        "responsibility": "registration",
+        "request_mail": {
+            "subject": "Hundeanmeldung: :applicant",
+            "body": "Sehr geehrte Damen und Herren,\n\nich möchte meinen Hund anmelden.\n\nName: :applicant\nAnschrift: :claimed_address\nHund: :detail\nIm Haushalt seit: :moved_on\n\nEr hört auf seinen Namen, wenn es etwas zu essen gibt. Sonst hört er zu, wählt aber anders.\n\nMit freundlichen Grüßen\n:applicant"
+        },
+        "outcome_feedback": {
+            "approved_valid": "Hundeanmeldung von :applicant genehmigt. Anschrift geprüft, Hund erfasst, Steuermarke geht raus.",
+            "approved_invalid": "Hundeanmeldung von :applicant genehmigt, obwohl die Anschrift nicht zum Register passt. Die Steuermarke geht jetzt an eine Adresse, an der niemand wohnt.",
+            "rejected_valid": "Hundeanmeldung von :applicant abgelehnt, obwohl alles korrekt war. Der Hund bleibt trotzdem. Nur eben ohne Marke.",
+            "rejected_invalid": "Hundeanmeldung von :applicant abgelehnt. Die Anschrift passte nicht zum Register. Richtig geprüft."
+        },
+        "feedback_mail": {
+            "subject": "AW: Hundeanmeldung :applicant",
+            "intro": "Guten Tag,\n\nkurz zur Hundeanmeldung von :applicant.",
+            "outro": "Ordnung ist das halbe Leben. Die andere Hälfte ist Ablage.\n\nBrückmann"
+        },
+        "reminder_mail": {
+            "subject": "Hundeanmeldung :applicant?",
+            "body": "Guten Tag,\n\ndie Hundeanmeldung von :applicant liegt noch unbearbeitet. Anschrift im Register prüfen, dann genehmigen oder ablehnen.\n\nBrückmann"
+        },
+        "date_format": "DD.MM.YYYY"
+    },
+    {
+        "slug": "name-change",
+        "kind": "name_change",
+        "responsibility": "registration",
+        "request_mail": {
+            "subject": "Namensänderung: :applicant",
+            "body": "Sehr geehrte Damen und Herren,\n\nich möchte meinen Namen ändern lassen.\n\nBisheriger Name: :applicant\nAnschrift: :claimed_address\nNeuer Name: :detail\nGültig ab: :moved_on\n\nBitte ändern Sie das auch im Melderegister. Bei der Bank hat das drei Anläufe gebraucht.\n\nMit freundlichen Grüßen\n:applicant"
+        },
+        "outcome_feedback": {
+            "approved_valid": "Namensänderung von :applicant genehmigt. Anschrift geprüft, Register geändert. Sauber.",
+            "approved_invalid": "Namensänderung von :applicant genehmigt, obwohl die Anschrift nicht zum Register passte. Jetzt steht im Register ein neuer Name an einer falschen Adresse. Beides bleibt dort.",
+            "rejected_valid": "Namensänderung von :applicant abgelehnt, obwohl alles korrekt war. :applicant heißt jetzt überall neu, nur bei uns nicht.",
+            "rejected_invalid": "Namensänderung von :applicant abgelehnt. Die Anschrift passte nicht zum Register. Gut aufgepasst."
+        },
+        "feedback_mail": {
+            "subject": "AW: Namensänderung :applicant",
+            "intro": "Guten Tag,\n\nkurz zur Namensänderung von :applicant.",
+            "outro": "Ordnung ist das halbe Leben. Die andere Hälfte ist Ablage.\n\nBrückmann"
+        },
+        "reminder_mail": {
+            "subject": "Namensänderung :applicant?",
+            "body": "Guten Tag,\n\ndie Namensänderung von :applicant ist noch offen. Anschrift im Register prüfen, dann entscheiden.\n\nBrückmann"
+        },
+        "date_format": "DD.MM.YYYY"
     }
 ]

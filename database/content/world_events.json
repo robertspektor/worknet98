@@ -1,7 +1,7 @@
 [
     {
         "type": "dripping_pipe",
-        "daily_rate": 1.5,
+        "daily_rate": 0.8,
         "service": "plumbing",
         "case_template": "leaking-pipe",
         "follow_ups": [
@@ -13,13 +13,13 @@
     },
     {
         "type": "cold_radiator",
-        "daily_rate": 1.0,
+        "daily_rate": 0.6,
         "service": "plumbing",
         "case_template": "cold-radiator"
     },
     {
         "type": "burst_pipe",
-        "daily_rate": 0.5,
+        "daily_rate": 0.35,
         "service": "plumbing",
         "case_template": "burst-pipe",
         "follow_ups": [
@@ -31,19 +31,19 @@
     },
     {
         "type": "heating_breakdown",
-        "daily_rate": 0.5,
+        "daily_rate": 0.35,
         "service": "plumbing",
         "case_template": "heating-breakdown"
     },
     {
         "type": "boiler_service_due",
-        "daily_rate": 0.7,
+        "daily_rate": 0.45,
         "service": "plumbing",
         "case_template": "annual-boiler-service"
     },
     {
         "type": "blocked_drain",
-        "daily_rate": 0.5,
+        "daily_rate": 0.35,
         "service": "plumbing",
         "case_template": "drain-inspection"
     },
@@ -53,16 +53,78 @@
     },
     {
         "type": "moving",
-        "daily_rate": 3.2,
+        "daily_rate": 2.6,
         "service": "registration",
         "application": "move",
         "prefer_regular_customers": false
     },
     {
         "type": "marriage",
-        "daily_rate": 0.8,
+        "daily_rate": 0.7,
         "service": "registration",
         "application": "marriage",
+        "prefer_regular_customers": false
+    },
+    {
+        "type": "blocked_toilet",
+        "daily_rate": 0.5,
+        "service": "plumbing",
+        "case_template": "blocked-toilet",
+        "follow_ups": [
+            {
+                "type": "sewage_backflow",
+                "when": "repair_late"
+            }
+        ]
+    },
+    {
+        "type": "knocking_pipes",
+        "daily_rate": 0.4,
+        "service": "plumbing",
+        "case_template": "noisy-pipes"
+    },
+    {
+        "type": "sewage_backflow",
+        "daily_rate": 0.25,
+        "service": "plumbing",
+        "case_template": "sewage-backflow"
+    },
+    {
+        "type": "no_hot_water",
+        "daily_rate": 0.35,
+        "service": "plumbing",
+        "case_template": "no-hot-water"
+    },
+    {
+        "type": "gurgling_radiators",
+        "daily_rate": 0.45,
+        "service": "plumbing",
+        "case_template": "radiator-bleeding",
+        "follow_ups": [
+            {
+                "type": "heating_breakdown",
+                "when": "repair_late"
+            }
+        ]
+    },
+    {
+        "type": "water_meter_due",
+        "daily_rate": 0.4,
+        "service": "plumbing",
+        "case_template": "water-meter-exchange"
+    },
+    {
+        "type": "dog_acquired",
+        "daily_rate": 0.6,
+        "service": "registration",
+        "application": "pet_registration",
+        "prefer_regular_customers": false
+    },
+    {
+        "type": "name_change_wanted",
+        "daily_rate": 0.4,
+        "service": "registration",
+        "application": "name_change",
         "prefer_regular_customers": false
     }
 ]

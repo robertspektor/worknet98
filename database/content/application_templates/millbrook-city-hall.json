@@ -48,5 +48,55 @@
             "body": "Hello,\n\nthe marriage of :applicant is still unprocessed. Check the details in the registry, approve or reject. The couple is waiting.\n\nH. Brookman"
         },
         "date_format": "MM/DD/YYYY"
+    },
+    {
+        "slug": "pet-registration",
+        "kind": "pet_registration",
+        "responsibility": "registration",
+        "request_mail": {
+            "subject": "Dog licence: :applicant",
+            "body": "Dear Sir or Madam,\n\nI would like to register my dog.\n\nName: :applicant\nAddress: :claimed_address\nDog: :detail\nIn the household since: :moved_on\n\nHe answers to his name when there is food. Otherwise he listens and decides differently.\n\nSincerely,\n:applicant"
+        },
+        "outcome_feedback": {
+            "approved_valid": "Dog licence for :applicant approved. Address checked, dog on file, the tag is in the post.",
+            "approved_invalid": "Dog licence for :applicant approved although the address did not match the registry. The tag now goes to an address where nobody lives.",
+            "rejected_valid": "Dog licence for :applicant rejected although everything was correct. The dog stays anyway. Just without a tag.",
+            "rejected_invalid": "Dog licence for :applicant rejected. The address did not match the registry. Properly checked."
+        },
+        "feedback_mail": {
+            "subject": "Re: Dog licence :applicant",
+            "intro": "Hello,\n\nabout the dog licence for :applicant.",
+            "outro": "Order is half of life. The other half is filing.\n\nH. Brookman"
+        },
+        "reminder_mail": {
+            "subject": "Dog licence :applicant?",
+            "body": "Hello,\n\nthe dog licence for :applicant is still unprocessed. Check the address in the registry, then approve or reject.\n\nH. Brookman"
+        },
+        "date_format": "MM/DD/YYYY"
+    },
+    {
+        "slug": "name-change",
+        "kind": "name_change",
+        "responsibility": "registration",
+        "request_mail": {
+            "subject": "Change of name: :applicant",
+            "body": "Dear Sir or Madam,\n\nI would like to change my name.\n\nCurrent name: :applicant\nAddress: :claimed_address\nNew name: :detail\nValid from: :moved_on\n\nPlease change it in the registry as well. At the bank it took three attempts.\n\nSincerely,\n:applicant"
+        },
+        "outcome_feedback": {
+            "approved_valid": "Name change for :applicant approved. Address checked, registry updated. Clean.",
+            "approved_invalid": "Name change for :applicant approved although the address did not match the registry. Now the registry holds a new name at a wrong address. Both stay there.",
+            "rejected_valid": "Name change for :applicant rejected although everything was correct. :applicant has a new name everywhere except with us.",
+            "rejected_invalid": "Name change for :applicant rejected. The address did not match the registry. Well spotted."
+        },
+        "feedback_mail": {
+            "subject": "Re: Name change :applicant",
+            "intro": "Hello,\n\nabout the name change for :applicant.",
+            "outro": "Order is half of life. The other half is filing.\n\nH. Brookman"
+        },
+        "reminder_mail": {
+            "subject": "Name change :applicant?",
+            "body": "Hello,\n\nthe name change for :applicant is still open. Check the address in the registry, then decide.\n\nH. Brookman"
+        },
+        "date_format": "MM/DD/YYYY"
     }
 ]

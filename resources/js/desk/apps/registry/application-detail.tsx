@@ -51,6 +51,12 @@ export function ApplicationDetail({
                         </dd>
                     </>
                 )}
+                {application.detail && (
+                    <>
+                        <dt>{t(`registry.details.${application.kind}`)}</dt>
+                        <dd>{application.detail}</dd>
+                    </>
+                )}
                 {application.new_street && (
                     <>
                         <dt>{t('registry.new_address')}</dt>

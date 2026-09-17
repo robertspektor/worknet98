@@ -1,9 +1,13 @@
 <?php
 
+use App\Cases\Templates\CaseTemplateCatalog;
 use App\Cases\WorkCaseStatus;
+use App\CivilRegistry\ApplicationKind;
+use App\CivilRegistry\Templates\ApplicationTemplateCatalog;
 use App\Models\Appointment;
 use App\Models\Branch;
 use App\Models\City;
+use App\Models\Company;
 use App\Models\Customer;
 use App\Models\Person;
 use App\Models\WorkCase;
@@ -162,4 +166,34 @@ it('waits for a reachable person when everyone with an e-mail address already ha
     $this->artisan('game:tick')->assertSuccessful();
 
     expect(plumbingEvents()->whereBelongsTo($this->city)->count())->toBe(0);
+});
+
+it('has a template at the responsible company for every world event that reaches one', function () {
+    $companies = Company::query()->get()->keyBy('slug');
+
+    foreach (app(EventCatalog::class)->all() as $definition) {
+        foreach ($companies->filter(fn (Company $company): bool => $definition->service !== null && $company->offers($definition->service)) as $company) {
+            if ($definition->caseTemplate !== null) {
+                expect(app(CaseTemplateCatalog::class)->find($company, $definition->caseTemplate))
+                    ->not->toBeNull("Company [{$company->slug}] has no case template [{$definition->caseTemplate}].");
+            }
+
+            if ($definition->application !== null) {
+                expect(app(ApplicationTemplateCatalog::class)->forKind($company, ApplicationKind::from($definition->application)))
+                    ->not->toBeNull("Company [{$company->slug}] has no application template [{$definition->application}].");
+            }
+        }
+    }
+});
+
+it('offers at least ten case templates at every plumber and every citizens office', function () {
+    foreach (Company::query()->get() as $company) {
+        if ($company->offers('plumbing')) {
+            expect(app(CaseTemplateCatalog::class)->forCompany($company))->toHaveCount(12);
+        }
+
+        if ($company->offers('registration')) {
+            expect(app(ApplicationTemplateCatalog::class)->forCompany($company))->toHaveCount(count(ApplicationKind::cases()));
+        }
+    }
 });

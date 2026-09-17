@@ -4,7 +4,6 @@ namespace App\Logistics\Supply;
 
 use App\Game\GameClock;
 use App\Logistics\ShipmentDispatch;
-use App\Logistics\Templates\ShipmentTemplateCatalog;
 use App\Models\City;
 use App\Models\Shipment;
 use App\World\Events\ServiceProviders;
@@ -46,7 +45,7 @@ class SupplyOrderGenerator
         }
 
         try {
-            return $this->dispatch->send($city, $supplier, $recipient, ShipmentTemplateCatalog::RESTOCK_DELIVERY, [
+            return $this->dispatch->send($city, $supplier, $recipient, $order->route->templateSlug, [
                 'order_key' => $order->key,
                 'contents' => $order->route->contents,
                 'size' => $order->route->size,

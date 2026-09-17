@@ -149,7 +149,10 @@ it('runs the whole chain with NPCs on both sides', function () {
         $this->artisan('game:tick')->assertSuccessful();
     }
 
-    $repairCase = WorkCase::query()->where('customer_id', Customer::query()->ofPerson('gloria-mendez')->sole()->id)->where('case_slug', 'burst-pipe')->sole();
+    $repairCase = WorkCase::query()
+        ->where('customer_id', Customer::query()->ofPerson('gloria-mendez')->whereRelation('branch', 'slug', 'maple-falls')->sole()->id)
+        ->where('case_slug', 'burst-pipe')
+        ->sole();
     $shipment = Shipment::query()->whereBelongsTo($repairCase, 'repairCase')->sole();
     expect($repairCase->status)->toBe(WorkCaseStatus::Resolved)
         ->and($shipment->delivered_at)->not->toBeNull()

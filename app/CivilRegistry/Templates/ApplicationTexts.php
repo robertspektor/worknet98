@@ -21,6 +21,7 @@ readonly class ApplicationTexts
             ':new_address' => "{$application->new_street}, {$application->new_district}",
             ':partner_address' => "{$application->claimed_partner_street}, {$application->claimed_partner_district}",
             ':partner' => $application->partner->name ?? '',
+            ':detail' => $application->detail ?? '',
             ':moved_on' => $application->moved_on->isoFormat($this->template->dateFormat),
         ]);
     }

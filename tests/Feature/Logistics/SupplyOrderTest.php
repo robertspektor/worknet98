@@ -4,6 +4,7 @@ use App\Cases\Metric;
 use App\Cases\MetricBook;
 use App\Cases\WorkCaseKind;
 use App\Logistics\ShipmentDispatch;
+use App\Logistics\Supply\SupplyRoute;
 use App\Logistics\Supply\SupplyRouteCatalog;
 use App\Logistics\Templates\ShipmentTemplateCatalog;
 use App\Models\Branch;
@@ -59,7 +60,7 @@ it('places the supply orders planned for the game day once their time has come',
             ->and($shipment->recipient->city_id)->toBe($shipment->branch->city_id)
             ->and($shipment->dueAt()->gt(now()))->toBeTrue()
             ->and($shipment->dispatchCase?->kind)->toBe(WorkCaseKind::Shipment)
-            ->and($shipment->dispatchCase?->case_slug)->toBe('restock-delivery');
+            ->and($shipment->dispatchCase?->case_slug)->toBeIn(['restock-delivery', 'express-delivery', 'return-pickup', 'fragile-delivery']);
     }
 });
 
@@ -141,5 +142,21 @@ it('only runs supply routes between companies of the same city with a sales desk
 
     foreach (Company::all()->filter(fn (Company $company): bool => $company->offers('freight')) as $carrier) {
         expect(app(ShipmentTemplateCatalog::class)->find($carrier, ShipmentTemplateCatalog::RESTOCK_DELIVERY))->not->toBeNull();
+    }
+});
+
+it('has a shipment template at every carrier for every kind of route', function () {
+    $carriers = Company::all()->filter(fn (Company $company): bool => $company->offers('freight'));
+    $slugs = City::all()->flatMap(fn (City $city): array => array_map(
+        fn (SupplyRoute $route): string => $route->templateSlug,
+        app(SupplyRouteCatalog::class)->routesIn($city),
+    ))->push(ShipmentTemplateCatalog::SPARE_PART_DELIVERY)->unique();
+
+    expect($slugs)->toHaveCount(5);
+
+    foreach ($carriers as $carrier) {
+        foreach ($slugs as $slug) {
+            expect(app(ShipmentTemplateCatalog::class)->find($carrier, $slug))->not->toBeNull("Carrier [{$carrier->slug}] has no template [{$slug}].");
+        }
     }
 });

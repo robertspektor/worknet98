@@ -70,5 +70,113 @@
             "subject": "Reklamation: :contents",
             "body": "Guten Tag,\n\n:contents sollte bis :due bei uns sein. Bis dahin stand hier ein leeres Regal. Ein Kunde hat gefragt, ob das Kunst ist.\n\nWir bitten um Pünktlichkeit. Und um ein neues Regalschild mit der Aufschrift \"Kommt bald\".\n\nMit freundlichen Grüßen\n:recipient"
         }
+    },
+    {
+        "slug": "express-delivery",
+        "responsibility": "dispatch",
+        "due_format": "dddd, DD.MM., HH:mm [Uhr]",
+        "size_labels": {
+            "parcel": "ein Paket",
+            "pallet": "eine Palette"
+        },
+        "request_mail": {
+            "subject": "EILT: :contents für :recipient",
+            "body": "Guten Tag,\n\neilige Abholung: :contents, :size.\n\nEmpfänger: :recipient, :district\nSpätestens da: :due\n\nDas ist kein gewöhnlicher Auftrag. Die Ware wird morgen früh gebraucht, nicht irgendwann morgen.\n\nBitte bestätigen Sie die Tour kurz per Mail.\n\nMit freundlichen Grüßen\n:contact\n:sender"
+        },
+        "outcome_feedback": {
+            "vehicle": {
+                "met": "Und das passende Fahrzeug. Die Buchhaltung nickt.",
+                "missed": "Falsches Fahrzeug. Bei Eilaufträgen zahlen wir den Diesel und die Kunden zahlen den Aufpreis. Einer von beiden war unnötig."
+            },
+            "punctuality": {
+                "met": "Pünktlich vor Ladenöffnung. Genau dafür zahlt :recipient den Zuschlag.",
+                "missed": "Zu spät. Ein Eilauftrag, der zu spät kommt, ist ein normaler Auftrag mit Aufpreis. Das rechnet uns :recipient gleich vor."
+            }
+        },
+        "feedback_mail": {
+            "subject": "AW: EILT: :contents",
+            "intro": "Moin,\n\nzum Eilauftrag :contents für :recipient.",
+            "outro": "Eilaufträge gehören auf die Frühtour. Immer.\n\nTanja"
+        },
+        "reminder_mail": {
+            "subject": "Eilauftrag :contents wartet",
+            "body": "Moin,\n\nder Eilauftrag für :recipient liegt noch auf keiner Tour. Bei \"eilt\" ist das besonders auffällig.\n\nTanja"
+        },
+        "complaint_mail": {
+            "subject": "Reklamation: :contents kam zu spät",
+            "body": "Guten Tag,\n\nwir haben einen Eilzuschlag bezahlt und die Ware trotzdem zu spät bekommen. Der Termin war :due.\n\nWir zahlen gern für Geschwindigkeit. Für Aufregung zahlen wir ungern.\n\nMit freundlichen Grüßen\n:recipient"
+        }
+    },
+    {
+        "slug": "return-pickup",
+        "responsibility": "dispatch",
+        "due_format": "dddd, DD.MM., HH:mm [Uhr]",
+        "size_labels": {
+            "parcel": "ein Paket",
+            "pallet": "eine Palette"
+        },
+        "request_mail": {
+            "subject": "Rückholung: :contents",
+            "body": "Guten Tag,\n\nbitte holen Sie bei uns ab: :contents, :size.\n\nZurück zum Absender: :recipient, :district\nSpätestens da: :due\n\nDie Ware steht im Weg und wird jeden Tag ein bisschen mehr zum Möbelstück.\n\nBitte bestätigen Sie die Tour kurz per Mail.\n\nMit freundlichen Grüßen\n:contact\n:sender"
+        },
+        "outcome_feedback": {
+            "vehicle": {
+                "met": "Und das passende Fahrzeug für die Rückladung.",
+                "missed": "Falsches Fahrzeug für die Rückladung. Der Fahrer hat es zweimal umgestapelt und einmal etwas gesagt."
+            },
+            "punctuality": {
+                "met": "Rechtzeitig zurück bei :recipient. Die Gutschrift läuft.",
+                "missed": "Zu spät zurück bei :recipient. Ohne Ware keine Gutschrift, und die Gutschrift stand schon in einer Buchhaltung."
+            }
+        },
+        "feedback_mail": {
+            "subject": "AW: Rückholung :contents",
+            "intro": "Moin,\n\nzur Rückholung :contents von :recipient.",
+            "outro": "Retouren bringen kein Geld, aber verhindern Ärger. Auch eine Währung.\n\nTanja"
+        },
+        "reminder_mail": {
+            "subject": "Rückholung :contents offen",
+            "body": "Moin,\n\ndie Rückholung für :recipient liegt noch auf keiner Tour. Die Ware steht weiter im Gang.\n\nTanja"
+        },
+        "complaint_mail": {
+            "subject": "Reklamation: Rückholung :contents",
+            "body": "Guten Tag,\n\ndie Rückholung sollte bis :due erledigt sein. Die Ware steht immer noch hier, jetzt mit Staub.\n\nWir hätten den Platz gern zurück. Und die Gutschrift.\n\nMit freundlichen Grüßen\n:recipient"
+        }
+    },
+    {
+        "slug": "fragile-delivery",
+        "responsibility": "dispatch",
+        "due_format": "dddd, DD.MM., HH:mm [Uhr]",
+        "size_labels": {
+            "parcel": "ein Paket",
+            "pallet": "eine Palette"
+        },
+        "request_mail": {
+            "subject": "Bruchempfindlich: :contents für :recipient",
+            "body": "Guten Tag,\n\nbitte holen Sie ab: :contents, :size. Bruchempfindlich, bitte entsprechend verladen.\n\nEmpfänger: :recipient, :district\nSpätestens da: :due\n\nDie letzte Sendung dieser Art kam als Puzzle an. Wir möchten das nicht wiederholen.\n\nBitte bestätigen Sie die Tour kurz per Mail.\n\nMit freundlichen Grüßen\n:contact\n:sender"
+        },
+        "outcome_feedback": {
+            "vehicle": {
+                "met": "Und das passende Fahrzeug, sauber verladen.",
+                "missed": "Falsches Fahrzeug für Bruchware. Der Fahrer hat auf jeder Bodenwelle an dich gedacht."
+            },
+            "punctuality": {
+                "met": "Rechtzeitig und ganz bei :recipient angekommen.",
+                "missed": "Zu spät bei :recipient. Die Ware stand dafür lange auf dem Hof. Bruchware mag beides nicht."
+            }
+        },
+        "feedback_mail": {
+            "subject": "AW: :contents für :recipient",
+            "intro": "Moin,\n\nzur Bruchware :contents für :recipient.",
+            "outro": "Was heil ankommt, kommt richtig an.\n\nTanja"
+        },
+        "reminder_mail": {
+            "subject": ":contents noch nicht verplant",
+            "body": "Moin,\n\ndie Sendung :contents für :recipient liegt noch auf keiner Tour. Bruchware wird im Lager nicht stabiler.\n\nTanja"
+        },
+        "complaint_mail": {
+            "subject": "Reklamation: :contents",
+            "body": "Guten Tag,\n\ndie Sendung sollte bis :due hier sein. War sie nicht.\n\nWir haben den Aufbau verschoben, die Kunden auch. Nur die Ware nicht.\n\nMit freundlichen Grüßen\n:recipient"
+        }
     }
 ]

@@ -242,5 +242,249 @@
             "subject": "Abflussprüfung :customer",
             "body": "Moin,\n\ndie Abflussprüfung bei :customer ist immer noch offen. Im Vertrag steht jährlich. Nicht irgendwann.\n\nBernd"
         }
+    },
+    {
+        "slug": "blocked-toilet",
+        "responsibility": "scheduling",
+        "skill": "plumbing",
+        "urgent_within_work_days": 2,
+        "request_mail": {
+            "subject": "Toilette verstopft",
+            "body": "Guten Tag,\n\nunsere Toilette ist verstopft. Wir haben es mit einem Pümpel versucht, dann mit zwei Pümpeln gleichzeitig. Das half nicht, sah aber entschlossen aus.\n\nKönnen Sie jemanden schicken? :availability\n\nMit freundlichen Grüßen\n:customer"
+        },
+        "availability_notes": {
+            "morning": "Ich bin nur vormittags da.",
+            "afternoon": "Nachmittags bin ich zu Hause, vormittags nicht.",
+            "any": "Ich bin den ganzen Tag da. Wir benutzen solange die Toilette im Erdgeschoss."
+        },
+        "outcome_feedback": {
+            "availability": {
+                "met": ":customer hat aufgemacht, die Uhrzeit hat gepasst.",
+                "missed": "Niemand da bei :customer. Der Monteur hat geklingelt und gewartet. Die Toilette auch."
+            },
+            "skill": {
+                "met": "Und der richtige Monteur dafür.",
+                "missed": "Ein Heizungsbauer vor einer verstopften Toilette ist ein trauriges Bild. Zwei Anfahrten."
+            },
+            "urgency": {
+                "met": "Schnell erledigt. Eine Familie ohne Toilette wird sonst schnell unhöflich.",
+                "missed": "Es hat gedauert. :customer hat in der Zwischenzeit die Nachbarn kennengelernt. Gründlich."
+            }
+        },
+        "feedback_mail": {
+            "subject": "AW: :customer",
+            "intro": "Moin,\n\nkurz zur Toilette bei :customer.",
+            "outro": "Nicht schön, aber unser Geschäft. Im übertragenen Sinne.\n\nBernd"
+        },
+        "reminder_mail": {
+            "subject": ":customer wartet",
+            "body": "Moin,\n\n:customer hat immer noch eine verstopfte Toilette. Termin, Bestätigung, Kalender.\n\nBernd"
+        }
+    },
+    {
+        "slug": "noisy-pipes",
+        "responsibility": "scheduling",
+        "skill": "plumbing",
+        "urgent_within_work_days": 3,
+        "request_mail": {
+            "subject": "Die Rohre klopfen",
+            "body": "Guten Tag,\n\nseit einer Woche klopft es nachts in den Rohren. Erst dachten wir an Geister, dann an die Nachbarn, jetzt an die Leitung.\n\nBitte schicken Sie jemanden, der sich das anhört. :availability\n\nViele Grüße\n:customer"
+        },
+        "availability_notes": {
+            "morning": "Vormittags bin ich da, da klopft es allerdings nie.",
+            "afternoon": "Nachmittags passt es mir am besten.",
+            "any": "Zeit habe ich immer, das Klopfen hat auch keinen Zeitplan."
+        },
+        "outcome_feedback": {
+            "availability": {
+                "met": ":customer war da und hat sogar Kaffee angeboten.",
+                "missed": "Niemand zu Hause bei :customer. Das Klopfen war da, aber es unterschreibt nichts."
+            },
+            "skill": {
+                "met": "Richtiger Mann für klopfende Leitungen.",
+                "missed": "Der Kollege war für Heizung eingeteilt. Er hat höflich zugehört und nichts gemacht."
+            },
+            "urgency": {
+                "met": "Zügig erledigt. :customer schläft wieder durch.",
+                "missed": "Hat gedauert. :customer hat dem Klopfen inzwischen einen Namen gegeben."
+            }
+        },
+        "feedback_mail": {
+            "subject": "AW: :customer",
+            "intro": "Moin,\n\nzu den klopfenden Rohren bei :customer.",
+            "outro": "Kein Notfall, aber Kunden erinnern sich an Nächte.\n\nBernd"
+        },
+        "reminder_mail": {
+            "subject": ":customer klopft noch?",
+            "body": "Moin,\n\ndie Sache mit den klopfenden Rohren bei :customer liegt noch offen.\n\nBernd"
+        }
+    },
+    {
+        "slug": "sewage-backflow",
+        "responsibility": "emergency-scheduling",
+        "skill": "plumbing",
+        "urgent_within_work_days": 1,
+        "request_mail": {
+            "subject": "NOTFALL: Rückstau im Keller",
+            "body": "Hallo,\n\nim Keller steht Wasser, und es kommt nicht von oben. Ich beschreibe das jetzt nicht genauer.\n\nBitte sofort jemanden schicken. :availability\n\n:customer"
+        },
+        "availability_notes": {
+            "morning": "Ich bin vormittags da, danach muss ich weg.",
+            "afternoon": "Vormittags arbeite ich, nachmittags bin ich da.",
+            "any": "Ich gehe hier nicht weg. Ich traue mich nur nicht in den Keller."
+        },
+        "outcome_feedback": {
+            "availability": {
+                "met": ":customer hat die Kellertür schon offen gehalten.",
+                "missed": "Niemand da bei :customer. Der Keller hat allein aufgemacht, sozusagen."
+            },
+            "skill": {
+                "met": "Richtiger Monteur für die Rückstauklappe.",
+                "missed": "Heizungsmonteur im Abwasserkeller. Er kam schnell wieder hoch."
+            },
+            "urgency": {
+                "met": "Am nächsten Tag erledigt. Der Keller ist wieder ein Keller.",
+                "missed": "Zu spät. Der Keller ist jetzt ein Thema in der ganzen Straße."
+            }
+        },
+        "feedback_mail": {
+            "subject": "AW: :customer (Notfall)",
+            "intro": "Moin,\n\nzum Rückstau bei :customer. Notfälle sind unser Ruf.",
+            "outro": "Notfälle warten nicht. Mein Blutdruck auch nicht.\n\nBernd"
+        },
+        "reminder_mail": {
+            "subject": ":customer - noch im Keller?",
+            "body": "Moin,\n\n:customer hat immer noch Wasser im Keller. Das ist der Notdienst, nicht die Wartungsplanung.\n\nBernd"
+        },
+        "part": {
+            "contents": "Rückstauklappe DN 100",
+            "size": "parcel",
+            "missing_mail": {
+                "subject": ":customer: Rückstauklappe fehlt",
+                "body": "Moin,\n\nder Monteur stand bei :customer im Keller. Ohne Klappe. Das Teil kam nicht rechtzeitig.\n\nNeuer Termin, sobald es da ist. Und bitte :customer anrufen, bevor der Keller es tut.\n\nBernd"
+            }
+        }
+    },
+    {
+        "slug": "no-hot-water",
+        "responsibility": "emergency-scheduling",
+        "skill": "heating",
+        "urgent_within_work_days": 1,
+        "request_mail": {
+            "subject": "NOTFALL: Kein warmes Wasser",
+            "body": "Guten Tag,\n\nseit heute früh kommt nur kaltes Wasser. Ich habe alles gedrückt, was nach einem Knopf aussah.\n\nBitte schicken Sie jemanden. :availability\n\n:customer"
+        },
+        "availability_notes": {
+            "morning": "Vormittags bin ich zu Hause.",
+            "afternoon": "Nachmittags bin ich da, vormittags im Büro.",
+            "any": "Ich bin da. Kalt duschen kann ich zu jeder Zeit nicht."
+        },
+        "outcome_feedback": {
+            "availability": {
+                "met": ":customer war da und hatte schon den Heizungskeller aufgeschlossen.",
+                "missed": "Niemand zu Hause bei :customer. Das Wasser blieb kalt."
+            },
+            "skill": {
+                "met": "Und ein Heizungsmann für die Heizung. Logisch, aber nicht selbstverständlich.",
+                "missed": "Du hast einen Installateur zur Therme geschickt. Er hat sie angeschaut wie ein fremdes Auto."
+            },
+            "urgency": {
+                "met": "Am nächsten Tag warm. Vorbildlich.",
+                "missed": "Es hat gedauert. :customer hat in der Zeit beim Nachbarn geduscht. Mehrfach."
+            }
+        },
+        "feedback_mail": {
+            "subject": "AW: :customer (Notfall)",
+            "intro": "Moin,\n\nzum warmen Wasser bei :customer.",
+            "outro": "Kaltes Wasser macht Kunden wach. Leider auch wütend.\n\nBernd"
+        },
+        "reminder_mail": {
+            "subject": ":customer duscht kalt",
+            "body": "Moin,\n\n:customer hat immer noch kein warmes Wasser. Bitte kümmern.\n\nBernd"
+        }
+    },
+    {
+        "slug": "radiator-bleeding",
+        "responsibility": "maintenance-scheduling",
+        "skill": "heating",
+        "urgent_within_work_days": 5,
+        "request_mail": {
+            "subject": "Heizkörper entlüften",
+            "body": "Guten Tag,\n\ndie Heizkörper gluckern und werden oben nicht warm. Laut Nachbarn muss man da Luft rauslassen. Ich habe den Schlüssel dafür nicht und auch keine Lust.\n\nBitte einen Termin. :availability\n\nMit freundlichen Grüßen\n:customer"
+        },
+        "availability_notes": {
+            "morning": "Vormittags bin ich zu Hause.",
+            "afternoon": "Nachmittags bin ich da.",
+            "any": "Ich bin flexibel, die Heizkörper auch."
+        },
+        "outcome_feedback": {
+            "availability": {
+                "met": ":customer war da, alle Heizkörper waren zugänglich.",
+                "missed": "Niemand da bei :customer. Die Heizkörper gluckern weiter."
+            },
+            "skill": {
+                "met": "Heizungsfachmann für die Heizung. Passt.",
+                "missed": "Ein Installateur mit Entlüftungsschlüssel ist besser als nichts, aber nicht viel."
+            },
+            "urgency": {
+                "met": "In der Woche erledigt. So plant man.",
+                "missed": "Das hat zu lange gedauert für eine Wartung, die zwanzig Minuten braucht."
+            }
+        },
+        "feedback_mail": {
+            "subject": "AW: :customer",
+            "intro": "Moin,\n\nzur Entlüftung bei :customer.",
+            "outro": "Wartung ist langweilig. Langeweile ist gut fürs Geschäft.\n\nBernd"
+        },
+        "reminder_mail": {
+            "subject": ":customer gluckert noch",
+            "body": "Moin,\n\ndie Entlüftung bei :customer steht noch aus.\n\nBernd"
+        }
+    },
+    {
+        "slug": "water-meter-exchange",
+        "responsibility": "maintenance-scheduling",
+        "skill": "plumbing",
+        "urgent_within_work_days": 5,
+        "request_mail": {
+            "subject": "Wasserzähler tauschen",
+            "body": "Guten Tag,\n\nlaut Stadtwerken ist mein Wasserzähler seit 1992 fällig. Ich lege den Zettel bei, falls Sie ihn sehen wollen. Ich sehe ihn seit Wochen.\n\nBitte einen Termin. :availability\n\n:customer"
+        },
+        "availability_notes": {
+            "morning": "Vormittags bin ich da.",
+            "afternoon": "Nachmittags passt mir besser.",
+            "any": "Ganztägig erreichbar, der Zähler auch."
+        },
+        "outcome_feedback": {
+            "availability": {
+                "met": ":customer war da und hatte den Zählerschacht schon frei geräumt.",
+                "missed": "Niemand da bei :customer. Der Zähler zählt trotzdem weiter."
+            },
+            "skill": {
+                "met": "Installateur für den Zähler. Genau richtig.",
+                "missed": "Der Heizungsmonteur hat den Zähler gefunden, aber nicht getauscht. Neue Anfahrt."
+            },
+            "urgency": {
+                "met": "In der Frist erledigt, die Stadtwerke sind zufrieden.",
+                "missed": "Zu spät. Die Stadtwerke schreiben jetzt uns statt :customer."
+            }
+        },
+        "feedback_mail": {
+            "subject": "AW: :customer",
+            "intro": "Moin,\n\nzum Zählertausch bei :customer.",
+            "outro": "Papierkram mit Wasser dran. Muss trotzdem sein.\n\nBernd"
+        },
+        "reminder_mail": {
+            "subject": ":customer, Zähler?",
+            "body": "Moin,\n\nder Zählertausch bei :customer liegt noch offen. Die Stadtwerke haben Geduld, aber nicht ewig.\n\nBernd"
+        },
+        "part": {
+            "contents": "Wasserzähler Qn 2,5",
+            "size": "parcel",
+            "missing_mail": {
+                "subject": ":customer: Zähler fehlt",
+                "body": "Moin,\n\nder Monteur war bei :customer, der neue Zähler nicht. Das Teil kam nicht rechtzeitig.\n\nNeuer Termin, sobald es da ist.\n\nBernd"
+            }
+        }
     }
 ]

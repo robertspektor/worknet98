@@ -5,7 +5,7 @@
         "recipient": "kaufhaus-lindner",
         "contents": "Kochtopfsets, 24 Stück",
         "size": "pallet",
-        "daily_rate": 0.8,
+        "daily_rate": 0.6,
         "lead_work_days": 2
     },
     {
@@ -14,7 +14,7 @@
         "recipient": "drogerie-kranich",
         "contents": "Spülbürsten, 1 Karton",
         "size": "parcel",
-        "daily_rate": 1.0,
+        "daily_rate": 0.7,
         "lead_work_days": 1
     },
     {
@@ -23,7 +23,7 @@
         "recipient": "baumarkt-hammerschmidt",
         "contents": "Wäscheständer, 12 Stück",
         "size": "pallet",
-        "daily_rate": 0.5,
+        "daily_rate": 0.4,
         "lead_work_days": 2
     },
     {
@@ -41,7 +41,7 @@
         "recipient": "kaufhaus-lindner",
         "contents": "Prospekte Winterschlussverkauf",
         "size": "parcel",
-        "daily_rate": 0.7,
+        "daily_rate": 0.5,
         "lead_work_days": 1
     },
     {
@@ -70,5 +70,67 @@
         "size": "parcel",
         "daily_rate": 0.4,
         "lead_work_days": 1
+    },
+    {
+        "slug": "druckerei-wendel-to-drogerie-kranich-express",
+        "supplier": "druckerei-wendel",
+        "recipient": "drogerie-kranich",
+        "contents": "Aktionsprospekte, Nachdruck",
+        "size": "parcel",
+        "daily_rate": 0.4,
+        "lead_work_days": 1,
+        "template": "express-delivery",
+        "due_time": "10:00"
+    },
+    {
+        "slug": "frohsinn-haushaltswaren-to-kaufhaus-lindner-express",
+        "supplier": "frohsinn-haushaltswaren",
+        "recipient": "kaufhaus-lindner",
+        "contents": "Thermoskannen, 40 Stück",
+        "size": "pallet",
+        "daily_rate": 0.3,
+        "lead_work_days": 1,
+        "template": "express-delivery",
+        "due_time": "10:00"
+    },
+    {
+        "slug": "kaufhaus-lindner-to-frohsinn-haushaltswaren-retoure",
+        "supplier": "kaufhaus-lindner",
+        "recipient": "frohsinn-haushaltswaren",
+        "contents": "Retoure: Kochtöpfe mit verbeulten Deckeln",
+        "size": "pallet",
+        "daily_rate": 0.4,
+        "lead_work_days": 2,
+        "template": "return-pickup"
+    },
+    {
+        "slug": "baumarkt-hammerschmidt-to-bergmann-sanitaergrosshandel-retoure",
+        "supplier": "baumarkt-hammerschmidt",
+        "recipient": "bergmann-sanitaergrosshandel",
+        "contents": "Retoure: Fittings mit falschem Gewinde",
+        "size": "parcel",
+        "daily_rate": 0.4,
+        "lead_work_days": 2,
+        "template": "return-pickup"
+    },
+    {
+        "slug": "datenfabrik-kessler-to-kaufhaus-lindner-bruchware",
+        "supplier": "datenfabrik-kessler",
+        "recipient": "kaufhaus-lindner",
+        "contents": "Monitore, 6 Stück",
+        "size": "pallet",
+        "daily_rate": 0.4,
+        "lead_work_days": 2,
+        "template": "fragile-delivery"
+    },
+    {
+        "slug": "frohsinn-haushaltswaren-to-drogerie-kranich-bruchware",
+        "supplier": "frohsinn-haushaltswaren",
+        "recipient": "drogerie-kranich",
+        "contents": "Vorratsgläser, 2 Kartons",
+        "size": "parcel",
+        "daily_rate": 0.3,
+        "lead_work_days": 2,
+        "template": "fragile-delivery"
     }
 ]

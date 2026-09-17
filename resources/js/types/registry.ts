@@ -10,6 +10,7 @@ export type CivilApplication = {
     claimed_district: string;
     partner: string | null;
     claimed_partner_street: string | null;
+    detail: string | null;
     claimed_partner_district: string | null;
     new_street: string | null;
     new_district: string | null;

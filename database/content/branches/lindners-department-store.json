@@ -8,6 +8,7 @@
             {
                 "slug": "branch-manager",
                 "title": "General Manager",
+                "responsibilities": ["sales"],
                 "person": "howard-lindner",
                 "work_address": "howard.lindner@lindners.wn"
             }

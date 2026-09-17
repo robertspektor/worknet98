@@ -242,5 +242,249 @@
             "subject": "Drain inspection for :customer",
             "body": "Hi,\n\nthe drain inspection for :customer is still open. The contract says yearly. Not whenever.\n\nGary"
         }
+    },
+    {
+        "slug": "blocked-toilet",
+        "responsibility": "scheduling",
+        "skill": "plumbing",
+        "urgent_within_work_days": 2,
+        "request_mail": {
+            "subject": "Blocked toilet",
+            "body": "Hello,\n\nour toilet is blocked. We tried a plunger, then two plungers at the same time. That did not help, but it looked determined.\n\nCan you send somebody? :availability\n\nKind regards,\n:customer"
+        },
+        "availability_notes": {
+            "morning": "I am only home in the mornings.",
+            "afternoon": "Afternoons I am home, mornings I am not.",
+            "any": "I am home all day. We are using the downstairs toilet in the meantime."
+        },
+        "outcome_feedback": {
+            "availability": {
+                "met": ":customer opened the door, the time was right.",
+                "missed": "Nobody home at :customer. The technician rang and waited. So did the toilet."
+            },
+            "skill": {
+                "met": "And the right technician for it.",
+                "missed": "A heating specialist in front of a blocked toilet is a sad picture. Two trips."
+            },
+            "urgency": {
+                "met": "Done quickly. A family without a toilet gets impolite fast.",
+                "missed": "It took a while. :customer got to know the neighbours in the meantime. Thoroughly."
+            }
+        },
+        "feedback_mail": {
+            "subject": "Re: :customer",
+            "intro": "Hey,\n\nabout the toilet at :customer.",
+            "outro": "Not pretty, but it is our business. Figuratively.\n\nGary"
+        },
+        "reminder_mail": {
+            "subject": ":customer is waiting",
+            "body": "Hey,\n\n:customer still has a blocked toilet. Appointment, confirmation, calendar.\n\nGary"
+        }
+    },
+    {
+        "slug": "noisy-pipes",
+        "responsibility": "scheduling",
+        "skill": "plumbing",
+        "urgent_within_work_days": 3,
+        "request_mail": {
+            "subject": "The pipes are knocking",
+            "body": "Hello,\n\nfor a week the pipes have been knocking at night. First we blamed ghosts, then the neighbours, now the plumbing.\n\nPlease send somebody who will listen to it. :availability\n\nRegards,\n:customer"
+        },
+        "availability_notes": {
+            "morning": "Mornings I am home, although it never knocks then.",
+            "afternoon": "Afternoons work best for me.",
+            "any": "I always have time, and the knocking has no schedule either."
+        },
+        "outcome_feedback": {
+            "availability": {
+                "met": ":customer was there and even offered coffee.",
+                "missed": "Nobody home at :customer. The knocking was there, but it does not sign anything."
+            },
+            "skill": {
+                "met": "The right person for knocking pipes.",
+                "missed": "The colleague was scheduled for heating. He listened politely and did nothing."
+            },
+            "urgency": {
+                "met": "Handled quickly. :customer sleeps through the night again.",
+                "missed": "It took a while. :customer has given the knocking a name by now."
+            }
+        },
+        "feedback_mail": {
+            "subject": "Re: :customer",
+            "intro": "Hey,\n\nabout the knocking pipes at :customer.",
+            "outro": "Not an emergency, but customers remember nights.\n\nGary"
+        },
+        "reminder_mail": {
+            "subject": ":customer, still knocking?",
+            "body": "Hey,\n\nthe knocking pipes at :customer are still open.\n\nGary"
+        }
+    },
+    {
+        "slug": "sewage-backflow",
+        "responsibility": "emergency-scheduling",
+        "skill": "plumbing",
+        "urgent_within_work_days": 1,
+        "request_mail": {
+            "subject": "EMERGENCY: backflow in the basement",
+            "body": "Hello,\n\nthere is water in the basement and it is not coming from above. I will not describe this any further.\n\nPlease send somebody now. :availability\n\n:customer"
+        },
+        "availability_notes": {
+            "morning": "I am home in the morning, then I have to leave.",
+            "afternoon": "I work in the morning, afternoons I am home.",
+            "any": "I am not going anywhere. I am just not going into the basement."
+        },
+        "outcome_feedback": {
+            "availability": {
+                "met": ":customer had already propped the basement door open.",
+                "missed": "Nobody home at :customer. The basement opened up on its own, so to speak."
+            },
+            "skill": {
+                "met": "The right technician for the backflow valve.",
+                "missed": "A heating specialist in a sewage basement. He came back up quickly."
+            },
+            "urgency": {
+                "met": "Done the next day. The basement is a basement again.",
+                "missed": "Too late. The basement is now a topic for the whole street."
+            }
+        },
+        "feedback_mail": {
+            "subject": "Re: :customer (emergency)",
+            "intro": "Hey,\n\nabout the backflow at :customer. Emergencies are our reputation.",
+            "outro": "Emergencies do not wait. Neither does my blood pressure.\n\nGary"
+        },
+        "reminder_mail": {
+            "subject": ":customer - still in the basement?",
+            "body": "Hey,\n\n:customer still has water in the basement. This is the emergency desk, not maintenance.\n\nGary"
+        },
+        "part": {
+            "contents": "backflow valve 4\"",
+            "size": "parcel",
+            "missing_mail": {
+                "subject": ":customer: valve missing",
+                "body": "Hey,\n\nthe technician stood in the basement at :customer. Without the valve. The part did not arrive in time.\n\nBook a new appointment once it is here. And call :customer before the basement does.\n\nGary"
+            }
+        }
+    },
+    {
+        "slug": "no-hot-water",
+        "responsibility": "emergency-scheduling",
+        "skill": "heating",
+        "urgent_within_work_days": 1,
+        "request_mail": {
+            "subject": "EMERGENCY: no hot water",
+            "body": "Hello,\n\nsince this morning only cold water comes out. I pressed everything that looked like a button.\n\nPlease send somebody. :availability\n\n:customer"
+        },
+        "availability_notes": {
+            "morning": "I am home in the morning.",
+            "afternoon": "Afternoons I am home, mornings at the office.",
+            "any": "I am here. I cannot shower cold at any time of day."
+        },
+        "outcome_feedback": {
+            "availability": {
+                "met": ":customer was there and had already unlocked the boiler room.",
+                "missed": "Nobody home at :customer. The water stayed cold."
+            },
+            "skill": {
+                "met": "And a heating specialist for the heating. Logical, but not a given.",
+                "missed": "You sent a plumber to the boiler. He looked at it like a stranger's car."
+            },
+            "urgency": {
+                "met": "Warm again the next day. Textbook.",
+                "missed": "It took a while. :customer showered at the neighbours in the meantime. Repeatedly."
+            }
+        },
+        "feedback_mail": {
+            "subject": "Re: :customer (emergency)",
+            "intro": "Hey,\n\nabout the hot water at :customer.",
+            "outro": "Cold water wakes customers up. Unfortunately it also makes them angry.\n\nGary"
+        },
+        "reminder_mail": {
+            "subject": ":customer is showering cold",
+            "body": "Hey,\n\n:customer still has no hot water. Please take care of it.\n\nGary"
+        }
+    },
+    {
+        "slug": "radiator-bleeding",
+        "responsibility": "maintenance-scheduling",
+        "skill": "heating",
+        "urgent_within_work_days": 5,
+        "request_mail": {
+            "subject": "Bleed the radiators",
+            "body": "Hello,\n\nthe radiators gurgle and stay cold at the top. The neighbours say you have to let the air out. I do not have the key for that and no desire to find one.\n\nAn appointment, please. :availability\n\nKind regards,\n:customer"
+        },
+        "availability_notes": {
+            "morning": "Mornings I am home.",
+            "afternoon": "Afternoons I am home.",
+            "any": "I am flexible, so are the radiators."
+        },
+        "outcome_feedback": {
+            "availability": {
+                "met": ":customer was there and every radiator was reachable.",
+                "missed": "Nobody home at :customer. The radiators keep gurgling."
+            },
+            "skill": {
+                "met": "Heating specialist for heating. Fits.",
+                "missed": "A plumber with a bleed key is better than nothing, but not by much."
+            },
+            "urgency": {
+                "met": "Done within the week. That is planning.",
+                "missed": "That took too long for a job that needs twenty minutes."
+            }
+        },
+        "feedback_mail": {
+            "subject": "Re: :customer",
+            "intro": "Hey,\n\nabout bleeding the radiators at :customer.",
+            "outro": "Maintenance is boring. Boring is good for business.\n\nGary"
+        },
+        "reminder_mail": {
+            "subject": ":customer still gurgling",
+            "body": "Hey,\n\nthe radiator job at :customer is still open.\n\nGary"
+        }
+    },
+    {
+        "slug": "water-meter-exchange",
+        "responsibility": "maintenance-scheduling",
+        "skill": "plumbing",
+        "urgent_within_work_days": 5,
+        "request_mail": {
+            "subject": "Replace the water meter",
+            "body": "Hello,\n\naccording to the utility my water meter has been due since 1992. I am attaching the notice in case you want to see it. I have been seeing it for weeks.\n\nAn appointment, please. :availability\n\n:customer"
+        },
+        "availability_notes": {
+            "morning": "Mornings I am home.",
+            "afternoon": "Afternoons suit me better.",
+            "any": "Reachable all day, and so is the meter."
+        },
+        "outcome_feedback": {
+            "availability": {
+                "met": ":customer was there and had already cleared the meter cabinet.",
+                "missed": "Nobody home at :customer. The meter keeps counting anyway."
+            },
+            "skill": {
+                "met": "A plumber for the meter. Exactly right.",
+                "missed": "The heating technician found the meter but did not replace it. Another trip."
+            },
+            "urgency": {
+                "met": "Done in time, the utility is happy.",
+                "missed": "Too late. The utility now writes to us instead of :customer."
+            }
+        },
+        "feedback_mail": {
+            "subject": "Re: :customer",
+            "intro": "Hey,\n\nabout the meter at :customer.",
+            "outro": "Paperwork with water attached. Still has to happen.\n\nGary"
+        },
+        "reminder_mail": {
+            "subject": ":customer, the meter?",
+            "body": "Hey,\n\nthe meter replacement at :customer is still open. The utility is patient, but not forever.\n\nGary"
+        },
+        "part": {
+            "contents": "water meter 3/4\"",
+            "size": "parcel",
+            "missing_mail": {
+                "subject": ":customer: meter missing",
+                "body": "Hey,\n\nthe technician made it to :customer, the new meter did not. The part never arrived in time.\n\nBook a new appointment once it is here.\n\nGary"
+            }
+        }
     }
 ]

@@ -11,6 +11,7 @@ const application: CivilApplication = {
     partner: null,
     claimed_partner_street: null,
     claimed_partner_district: null,
+    detail: null,
     new_street: '99 Sunset Drive',
     new_district: 'Brookhaven',
     moved_on: '1998-01-21',

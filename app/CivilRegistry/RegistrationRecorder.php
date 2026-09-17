@@ -12,6 +12,8 @@ class RegistrationRecorder
         match ($application->kind) {
             ApplicationKind::Move => $this->move($application),
             ApplicationKind::Marriage => $this->marry($application),
+            ApplicationKind::NameChange => $this->rename($application),
+            ApplicationKind::PetRegistration => null,
         };
     }
 
@@ -26,6 +28,13 @@ class RegistrationRecorder
 
         if (! $isTaken) {
             $household->update(['district' => $application->new_district, 'street' => $application->new_street]);
+        }
+    }
+
+    private function rename(CivilApplication $application): void
+    {
+        if ($application->detail !== null) {
+            $application->applicant->update(['name' => $application->detail]);
         }
     }
 

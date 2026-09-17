@@ -8,6 +8,7 @@
             {
                 "slug": "branch-manager",
                 "title": "Marktleitung",
+                "responsibilities": ["sales"],
                 "person": "uwe-hammerschmidt",
                 "work_address": "uwe.hammerschmidt@hammerschmidt-baumarkt.wn"
             }

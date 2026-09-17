@@ -26,6 +26,7 @@ class CivilApplicationResource extends JsonResource
             'partner' => $this->partner?->name,
             'claimed_partner_street' => $this->claimed_partner_street,
             'claimed_partner_district' => $this->claimed_partner_district,
+            'detail' => $this->detail,
             'new_street' => $this->new_street,
             'new_district' => $this->new_district,
             'moved_on' => $this->moved_on->toDateString(),

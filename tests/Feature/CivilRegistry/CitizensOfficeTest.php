@@ -37,7 +37,7 @@ function clerkOnDuty(): User
 
 function fileApplication(Branch $office, ApplicationKind $kind, Person $applicant, array $attributes): CivilApplication
 {
-    $event = WorldEvent::factory()->for($applicant)->create(['type' => $kind === ApplicationKind::Move ? 'moving' : 'marriage']);
+    $event = WorldEvent::factory()->for($applicant)->create(['type' => eventTypeOf($kind)]);
     $application = CivilApplication::create([
         'branch_id' => $office->id,
         'kind' => $kind,
@@ -51,6 +51,16 @@ function fileApplication(Branch $office, ApplicationKind $kind, Person $applican
     app(ApplicationCaseOpener::class)->open($application, $template, $event);
 
     return $application;
+}
+
+function eventTypeOf(ApplicationKind $kind): string
+{
+    return match ($kind) {
+        ApplicationKind::Move => 'moving',
+        ApplicationKind::Marriage => 'marriage',
+        ApplicationKind::PetRegistration => 'dog_acquired',
+        ApplicationKind::NameChange => 'name_change_wanted',
+    };
 }
 
 function fileMove(Branch $office, string $personSlug, array $attributes = []): CivilApplication
@@ -169,6 +179,40 @@ it('lets the spouse move into the applicant household when a marriage is approve
     expect($walter->fresh()?->household->street)->toBe('14 Birch Lane')
         ->and(Household::query()->whereKey($formerHousehold->id)->exists())->toBeFalse()
         ->and(Email::query()->where('user_id', $clerk->id)->where('subject', 'Marriage: Margaret Hollis and Walter Beck')->exists())->toBeTrue();
+});
+
+it('registers a dog without touching the registry and checks the stated address', function () {
+    $clerk = clerkOnDuty();
+    $application = fileApplication($this->office, ApplicationKind::PetRegistration, resident('margaret-hollis'), ['detail' => 'Toby, beagle']);
+
+    decide($clerk, $application, 'approved');
+
+    expect(resident('margaret-hollis')->name)->toBe('Margaret Hollis')
+        ->and(resident('margaret-hollis')->household->street)->toBe('14 Birch Lane')
+        ->and(app(MetricBook::class)->valueOf($clerk->employment, Metric::CustomerSatisfaction))->toBe(1)
+        ->and(Email::query()->where('user_id', $clerk->id)->where('subject', 'Dog licence: Margaret Hollis')->sole()->body)->toContain('Dog: Toby, beagle');
+});
+
+it('renames the resident when the clerk approves a correct change of name', function () {
+    $clerk = clerkOnDuty();
+    $application = fileApplication($this->office, ApplicationKind::NameChange, resident('margaret-hollis'), ['detail' => 'Margaret Doyle']);
+
+    decide($clerk, $application, 'approved');
+
+    expect(resident('margaret-hollis')->name)->toBe('Margaret Doyle');
+});
+
+it('keeps the name when the clerk rejects a change of name with a wrong address', function () {
+    $clerk = clerkOnDuty();
+    $application = fileApplication($this->office, ApplicationKind::NameChange, resident('margaret-hollis'), [
+        'detail' => 'Margaret Doyle',
+        'claimed_street' => '17 Birch Lane',
+    ]);
+
+    decide($clerk, $application, 'rejected');
+
+    expect(resident('margaret-hollis')->name)->toBe('Margaret Hollis')
+        ->and(app(MetricBook::class)->valueOf($clerk->employment, Metric::Reliability))->toBe(1);
 });
 
 it('decides every application only once and only by its clerk', function () {

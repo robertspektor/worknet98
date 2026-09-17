@@ -6,8 +6,6 @@ use Carbon\CarbonImmutable;
 
 readonly class PlannedSupplyOrder
 {
-    private const DUE_TIME = '12:00';
-
     public function __construct(
         public string $key,
         public SupplyRoute $route,
@@ -16,6 +14,6 @@ readonly class PlannedSupplyOrder
 
     public function dueAt(): CarbonImmutable
     {
-        return $this->placedAt->startOfDay()->addWeekdays($this->route->leadWorkDays)->setTimeFromTimeString(self::DUE_TIME);
+        return $this->placedAt->startOfDay()->addWeekdays($this->route->leadWorkDays)->setTimeFromTimeString($this->route->dueTime);
     }
 }
