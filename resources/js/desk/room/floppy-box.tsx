@@ -1,16 +1,17 @@
 import type { CSSProperties, RefObject } from 'react';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useTranslation } from '@/i18n/use-translation';
 import type { FloppyDisk } from '@/types';
 import { useFloppyDrive } from '../floppy/floppy-drive-provider';
+import { usePlaceable } from '../placement/use-placeable';
+import { useKeepInView } from '../ui/use-keep-in-view';
 import { FloppyDiskArt } from './floppy-disk-art';
 
 function useCloseOnOutsidePointer(
+    ref: RefObject<HTMLDivElement | null>,
     isOpen: boolean,
     close: () => void,
-): RefObject<HTMLDivElement | null> {
-    const ref = useRef<HTMLDivElement>(null);
-
+): void {
     useEffect(() => {
         if (!isOpen) {
             return;
@@ -24,18 +25,22 @@ function useCloseOnOutsidePointer(
         document.addEventListener('pointerdown', closeOutside);
 
         return () => document.removeEventListener('pointerdown', closeOutside);
-    }, [isOpen, close]);
-
-    return ref;
+    }, [ref, isOpen, close]);
 }
 
 function DiskPicker({ onPick }: { onPick: (disk: FloppyDisk) => void }) {
     const { t } = useTranslation();
     const { disks, drive } = useFloppyDrive();
     const isDriveFree = drive.phase === 'empty';
+    const { ref, shift } = useKeepInView<HTMLDivElement>();
 
     return (
-        <div className="disk-picker" role="menu">
+        <div
+            ref={ref}
+            className="disk-picker"
+            role="menu"
+            style={{ translate: `${shift}px 0` }}
+        >
             {disks
                 .filter((disk) => disk.id !== drive.diskId)
                 .map((disk) => (
@@ -63,7 +68,9 @@ export function FloppyBox() {
     const { t } = useTranslation();
     const { disks, drive, insert } = useFloppyDrive();
     const [isOpen, setOpen] = useState(false);
-    const ref = useCloseOnOutsidePointer(isOpen, () => setOpen(false));
+    const { className, ...placeable } =
+        usePlaceable<HTMLDivElement>('floppy-box');
+    useCloseOnOutsidePointer(placeable.ref, isOpen, () => setOpen(false));
     const stored = disks.filter((disk) => disk.id !== drive.diskId);
 
     const pick = (disk: FloppyDisk) => {
@@ -72,7 +79,7 @@ export function FloppyBox() {
     };
 
     return (
-        <div ref={ref} className="desk-item floppy-box">
+        <div className={`desk-item floppy-box ${className}`} {...placeable}>
             {isOpen && <DiskPicker onPick={pick} />}
             <button
                 type="button"

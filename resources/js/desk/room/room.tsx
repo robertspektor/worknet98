@@ -1,4 +1,5 @@
 import type { ReactNode } from 'react';
+import { usePlacements } from '../placement/placement-provider';
 
 export type Scene = 'home' | 'office';
 
@@ -9,10 +10,12 @@ export function Room({
     scene: Scene;
     children: ReactNode;
 }) {
+    const { attachRoom } = usePlacements();
+
     return (
-        <main className={`room is-${scene}`}>
+        <main ref={attachRoom} className={`room is-${scene}`}>
             {children}
-            <div className="desk" />
+            <div className="desk" data-surface="area" />
         </main>
     );
 }

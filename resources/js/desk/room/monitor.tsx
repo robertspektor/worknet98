@@ -18,7 +18,7 @@ export function Monitor({
     return (
         <div className="monitor">
             {accessory}
-            <div className="monitor-case">
+            <div className="monitor-case" data-surface="ledge">
                 <div className="screen-frame">
                     <CrtScreen isOn={isOn}>{children}</CrtScreen>
                 </div>

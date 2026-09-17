@@ -1,12 +1,19 @@
 import { Link } from '@inertiajs/react';
 import { useTranslation } from '@/i18n/use-translation';
 import { home } from '@/routes';
+import { usePlaceable } from '../placement/use-placeable';
 
 export function HouseKeys() {
     const { t } = useTranslation();
+    const { className, ...placeable } =
+        usePlaceable<HTMLAnchorElement>('house-keys');
 
     return (
-        <Link href={home.url()} className="desk-item house-keys">
+        <Link
+            href={home.url()}
+            className={`desk-item house-keys ${className}`}
+            {...placeable}
+        >
             <svg viewBox="0 0 64 48" aria-hidden="true">
                 <circle cx="20" cy="16" r="11" className="key-ring" />
                 <g className="key">

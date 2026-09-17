@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useTranslation } from '@/i18n/use-translation';
 import type { Storefront } from '@/types';
 import { useParcels } from '../parcels/parcel-provider';
+import { usePlaceable } from '../placement/use-placeable';
 import { sound } from '../sound/sound';
 
 const UNPACK_MS = 600;
@@ -16,6 +17,8 @@ export function ParcelStack() {
     const { parcels, unpack } = useParcels();
     const [isOpening, setOpening] = useState(false);
     const next = parcels.at(0);
+    const { className, ...placeable } =
+        usePlaceable<HTMLButtonElement>('parcel-stack');
 
     if (!next) {
         return null;
@@ -36,7 +39,8 @@ export function ParcelStack() {
     return (
         <button
             type="button"
-            className={`desk-item parcel-stack ${isOpening ? 'is-opening' : ''}`}
+            className={`desk-item parcel-stack ${isOpening ? 'is-opening' : ''} ${className}`}
+            {...placeable}
             aria-label={t('parcel.unpack')}
             title={t('parcel.unpack')}
             onClick={open}

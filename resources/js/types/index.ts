@@ -1,4 +1,5 @@
 export type * from './careers';
+export type * from './desk-placement';
 export type * from './floppy-disks';
 export type * from './game-clock';
 export type * from './hardware';

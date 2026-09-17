@@ -1,6 +1,13 @@
+import { usePlaceable } from '../placement/use-placeable';
 export function CoffeeMug({ company }: { company: string }) {
+    const { className, ...placeable } =
+        usePlaceable<HTMLDivElement>('coffee-mug');
     return (
-        <div className="desk-item coffee-mug" aria-hidden="true">
+        <div
+            className={`desk-item coffee-mug ${className}`}
+            {...placeable}
+            aria-hidden="true"
+        >
             <span className="steam">
                 <span />
                 <span />

@@ -1,0 +1,35 @@
+.is-placeable {
+    user-select: none;
+}
+
+.desk-workshop > .is-placed,
+.desk-workshop > .is-dragging {
+    position: absolute;
+}
+
+.is-placed.is-placed {
+    z-index: 3;
+    transform: none;
+    translate: -50% -100%;
+    touch-action: none;
+}
+
+a.desk-item.is-placed:hover,
+.case-toolkit.is-placed.is-placed:hover,
+.parcel-stack.is-placed.is-placed:hover {
+    translate: -50% calc(-100% - 0.3em);
+}
+
+.is-dragging.is-dragging {
+    z-index: 20;
+    transform: none;
+    translate: none;
+    cursor: grabbing;
+    transition: none;
+    touch-action: none;
+}
+
+.sticky-note.is-placed.is-placed,
+.sticky-note.is-dragging.is-dragging {
+    transform: rotate(5deg);
+}

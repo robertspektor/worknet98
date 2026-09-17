@@ -8,6 +8,7 @@ use App\Http\Controllers\Api\V1\ChatReplyController;
 use App\Http\Controllers\Api\V1\CompanySoftwareController;
 use App\Http\Controllers\Api\V1\CustomerController;
 use App\Http\Controllers\Api\V1\DeskPartInstallationController;
+use App\Http\Controllers\Api\V1\DeskPlacementController;
 use App\Http\Controllers\Api\V1\EmailController;
 use App\Http\Controllers\Api\V1\EmailReadController;
 use App\Http\Controllers\Api\V1\FloppyDiskController;
@@ -32,6 +33,9 @@ Route::prefix('v1')->middleware('auth:sanctum')->name('api.v1.')->group(function
         ->middleware('can:install,deskPart')
         ->name('home-computer.desk-parts.installation.store');
     Route::post('home-computer/thermal-paste', [ThermalPasteController::class, 'store'])->name('home-computer.thermal-paste.store');
+
+    Route::get('desk-placements', [DeskPlacementController::class, 'index'])->name('desk-placements.index');
+    Route::post('desk-placements', [DeskPlacementController::class, 'store'])->name('desk-placements.store');
 
     Route::get('job-openings', [JobOpeningController::class, 'index'])->name('job-openings.index');
     Route::get('job-applications', [JobApplicationController::class, 'index'])->name('job-applications.index');

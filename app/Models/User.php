@@ -47,6 +47,14 @@ class User extends Authenticatable
     }
 
     /**
+     * @return HasMany<DeskPlacement, $this>
+     */
+    public function deskPlacements(): HasMany
+    {
+        return $this->hasMany(DeskPlacement::class);
+    }
+
+    /**
      * @return HasMany<Email, $this>
      */
     public function emails(): HasMany

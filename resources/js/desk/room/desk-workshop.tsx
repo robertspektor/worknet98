@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useTranslation } from '@/i18n/use-translation';
 import type { DeskPart } from '@/types';
 import type { SwapGoal } from '../hardware/cpu-swap-state';
+import { usePlaceable } from '../placement/use-placeable';
 import { useHomeComputer } from '../hardware/home-computer-provider';
 import { CpuChipArt } from './cpu-chip-art';
 import { TowerWorkbench } from './workbench/tower-workbench';
@@ -12,10 +13,14 @@ function DeskPartItem({ part }: { part: DeskPart }) {
     const { t } = useTranslation();
     const name = t(`hardware_part.${part.slug}.label`);
     const state = part.is_used ? 'used' : 'new';
+    const { className, ...placeable } = usePlaceable<HTMLDivElement>(
+        `desk-part-${part.id}`,
+    );
 
     return (
         <div
-            className={`desk-part is-${state}`}
+            className={`desk-part is-${state} ${className}`}
+            {...placeable}
             title={`${t(`desk_part.${state}`)}: ${name}`}
         >
             {part.is_used ? (
@@ -35,11 +40,14 @@ function DeskPartItem({ part }: { part: DeskPart }) {
 
 function Screwdriver({ onPickUp }: { onPickUp: () => void }) {
     const { t } = useTranslation();
+    const { className, ...placeable } =
+        usePlaceable<HTMLButtonElement>('screwdriver');
 
     return (
         <button
             type="button"
-            className="case-toolkit"
+            className={`case-toolkit ${className}`}
+            {...placeable}
             title={t('workbench.open')}
             onClick={onPickUp}
         >

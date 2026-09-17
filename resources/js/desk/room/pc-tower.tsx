@@ -37,7 +37,7 @@ function DriveSlot() {
 export function PcTower() {
     return (
         <div className="desk-item pc-tower">
-            <div className="tower-case">
+            <div className="tower-case" data-surface="ledge">
                 <span className="tower-bay" aria-hidden="true" />
                 <DriveSlot />
                 <span className="tower-brand" aria-hidden="true">
