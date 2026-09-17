@@ -364,5 +364,9 @@
     "workbench.hint.too-little-paste": "Das ist keine Erbse. Das ist ein Krümel. Drück noch etwas nach.",
     "workbench.hint.too-much-paste": "Das reicht für drei Prozessoren. Wird schon gehen.",
     "workbench.hint.no-paste": "Keine Wärmeleitpaste? Mutig. Der Prozessor sieht das vielleicht anders.",
-    "workbench.hint.failed": "Beim Speichern des Umbaus ist etwas schiefgegangen. Bitte versuch es noch einmal."
+    "workbench.hint.failed": "Beim Speichern des Umbaus ist etwas schiefgegangen. Bitte versuch es noch einmal.",
+    "game_mail.order.diskdepot.subject": "Bestellung :number bestätigt: :item",
+    "game_mail.order.diskdepot.body": "Sehr geehrte Kundin, sehr geehrter Kunde,\n\nvielen Dank für Ihre Bestellung bei DiskDepot, dem Kaufhaus der Datenautobahn.\n\nBestellnummer: :number\nArtikel: 1x :item\nAbgebucht: :price Credits\nLieferung: :delivery, an Ihren Schreibtisch\n\nUnser Lieferwagen fährt los, sobald der Fahrer den Schlüssel findet. Sie bekommen noch eine Mail, sobald das Paket auf Ihrem Schreibtisch liegt.\n\nMit freundlichen Grüßen,\nIhre DiskDepot Bestellabteilung",
+    "game_mail.order.chipcity.subject": "Bestellung :number bestätigt: :item",
+    "game_mail.order.chipcity.body": "Hallo Tempo-Fan,\n\nChipCity hat Ihre Bestellung erhalten und im Lager beiseitegelegt.\n\nBestellnummer: :number\nArtikel: 1x :item\nAbgebucht: :price Credits\nLieferung: :delivery, an Ihren Schreibtisch\n\nDer Prozessor reist im Antistatikbeutel, zusammen mit einer Tube Wärmeleitpaste. Bitte fahren Sie Ihren Computer herunter, bevor Sie das Gehäuse öffnen.\n\nWeiter rechnen,\nIhre ChipCity Bestellabteilung"
 }

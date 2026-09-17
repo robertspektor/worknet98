@@ -43,7 +43,7 @@ it('charges a processor order and ships it with a ChipCity mail in the player la
     $this->travel(1)->days();
     $this->artisan('shop:deliver-parcels')->assertSuccessful();
 
-    $email = Email::sole();
+    $email = Email::query()->latest('id')->firstOrFail();
     expect(app(Wallet::class)->balanceOf($player))->toBe(100)
         ->and($email->sender_address)->toBe('orders@chipcity.wn')
         ->and($email->subject)->toBe('Mit Sorgfalt verschickt: Kalkulon 200MHz Turbo')

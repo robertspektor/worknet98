@@ -3,6 +3,7 @@
 namespace App\Shop;
 
 use App\Game\ActionRefused;
+use App\Mailbox\Mailbox;
 use App\Models\Order;
 use App\Models\User;
 use App\Work\LedgerReason;
@@ -15,6 +16,8 @@ class OrderPlacer
     public function __construct(
         private readonly WalletCharge $walletCharge,
         private readonly ParcelSchedule $parcelSchedule,
+        private readonly OrderConfirmation $orderConfirmation,
+        private readonly Mailbox $mailbox,
     ) {}
 
     public function place(User $player, Product&Model $product): Order
@@ -25,13 +28,16 @@ class OrderPlacer
             $this->refuseRepeatedOrder($player, $product);
             $this->walletCharge->charge($player, $price, LedgerReason::Purchase);
 
-            return Order::create([
+            $order = Order::create([
                 'user_id' => $player->id,
                 'product_type' => $product->getMorphClass(),
                 'product_id' => $product->getKey(),
                 'price' => $price,
                 'delivers_at' => $this->parcelSchedule->deliveryTime(),
             ]);
+            $this->mailbox->deliver($player, $this->orderConfirmation->compose($order));
+
+            return $order;
         });
     }
 

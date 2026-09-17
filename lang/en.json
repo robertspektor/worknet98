@@ -364,5 +364,9 @@
     "workbench.hint.too-little-paste": "That is not a pea. That is a crumb. Squeeze a bit more.",
     "workbench.hint.too-much-paste": "That is enough paste for three processors. It will do.",
     "workbench.hint.no-paste": "No thermal paste? Bold. The processor may disagree.",
-    "workbench.hint.failed": "Something went wrong while saving the upgrade. Please try again."
+    "workbench.hint.failed": "Something went wrong while saving the upgrade. Please try again.",
+    "game_mail.order.diskdepot.subject": "Order :number confirmed: :item",
+    "game_mail.order.diskdepot.body": "Dear customer,\n\nthank you for your order at DiskDepot, the superstore of the information superhighway.\n\nOrder number: :number\nArticle: 1x :item\nCharged: :price credits\nDelivery: :delivery, to your desk\n\nOur delivery van leaves as soon as the driver finds the keys. You will get another mail the moment the parcel lands on your desk.\n\nKind regards,\nYour DiskDepot order department",
+    "game_mail.order.chipcity.subject": "Order :number confirmed: :item",
+    "game_mail.order.chipcity.body": "Hello speed enthusiast,\n\nChipCity has received your order and put it aside in the warehouse.\n\nOrder number: :number\nArticle: 1x :item\nCharged: :price credits\nDelivery: :delivery, to your desk\n\nThe processor travels in an anti-static bag, together with a tube of thermal paste. Please shut your computer down before you open the case.\n\nKeep computing,\nYour ChipCity order department"
 }
