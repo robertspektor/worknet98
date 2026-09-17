@@ -51,6 +51,14 @@
                 "person": "stefan-weber",
                 "work_address": "stefan.weber@frohsinn.wn",
                 "responsibilities": ["complaints"]
+            },
+            {
+                "slug": "sales-desk",
+                "title": "Vertriebsinnendienst",
+                "reports_to": "branch-manager",
+                "person": "jutta-brenneke",
+                "work_address": "jutta.brenneke@frohsinn.wn",
+                "responsibilities": ["sales"]
             }
         ]
     }

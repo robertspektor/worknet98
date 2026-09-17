@@ -1,0 +1,24 @@
+[
+    {
+        "slug": "ahornfelde-druckhaus",
+        "city": "lindenstadt",
+        "name": "Ahornfelde",
+        "office_address": "info@druckerei-wendel.wn",
+        "positions": [
+            {
+                "slug": "branch-manager",
+                "title": "Geschäftsführung",
+                "person": "egon-wendel",
+                "work_address": "egon.wendel@druckerei-wendel.wn"
+            },
+            {
+                "slug": "sales-desk",
+                "title": "Auftragsannahme",
+                "reports_to": "branch-manager",
+                "person": "ilka-wendel",
+                "work_address": "ilka.wendel@druckerei-wendel.wn",
+                "responsibilities": ["sales"]
+            }
+        ]
+    }
+]

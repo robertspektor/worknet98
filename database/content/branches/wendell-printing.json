@@ -1,0 +1,24 @@
+[
+    {
+        "slug": "maple-falls-press",
+        "city": "millbrook",
+        "name": "Maple Falls",
+        "office_address": "info@wendellprinting.wn",
+        "positions": [
+            {
+                "slug": "branch-manager",
+                "title": "Owner",
+                "person": "earl-wendell",
+                "work_address": "earl.wendell@wendellprinting.wn"
+            },
+            {
+                "slug": "sales-desk",
+                "title": "Order Desk",
+                "reports_to": "branch-manager",
+                "person": "ilene-wendell",
+                "work_address": "ilene.wendell@wendellprinting.wn",
+                "responsibilities": ["sales"]
+            }
+        ]
+    }
+]

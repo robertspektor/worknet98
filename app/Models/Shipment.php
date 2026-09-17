@@ -15,7 +15,8 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
  * @property int $branch_id
  * @property int $sender_branch_id
  * @property int $recipient_branch_id
- * @property int $repair_case_id
+ * @property int|null $repair_case_id
+ * @property string|null $order_key
  * @property string $contents
  * @property ShipmentSize $size
  * @property CarbonImmutable $due_date
@@ -31,13 +32,13 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
  * @property-read Branch $branch
  * @property-read Branch $sender
  * @property-read Branch $recipient
- * @property-read WorkCase $repairCase
+ * @property-read WorkCase|null $repairCase
  * @property-read WorkCase|null $dispatchCase
  * @property-read Driver|null $driver
  * @property-read Employment|null $plannedBy
  * @property-read Position|null $plannedByPosition
  */
-#[Fillable(['branch_id', 'sender_branch_id', 'recipient_branch_id', 'repair_case_id', 'contents', 'size', 'due_date', 'due_slot', 'driver_id', 'tour_date', 'tour', 'planned_by_employment_id', 'planned_by_position_id', 'delivered_at'])]
+#[Fillable(['branch_id', 'sender_branch_id', 'recipient_branch_id', 'repair_case_id', 'order_key', 'contents', 'size', 'due_date', 'due_slot', 'driver_id', 'tour_date', 'tour', 'planned_by_employment_id', 'planned_by_position_id', 'delivered_at'])]
 class Shipment extends Model
 {
     public function dueAt(): CarbonImmutable
@@ -58,6 +59,11 @@ class Shipment extends Model
     public function isPlannedInTime(): bool
     {
         return $this->plannedArrival()?->lte($this->dueAt()) ?? false;
+    }
+
+    public function isSupplyOrder(): bool
+    {
+        return $this->repair_case_id === null;
     }
 
     /**

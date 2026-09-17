@@ -1,0 +1,16 @@
+[
+    {
+        "slug": "neuwiesen-drogerie",
+        "city": "lindenstadt",
+        "name": "Neuwiesen",
+        "office_address": "info@drogerie-kranich.wn",
+        "positions": [
+            {
+                "slug": "branch-manager",
+                "title": "Inhaberin",
+                "person": "beate-kranich",
+                "work_address": "beate.kranich@drogerie-kranich.wn"
+            }
+        ]
+    }
+]

@@ -95,6 +95,20 @@
                         "tour": "morning"
                     }
                 ]
+            },
+            {
+                "person": "olaf-petersen",
+                "vehicle": "van",
+                "busy_tours": [
+                    {
+                        "weekday": 2,
+                        "tour": "afternoon"
+                    },
+                    {
+                        "weekday": 4,
+                        "tour": "morning"
+                    }
+                ]
             }
         ]
     }

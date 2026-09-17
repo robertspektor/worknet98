@@ -13,6 +13,7 @@ class TourExecutor
     public function __construct(
         private readonly GameClock $clock,
         private readonly CaseResolver $resolver,
+        private readonly CarrierComplaint $complaint,
     ) {}
 
     public function executeDue(): int
@@ -46,6 +47,11 @@ class TourExecutor
             }
 
             $shipment->update(['delivered_at' => $this->clock->toReal($arrival)]);
+
+            if ($shipment->isSupplyOrder() && $arrival->gt($shipment->dueAt())) {
+                $this->complaint->send($shipment);
+            }
+
             $dispatchCase = $shipment->dispatchCase;
 
             if ($dispatchCase !== null && $dispatchCase->status === WorkCaseStatus::Open) {

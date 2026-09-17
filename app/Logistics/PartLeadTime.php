@@ -18,7 +18,7 @@ class PartLeadTime
         return match (true) {
             $template->part === null, $shipment?->delivered_at !== null => null,
             $shipment?->isPlanned() === true => $shipment->plannedArrival(),
-            default => Tour::Morning->endsAt($this->window->days()[0]),
+            default => Tour::Afternoon->endsAt($this->window->days()[0]),
         };
     }
 }

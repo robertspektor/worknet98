@@ -469,5 +469,85 @@
                 "name": "Ed Tanner"
             }
         ]
+    },
+    {
+        "district": "Maple Falls",
+        "street": "30 Chapel Street",
+        "phone": "555-3030",
+        "members": [
+            {
+                "slug": "earl-wendell",
+                "name": "Earl Wendell"
+            },
+            {
+                "slug": "ilene-wendell",
+                "name": "Ilene Wendell"
+            }
+        ]
+    },
+    {
+        "district": "Greenvale",
+        "street": "1 Market Square",
+        "phone": "555-1001",
+        "members": [
+            {
+                "slug": "howard-lindner",
+                "name": "Howard Lindner"
+            }
+        ]
+    },
+    {
+        "district": "Lakeside Park",
+        "street": "12 School Street",
+        "phone": "555-1212",
+        "members": [
+            {
+                "slug": "beatrice-crane",
+                "name": "Beatrice Crane"
+            }
+        ]
+    },
+    {
+        "district": "Port Hadley",
+        "street": "8 Industrial Way",
+        "phone": "555-8080",
+        "members": [
+            {
+                "slug": "buck-hammersmith",
+                "name": "Buck Hammersmith"
+            }
+        ]
+    },
+    {
+        "district": "Brookhaven",
+        "street": "19 Cherry Lane",
+        "phone": "555-1919",
+        "members": [
+            {
+                "slug": "judy-brennan",
+                "name": "Judy Brennan"
+            }
+        ]
+    },
+    {
+        "district": "Lakeside Park",
+        "street": "44 Park Avenue",
+        "phone": "555-4404",
+        "members": [
+            {
+                "slug": "marcus-hale",
+                "name": "Marcus Hale"
+            }
+        ]
+    },
+    {
+        "district": "Port Hadley",
+        "street": "27 Wharf Street",
+        "members": [
+            {
+                "slug": "tony-petrakis",
+                "name": "Tony Petrakis"
+            }
+        ]
     }
 ]

@@ -1,0 +1,16 @@
+[
+    {
+        "slug": "lakeside-park-drugstore",
+        "city": "millbrook",
+        "name": "Lakeside Park",
+        "office_address": "info@cranesdrugstore.wn",
+        "positions": [
+            {
+                "slug": "branch-manager",
+                "title": "Owner",
+                "person": "beatrice-crane",
+                "work_address": "beatrice.crane@cranesdrugstore.wn"
+            }
+        ]
+    }
+]

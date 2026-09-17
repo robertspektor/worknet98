@@ -1,0 +1,74 @@
+[
+    {
+        "slug": "frohsinn-haushaltswaren-to-kaufhaus-lindner",
+        "supplier": "frohsinn-haushaltswaren",
+        "recipient": "kaufhaus-lindner",
+        "contents": "Kochtopfsets, 24 Stück",
+        "size": "pallet",
+        "daily_rate": 0.8,
+        "lead_work_days": 2
+    },
+    {
+        "slug": "frohsinn-haushaltswaren-to-drogerie-kranich",
+        "supplier": "frohsinn-haushaltswaren",
+        "recipient": "drogerie-kranich",
+        "contents": "Spülbürsten, 1 Karton",
+        "size": "parcel",
+        "daily_rate": 1.0,
+        "lead_work_days": 1
+    },
+    {
+        "slug": "frohsinn-haushaltswaren-to-baumarkt-hammerschmidt",
+        "supplier": "frohsinn-haushaltswaren",
+        "recipient": "baumarkt-hammerschmidt",
+        "contents": "Wäscheständer, 12 Stück",
+        "size": "pallet",
+        "daily_rate": 0.5,
+        "lead_work_days": 2
+    },
+    {
+        "slug": "bergmann-sanitaergrosshandel-to-baumarkt-hammerschmidt",
+        "supplier": "bergmann-sanitaergrosshandel",
+        "recipient": "baumarkt-hammerschmidt",
+        "contents": "Silikonkartuschen, 2 Kartons",
+        "size": "parcel",
+        "daily_rate": 0.8,
+        "lead_work_days": 1
+    },
+    {
+        "slug": "druckerei-wendel-to-kaufhaus-lindner",
+        "supplier": "druckerei-wendel",
+        "recipient": "kaufhaus-lindner",
+        "contents": "Prospekte Winterschlussverkauf",
+        "size": "parcel",
+        "daily_rate": 0.7,
+        "lead_work_days": 1
+    },
+    {
+        "slug": "druckerei-wendel-to-frohsinn-haushaltswaren",
+        "supplier": "druckerei-wendel",
+        "recipient": "frohsinn-haushaltswaren",
+        "contents": "Kataloge Frühjahr 1998",
+        "size": "pallet",
+        "daily_rate": 0.4,
+        "lead_work_days": 2
+    },
+    {
+        "slug": "druckerei-wendel-to-datenfabrik-kessler",
+        "supplier": "druckerei-wendel",
+        "recipient": "datenfabrik-kessler",
+        "contents": "Handbücher, 3 Kartons",
+        "size": "parcel",
+        "daily_rate": 0.5,
+        "lead_work_days": 1
+    },
+    {
+        "slug": "datenfabrik-kessler-to-kaufhaus-lindner",
+        "supplier": "datenfabrik-kessler",
+        "recipient": "kaufhaus-lindner",
+        "contents": "Software-Schachteln KontoFix 98",
+        "size": "parcel",
+        "daily_rate": 0.4,
+        "lead_work_days": 1
+    }
+]

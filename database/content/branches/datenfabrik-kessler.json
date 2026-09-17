@@ -51,6 +51,14 @@
                 "person": "torsten-bach",
                 "work_address": "torsten.bach@datenfabrik.wn",
                 "responsibilities": ["helpdesk"]
+            },
+            {
+                "slug": "sales-desk",
+                "title": "Vertriebsinnendienst",
+                "reports_to": "branch-manager",
+                "person": "marco-stiller",
+                "work_address": "marco.stiller@datenfabrik.wn",
+                "responsibilities": ["sales"]
             }
         ]
     }

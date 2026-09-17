@@ -51,6 +51,14 @@
                 "person": "trevor-banks",
                 "work_address": "trevor.banks@macrodyne.wn",
                 "responsibilities": ["helpdesk"]
+            },
+            {
+                "slug": "sales-desk",
+                "title": "Sales Desk",
+                "reports_to": "branch-manager",
+                "person": "marcus-hale",
+                "work_address": "marcus.hale@macrodyne.wn",
+                "responsibilities": ["sales"]
             }
         ]
     }

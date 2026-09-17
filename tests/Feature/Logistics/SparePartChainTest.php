@@ -4,10 +4,8 @@ use App\Cases\Metric;
 use App\Cases\MetricBook;
 use App\Cases\WorkCaseKind;
 use App\Cases\WorkCaseStatus;
-use App\Logistics\TourExecutor;
 use App\Models\Appointment;
 use App\Models\Customer;
-use App\Models\Driver;
 use App\Models\Email;
 use App\Models\Shipment;
 use App\Models\User;
@@ -20,11 +18,6 @@ beforeEach(function () {
     $this->travelTo('2026-09-21 09:00:00');
     $this->seed([CompanySeeder::class, CitySeeder::class, BranchSeeder::class]);
 });
-
-function driver(string $slug): Driver
-{
-    return Driver::query()->whereRelation('person', 'slug', $slug)->sole();
-}
 
 function playersOnBothSides(): array
 {
@@ -43,22 +36,6 @@ function reportBurstPipeAndBookRepair(User $plumber, string $date, string $slot)
     workAs($plumber, 'POST', 'api.v1.appointments.store', ['customer_id' => $gloria->id, 'technician_id' => technician('stan-kowalski')->id, 'date' => $date, 'slot' => $slot]);
 
     return $gloria;
-}
-
-function planShipment(User $dispatcher, string $driver, string $date, string $tour): Shipment
-{
-    $shipment = Shipment::query()->sole();
-    test()->actingAs($dispatcher)
-        ->putJson(route('api.v1.shipments.plan.update', $shipment), ['driver_id' => driver($driver)->id, 'date' => $date, 'tour' => $tour])
-        ->assertOk();
-
-    return $shipment->fresh() ?? $shipment;
-}
-
-function deliverShipmentsAt(string $time): void
-{
-    test()->travelTo($time);
-    app(TourExecutor::class)->executeDue();
 }
 
 it('orders the spare part from the wholesaler and asks the carrier to deliver it when a repair is booked', function () {

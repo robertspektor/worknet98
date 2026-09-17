@@ -34,5 +34,41 @@
             "subject": "Reklamation: :contents",
             "body": "Guten Tag,\n\nunser Monteur stand heute ohne :contents beim Kunden. Das Teil sollte bis :due bei uns sein. Es war nicht bei uns.\n\nWir haben jetzt einen zweiten Termin und einen Kunden, der uns nicht mehr grüßt.\n\nMit verärgerten Grüßen\n:recipient"
         }
+    },
+    {
+        "slug": "restock-delivery",
+        "responsibility": "dispatch",
+        "due_format": "dddd, DD.MM., HH:mm [Uhr]",
+        "size_labels": {
+            "parcel": "ein Paket",
+            "pallet": "eine Palette"
+        },
+        "request_mail": {
+            "subject": "Abholung: :contents für :recipient",
+            "body": "Guten Tag,\n\nbitte holen Sie bei uns ab: :contents, :size.\n\nEmpfänger: :recipient, :district\nSpätestens da: :due\n\nDas Regal dort ist leer. Ein leeres Regal verkauft nichts. Wir haben das ausgerechnet.\n\nBitte bestätigen Sie die Tour kurz per Mail.\n\nMit freundlichen Grüßen\n:contact\n:sender"
+        },
+        "outcome_feedback": {
+            "vehicle": {
+                "met": "Und das passende Fahrzeug. Die Buchhaltung nickt.",
+                "missed": "Falsches Fahrzeug für die Ladung. Der Diesel war teurer als die Ware."
+            },
+            "punctuality": {
+                "met": "Rechtzeitig bei :recipient. Das Regal ist wieder voll.",
+                "missed": "Zu spät bei :recipient. Die Kunden haben ein leeres Regal angeschaut und sind gegangen."
+            }
+        },
+        "feedback_mail": {
+            "subject": "AW: :contents für :recipient",
+            "intro": "Moin,\n\nzur Lieferung :contents an :recipient.",
+            "outro": "Jede Sendung kommt irgendwo an. Idealerweise rechtzeitig.\n\nTanja"
+        },
+        "reminder_mail": {
+            "subject": ":contents für :recipient?",
+            "body": "Moin,\n\ndie Lieferung für :recipient liegt noch auf keiner Tour. Tour planen, Absender bestätigen. Das Übliche.\n\nTanja"
+        },
+        "complaint_mail": {
+            "subject": "Reklamation: :contents",
+            "body": "Guten Tag,\n\n:contents sollte bis :due bei uns sein. Bis dahin stand hier ein leeres Regal. Ein Kunde hat gefragt, ob das Kunst ist.\n\nWir bitten um Pünktlichkeit. Und um ein neues Regalschild mit der Aufschrift \"Kommt bald\".\n\nMit freundlichen Grüßen\n:recipient"
+        }
     }
 ]

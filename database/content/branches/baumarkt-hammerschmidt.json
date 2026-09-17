@@ -1,0 +1,16 @@
+[
+    {
+        "slug": "hafenstedt-baumarkt",
+        "city": "lindenstadt",
+        "name": "Hafenstedt",
+        "office_address": "info@hammerschmidt-baumarkt.wn",
+        "positions": [
+            {
+                "slug": "branch-manager",
+                "title": "Marktleitung",
+                "person": "uwe-hammerschmidt",
+                "work_address": "uwe.hammerschmidt@hammerschmidt-baumarkt.wn"
+            }
+        ]
+    }
+]

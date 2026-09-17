@@ -15,4 +15,13 @@ class ServiceProviders
             ->get()
             ->first(fn (Branch $branch): bool => $branch->company->offers($service));
     }
+
+    public function branchOf(City $city, string $companySlug): ?Branch
+    {
+        return $city->branches()
+            ->whereRelation('company', 'slug', $companySlug)
+            ->with('company')
+            ->orderBy('id')
+            ->first();
+    }
 }

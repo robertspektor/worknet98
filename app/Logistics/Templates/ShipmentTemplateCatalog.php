@@ -9,6 +9,8 @@ class ShipmentTemplateCatalog
 {
     public const SPARE_PART_DELIVERY = 'spare-part-delivery';
 
+    public const RESTOCK_DELIVERY = 'restock-delivery';
+
     private const CONTENT_DIRECTORY = 'shipment_templates';
 
     public function find(Company $company, string $slug): ?ShipmentTemplate

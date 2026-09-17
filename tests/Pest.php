@@ -1,12 +1,15 @@
 <?php
 
+use App\Logistics\TourExecutor;
 use App\Models\Branch;
 use App\Models\Company;
+use App\Models\Driver;
 use App\Models\Employment;
 use App\Models\JobOpening;
 use App\Models\LedgerEntry;
 use App\Models\Position;
 use App\Models\Shift;
+use App\Models\Shipment;
 use App\Models\Technician;
 use App\Models\User;
 use App\Work\LedgerReason;
@@ -61,4 +64,25 @@ function playerWithCredits(int $credits): User
     LedgerEntry::create(['user_id' => $player->id, 'amount' => $credits, 'reason' => LedgerReason::Salary]);
 
     return $player;
+}
+
+function driver(string $slug): Driver
+{
+    return Driver::query()->whereRelation('person', 'slug', $slug)->sole();
+}
+
+function planShipment(User $dispatcher, string $driver, string $date, string $tour): Shipment
+{
+    $shipment = Shipment::query()->sole();
+    test()->actingAs($dispatcher)
+        ->putJson(route('api.v1.shipments.plan.update', $shipment), ['driver_id' => driver($driver)->id, 'date' => $date, 'tour' => $tour])
+        ->assertOk();
+
+    return $shipment->fresh() ?? $shipment;
+}
+
+function deliverShipmentsAt(string $time): void
+{
+    test()->travelTo($time);
+    app(TourExecutor::class)->executeDue();
 }

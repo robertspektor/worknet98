@@ -1,0 +1,74 @@
+[
+    {
+        "slug": "happy-consumer-products-to-lindners-department-store",
+        "supplier": "happy-consumer-products",
+        "recipient": "lindners-department-store",
+        "contents": "cookware sets, 24 pieces",
+        "size": "pallet",
+        "daily_rate": 0.8,
+        "lead_work_days": 2
+    },
+    {
+        "slug": "happy-consumer-products-to-cranes-drugstore",
+        "supplier": "happy-consumer-products",
+        "recipient": "cranes-drugstore",
+        "contents": "dish brushes, 1 carton",
+        "size": "parcel",
+        "daily_rate": 1.0,
+        "lead_work_days": 1
+    },
+    {
+        "slug": "happy-consumer-products-to-harbor-hardware",
+        "supplier": "happy-consumer-products",
+        "recipient": "harbor-hardware",
+        "contents": "drying racks, 12 pieces",
+        "size": "pallet",
+        "daily_rate": 0.5,
+        "lead_work_days": 2
+    },
+    {
+        "slug": "keystone-plumbing-supply-to-harbor-hardware",
+        "supplier": "keystone-plumbing-supply",
+        "recipient": "harbor-hardware",
+        "contents": "silicone cartridges, 2 cartons",
+        "size": "parcel",
+        "daily_rate": 0.8,
+        "lead_work_days": 1
+    },
+    {
+        "slug": "wendell-printing-to-lindners-department-store",
+        "supplier": "wendell-printing",
+        "recipient": "lindners-department-store",
+        "contents": "winter sale flyers",
+        "size": "parcel",
+        "daily_rate": 0.7,
+        "lead_work_days": 1
+    },
+    {
+        "slug": "wendell-printing-to-happy-consumer-products",
+        "supplier": "wendell-printing",
+        "recipient": "happy-consumer-products",
+        "contents": "spring catalogs 1998",
+        "size": "pallet",
+        "daily_rate": 0.4,
+        "lead_work_days": 2
+    },
+    {
+        "slug": "wendell-printing-to-macrodyne-systems",
+        "supplier": "wendell-printing",
+        "recipient": "macrodyne-systems",
+        "contents": "manuals, 3 cartons",
+        "size": "parcel",
+        "daily_rate": 0.5,
+        "lead_work_days": 1
+    },
+    {
+        "slug": "macrodyne-systems-to-lindners-department-store",
+        "supplier": "macrodyne-systems",
+        "recipient": "lindners-department-store",
+        "contents": "boxed software LedgerPro 98",
+        "size": "parcel",
+        "daily_rate": 0.4,
+        "lead_work_days": 1
+    }
+]

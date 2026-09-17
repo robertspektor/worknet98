@@ -45,7 +45,9 @@ export function ShipmentLogApp() {
                             className={`records-row shipment-row is-${shipmentStatus(shipment)} ${shipment.id === selectedId ? 'is-selected' : ''}`}
                             onClick={() => setSelectedId(shipment.id)}
                         >
-                            <span>{shipment.contents}</span>
+                            <span title={shipment.contents}>
+                                {shipment.contents}
+                            </span>
                             <span>
                                 {formatDay(shipment.due_date, locale)}{' '}
                                 {shipment.due_slot}

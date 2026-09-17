@@ -51,6 +51,14 @@
                 "person": "stuart-webb",
                 "work_address": "stuart.webb@happyconsumer.wn",
                 "responsibilities": ["complaints"]
+            },
+            {
+                "slug": "sales-desk",
+                "title": "Sales Desk",
+                "reports_to": "branch-manager",
+                "person": "judy-brennan",
+                "work_address": "judy.brennan@happyconsumer.wn",
+                "responsibilities": ["sales"]
             }
         ]
     }

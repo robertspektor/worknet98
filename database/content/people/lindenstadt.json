@@ -462,5 +462,85 @@
                 "name": "Horst Lübke"
             }
         ]
+    },
+    {
+        "district": "Ahornfelde",
+        "street": "Kapellenstraße 30",
+        "phone": "0555 3030",
+        "members": [
+            {
+                "slug": "egon-wendel",
+                "name": "Egon Wendel"
+            },
+            {
+                "slug": "ilka-wendel",
+                "name": "Ilka Wendel"
+            }
+        ]
+    },
+    {
+        "district": "Grünau",
+        "street": "Marktplatz 1",
+        "phone": "0555 1001",
+        "members": [
+            {
+                "slug": "hartmut-lindner",
+                "name": "Hartmut Lindner"
+            }
+        ]
+    },
+    {
+        "district": "Neuwiesen",
+        "street": "Schulstraße 12",
+        "phone": "0555 1212",
+        "members": [
+            {
+                "slug": "beate-kranich",
+                "name": "Beate Kranich"
+            }
+        ]
+    },
+    {
+        "district": "Hafenstedt",
+        "street": "Industriestraße 8",
+        "phone": "0555 8080",
+        "members": [
+            {
+                "slug": "uwe-hammerschmidt",
+                "name": "Uwe Hammerschmidt"
+            }
+        ]
+    },
+    {
+        "district": "Kleinbüttel",
+        "street": "Rosenweg 19",
+        "phone": "0555 1919",
+        "members": [
+            {
+                "slug": "jutta-brenneke",
+                "name": "Jutta Brenneke"
+            }
+        ]
+    },
+    {
+        "district": "Neuwiesen",
+        "street": "Parkstraße 44",
+        "phone": "0555 4404",
+        "members": [
+            {
+                "slug": "marco-stiller",
+                "name": "Marco Stiller"
+            }
+        ]
+    },
+    {
+        "district": "Hafenstedt",
+        "street": "Kaistraße 27",
+        "members": [
+            {
+                "slug": "olaf-petersen",
+                "name": "Olaf Petersen"
+            }
+        ]
     }
 ]

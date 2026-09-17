@@ -1,0 +1,16 @@
+[
+    {
+        "slug": "port-hadley-hardware",
+        "city": "millbrook",
+        "name": "Port Hadley",
+        "office_address": "info@harborhardware.wn",
+        "positions": [
+            {
+                "slug": "branch-manager",
+                "title": "Store Manager",
+                "person": "buck-hammersmith",
+                "work_address": "buck.hammersmith@harborhardware.wn"
+            }
+        ]
+    }
+]

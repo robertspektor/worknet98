@@ -10,19 +10,15 @@ use App\Models\Appointment;
 use App\Models\Shipment;
 use App\Models\WorkCase;
 use App\World\Events\ServiceProviders;
-use Illuminate\Support\Facades\DB;
 
 class PartOrderer
 {
-    private const CARRIER_SERVICE = 'freight';
-
     private const SUPPLIER_SERVICE = 'plumbing-parts';
 
     public function __construct(
         private readonly CaseTemplateCatalog $caseTemplates,
-        private readonly ShipmentTemplateCatalog $shipmentTemplates,
         private readonly ServiceProviders $providers,
-        private readonly ShipmentCaseOpener $opener,
+        private readonly ShipmentDispatch $dispatch,
     ) {}
 
     public function orderFor(Appointment $appointment): void
@@ -50,28 +46,19 @@ class PartOrderer
     private function order(WorkCase $repairCase, SparePart $part, Appointment $appointment): void
     {
         $city = $repairCase->branch->city;
-        $carrier = $this->providers->branchFor($city, self::CARRIER_SERVICE);
         $supplier = $this->providers->branchFor($city, self::SUPPLIER_SERVICE);
-        $template = $carrier === null ? null : $this->shipmentTemplates->find($carrier->company, ShipmentTemplateCatalog::SPARE_PART_DELIVERY);
 
-        if ($carrier === null || $supplier === null || $template === null) {
+        if ($supplier === null) {
             return;
         }
 
-        DB::transaction(function () use ($repairCase, $part, $appointment, $carrier, $supplier, $template): void {
-            $shipment = Shipment::create([
-                'branch_id' => $carrier->id,
-                'sender_branch_id' => $supplier->id,
-                'recipient_branch_id' => $repairCase->branch_id,
-                'repair_case_id' => $repairCase->id,
-                'contents' => $part->contents,
-                'size' => $part->size,
-                'due_date' => $appointment->date->toDateString(),
-                'due_slot' => $appointment->slot,
-            ]);
-
-            $this->opener->open($shipment, $template);
-        });
+        $this->dispatch->send($city, $supplier, $repairCase->branch, ShipmentTemplateCatalog::SPARE_PART_DELIVERY, [
+            'repair_case_id' => $repairCase->id,
+            'contents' => $part->contents,
+            'size' => $part->size,
+            'due_date' => $appointment->date->toDateString(),
+            'due_slot' => $appointment->slot,
+        ]);
     }
 
     private function moveDueDate(Shipment $shipment, Appointment $appointment): void

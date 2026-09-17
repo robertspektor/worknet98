@@ -1,0 +1,16 @@
+[
+    {
+        "slug": "gruenau-kaufhaus",
+        "city": "lindenstadt",
+        "name": "Grünau",
+        "office_address": "info@kaufhaus-lindner.wn",
+        "positions": [
+            {
+                "slug": "branch-manager",
+                "title": "Geschäftsführung",
+                "person": "hartmut-lindner",
+                "work_address": "hartmut.lindner@kaufhaus-lindner.wn"
+            }
+        ]
+    }
+]

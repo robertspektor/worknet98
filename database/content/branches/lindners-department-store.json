@@ -1,0 +1,16 @@
+[
+    {
+        "slug": "greenvale-store",
+        "city": "millbrook",
+        "name": "Greenvale",
+        "office_address": "info@lindners.wn",
+        "positions": [
+            {
+                "slug": "branch-manager",
+                "title": "General Manager",
+                "person": "howard-lindner",
+                "work_address": "howard.lindner@lindners.wn"
+            }
+        ]
+    }
+]
