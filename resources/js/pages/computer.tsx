@@ -1,6 +1,7 @@
 import { Head, usePage, usePoll } from '@inertiajs/react';
 import { HomeWorkstation } from '@/desk/computer/home-workstation';
 import { FloppyDriveProvider } from '@/desk/floppy/floppy-drive-provider';
+import { HomeComputerProvider } from '@/desk/hardware/home-computer-provider';
 import { EmployeeBadge } from '@/desk/room/employee-badge';
 import { FloppyBox } from '@/desk/room/floppy-box';
 import { ParcelStack } from '@/desk/room/parcel-stack';
@@ -17,23 +18,25 @@ export default function Computer() {
     return (
         <>
             <Head />
-            <FloppyDriveProvider isSignedIn={player !== null}>
-                <Room scene="home">
-                    <HomeWorkstation
-                        initialState={
-                            status === 'signed-in' ? 'booting' : 'off'
-                        }
-                        needsSetup={!player}
-                        accessory={<StickyNote />}
-                    />
-                    <PcTower />
-                    {player && <FloppyBox />}
-                    {player && <ParcelStack />}
-                    {player?.employer && (
-                        <EmployeeBadge company={player.employer} />
-                    )}
-                </Room>
-            </FloppyDriveProvider>
+            <HomeComputerProvider isSignedIn={player !== null}>
+                <FloppyDriveProvider isSignedIn={player !== null}>
+                    <Room scene="home">
+                        <HomeWorkstation
+                            initialState={
+                                status === 'signed-in' ? 'booting' : 'off'
+                            }
+                            needsSetup={!player}
+                            accessory={<StickyNote />}
+                        />
+                        <PcTower />
+                        {player && <FloppyBox />}
+                        {player && <ParcelStack />}
+                        {player?.employer && (
+                            <EmployeeBadge company={player.employer} />
+                        )}
+                    </Room>
+                </FloppyDriveProvider>
+            </HomeComputerProvider>
         </>
     );
 }

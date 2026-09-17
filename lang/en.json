@@ -4,8 +4,8 @@
     "sticky_note.line_3": "3. Survive office life",
     "bios.line_1": "RetroTron Modular BIOS v1.07",
     "bios.line_2": "Copyright (C) RetroTron Corporation. Probably.",
-    "bios.line_3": "Main Processor : Pentium-ish 75MHz",
-    "bios.line_4": "Memory Test    : 16384K OK",
+    "bios.line_3": "Main Processor : :cpu",
+    "bios.line_4": "Memory Test    : :memory",
     "bios.line_5": "Detecting Floppy Drive A: ... 1.44M",
     "bios.line_6": "Detecting Motivation      ... NOT FOUND",
     "bios.line_7": "Detecting Motivation      ... retrying ... OK",
@@ -50,7 +50,7 @@
     "my_computer.os": "DeskOS 98 Home Edition",
     "my_computer.registered_to": "Registered to",
     "my_computer.computer": "Computer",
-    "my_computer.hardware": "Pentium-ish 75MHz, 16 MB RAM, one sticky key",
+    "my_computer.hardware": ":cpu, 16 MB RAM, one sticky key",
     "my_computer.status": "Status",
     "my_computer.status_value": "Unemployed. Looking for opportunities.",
     "control_panel.title": "Regional Settings",
@@ -275,5 +275,11 @@
     "messenger.reply_with": "Reply with:",
     "messenger.typing": ":name is typing...",
     "messenger.toast": ":name sent you a message",
-    "messenger.unread": ":count unread chat message(s)"
+    "messenger.unread": ":count unread chat message(s)",
+    "bios.memory_ok": "OK",
+    "hardware_part.kalkulon-75.label": "Kalkulon 75MHz",
+    "hardware_part.kalkulon-133.label": "Kalkulon 133MHz",
+    "hardware_part.kalkulon-200-turbo.label": "Kalkulon 200MHz Turbo",
+    "browser.loading": "Opening page :address ...",
+    "browser.done": "Done"
 }

@@ -1,0 +1,23 @@
+[
+    {
+        "slug": "kalkulon-75",
+        "slot": "cpu",
+        "speed_mhz": 75,
+        "is_starter": true,
+        "price": null
+    },
+    {
+        "slug": "kalkulon-133",
+        "slot": "cpu",
+        "speed_mhz": 133,
+        "is_starter": false,
+        "price": 380
+    },
+    {
+        "slug": "kalkulon-200-turbo",
+        "slot": "cpu",
+        "speed_mhz": 200,
+        "is_starter": false,
+        "price": 900
+    }
+]

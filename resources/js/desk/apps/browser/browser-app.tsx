@@ -1,5 +1,7 @@
 import { useState } from 'react';
 import { useTranslation } from '@/i18n/use-translation';
+import { useEdition } from '../../computer/edition-context';
+import { pageLoadDurationMs } from '../../hardware/performance';
 import {
     canGoBack,
     currentPage,
@@ -7,21 +9,25 @@ import {
     startAt,
     visit,
 } from './browser-history';
-import { DiskDepotSite } from './sites/disk-depot-site';
-import { StartPage } from './sites/start-page';
-
-type Site = 'start' | 'diskdepot';
-
-const ADDRESSES: Record<Site, string> = {
-    start: 'http://www.welcome.wn/',
-    diskdepot: 'http://www.diskdepot.wn/',
-};
+import type { BrowserHistory } from './browser-history';
+import { isPageLoaded } from './page-load';
+import { SITES } from './sites/site-registry';
+import type { SiteId } from './sites/site-registry';
+import { usePageLoad } from './use-page-load';
 
 export function BrowserApp() {
     const { t } = useTranslation();
-    const [history, setHistory] = useState(() => startAt<Site>('start'));
-    const site = currentPage(history);
-    const open = (next: Site) => setHistory(visit(history, next));
+    const { cpu } = useEdition();
+    const [history, setHistory] = useState(() => startAt<SiteId>('start'));
+    const [visitKey, setVisitKey] = useState(0);
+    const progress = usePageLoad(visitKey, pageLoadDurationMs(cpu.speedMhz));
+    const site = SITES[currentPage(history)];
+    const Site = site.component;
+
+    const navigate = (next: BrowserHistory<SiteId>) => {
+        setHistory(next);
+        setVisitKey((key) => key + 1);
+    };
 
     return (
         <div className="browser">
@@ -30,28 +36,39 @@ export function BrowserApp() {
                     type="button"
                     className="button browser-button"
                     disabled={!canGoBack(history)}
-                    onClick={() => setHistory(goBack(history))}
+                    onClick={() => navigate(goBack(history))}
                 >
                     {t('browser.back')}
                 </button>
                 <button
                     type="button"
                     className="button browser-button"
-                    onClick={() => open('start')}
+                    onClick={() => navigate(visit(history, 'start'))}
                 >
                     {t('browser.home')}
                 </button>
                 <label className="browser-address">
                     <span>{t('browser.address')}</span>
-                    <input className="input" value={ADDRESSES[site]} readOnly />
+                    <input className="input" value={site.address} readOnly />
                 </label>
             </div>
             <div className="browser-viewport">
-                {site === 'start' ? (
-                    <StartPage onOpenDiskDepot={() => open('diskdepot')} />
-                ) : (
-                    <DiskDepotSite />
+                {isPageLoaded(progress) && (
+                    <Site onOpen={(next) => navigate(visit(history, next))} />
                 )}
+            </div>
+            <div className="browser-status">
+                <span className="browser-status-text sunken">
+                    {isPageLoaded(progress)
+                        ? t('browser.done')
+                        : t('browser.loading', { address: site.address })}
+                </span>
+                <span className="browser-progress sunken">
+                    <span
+                        className="browser-progress-bar"
+                        style={{ width: `${Math.round(progress * 100)}%` }}
+                    />
+                </span>
             </div>
         </div>
     );

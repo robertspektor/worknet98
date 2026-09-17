@@ -232,3 +232,34 @@
 .shop-item-status.is-owned {
     color: #006000;
 }
+
+.browser-status {
+    display: flex;
+    gap: 2px;
+    padding-top: 2px;
+}
+
+.browser-status-text {
+    flex: 1;
+    min-width: 0;
+    padding: 1px 4px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.browser-progress {
+    position: relative;
+    width: 120px;
+    padding: 2px;
+}
+
+.browser-progress-bar {
+    display: block;
+    height: 100%;
+    background: repeating-linear-gradient(
+        90deg,
+        var(--title) 0 8px,
+        transparent 8px 10px
+    );
+}

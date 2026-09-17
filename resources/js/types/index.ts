@@ -1,6 +1,7 @@
 export type * from './careers';
 export type * from './floppy-disks';
 export type * from './game-clock';
+export type * from './hardware';
 export type * from './mailbox';
 export type * from './messenger';
 export type * from './office';

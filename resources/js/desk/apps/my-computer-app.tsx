@@ -1,11 +1,13 @@
 import { useTranslation } from '@/i18n/use-translation';
 import { usePlayerProfile } from '../api/use-player-profile';
+import { useEdition } from '../computer/edition-context';
 import { formatAmount } from '../ui/format';
 import { PixelIcon } from '../ui/pixel-icon';
 
 export function MyComputerApp() {
     const { t, locale } = useTranslation();
     const player = usePlayerProfile();
+    const { cpu } = useEdition();
 
     return (
         <div className="app-pad">
@@ -19,7 +21,11 @@ export function MyComputerApp() {
                 <dt>{t('my_computer.registered_to')}</dt>
                 <dd>{player?.email ?? '...'}</dd>
                 <dt>{t('my_computer.computer')}</dt>
-                <dd>{t('my_computer.hardware')}</dd>
+                <dd>
+                    {t('my_computer.hardware', {
+                        cpu: t(`hardware_part.${cpu.slug}.label`),
+                    })}
+                </dd>
                 <dt>{t('my_computer.balance')}</dt>
                 <dd>
                     {player

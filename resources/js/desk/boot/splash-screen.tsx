@@ -1,14 +1,17 @@
 import { useTranslation } from '@/i18n/use-translation';
 import { useEdition } from '../computer/edition-context';
+import { splashStatusDelayMs } from '../hardware/performance';
 import { PixelIcon } from '../ui/pixel-icon';
 import { useTimedSteps } from './use-timed-steps';
 
-const STATUS_DELAY_MS = 650;
-
 export function SplashScreen({ onDone }: { onDone: () => void }) {
     const { t } = useTranslation();
-    const { subtitleKey, bootStatusKeys } = useEdition();
-    const step = useTimedSteps(bootStatusKeys.length, STATUS_DELAY_MS, onDone);
+    const { subtitleKey, bootStatusKeys, cpu } = useEdition();
+    const step = useTimedSteps(
+        bootStatusKeys.length,
+        splashStatusDelayMs(cpu.speedMhz),
+        onDone,
+    );
 
     return (
         <div className="splash">

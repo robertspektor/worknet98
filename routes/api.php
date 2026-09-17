@@ -10,6 +10,7 @@ use App\Http\Controllers\Api\V1\CustomerController;
 use App\Http\Controllers\Api\V1\EmailController;
 use App\Http\Controllers\Api\V1\EmailReadController;
 use App\Http\Controllers\Api\V1\FloppyDiskController;
+use App\Http\Controllers\Api\V1\HomeComputerController;
 use App\Http\Controllers\Api\V1\InstalledProgramController;
 use App\Http\Controllers\Api\V1\JobApplicationController;
 use App\Http\Controllers\Api\V1\JobOpeningController;
@@ -23,6 +24,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::prefix('v1')->middleware('auth:sanctum')->name('api.v1.')->group(function (): void {
     Route::get('player', [PlayerController::class, 'show'])->name('player.show');
+    Route::get('home-computer', [HomeComputerController::class, 'show'])->name('home-computer.show');
 
     Route::get('job-openings', [JobOpeningController::class, 'index'])->name('job-openings.index');
     Route::get('job-applications', [JobApplicationController::class, 'index'])->name('job-applications.index');

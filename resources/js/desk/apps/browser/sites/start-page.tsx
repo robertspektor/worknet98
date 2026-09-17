@@ -1,10 +1,7 @@
 import { useTranslation } from '@/i18n/use-translation';
+import type { SiteProps } from './site-registry';
 
-export function StartPage({
-    onOpenDiskDepot,
-}: {
-    onOpenDiskDepot: () => void;
-}) {
+export function StartPage({ onOpen }: SiteProps) {
     const { t } = useTranslation();
 
     return (
@@ -17,7 +14,7 @@ export function StartPage({
                     <button
                         type="button"
                         className="web-link"
-                        onClick={onOpenDiskDepot}
+                        onClick={() => onOpen('diskdepot')}
                     >
                         {t('browser.start.diskdepot')}
                     </button>
