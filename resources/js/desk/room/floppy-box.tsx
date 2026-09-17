@@ -87,6 +87,7 @@ export function FloppyBox() {
                 aria-expanded={isOpen}
                 onClick={() => setOpen(!isOpen)}
             >
+                <span className="floppy-box-tray" aria-hidden="true" />
                 <span className="floppy-box-disks" aria-hidden="true">
                     {stored.map((disk, index) => (
                         <span
@@ -96,6 +97,7 @@ export function FloppyBox() {
                         />
                     ))}
                 </span>
+                <span className="floppy-box-lid" aria-hidden="true" />
                 <span className="floppy-box-front">
                     <span className="floppy-box-label">
                         {t('floppy_box.label')}

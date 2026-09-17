@@ -1,6 +1,5 @@
 .floppy-disk,
-.floppy-box-disk,
-.shop-item-disk {
+.floppy-box-disk {
     --disk-color: #2b2b30;
     --disk-edge: #151518;
 }
@@ -32,66 +31,113 @@
     display: block;
     width: 7.5em;
     height: 7.75em;
-    border-radius: 0.2em;
-    background: linear-gradient(
-        160deg,
-        var(--disk-color) 60%,
-        var(--disk-edge)
-    );
-    clip-path: polygon(0 0, 91% 0, 100% 7%, 100% 100%, 0 100%);
-    box-shadow: inset 0 0 0 1px #fff2;
+    border-radius: 0.25em;
+    background:
+        linear-gradient(#111 50%, var(--disk-edge) 50%) no-repeat 4% 97% /
+            0.45em 0.5em,
+        linear-gradient(#111, #111) no-repeat 96% 97% / 0.45em 0.5em,
+        linear-gradient(var(--disk-edge), #0000) no-repeat 50% 0 / 64% 41%,
+        linear-gradient(160deg, #ffffff26, #0000 45%, #0000004d),
+        var(--disk-color);
+    clip-path: polygon(0 0, 92% 0, 100% 6%, 100% 100%, 0 100%);
+    box-shadow:
+        inset 0 1px 0 #fff4,
+        inset 1px 0 0 #fff2,
+        inset -1px -1px 0 #0006;
 }
 
 .floppy-shutter {
     position: absolute;
     top: 0;
-    left: 24%;
-    width: 50%;
-    height: 38%;
-    border-radius: 0 0 0.12em 0.12em;
-    background: linear-gradient(
-        90deg,
-        #8f969c,
-        #e4e7e9 35%,
-        #b3b9be 70%,
-        #8f969c
-    );
+    left: 25%;
+    width: 48%;
+    height: 39%;
+    border-radius: 0 0 0.1em 0.1em;
+    background:
+        repeating-linear-gradient(#ffffff14 0 1px, #0000 1px 3px),
+        linear-gradient(90deg, #7f868c, #eef0f1 30%, #b3b9be 65%, #8a9197);
+    box-shadow:
+        0 0.08em 0.15em #0007,
+        inset 0 -1px 0 #0004;
 }
 
 .floppy-shutter::after {
     content: '';
     position: absolute;
-    top: 18%;
-    left: 62%;
-    width: 20%;
-    height: 58%;
+    top: 16%;
+    left: 60%;
+    width: 22%;
+    height: 62%;
+    border-radius: 0.05em;
     background: var(--disk-edge);
+    box-shadow: inset 0 0.1em 0.15em #000a;
 }
 
 .floppy-label {
     position: absolute;
-    right: 9%;
+    right: 12%;
     bottom: 0;
-    left: 9%;
-    display: grid;
-    place-items: center;
-    height: 52%;
-    padding: 0 0.25em;
+    left: 12%;
+    display: flex;
+    flex-direction: column;
+    height: 51%;
     overflow: hidden;
     border-radius: 0.15em 0.15em 0 0;
-    font:
-        600 1.1em / 0.9 'Caveat',
-        cursive;
-    text-align: center;
-    color: #1f2a44;
-    background:
-        repeating-linear-gradient(
-            #0000 0 0.9em,
-            #9fb3d680 0.9em calc(0.9em + 1px)
-        ),
-        #f6f3e8;
+    background: linear-gradient(#fbf9f1, #ece7d6);
+    box-shadow:
+        0 -1px 0 #0004,
+        inset 0 1px 0 #fff;
 }
 
+.floppy-label-brand {
+    padding: 0.3em 0.45em 0.2em;
+    font:
+        700 0.38em / 1 'Pixelify Sans',
+        sans-serif;
+    letter-spacing: 0.14em;
+    text-align: left;
+    color: var(--disk-edge);
+    border-bottom: 0.12em solid var(--disk-color);
+}
+
+.floppy-label-title {
+    display: grid;
+    flex: 1;
+    place-items: center;
+    padding: 0 0.35em;
+    font:
+        700 0.6em / 1.05 'Pixelify Sans',
+        sans-serif;
+    text-align: center;
+    text-transform: uppercase;
+    text-wrap: balance;
+    color: #22252b;
+}
+
+.floppy-disk.is-data .floppy-label-title {
+    padding: 0 0.2em;
+    font:
+        600 0.88em / 0.9 'Caveat',
+        cursive;
+    text-transform: none;
+    color: #1f2a44;
+    background: repeating-linear-gradient(
+        #0000 0 0.85em,
+        #9fb3d680 0.85em calc(0.85em + 1px)
+    );
+}
+
+.floppy-disk.is-game .floppy-label::after {
+    content: '';
+    flex: none;
+    height: 24%;
+    background: linear-gradient(
+        #f2b33d 0 25%,
+        #e8703a 25% 50%,
+        #c93c5d 50% 75%,
+        #6a3a8f 75%
+    );
+}
 /* PC tower */
 
 .pc-tower {
@@ -308,6 +354,7 @@
     border: 0;
     font-size: inherit;
     background: none;
+    filter: drop-shadow(0 0.6em 0.6em #0009);
     cursor: pointer;
 }
 
@@ -316,28 +363,78 @@
     outline-offset: 4px;
 }
 
+.floppy-box-tray {
+    position: absolute;
+    inset: 2em 0.5em 2em;
+    border-radius: 0.3em 0.3em 0 0;
+    background: linear-gradient(var(--plastic), var(--plastic-dark));
+    box-shadow: inset 0 0.2em 0.4em #0005;
+}
+
 .floppy-box-disks {
     position: absolute;
-    inset: 0 1em 3em;
+    inset: 1.6em 1.3em 3.2em;
 }
 
 .floppy-box-disk {
     position: absolute;
-    bottom: calc(var(--stack) * -0.8em);
-    left: calc(var(--stack) * 0.3em);
-    width: 10.4em;
+    bottom: calc(var(--stack) * -0.9em);
+    left: calc(var(--stack) * 0.25em);
+    width: 10em;
     height: 5em;
     border-radius: 0.2em 0.2em 0 0;
-    background: linear-gradient(var(--disk-color), var(--disk-edge));
-    box-shadow:
-        inset 0 1px 0 #fff3,
-        0 -0.1em 0.3em #0006;
-    transition: translate 120ms ease-out;
+    background:
+        linear-gradient(90deg, #7f868c, #eef0f1 30%, #b3b9be 65%, #8a9197)
+            no-repeat 45% 0 / 34% 1.4em,
+        linear-gradient(160deg, #ffffff26, #0000 45%, #0000004d),
+        var(--disk-color);
+    clip-path: polygon(0 0, 94% 0, 100% 0.6em, 100% 100%, 0 100%);
+    box-shadow: inset 0 1px 0 #fff4;
+    transition: translate 160ms ease-out;
 }
 
-.floppy-box-body:hover .floppy-box-disk,
-.floppy-box-body.is-open .floppy-box-disk {
+.floppy-box-body:hover .floppy-box-disk {
     translate: 0 -0.4em;
+}
+
+.floppy-box-body.is-open .floppy-box-disk {
+    translate: 0 -1.2em;
+}
+
+.floppy-box-lid {
+    position: absolute;
+    inset: 0.9em 0.2em 3.3em;
+    border-radius: 0.5em 0.5em 0.1em 0.1em;
+    background:
+        linear-gradient(115deg, #0000 18%, #ffffff1f 22% 30%, #0000 34%),
+        linear-gradient(#6b4f3d80, #3a2a1fa6);
+    box-shadow:
+        inset 0 0.15em 0 #ffffff40,
+        inset 0 0 0 1px #1a120d99;
+    transform: perspective(30em) rotateX(0);
+    transform-origin: 50% 0;
+    transition: transform 220ms ease-out;
+}
+
+.floppy-box-lid::before {
+    content: '';
+    position: absolute;
+    bottom: calc(100% - 0.1em);
+    left: 50%;
+    width: 2.2em;
+    height: 0.6em;
+    border-radius: 0.2em 0.2em 0 0;
+    background: #3a2d24;
+    box-shadow: inset 0 0 0 0.15em #5a4638;
+    translate: -50% 0;
+}
+
+.floppy-box-body:hover .floppy-box-lid {
+    transform: perspective(30em) rotateX(22deg);
+}
+
+.floppy-box-body.is-open .floppy-box-lid {
+    transform: perspective(30em) rotateX(80deg);
 }
 
 .floppy-box-front {
@@ -345,25 +442,47 @@
     inset: auto 0 0;
     display: grid;
     place-items: center;
-    height: 5em;
+    height: 3.6em;
     border-radius: 0.2em 0.2em 0.4em 0.4em;
-    background: linear-gradient(#59626c, #353c44);
+    background: linear-gradient(
+        var(--plastic-light),
+        var(--plastic) 30%,
+        var(--plastic-dark)
+    );
     box-shadow:
-        inset 0 1px 0 #ffffff40,
-        0 0.6em 1em #0009;
+        inset 0 1px 0 #fff9,
+        inset 0 -0.3em 0 #0002;
+}
+
+.floppy-box-front::before {
+    content: '';
+    position: absolute;
+    top: -0.35em;
+    left: 50%;
+    width: 1.8em;
+    height: 0.9em;
+    border-radius: 0.15em;
+    background:
+        linear-gradient(var(--plastic-light), var(--plastic-dark)) no-repeat 50%
+            75% / 55% 40%,
+        linear-gradient(#4a3a2f, #2c211a);
+    box-shadow: 0 0.1em 0.15em #0006;
+    translate: -50% 0;
 }
 
 .floppy-box-label {
-    padding: 0.1em 0.7em;
+    margin-top: 0.5em;
+    padding: 0.05em 0.8em;
     font:
-        600 1.5em / 1 'Caveat',
+        600 1.4em / 1 'Caveat',
         cursive;
     color: #2c2a24;
     background: #f3eedd;
-    box-shadow: 0 0.1em 0.2em #0006;
-    rotate: -3deg;
+    box-shadow:
+        0 0 0 0.12em var(--plastic-dark),
+        0 0 0 0.2em var(--plastic-shadow);
+    rotate: -1.5deg;
 }
-
 .disk-picker {
     position: absolute;
     right: -8.5em;

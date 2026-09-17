@@ -1,5 +1,6 @@
 import { useTranslation } from '@/i18n/use-translation';
 import type { DiskShopItem } from '@/types';
+import { FloppyDiskArt } from '../../../room/floppy-disk-art';
 import { ShopBuyBox } from './shop-status';
 
 export function ShopItemCard({
@@ -13,12 +14,8 @@ export function ShopItemCard({
 
     return (
         <li className="shop-item">
-            <span
-                className={`shop-item-disk is-${item.color}`}
-                aria-hidden="true"
-            >
-                <span className="shop-item-shutter" />
-                <span className="shop-item-label" />
+            <span className="shop-item-disk" aria-hidden="true">
+                <FloppyDiskArt disk={item} />
             </span>
             <div className="shop-item-body">
                 <h3 className="shop-item-name">

@@ -161,40 +161,7 @@
 }
 
 .shop-item-disk {
-    position: relative;
-    width: 52px;
-    height: 54px;
-    border-radius: 2px;
-    background: linear-gradient(
-        160deg,
-        var(--disk-color) 60%,
-        var(--disk-edge)
-    );
-    clip-path: polygon(0 0, 91% 0, 100% 7%, 100% 100%, 0 100%);
-}
-
-.shop-item-shutter {
-    position: absolute;
-    top: 0;
-    left: 24%;
-    width: 50%;
-    height: 38%;
-    background: linear-gradient(
-        90deg,
-        #8f969c,
-        #e4e7e9 35%,
-        #b3b9be 70%,
-        #8f969c
-    );
-}
-
-.shop-item-label {
-    position: absolute;
-    right: 9%;
-    bottom: 0;
-    left: 9%;
-    height: 48%;
-    background: #f6f3e8;
+    font-size: 7px;
 }
 
 .shop-item-name {
