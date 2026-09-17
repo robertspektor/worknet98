@@ -4,8 +4,7 @@ import { FloppyDriveProvider } from '@/desk/floppy/floppy-drive-provider';
 import { HomeComputerProvider } from '@/desk/hardware/home-computer-provider';
 import { PowerStateProvider } from '@/desk/computer/power-state';
 import { ParcelProvider } from '@/desk/parcels/parcel-provider';
-import { CaseToolkit } from '@/desk/room/case-toolkit';
-import { DeskParts } from '@/desk/room/desk-parts';
+import { DeskWorkshop } from '@/desk/room/desk-workshop';
 import { EmployeeBadge } from '@/desk/room/employee-badge';
 import { FloppyBox } from '@/desk/room/floppy-box';
 import { ParcelStack } from '@/desk/room/parcel-stack';
@@ -40,8 +39,7 @@ export default function Computer() {
                                 <PcTower />
                                 {player && <FloppyBox />}
                                 {player && <ParcelStack />}
-                                {player && <DeskParts />}
-                                {player && <CaseToolkit />}
+                                {player && <DeskWorkshop />}
                                 {player?.employer && (
                                     <EmployeeBadge company={player.employer} />
                                 )}

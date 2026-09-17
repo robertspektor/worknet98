@@ -205,14 +205,14 @@
     color: #145a28;
 }
 
-.desk-parts {
+.desk-workshop {
     bottom: 1.5vh;
-    left: calc(100% - var(--side-space) / 2 - 22em);
+    left: calc(100% - var(--side-space) / 2 - 24em);
     display: flex;
     align-items: end;
-    gap: 1.6em;
+    gap: 2.4em;
     font-size: clamp(8px, min(calc(var(--side-space) / 20), 1.5vh), 16px);
-    translate: -50% 0;
+    translate: -100% 0;
 }
 
 .desk-part {
@@ -259,7 +259,7 @@
 }
 
 @media (max-width: 900px), (max-aspect-ratio: 5/4) {
-    .desk-parts {
+    .desk-workshop {
         display: none;
     }
 }

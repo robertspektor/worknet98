@@ -35,22 +35,19 @@
 }
 
 .case-toolkit {
-    bottom: 1.5vh;
-    left: calc(100% - var(--side-space) / 2 - 32em);
     display: grid;
     justify-items: center;
     gap: 0.5em;
     padding: 0;
     border: 0;
-    font-size: clamp(8px, min(calc(var(--side-space) / 20), 1.5vh), 16px);
+    font-size: inherit;
     background: none;
     cursor: pointer;
-    translate: -50% 0;
     transition: translate 120ms ease-out;
 }
 
 .case-toolkit:hover {
-    translate: -50% -0.3em;
+    translate: 0 -0.3em;
 }
 
 .case-toolkit:focus-visible {
@@ -187,7 +184,6 @@
 .motherboard {
     position: absolute;
     inset: 1.4em;
-    overflow: hidden;
     border-radius: 0.2em;
     background: linear-gradient(160deg, #23704a, #174d33);
 }
@@ -195,6 +191,7 @@
 .motherboard-traces {
     position: absolute;
     inset: 0;
+    border-radius: inherit;
     background:
         repeating-linear-gradient(90deg, #0000 0 1.6em, #d9b44a22 1.6em 1.7em),
         repeating-linear-gradient(0deg, #0000 0 2.3em, #d9b44a1a 2.3em 2.4em);
