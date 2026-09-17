@@ -29,6 +29,13 @@ return [
     'npc_case_delay_seconds' => (int) env('GAME_NPC_CASE_DELAY_SECONDS', 120),
 
     /*
+    | Hours after which an NPC colleague takes over a case that the player
+    | has not booked, even if the player never worked another shift.
+    */
+
+    'case_takeover_after_hours' => (int) env('GAME_CASE_TAKEOVER_AFTER_HOURS', 48),
+
+    /*
     | Seconds until an ordered floppy disk arrives as a parcel. Leave empty
     | to deliver on the next game day. Parcels are delivered by the
     | scheduled shop:deliver-parcels command.

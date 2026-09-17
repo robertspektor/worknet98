@@ -3,6 +3,8 @@
 namespace App\Cases;
 
 use App\Cases\Conditions\Condition;
+use App\Cases\Deadlines\CaseBooking;
+use App\Cases\Deadlines\CaseTakeover;
 use App\Mailbox\Mailbox;
 use App\Models\Shift;
 use App\Models\WorkCase;
@@ -14,6 +16,8 @@ class CaseReminder
         private readonly CaseStateLoader $states,
         private readonly CaseMails $mails,
         private readonly Mailbox $mailbox,
+        private readonly CaseBooking $booking,
+        private readonly CaseTakeover $takeover,
     ) {}
 
     public function remindAtShiftEnd(Shift $shift): void
@@ -22,7 +26,24 @@ class CaseReminder
             ->where('employment_id', $shift->employment_id)
             ->open()
             ->get()
-            ->each(fn (WorkCase $workCase) => $this->remindIfUnfinished($shift, $workCase));
+            ->each(fn (WorkCase $workCase) => $this->check($shift, $workCase));
+    }
+
+    private function check(Shift $shift, WorkCase $workCase): void
+    {
+        $isBooked = $this->booking->isBookedByAssignee($workCase);
+
+        if (! $isBooked && $workCase->reminded_at !== null) {
+            $this->takeover->takeOver($workCase);
+
+            return;
+        }
+
+        $this->remindIfUnfinished($shift, $workCase);
+
+        if (! $isBooked) {
+            $workCase->update(['reminded_at' => now()]);
+        }
     }
 
     private function remindIfUnfinished(Shift $shift, WorkCase $workCase): void

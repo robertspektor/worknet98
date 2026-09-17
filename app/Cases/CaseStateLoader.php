@@ -20,7 +20,7 @@ class CaseStateLoader
         $employment = $workCase->playerEmployment();
 
         return new CaseState(
-            openedOn: $this->clock->fromReal($workCase->opened_at),
+            openedOn: $this->clock->fromReal($workCase->seen_at ?? $workCase->opened_at),
             appointments: $employment->bookedAppointments()->with('technician')->get(),
             sentEmails: $employment->emails()->where('folder', EmailFolder::Sent)->get(),
             calendarEntries: CalendarEntry::query()->where('user_id', $employment->user_id)->get(),

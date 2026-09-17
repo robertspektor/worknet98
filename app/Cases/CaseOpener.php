@@ -42,6 +42,7 @@ class CaseOpener
             'case_slug' => $definition->slug,
             'status' => WorkCaseStatus::Open,
             'opened_at' => now(),
+            'seen_at' => now(),
         ]);
 
         $this->mailbox->deliver($shift->user, $this->mails->request($definition, $customer), $employment);

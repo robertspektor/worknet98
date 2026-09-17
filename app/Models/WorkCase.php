@@ -23,6 +23,8 @@ use LogicException;
  * @property WorkCaseStatus $status
  * @property CarbonImmutable $opened_at
  * @property CarbonImmutable|null $npc_due_at
+ * @property CarbonImmutable|null $seen_at
+ * @property CarbonImmutable|null $reminded_at
  * @property CarbonImmutable|null $resolved_at
  * @property CarbonImmutable|null $created_at
  * @property CarbonImmutable|null $updated_at
@@ -31,7 +33,7 @@ use LogicException;
  * @property-read Employment|null $employment
  * @property-read Customer $customer
  */
-#[Fillable(['branch_id', 'position_id', 'employment_id', 'customer_id', 'kind', 'case_slug', 'demand_key', 'status', 'opened_at', 'npc_due_at', 'resolved_at'])]
+#[Fillable(['branch_id', 'position_id', 'employment_id', 'customer_id', 'kind', 'case_slug', 'demand_key', 'status', 'opened_at', 'npc_due_at', 'seen_at', 'reminded_at', 'resolved_at'])]
 class WorkCase extends Model
 {
     public function playerEmployment(): Employment
@@ -97,6 +99,8 @@ class WorkCase extends Model
             'status' => WorkCaseStatus::class,
             'opened_at' => 'datetime',
             'npc_due_at' => 'datetime',
+            'seen_at' => 'datetime',
+            'reminded_at' => 'datetime',
             'resolved_at' => 'datetime',
         ];
     }
