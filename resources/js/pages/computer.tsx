@@ -2,7 +2,9 @@ import { Head, usePage, usePoll } from '@inertiajs/react';
 import { HomeWorkstation } from '@/desk/computer/home-workstation';
 import { FloppyDriveProvider } from '@/desk/floppy/floppy-drive-provider';
 import { HomeComputerProvider } from '@/desk/hardware/home-computer-provider';
+import { PowerStateProvider } from '@/desk/computer/power-state';
 import { ParcelProvider } from '@/desk/parcels/parcel-provider';
+import { CaseToolkit } from '@/desk/room/case-toolkit';
 import { DeskParts } from '@/desk/room/desk-parts';
 import { EmployeeBadge } from '@/desk/room/employee-badge';
 import { FloppyBox } from '@/desk/room/floppy-box';
@@ -24,22 +26,27 @@ export default function Computer() {
             <HomeComputerProvider isSignedIn={isSignedIn}>
                 <FloppyDriveProvider isSignedIn={isSignedIn}>
                     <ParcelProvider isSignedIn={isSignedIn}>
-                        <Room scene="home">
-                            <HomeWorkstation
-                                initialState={
-                                    status === 'signed-in' ? 'booting' : 'off'
-                                }
-                                needsSetup={!player}
-                                accessory={<StickyNote />}
-                            />
-                            <PcTower />
-                            {player && <FloppyBox />}
-                            {player && <ParcelStack />}
-                            {player && <DeskParts />}
-                            {player?.employer && (
-                                <EmployeeBadge company={player.employer} />
-                            )}
-                        </Room>
+                        <PowerStateProvider>
+                            <Room scene="home">
+                                <HomeWorkstation
+                                    initialState={
+                                        status === 'signed-in'
+                                            ? 'booting'
+                                            : 'off'
+                                    }
+                                    needsSetup={!player}
+                                    accessory={<StickyNote />}
+                                />
+                                <PcTower />
+                                {player && <FloppyBox />}
+                                {player && <ParcelStack />}
+                                {player && <DeskParts />}
+                                {player && <CaseToolkit />}
+                                {player?.employer && (
+                                    <EmployeeBadge company={player.employer} />
+                                )}
+                            </Room>
+                        </PowerStateProvider>
                     </ParcelProvider>
                 </FloppyDriveProvider>
             </HomeComputerProvider>

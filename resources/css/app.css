@@ -14,6 +14,7 @@
 @import './desk/parcel.css';
 @import './desk/browser.css';
 @import './desk/hardware.css';
+@import './desk/workbench.css';
 @import './desk/programs.css';
 
 @source '../views';

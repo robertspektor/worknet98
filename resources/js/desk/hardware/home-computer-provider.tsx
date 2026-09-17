@@ -6,6 +6,7 @@ import { fetchHomeComputer } from './home-computer-api';
 type HomeComputerState = {
     homeComputer: HomeComputer | null;
     refresh: () => void;
+    replace: (homeComputer: HomeComputer) => void;
 };
 
 const HomeComputerContext = createContext<HomeComputerState | null>(null);
@@ -31,7 +32,9 @@ export function HomeComputerProvider({
     }, [isSignedIn]);
 
     return (
-        <HomeComputerContext value={{ homeComputer, refresh }}>
+        <HomeComputerContext
+            value={{ homeComputer, refresh, replace: setHomeComputer }}
+        >
             {children}
         </HomeComputerContext>
     );

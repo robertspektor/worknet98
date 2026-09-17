@@ -1,6 +1,15 @@
-export type ComputerState = 'off' | 'booting' | 'ready' | 'shut-down';
+export type ComputerState =
+    | 'off'
+    | 'booting'
+    | 'ready'
+    | 'shut-down'
+    | 'thermal-fault';
 
-export type ComputerEvent = 'power' | 'boot-finished' | 'shut-down';
+export type ComputerEvent =
+    | 'power'
+    | 'boot-finished'
+    | 'shut-down'
+    | 'overheat';
 
 export function nextComputerState(
     state: ComputerState,
@@ -16,6 +25,10 @@ export function nextComputerState(
 
     if (event === 'shut-down' && state === 'ready') {
         return 'shut-down';
+    }
+
+    if (event === 'overheat' && state === 'ready') {
+        return 'thermal-fault';
     }
 
     return state;

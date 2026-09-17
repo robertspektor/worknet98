@@ -93,6 +93,53 @@ class Sound {
         );
     }
 
+    screw(): void {
+        this.play(
+            [
+                [1900, 0, 0.02],
+                [1700, 0.05, 0.02],
+                [2100, 0.1, 0.02],
+            ],
+            'square',
+            0.012,
+        );
+    }
+
+    latch(): void {
+        this.play(
+            [
+                [900, 0, 0.03],
+                [420, 0.04, 0.05],
+            ],
+            'square',
+            0.03,
+        );
+    }
+
+    zap(): void {
+        this.play(
+            [
+                [2400, 0, 0.05],
+                [180, 0.05, 0.12],
+                [2200, 0.12, 0.04],
+            ],
+            'sawtooth',
+            0.05,
+        );
+    }
+
+    fanSpinUp(): void {
+        this.play(
+            [
+                [80, 0, 0.3],
+                [120, 0.2, 0.3],
+                [170, 0.4, 0.5],
+            ],
+            'triangle',
+            0.05,
+        );
+    }
+
     private play(notes: Note[], type: OscillatorType, volume: number): void {
         const context = this.context;
 

@@ -7,6 +7,7 @@ use App\Http\Controllers\Api\V1\ChatReadController;
 use App\Http\Controllers\Api\V1\ChatReplyController;
 use App\Http\Controllers\Api\V1\CompanySoftwareController;
 use App\Http\Controllers\Api\V1\CustomerController;
+use App\Http\Controllers\Api\V1\DeskPartInstallationController;
 use App\Http\Controllers\Api\V1\EmailController;
 use App\Http\Controllers\Api\V1\EmailReadController;
 use App\Http\Controllers\Api\V1\FloppyDiskController;
@@ -21,11 +22,16 @@ use App\Http\Controllers\Api\V1\PlayerController;
 use App\Http\Controllers\Api\V1\ScheduleController;
 use App\Http\Controllers\Api\V1\ShiftController;
 use App\Http\Controllers\Api\V1\ShopController;
+use App\Http\Controllers\Api\V1\ThermalPasteController;
 use Illuminate\Support\Facades\Route;
 
 Route::prefix('v1')->middleware('auth:sanctum')->name('api.v1.')->group(function (): void {
     Route::get('player', [PlayerController::class, 'show'])->name('player.show');
     Route::get('home-computer', [HomeComputerController::class, 'show'])->name('home-computer.show');
+    Route::post('home-computer/desk-parts/{deskPart}/installation', [DeskPartInstallationController::class, 'store'])
+        ->middleware('can:install,deskPart')
+        ->name('home-computer.desk-parts.installation.store');
+    Route::post('home-computer/thermal-paste', [ThermalPasteController::class, 'store'])->name('home-computer.thermal-paste.store');
 
     Route::get('job-openings', [JobOpeningController::class, 'index'])->name('job-openings.index');
     Route::get('job-applications', [JobApplicationController::class, 'index'])->name('job-applications.index');

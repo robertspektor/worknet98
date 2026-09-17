@@ -13,5 +13,6 @@ export function useComputer(initialState: ComputerState = 'off') {
         togglePower: () => send('power'),
         finishBoot: () => send('boot-finished'),
         shutDown: () => send('shut-down'),
+        overheat: () => send('overheat'),
     };
 }

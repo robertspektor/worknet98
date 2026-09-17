@@ -15,6 +15,7 @@ export function HomeWorkstation(
             ? {
                   slug: homeComputer.cpu.slug,
                   speedMhz: homeComputer.cpu.speed_mhz,
+                  needsThermalPaste: homeComputer.cpu.needs_thermal_paste,
               }
             : HOME_EDITION.cpu,
         apps: [...HOME_EDITION.apps, ...installedPrograms],

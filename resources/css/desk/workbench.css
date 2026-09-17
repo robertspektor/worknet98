@@ -1,0 +1,594 @@
+.thermal-fault {
+    position: absolute;
+    inset: 0;
+    display: grid;
+    align-content: center;
+    gap: 14px;
+    padding: 40px 56px;
+    font:
+        26px / 1.2 'VT323',
+        monospace;
+    color: #ffd0c8;
+    background: #6e0000;
+}
+
+.thermal-fault p {
+    margin: 0;
+}
+
+.thermal-fault-title {
+    justify-self: center;
+    padding: 0 12px;
+    color: #6e0000;
+    background: #ffd0c8;
+}
+
+.thermal-fault-prompt {
+    margin-top: 18px;
+    animation: thermal-fault-blink 1s steps(2, start) infinite;
+}
+
+@keyframes thermal-fault-blink {
+    to {
+        visibility: hidden;
+    }
+}
+
+.case-toolkit {
+    bottom: 1.5vh;
+    left: calc(100% - var(--side-space) / 2 - 32em);
+    display: grid;
+    justify-items: center;
+    gap: 0.5em;
+    padding: 0;
+    border: 0;
+    font-size: clamp(8px, min(calc(var(--side-space) / 20), 1.5vh), 16px);
+    background: none;
+    cursor: pointer;
+    translate: -50% 0;
+    transition: translate 120ms ease-out;
+}
+
+.case-toolkit:hover {
+    translate: -50% -0.3em;
+}
+
+.case-toolkit:focus-visible {
+    outline: 2px dashed #f3e9c6;
+    outline-offset: 4px;
+}
+
+.screwdriver {
+    display: flex;
+    align-items: center;
+    rotate: -12deg;
+    filter: drop-shadow(0 0.25em 0.2em #0009);
+}
+
+.screwdriver-handle {
+    width: 5em;
+    height: 1.7em;
+    border-radius: 0.8em 0.3em 0.3em 0.8em;
+    background:
+        repeating-linear-gradient(90deg, #0000 0 0.5em, #0003 0.5em 0.65em),
+        linear-gradient(180deg, #e8b400, #c2410c 55%, #8f2d08);
+}
+
+.screwdriver-shaft {
+    width: 6em;
+    height: 0.45em;
+    border-radius: 0 0.2em 0.2em 0;
+    background: linear-gradient(180deg, #f1f3f5, #8d959c);
+}
+
+.workbench-backdrop {
+    position: fixed;
+    inset: 0;
+    z-index: 100;
+    display: grid;
+    place-items: center;
+    padding: 16px;
+    font-size: clamp(7px, min(1.25vw, 1.9vh), 15px);
+    background: #000c;
+}
+
+.workbench {
+    display: grid;
+    grid-template-rows: auto 1fr;
+    gap: 1.2em;
+    width: 66em;
+    max-width: 100%;
+    padding: 1.4em;
+    border-radius: 0.6em;
+    background:
+        repeating-linear-gradient(
+            92deg,
+            #0000 0 3em,
+            #ffffff08 3em 3.2em,
+            #0000 3.2em 7em
+        ),
+        linear-gradient(var(--desk-top), var(--desk-bottom));
+    box-shadow: 0 1.5em 4em #000;
+    user-select: none;
+    touch-action: none;
+}
+
+.workbench-header {
+    display: flex;
+    align-items: start;
+    justify-content: space-between;
+    gap: 1.5em;
+    min-height: 9.4em;
+    box-sizing: border-box;
+    padding: 0.9em 1.2em;
+    background: #f6f3e8;
+    box-shadow: 0 0.2em 0.4em #0006;
+    rotate: -0.4deg;
+}
+
+.workbench-step {
+    margin: 0;
+    font:
+        600 2.2em / 1.1 'Caveat',
+        cursive;
+    color: #1d3d5c;
+}
+
+.workbench-hint {
+    min-height: 1.3em;
+    margin: 0.3em 0 0;
+    font:
+        italic 1.3em / 1.3 Tahoma,
+        sans-serif;
+    color: #a3312f;
+}
+
+.workbench-close {
+    flex: none;
+    padding: 0.5em 0.9em;
+    border: 0.12em solid #8e856d;
+    font:
+        1.2em / 1 Tahoma,
+        sans-serif;
+    color: #3a281b;
+    background: var(--plastic-light);
+    cursor: pointer;
+}
+
+.workbench-table {
+    display: grid;
+    grid-template-columns: 34em minmax(0, 1fr);
+    gap: 3em;
+    align-items: start;
+    padding-left: 3.5em;
+}
+
+.workbench .is-active {
+    animation: workbench-glow 1.4s ease-in-out infinite;
+}
+
+@keyframes workbench-glow {
+    50% {
+        filter: drop-shadow(0 0 0.5em #ffd800);
+    }
+}
+
+.pc-case-open {
+    position: relative;
+    height: 38em;
+    border: 1.2em solid var(--plastic);
+    border-radius: 0.4em;
+    background: linear-gradient(135deg, #a9adb1, #6f7479);
+    box-shadow:
+        inset 0 0 0 0.15em var(--plastic-shadow),
+        0 0.6em 1em #0008;
+}
+
+.motherboard {
+    position: absolute;
+    inset: 1.4em;
+    overflow: hidden;
+    border-radius: 0.2em;
+    background: linear-gradient(160deg, #23704a, #174d33);
+}
+
+.motherboard-traces {
+    position: absolute;
+    inset: 0;
+    background:
+        repeating-linear-gradient(90deg, #0000 0 1.6em, #d9b44a22 1.6em 1.7em),
+        repeating-linear-gradient(0deg, #0000 0 2.3em, #d9b44a1a 2.3em 2.4em);
+}
+
+.ram-slots {
+    position: absolute;
+    top: 3em;
+    right: 2.5em;
+    width: 5.5em;
+    height: 15em;
+    background: repeating-linear-gradient(
+        90deg,
+        #1b1b1f 0 0.8em,
+        #0000 0.8em 1.6em
+    );
+}
+
+.cpu-socket {
+    position: absolute;
+    top: 5em;
+    left: 5em;
+    width: 12em;
+    height: 12em;
+    border-radius: 0.2em;
+    background: #ebe6d6;
+    box-shadow: inset 0 0 0 0.3em #cfc8b2;
+}
+
+.socket-pins {
+    position: absolute;
+    inset: 1.2em;
+    background: radial-gradient(circle, #9a8c5a 0.12em, #0000 0.14em) 0 0 /
+        0.7em 0.7em;
+    clip-path: polygon(1.2em 0, 100% 0, 100% 100%, 0 100%, 0 1.2em);
+}
+
+.socket-cpu {
+    position: absolute;
+    inset: 0;
+    display: grid;
+    place-items: center;
+    font-size: 2.4em;
+    cursor: grab;
+}
+
+.socket-dust,
+.socket-paste {
+    position: absolute;
+    pointer-events: none;
+}
+
+.socket-dust {
+    inset: 3.4em;
+    border-radius: 45%;
+    background:
+        radial-gradient(circle at 35% 40%, #cfd2d4 0 30%, #0000 55%),
+        radial-gradient(circle at 65% 60%, #b7bbbe 0 25%, #0000 50%);
+    transition: opacity 120ms linear;
+}
+
+.socket-paste {
+    top: 50%;
+    left: 50%;
+    width: 2.4em;
+    height: 2.4em;
+    margin: -1.2em 0 0 -1.2em;
+    border-radius: 50%;
+    background: radial-gradient(circle at 35% 35%, #f2f4f5, #9aa1a7 70%);
+    box-shadow: 0 0.1em 0.2em #0006;
+}
+
+.socket-lever {
+    position: absolute;
+    top: 0.6em;
+    right: -1.1em;
+    width: 0.7em;
+    height: 10.6em;
+    padding: 0;
+    border: 0;
+    border-radius: 0.35em;
+    background: linear-gradient(90deg, #e3e6e8, #8f979d);
+    cursor: pointer;
+    transform-origin: 50% 100%;
+    transition: rotate 200ms ease-out;
+}
+
+.socket-lever.is-open {
+    rotate: 75deg;
+}
+
+.cooler {
+    position: absolute;
+    top: 3.8em;
+    left: 3.8em;
+    width: 14.4em;
+    height: 14.4em;
+    border-radius: 0.3em;
+    background: repeating-linear-gradient(
+        90deg,
+        #d7dbde 0 0.6em,
+        #8e969c 0.6em 0.9em
+    );
+    box-shadow: 0 0.5em 0.8em #0009;
+    touch-action: none;
+}
+
+.cooler.is-active {
+    cursor: grab;
+}
+
+.cooler.is-lying {
+    position: relative;
+    top: auto;
+    left: auto;
+    width: 8.5em;
+    height: 8.5em;
+    rotate: 8deg;
+}
+
+.cooler-fan {
+    position: absolute;
+    inset: 1.2em;
+    border-radius: 50%;
+    background:
+        radial-gradient(circle, #2b2b30 0 18%, #0000 19%),
+        repeating-conic-gradient(#3c3c43 0 30deg, #1c1c20 30deg 60deg);
+    box-shadow: inset 0 0 0 0.4em #1c1c20;
+}
+
+.cooler-clip {
+    position: absolute;
+    top: 5.2em;
+    width: 1.1em;
+    height: 4em;
+    padding: 0;
+    border: 0;
+    border-radius: 0.2em;
+    background: linear-gradient(90deg, #eef0f2, #858d93);
+    cursor: pointer;
+    transition: rotate 150ms ease-out;
+}
+
+.cooler-clip.is-left {
+    left: -0.8em;
+}
+
+.cooler-clip.is-right {
+    right: -0.8em;
+}
+
+.cooler-clip.is-open.is-left {
+    rotate: -35deg;
+}
+
+.cooler-clip.is-open.is-right {
+    rotate: 35deg;
+}
+
+.case-panel {
+    position: absolute;
+    inset: -0.4em;
+    border-radius: 0.3em;
+    background: linear-gradient(
+        160deg,
+        var(--plastic-light),
+        var(--plastic) 45%,
+        var(--plastic-dark)
+    );
+    box-shadow: 0 0.4em 0.8em #0007;
+    cursor: grab;
+    touch-action: none;
+}
+
+.case-panel.is-lying {
+    position: relative;
+    inset: auto;
+    width: 9.5em;
+    height: 12em;
+    rotate: -7deg;
+    cursor: default;
+}
+
+.case-panel.is-lying.is-active {
+    cursor: grab;
+}
+
+.case-panel-vents {
+    position: absolute;
+    right: 18%;
+    bottom: 12%;
+    left: 18%;
+    height: 18%;
+    background: repeating-linear-gradient(
+        180deg,
+        var(--plastic-shadow) 0 0.25em,
+        #0000 0.25em 0.9em
+    );
+    opacity: 0.6;
+}
+
+.case-screw {
+    position: absolute;
+    width: 1.8em;
+    height: 1.8em;
+    padding: 0;
+    border: 0;
+    border-radius: 50%;
+    background:
+        linear-gradient(45deg, #0000 44%, #5b6168 44% 56%, #0000 56%),
+        linear-gradient(-45deg, #0000 44%, #5b6168 44% 56%, #0000 56%),
+        radial-gradient(circle at 35% 35%, #f3f5f6, #9aa1a7);
+    box-shadow: 0 0.1em 0.15em #0007;
+    cursor: pointer;
+    transition:
+        rotate 200ms ease-out,
+        scale 200ms ease-out;
+}
+
+.case-screw.is-loose {
+    rotate: 200deg;
+    scale: 1.15;
+    box-shadow: 0 0.35em 0.3em #0007;
+}
+
+.case-screw.is-0 {
+    top: 1em;
+    left: 1em;
+}
+
+.case-screw.is-1 {
+    top: 1em;
+    right: 1em;
+}
+
+.case-screw.is-2 {
+    bottom: 1em;
+    left: 1em;
+}
+
+.case-screw.is-3 {
+    right: 1em;
+    bottom: 1em;
+}
+
+.is-step-unscrew .case-screw.is-tight,
+.is-step-screw .case-screw.is-loose,
+.is-step-unclip-cooler .cooler-clip,
+.is-step-clip-cooler .cooler-clip {
+    animation: workbench-glow 1.4s ease-in-out infinite;
+}
+
+.power-plug {
+    position: absolute;
+    bottom: 4em;
+    left: -4.6em;
+    width: 5.5em;
+    height: 2em;
+    padding: 0;
+    border: 0;
+    background: none;
+    cursor: pointer;
+    transition: translate 200ms ease-out;
+}
+
+.power-plug.is-unplugged {
+    translate: -2.4em 0;
+}
+
+.power-plug-cable {
+    position: absolute;
+    top: 0.75em;
+    right: 2.4em;
+    left: -6em;
+    height: 0.5em;
+    border-radius: 0.25em;
+    background: #1c1c20;
+}
+
+.power-plug-head {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 2.6em;
+    height: 2em;
+    border-radius: 0.2em;
+    background: linear-gradient(180deg, #3a3a40, #1c1c20);
+}
+
+.tool-tray {
+    display: grid;
+    grid-template-rows: 16em 11em auto;
+    gap: 1.6em;
+    height: 38em;
+}
+
+.parts-pile {
+    display: flex;
+    align-items: center;
+    gap: 1.6em;
+    padding-left: 0.5em;
+}
+
+.anti-static-mat {
+    display: flex;
+    align-items: center;
+    gap: 2.5em;
+    min-height: 11em;
+    padding: 1.2em 2em;
+    border-radius: 0.3em;
+    background:
+        repeating-linear-gradient(0deg, #0000 0 2em, #ffffff14 2em 2.1em),
+        repeating-linear-gradient(90deg, #0000 0 2em, #ffffff14 2em 2.1em),
+        #536883;
+    box-shadow: 0 0.3em 0.6em #0007;
+}
+
+.mat-cpu {
+    display: grid;
+    place-items: center;
+    font-size: 2em;
+    touch-action: none;
+}
+
+.mat-cpu.is-new {
+    cursor: pointer;
+}
+
+.mat-cpu.is-new.is-active {
+    cursor: grab;
+}
+
+.mat-cpu-turn {
+    display: block;
+    transition: rotate 150ms ease-out;
+}
+
+.mat-cpu.is-old {
+    rotate: 12deg;
+    opacity: 0.9;
+}
+
+.tool-shelf {
+    display: flex;
+    align-items: end;
+    gap: 3em;
+}
+
+.tool-cloth {
+    position: relative;
+    width: 7em;
+    height: 5.5em;
+    border-radius: 0.6em 0.3em 0.8em 0.4em;
+    background:
+        repeating-linear-gradient(45deg, #0000 0 0.3em, #0000000d 0.3em 0.6em),
+        #f2c94c;
+    box-shadow: 0 0.3em 0.5em #0007;
+    cursor: grab;
+    touch-action: none;
+    rotate: -6deg;
+}
+
+.tool-paste {
+    position: relative;
+    display: grid;
+    place-items: center;
+    width: 10em;
+    height: 2.6em;
+    border-radius: 0.3em 1.3em 1.3em 0.3em;
+    background: linear-gradient(180deg, #eef0f2, #9aa1a7);
+    box-shadow: 0 0.3em 0.5em #0007;
+    cursor: pointer;
+    touch-action: none;
+    transition: scale 100ms ease-out;
+}
+
+.tool-paste.is-squeezed {
+    scale: 0.94 0.8;
+}
+
+.tool-paste-cap {
+    position: absolute;
+    top: 0.5em;
+    right: -1.4em;
+    width: 1.6em;
+    height: 1.6em;
+    border-radius: 0.2em;
+    background: #1c1c20;
+}
+
+.tool-paste-label {
+    font:
+        700 1em / 1 Tahoma,
+        sans-serif;
+    letter-spacing: 0.2em;
+    color: #1d3d5c;
+}
