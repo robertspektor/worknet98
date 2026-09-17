@@ -4,7 +4,12 @@
         "daily_rate": 1.5,
         "service": "plumbing",
         "case_template": "leaking-pipe",
-        "follow_ups": [{ "type": "burst_pipe", "when": "repair_late" }]
+        "follow_ups": [
+            {
+                "type": "burst_pipe",
+                "when": "repair_late"
+            }
+        ]
     },
     {
         "type": "cold_radiator",
@@ -17,7 +22,12 @@
         "daily_rate": 0.5,
         "service": "plumbing",
         "case_template": "burst-pipe",
-        "follow_ups": [{ "type": "water_damage", "when": "repair_late" }]
+        "follow_ups": [
+            {
+                "type": "water_damage",
+                "when": "repair_late"
+            }
+        ]
     },
     {
         "type": "heating_breakdown",
@@ -40,5 +50,19 @@
     {
         "type": "water_damage",
         "daily_rate": 0
+    },
+    {
+        "type": "moving",
+        "daily_rate": 3.2,
+        "service": "registration",
+        "application": "move",
+        "prefer_regular_customers": false
+    },
+    {
+        "type": "marriage",
+        "daily_rate": 0.8,
+        "service": "registration",
+        "application": "marriage",
+        "prefer_regular_customers": false
     }
 ]

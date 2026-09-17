@@ -9,16 +9,28 @@ use App\Models\Person;
 use App\Models\WorkCase;
 use App\Models\WorldEvent;
 use App\Workplace\AppointmentExecutor;
+use App\World\Events\EventCatalog;
 use App\World\Events\WorldEventHandler;
 use Database\Seeders\BranchSeeder;
 use Database\Seeders\CitySeeder;
 use Database\Seeders\CompanySeeder;
+use Illuminate\Database\Eloquent\Builder;
 
 beforeEach(function () {
     $this->seed([CompanySeeder::class, CitySeeder::class, BranchSeeder::class]);
     $this->city = City::query()->where('slug', 'millbrook')->sole();
     $this->plumber = Branch::query()->where('slug', 'maple-falls')->sole();
 });
+
+/**
+ * @return Builder<WorldEvent>
+ */
+function plumbingEvents(): Builder
+{
+    $types = collect(app(EventCatalog::class)->all())->where('service', 'plumbing')->pluck('type')->all();
+
+    return WorldEvent::query()->whereIn('type', $types);
+}
 
 function dripOnMonday(Person $person): WorldEvent
 {
@@ -53,7 +65,7 @@ it('lets the plumber of the city handle household problems as cases for the affe
     $this->travelTo('2026-09-21 16:00:00');
     $this->artisan('game:tick')->assertSuccessful();
 
-    $events = WorldEvent::query()->whereBelongsTo($this->city)->with(['workCase.customer', 'person'])->get();
+    $events = plumbingEvents()->whereBelongsTo($this->city)->with(['workCase.customer', 'person'])->get();
 
     expect($events)->not->toBeEmpty();
 
@@ -149,5 +161,5 @@ it('waits for a reachable person when everyone with an e-mail address already ha
 
     $this->artisan('game:tick')->assertSuccessful();
 
-    expect(WorldEvent::query()->whereBelongsTo($this->city)->count())->toBe(0);
+    expect(plumbingEvents()->whereBelongsTo($this->city)->count())->toBe(0);
 });

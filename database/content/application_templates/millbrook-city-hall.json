@@ -1,0 +1,52 @@
+[
+    {
+        "slug": "move-registration",
+        "kind": "move",
+        "responsibility": "registration",
+        "request_mail": {
+            "subject": "Change of address: :applicant",
+            "body": "Dear Sir or Madam,\n\nI would like to register my move.\n\nName: :applicant\nPrevious address: :claimed_address\nNew address: :new_address\nMoved in: :moved_on\n\nThe moving boxes are still in the hallway. So officially I live between two addresses.\n\nSincerely,\n:applicant"
+        },
+        "outcome_feedback": {
+            "approved_valid": "Address change for :applicant approved. The details match, the registry matches. That is how it should be.",
+            "approved_invalid": "Address change for :applicant approved although the previous address did not match the registry. Now the registry is wrong. The registry remembers these things.",
+            "rejected_valid": "Address change for :applicant rejected although everything was correct. :applicant is now standing there with moving boxes and no address.",
+            "rejected_invalid": "Address change for :applicant rejected. The previous address did not match. Well spotted."
+        },
+        "feedback_mail": {
+            "subject": "Re: Address change :applicant",
+            "intro": "Hello,\n\nabout the address change for :applicant.",
+            "outro": "Order is half of life. The other half is filing.\n\nH. Brookman"
+        },
+        "reminder_mail": {
+            "subject": "Address change :applicant?",
+            "body": "Hello,\n\nthe address change for :applicant is still unprocessed. Check the details in the registry, approve or reject. Today, please.\n\nH. Brookman"
+        },
+        "date_format": "MM/DD/YYYY"
+    },
+    {
+        "slug": "marriage-registration",
+        "kind": "marriage",
+        "responsibility": "registration",
+        "request_mail": {
+            "subject": "Marriage: :applicant and :partner",
+            "body": "Dear Sir or Madam,\n\nwe got married and would like to register a shared home.\n\nName: :applicant\nAddress: :claimed_address\nSpouse: :partner\nSpouse's previous address: :partner_address\n\n:partner is moving in with me. Whose couch stays is still under negotiation.\n\nSincerely,\n:applicant"
+        },
+        "outcome_feedback": {
+            "approved_valid": "Marriage of :applicant and :partner registered. The registry congratulates. In spirit.",
+            "approved_invalid": "Marriage of :applicant registered although the details did not match the registry. Now the registry has somebody married who does not exist like that.",
+            "rejected_valid": "Marriage of :applicant and :partner rejected although everything was correct. They are married anyway. Just without us.",
+            "rejected_invalid": "Marriage of :applicant rejected. The details did not match the registry. Carefully checked."
+        },
+        "feedback_mail": {
+            "subject": "Re: Marriage :applicant",
+            "intro": "Hello,\n\nabout the marriage of :applicant.",
+            "outro": "Order is half of life. The other half is filing.\n\nH. Brookman"
+        },
+        "reminder_mail": {
+            "subject": "Marriage :applicant?",
+            "body": "Hello,\n\nthe marriage of :applicant is still unprocessed. Check the details in the registry, approve or reject. The couple is waiting.\n\nH. Brookman"
+        },
+        "date_format": "MM/DD/YYYY"
+    }
+]

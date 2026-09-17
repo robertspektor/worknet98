@@ -27,6 +27,7 @@ class CaseStateLoader
             customers: $workCase->branch->customers()->with('person')->get()->keyBy('person.slug'),
             window: $this->window,
             shipment: $workCase->shipment?->load('driver'),
+            civilApplication: $workCase->civilApplication,
         );
     }
 }

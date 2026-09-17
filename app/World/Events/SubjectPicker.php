@@ -13,12 +13,12 @@ class SubjectPicker
 {
     private const REGULAR_CUSTOMER_PERCENT = 60;
 
-    public function pick(City $city, ?Branch $provider, string $seed): ?Person
+    public function pick(City $city, ?Branch $provider, string $seed, bool $prefersRegularCustomers = true): ?Person
     {
         $randomizer = new Randomizer(new Mt19937(crc32($seed)));
         $candidates = $this->reachable($city, $provider);
 
-        if ($provider !== null && $randomizer->getInt(1, 100) <= self::REGULAR_CUSTOMER_PERCENT) {
+        if ($provider !== null && $prefersRegularCustomers && $randomizer->getInt(1, 100) <= self::REGULAR_CUSTOMER_PERCENT) {
             $regular = $this->pickFrom((clone $candidates)->whereRelation('customerships', 'branch_id', $provider->id), $randomizer);
 
             if ($regular !== null) {

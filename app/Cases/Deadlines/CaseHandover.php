@@ -6,6 +6,7 @@ use App\Cases\Routing\CaseRouter;
 use App\Cases\Templates\CaseTemplateCatalog;
 use App\Cases\WorkCaseKind;
 use App\Cases\WorkCaseStatus;
+use App\CivilRegistry\Templates\ApplicationTemplateCatalog;
 use App\Logistics\Templates\ShipmentTemplateCatalog;
 use App\Models\Position;
 use App\Models\WorkCase;
@@ -16,6 +17,7 @@ class CaseHandover
         private readonly CaseTemplateCatalog $templates,
         private readonly CaseRouter $router,
         private readonly ShipmentTemplateCatalog $shipmentTemplates,
+        private readonly ApplicationTemplateCatalog $applicationTemplates,
     ) {}
 
     public function handOverToNpc(WorkCase $workCase): ?Position
@@ -32,6 +34,7 @@ class CaseHandover
         $responsibility = match ($workCase->kind) {
             WorkCaseKind::Template => $this->templates->find($workCase->branch->company, $workCase->case_slug)?->responsibility,
             WorkCaseKind::Shipment => $this->shipmentTemplates->find($workCase->branch->company, $workCase->case_slug)?->responsibility,
+            WorkCaseKind::Application => $this->applicationTemplates->find($workCase->branch->company, $workCase->case_slug)?->responsibility,
             WorkCaseKind::Scripted => null,
         };
 

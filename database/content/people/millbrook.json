@@ -549,5 +549,59 @@
                 "name": "Tony Petrakis"
             }
         ]
+    },
+    {
+        "district": "Greenvale",
+        "street": "14 Meadow Lane",
+        "phone": "555-2214",
+        "members": [
+            {
+                "slug": "harriet-brookman",
+                "name": "Harriet Brookman"
+            }
+        ]
+    },
+    {
+        "district": "Brookhaven",
+        "street": "61 Birch Lane",
+        "phone": "555-6161",
+        "members": [
+            {
+                "slug": "dennis-sawyer",
+                "name": "Dennis Sawyer"
+            }
+        ]
+    },
+    {
+        "district": "Maple Falls",
+        "street": "23 School Street",
+        "phone": "555-2323",
+        "members": [
+            {
+                "slug": "patty-weston",
+                "name": "Patty Weston"
+            }
+        ]
+    },
+    {
+        "district": "Lakeside Park",
+        "street": "5 Pine Street",
+        "members": [
+            {
+                "slug": "marvin-cole",
+                "name": "Marvin Cole"
+            }
+        ]
+    },
+    {
+        "district": "Port Hadley",
+        "street": "17 Canal Street",
+        "phone": "555-1717",
+        "members": [
+            {
+                "slug": "yolanda-bradley",
+                "name": "Yolanda Bradley"
+            }
+        ]
     }
 ]

@@ -1,0 +1,52 @@
+[
+    {
+        "slug": "move-registration",
+        "kind": "move",
+        "responsibility": "registration",
+        "request_mail": {
+            "subject": "Ummeldung: :applicant",
+            "body": "Sehr geehrte Damen und Herren,\n\nhiermit melde ich meinen Umzug an.\n\nName: :applicant\nBisherige Anschrift: :claimed_address\nNeue Anschrift: :new_address\nEinzug: :moved_on\n\nDie Umzugskartons stehen noch im Flur. Ich wohne also offiziell zwischen zwei Adressen.\n\nMit freundlichen Grüßen\n:applicant"
+        },
+        "outcome_feedback": {
+            "approved_valid": "Ummeldung :applicant genehmigt. Angaben stimmen, das Register stimmt. So soll das.",
+            "approved_invalid": "Ummeldung :applicant genehmigt, obwohl die bisherige Anschrift nicht zum Register passt. Jetzt stimmt das Register nicht mehr. Das Register merkt sich so was.",
+            "rejected_valid": "Ummeldung :applicant abgelehnt, obwohl alles stimmte. :applicant steht jetzt mit Umzugskartons und ohne Anschrift da.",
+            "rejected_invalid": "Ummeldung :applicant abgelehnt. Die bisherige Anschrift passte nicht. Gut aufgepasst."
+        },
+        "feedback_mail": {
+            "subject": "AW: Ummeldung :applicant",
+            "intro": "Guten Tag,\n\nzur Ummeldung von :applicant.",
+            "outro": "Ordnung ist das halbe Leben. Die andere Hälfte ist Ablage.\n\nBrückmann"
+        },
+        "reminder_mail": {
+            "subject": "Ummeldung :applicant?",
+            "body": "Guten Tag,\n\ndie Ummeldung von :applicant liegt noch unbearbeitet. Angaben im Register prüfen, genehmigen oder ablehnen. Heute noch, bitte.\n\nBrückmann"
+        },
+        "date_format": "DD.MM.YYYY"
+    },
+    {
+        "slug": "marriage-registration",
+        "kind": "marriage",
+        "responsibility": "registration",
+        "request_mail": {
+            "subject": "Eheschließung: :applicant und :partner",
+            "body": "Sehr geehrte Damen und Herren,\n\nwir haben geheiratet und möchten eine gemeinsame Wohnung melden.\n\nName: :applicant\nAnschrift: :claimed_address\nEhepartner: :partner\nBisherige Anschrift Ehepartner: :partner_address\n\n:partner zieht zu mir. Die Frage, wessen Sofa bleibt, ist noch offen.\n\nMit freundlichen Grüßen\n:applicant"
+        },
+        "outcome_feedback": {
+            "approved_valid": "Eheschließung :applicant und :partner eingetragen. Das Register gratuliert. Also, sinngemäß.",
+            "approved_invalid": "Eheschließung :applicant eingetragen, obwohl die Angaben nicht zum Register passten. Jetzt ist im Register jemand verheiratet, den es so nicht gibt.",
+            "rejected_valid": "Eheschließung :applicant und :partner abgelehnt, obwohl alles stimmte. Die beiden sind trotzdem verheiratet. Nur eben ohne uns.",
+            "rejected_invalid": "Eheschließung :applicant abgelehnt. Die Angaben passten nicht zum Register. Sauber geprüft."
+        },
+        "feedback_mail": {
+            "subject": "AW: Eheschließung :applicant",
+            "intro": "Guten Tag,\n\nzur Eheschließung von :applicant.",
+            "outro": "Ordnung ist das halbe Leben. Die andere Hälfte ist Ablage.\n\nBrückmann"
+        },
+        "reminder_mail": {
+            "subject": "Eheschließung :applicant?",
+            "body": "Guten Tag,\n\ndie Eheschließung von :applicant liegt noch unbearbeitet. Angaben im Register prüfen, genehmigen oder ablehnen. Das Brautpaar wartet.\n\nBrückmann"
+        },
+        "date_format": "DD.MM.YYYY"
+    }
+]

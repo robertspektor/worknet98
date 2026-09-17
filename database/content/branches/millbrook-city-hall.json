@@ -1,0 +1,53 @@
+[
+    {
+        "slug": "city-hall-greenvale",
+        "city": "millbrook",
+        "name": "Greenvale",
+        "office_address": "citizens@millbrook.wn",
+        "positions": [
+            {
+                "slug": "office-head",
+                "title": "Head of Citizens Office",
+                "person": "harriet-brookman",
+                "work_address": "harriet.brookman@millbrook.wn"
+            },
+            {
+                "slug": "office-coordinator",
+                "title": "Front Office",
+                "reports_to": "office-head",
+                "person": "dennis-sawyer",
+                "work_address": "dennis.sawyer@millbrook.wn"
+            },
+            {
+                "slug": "clerk-1",
+                "title": "Citizens Office Clerk",
+                "reports_to": "office-head",
+                "job_opening": "citizens-office-clerk",
+                "person": "patty-weston",
+                "work_address": "patty.weston@millbrook.wn",
+                "responsibilities": ["registration"],
+                "daily_salary": 90
+            },
+            {
+                "slug": "clerk-2",
+                "title": "Citizens Office Clerk",
+                "reports_to": "office-head",
+                "job_opening": "citizens-office-clerk",
+                "person": "marvin-cole",
+                "work_address": "marvin.cole@millbrook.wn",
+                "responsibilities": ["registration"],
+                "daily_salary": 90
+            },
+            {
+                "slug": "clerk-3",
+                "title": "Citizens Office Clerk",
+                "reports_to": "office-head",
+                "job_opening": "citizens-office-clerk",
+                "person": "yolanda-bradley",
+                "work_address": "yolanda.bradley@millbrook.wn",
+                "responsibilities": ["registration"],
+                "daily_salary": 90
+            }
+        ]
+    }
+]

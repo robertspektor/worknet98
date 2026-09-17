@@ -297,6 +297,41 @@
     font-weight: bold;
 }
 
+.registry-tab {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    gap: 6px;
+    min-height: 0;
+}
+
+.registry-tab[hidden] {
+    display: none;
+}
+
+.registry-body {
+    grid-template-columns: 220px 1fr;
+}
+
+.registry-search {
+    grid-template-columns: max-content 1fr max-content;
+}
+
+.registry-row.is-open.is-own:not(.is-selected) {
+    font-weight: bold;
+}
+
+.registry-row.is-approved:not(.is-selected),
+.registry-row.is-rejected:not(.is-selected) {
+    color: #707070;
+}
+
+.registry-detail {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
 .schedule-hint {
     margin: 0;
     font-size: 11px;

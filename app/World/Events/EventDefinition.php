@@ -13,10 +13,7 @@ readonly class EventDefinition
         public ?string $service,
         public ?string $caseTemplate,
         public array $followUps,
+        public ?string $application = null,
+        public bool $prefersRegularCustomers = true,
     ) {}
-
-    public function opensCase(): bool
-    {
-        return $this->service !== null && $this->caseTemplate !== null;
-    }
 }

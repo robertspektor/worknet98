@@ -1,4 +1,9 @@
-export type SoftwareType = 'records' | 'scheduler' | 'shipments' | 'tours';
+export type SoftwareType =
+    | 'records'
+    | 'scheduler'
+    | 'shipments'
+    | 'tours'
+    | 'registry';
 
 export type CompanySoftware = {
     company: string;

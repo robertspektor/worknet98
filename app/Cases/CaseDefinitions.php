@@ -4,6 +4,8 @@ namespace App\Cases;
 
 use App\Cases\Templates\CaseTemplateCatalog;
 use App\Cases\Templates\TemplateCaseBuilder;
+use App\CivilRegistry\Templates\ApplicationCaseBuilder;
+use App\CivilRegistry\Templates\ApplicationTemplateCatalog;
 use App\Logistics\Templates\ShipmentCaseBuilder;
 use App\Logistics\Templates\ShipmentTemplateCatalog;
 use App\Models\WorkCase;
@@ -16,6 +18,8 @@ class CaseDefinitions
         private readonly TemplateCaseBuilder $builder,
         private readonly ShipmentTemplateCatalog $shipmentTemplates,
         private readonly ShipmentCaseBuilder $shipmentBuilder,
+        private readonly ApplicationTemplateCatalog $applicationTemplates,
+        private readonly ApplicationCaseBuilder $applicationBuilder,
     ) {}
 
     public function for(WorkCase $workCase): ?CaseDefinition
@@ -30,9 +34,21 @@ class CaseDefinitions
             return $this->forShipment($workCase);
         }
 
+        if ($workCase->kind === WorkCaseKind::Application) {
+            return $this->forApplication($workCase);
+        }
+
         $template = $this->templates->find($company, $workCase->case_slug);
 
         return $template === null ? null : $this->builder->build($template, $workCase->customer);
+    }
+
+    private function forApplication(WorkCase $workCase): ?CaseDefinition
+    {
+        $template = $this->applicationTemplates->find($workCase->branch->company, $workCase->case_slug);
+        $application = $workCase->civilApplication;
+
+        return $template === null || $application === null ? null : $this->applicationBuilder->build($template, $application);
     }
 
     private function forShipment(WorkCase $workCase): ?CaseDefinition

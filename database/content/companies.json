@@ -296,5 +296,47 @@
         "hr_contact_address": "buck.hammersmith@harborhardware.wn",
         "hiring_note": "No openings right now.",
         "job_openings": []
+    },
+    {
+        "slug": "stadtverwaltung-lindenstadt",
+        "locale": "de",
+        "name": "Stadtverwaltung Lindenstadt",
+        "industry": "Öffentliche Verwaltung",
+        "services": ["registration"],
+        "tagline": "Bitte ziehen Sie eine Nummer.",
+        "description": "Das Bürgerbüro im Rathaus Grünau. Wartemarken, Formulare in dreifacher Ausfertigung und ein Stempel für jede Lebenslage.",
+        "hr_contact_name": "Irmgard Pohl",
+        "hr_contact_address": "personalamt@lindenstadt.wn",
+        "hiring_note": "Bewerbungen bitte vollständig. Unvollständige Bewerbungen werden vollständig abgelegt.",
+        "job_openings": [
+            {
+                "slug": "sachbearbeitung-buergerbuero",
+                "title": "Sachbearbeitung Bürgerbüro (m/w/d)",
+                "description": "Sie bearbeiten Ummeldungen und Eheschließungen, prüfen Angaben gegen das Melderegister und entscheiden. Wer Formulare liebt, wird hier glücklich. Wer sie nicht liebt, lernt es.",
+                "daily_salary": 90,
+                "is_open": true
+            }
+        ]
+    },
+    {
+        "slug": "millbrook-city-hall",
+        "locale": "en",
+        "name": "Millbrook City Hall",
+        "industry": "Public administration",
+        "services": ["registration"],
+        "tagline": "Please take a number.",
+        "description": "The Citizens Office at City Hall in Greenvale. Ticket numbers, forms in triplicate and a rubber stamp for every occasion.",
+        "hr_contact_name": "Irma Polk",
+        "hr_contact_address": "personnel@millbrook.wn",
+        "hiring_note": "Please submit complete applications. Incomplete applications will be completely filed.",
+        "job_openings": [
+            {
+                "slug": "citizens-office-clerk",
+                "title": "Citizens Office Clerk",
+                "description": "Process address changes and marriages, check the details against the resident registry and decide. If you love forms, you will be happy here. If you do not, you will learn.",
+                "daily_salary": 90,
+                "is_open": true
+            }
+        ]
     }
 ]

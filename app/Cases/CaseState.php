@@ -5,6 +5,7 @@ namespace App\Cases;
 use App\Mailbox\EmailAction;
 use App\Models\Appointment;
 use App\Models\CalendarEntry;
+use App\Models\CivilApplication;
 use App\Models\Customer;
 use App\Models\Email;
 use App\Models\Shipment;
@@ -28,7 +29,13 @@ readonly class CaseState
         private Collection $customers,
         private BookingWindow $window,
         private ?Shipment $shipment = null,
+        private ?CivilApplication $civilApplication = null,
     ) {}
+
+    public function civilApplication(): ?CivilApplication
+    {
+        return $this->civilApplication;
+    }
 
     public function shipment(): ?Shipment
     {

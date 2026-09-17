@@ -4,6 +4,8 @@ namespace App\World\Events;
 
 use App\Cases\Templates\CaseTemplateCatalog;
 use App\Cases\Templates\TemplateCaseOpener;
+use App\CivilRegistry\ApplicationIntake;
+use App\CivilRegistry\ApplicationKind;
 use App\Models\WorkCase;
 use App\Models\WorldEvent;
 use App\Workplace\CustomerIntake;
@@ -17,19 +19,24 @@ class WorldEventHandler
         private readonly CaseTemplateCatalog $templates,
         private readonly CustomerIntake $intake,
         private readonly TemplateCaseOpener $opener,
+        private readonly ApplicationIntake $applications,
     ) {}
 
     public function handle(WorldEvent $event): ?WorkCase
     {
         $definition = $this->catalog->find($event->type);
 
-        if ($definition->service === null || $definition->caseTemplate === null) {
+        $branch = $definition->service === null ? null : $this->providers->branchFor($event->city, $definition->service);
+
+        if ($branch === null) {
             return null;
         }
 
-        $branch = $this->providers->branchFor($event->city, $definition->service);
+        if ($definition->application !== null) {
+            return $this->applications->receive($branch, $event, ApplicationKind::from($definition->application));
+        }
 
-        if ($branch === null) {
+        if ($definition->caseTemplate === null) {
             return null;
         }
 

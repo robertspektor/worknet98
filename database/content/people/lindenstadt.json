@@ -542,5 +542,59 @@
                 "name": "Olaf Petersen"
             }
         ]
+    },
+    {
+        "district": "Grünau",
+        "street": "Am Anger 14",
+        "phone": "0555 2214",
+        "members": [
+            {
+                "slug": "hannelore-brueckmann",
+                "name": "Hannelore Brückmann"
+            }
+        ]
+    },
+    {
+        "district": "Neuwiesen",
+        "street": "Birkenweg 61",
+        "phone": "0555 6161",
+        "members": [
+            {
+                "slug": "detlef-sauer",
+                "name": "Detlef Sauer"
+            }
+        ]
+    },
+    {
+        "district": "Ahornfelde",
+        "street": "Schillerstraße 23",
+        "phone": "0555 2323",
+        "members": [
+            {
+                "slug": "petra-wiesner",
+                "name": "Petra Wiesner"
+            }
+        ]
+    },
+    {
+        "district": "Kleinbüttel",
+        "street": "Tannenweg 5",
+        "members": [
+            {
+                "slug": "manfred-kuehl",
+                "name": "Manfred Kühl"
+            }
+        ]
+    },
+    {
+        "district": "Hafenstedt",
+        "street": "Poststraße 17",
+        "phone": "0555 1717",
+        "members": [
+            {
+                "slug": "yvonne-brandl",
+                "name": "Yvonne Brandl"
+            }
+        ]
     }
 ]

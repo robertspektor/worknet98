@@ -18,7 +18,7 @@ it('opens positions only at playable companies', function () {
 
     $openCompanies = Company::query()->whereHas('jobOpenings', fn ($query) => $query->where('is_open', true))->pluck('slug')->sort()->values()->all();
 
-    expect($openCompanies)->toBe(['flowright-plumbing', 'nordwerk-logistik', 'rohr-und-sohn', 'transglobal-logistics']);
+    expect($openCompanies)->toBe(['flowright-plumbing', 'millbrook-city-hall', 'nordwerk-logistik', 'rohr-und-sohn', 'stadtverwaltung-lindenstadt', 'transglobal-logistics']);
 });
 
 it('can seed the companies repeatedly without duplicates', function () {

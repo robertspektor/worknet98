@@ -14,6 +14,7 @@ import { MinefieldApp } from './minefield/minefield-app';
 import { MyComputerApp } from './my-computer-app';
 import { NotepadApp } from './notepad/notepad-app';
 import { RecycleBinApp } from './recycle-bin-app';
+import { RegistryApp } from './registry/registry-app';
 import { ServicePlanApp } from './service-plan/service-plan-app';
 import { ShipmentLogApp } from './shipment-log/shipment-log-app';
 import { TimeClockApp } from './time-clock/time-clock-app';
@@ -92,6 +93,13 @@ export const APPS = {
         size: { width: 660, height: 360 },
         component: TourPlannerApp,
         softwareType: 'tours',
+    },
+    registry: {
+        titleKey: 'desktop.registry',
+        icon: 'registry',
+        size: { width: 600, height: 400 },
+        component: RegistryApp,
+        softwareType: 'registry',
     },
     calendar: {
         titleKey: 'desktop.calendar',

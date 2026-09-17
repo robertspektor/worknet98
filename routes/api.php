@@ -5,6 +5,8 @@ use App\Http\Controllers\Api\V1\CalendarEntryController;
 use App\Http\Controllers\Api\V1\ChatMessageController;
 use App\Http\Controllers\Api\V1\ChatReadController;
 use App\Http\Controllers\Api\V1\ChatReplyController;
+use App\Http\Controllers\Api\V1\CivilApplicationController;
+use App\Http\Controllers\Api\V1\CivilApplicationDecisionController;
 use App\Http\Controllers\Api\V1\CompanySoftwareController;
 use App\Http\Controllers\Api\V1\CustomerController;
 use App\Http\Controllers\Api\V1\DeskPartInstallationController;
@@ -24,6 +26,7 @@ use App\Http\Controllers\Api\V1\ParcelController;
 use App\Http\Controllers\Api\V1\PlayerController;
 use App\Http\Controllers\Api\V1\PromotionOfferAcceptanceController;
 use App\Http\Controllers\Api\V1\PromotionOfferDeclineController;
+use App\Http\Controllers\Api\V1\RegistryPersonController;
 use App\Http\Controllers\Api\V1\ScheduleController;
 use App\Http\Controllers\Api\V1\ShiftController;
 use App\Http\Controllers\Api\V1\ShipmentController;
@@ -88,6 +91,12 @@ Route::prefix('v1')->middleware('auth:sanctum')->name('api.v1.')->group(function
     Route::delete('shipments/{shipment}/plan', [ShipmentPlanController::class, 'destroy'])
         ->middleware('can:plan,shipment')
         ->name('shipments.plan.destroy');
+
+    Route::get('registry/people', [RegistryPersonController::class, 'index'])->name('registry.people.index');
+    Route::get('civil-applications', [CivilApplicationController::class, 'index'])->name('civil-applications.index');
+    Route::post('civil-applications/{civilApplication}/decision', [CivilApplicationDecisionController::class, 'store'])
+        ->middleware('can:decide,civilApplication')
+        ->name('civil-applications.decision.store');
 
     Route::get('calendar-entries', [CalendarEntryController::class, 'index'])->name('calendar-entries.index');
     Route::post('calendar-entries', [CalendarEntryController::class, 'store'])->name('calendar-entries.store');

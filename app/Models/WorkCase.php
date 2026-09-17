@@ -22,6 +22,7 @@ use LogicException;
  * @property string $case_slug
  * @property int|null $world_event_id
  * @property int|null $shipment_id
+ * @property int|null $civil_application_id
  * @property WorkCaseStatus $status
  * @property CarbonImmutable $opened_at
  * @property CarbonImmutable|null $npc_due_at
@@ -37,8 +38,9 @@ use LogicException;
  * @property-read WorldEvent|null $worldEvent
  * @property-read Shipment|null $shipment
  * @property-read Shipment|null $partShipment
+ * @property-read CivilApplication|null $civilApplication
  */
-#[Fillable(['branch_id', 'position_id', 'employment_id', 'customer_id', 'kind', 'case_slug', 'world_event_id', 'shipment_id', 'status', 'opened_at', 'npc_due_at', 'seen_at', 'reminded_at', 'resolved_at'])]
+#[Fillable(['branch_id', 'position_id', 'employment_id', 'customer_id', 'kind', 'case_slug', 'world_event_id', 'shipment_id', 'civil_application_id', 'status', 'opened_at', 'npc_due_at', 'seen_at', 'reminded_at', 'resolved_at'])]
 class WorkCase extends Model
 {
     public function playerEmployment(): Employment
@@ -84,6 +86,14 @@ class WorkCase extends Model
     public function shipment(): BelongsTo
     {
         return $this->belongsTo(Shipment::class);
+    }
+
+    /**
+     * @return BelongsTo<CivilApplication, $this>
+     */
+    public function civilApplication(): BelongsTo
+    {
+        return $this->belongsTo(CivilApplication::class);
     }
 
     /**

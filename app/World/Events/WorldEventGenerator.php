@@ -37,7 +37,7 @@ class WorldEventGenerator
     {
         $service = $planned->definition->service;
         $provider = $service === null ? null : $this->providers->branchFor($city, $service);
-        $person = $this->subjects->pick($city, $provider, $planned->key);
+        $person = $this->subjects->pick($city, $provider, $planned->key, $planned->definition->prefersRegularCustomers);
 
         return $person !== null
             && $this->occurrence->occur($city, $planned->key, $planned->definition, $person, $this->clock->toReal($planned->occursAt)) !== null;

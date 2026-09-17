@@ -36,7 +36,7 @@ class EventCatalog
      */
     private function load(): array
     {
-        /** @var list<array{type: string, daily_rate: float|int, service?: string, case_template?: string, follow_ups?: list<array{type: string, when: string}>}> $entries */
+        /** @var list<array{type: string, daily_rate: float|int, service?: string, case_template?: string, follow_ups?: list<array{type: string, when: string}>, application?: string, prefer_regular_customers?: bool}> $entries */
         $entries = File::json(database_path('content/world_events.json'), JSON_THROW_ON_ERROR);
 
         return collect($entries)
@@ -49,6 +49,8 @@ class EventCatalog
                     fn (array $followUp): FollowUp => new FollowUp($followUp['type'], FollowUpTrigger::from($followUp['when'])),
                     $entry['follow_ups'] ?? [],
                 ),
+                application: $entry['application'] ?? null,
+                prefersRegularCustomers: $entry['prefer_regular_customers'] ?? true,
             )])
             ->all();
     }

@@ -56,6 +56,7 @@ export const BUSINESS_EDITION: Edition = {
         'scheduler',
         'shipments',
         'tours',
+        'registry',
         'calendar',
         'time-clock',
         'recycle-bin',
