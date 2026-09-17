@@ -6,4 +6,5 @@ enum LedgerReason: string
 {
     case Salary = 'salary';
     case Purchase = 'purchase';
+    case Bonus = 'bonus';
 }

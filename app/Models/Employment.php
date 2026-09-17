@@ -61,6 +61,14 @@ class Employment extends Model
     }
 
     /**
+     * @return HasMany<PerformanceReview, $this>
+     */
+    public function performanceReviews(): HasMany
+    {
+        return $this->hasMany(PerformanceReview::class);
+    }
+
+    /**
      * @return BelongsTo<Company, $this>
      */
     public function company(): BelongsTo
