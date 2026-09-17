@@ -5,6 +5,7 @@ namespace App\Models;
 use Carbon\CarbonImmutable;
 use Database\Factories\EmploymentFactory;
 use Illuminate\Database\Eloquent\Attributes\Fillable;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -18,6 +19,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  * @property int $position_id
  * @property int $daily_salary
  * @property CarbonImmutable $hired_at
+ * @property CarbonImmutable|null $ended_at
  * @property CarbonImmutable|null $created_at
  * @property CarbonImmutable|null $updated_at
  * @property-read Company $company
@@ -25,7 +27,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  * @property-read Position $position
  * @property-read User $user
  */
-#[Fillable(['user_id', 'company_id', 'job_opening_id', 'position_id', 'daily_salary', 'hired_at'])]
+#[Fillable(['user_id', 'company_id', 'job_opening_id', 'position_id', 'daily_salary', 'hired_at', 'ended_at'])]
 class Employment extends Model
 {
     /** @use HasFactory<EmploymentFactory> */
@@ -58,6 +60,14 @@ class Employment extends Model
     public function emails(): HasMany
     {
         return $this->hasMany(Email::class);
+    }
+
+    /**
+     * @param  Builder<Employment>  $query
+     */
+    public function scopeActive(Builder $query): void
+    {
+        $query->whereNull('ended_at');
     }
 
     /**
@@ -99,6 +109,7 @@ class Employment extends Model
     {
         return [
             'hired_at' => 'datetime',
+            'ended_at' => 'datetime',
         ];
     }
 }

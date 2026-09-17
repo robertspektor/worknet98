@@ -16,11 +16,14 @@ class MonthClose
 {
     private const BONUS_DAILY_SALARIES = 3;
 
+    private const WARNINGS_UNTIL_DISMISSAL = 3;
+
     public function __construct(
         private readonly GameClock $clock,
         private readonly MetricBook $metrics,
         private readonly ReviewLetter $letter,
         private readonly Mailbox $mailbox,
+        private readonly Dismissal $dismissal,
     ) {}
 
     public function closeDue(): int
@@ -29,6 +32,7 @@ class MonthClose
         $reviewed = 0;
 
         Employment::query()
+            ->active()
             ->where('hired_at', '<', $this->clock->toReal($period->endOfMonth()))
             ->whereDoesntHave('performanceReviews', fn ($query) => $query->where('period', $period->format('Y-m')))
             ->with(['user', 'company', 'position.reportsTo'])
@@ -57,8 +61,13 @@ class MonthClose
                 'bonus' => $rating === ReviewRating::Excellent ? $employment->daily_salary * self::BONUS_DAILY_SALARIES : 0,
             ]);
 
+            $warnings = $this->warningsOf($employment);
             $this->payBonus($review);
-            $this->mailbox->deliver($employment->user, $this->letter->compose($review), $employment);
+            $this->mailbox->deliver($employment->user, $this->letter->compose($review, $warnings, self::WARNINGS_UNTIL_DISMISSAL), $employment);
+
+            if ($warnings >= self::WARNINGS_UNTIL_DISMISSAL) {
+                $this->dismissal->dismiss($employment);
+            }
         });
     }
 
@@ -67,5 +76,10 @@ class MonthClose
         if ($review->bonus > 0) {
             LedgerEntry::create(['user_id' => $review->employment->user_id, 'amount' => $review->bonus, 'reason' => LedgerReason::Bonus]);
         }
+    }
+
+    private function warningsOf(Employment $employment): int
+    {
+        return $employment->performanceReviews()->where('rating', ReviewRating::Poor)->count();
     }
 }

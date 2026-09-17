@@ -43,7 +43,7 @@ class User extends Authenticatable
      */
     public function employment(): HasOne
     {
-        return $this->hasOne(Employment::class)->latestOfMany('hired_at');
+        return $this->hasOne(Employment::class)->ofMany(['hired_at' => 'max'], fn ($query) => $query->whereNull('ended_at'));
     }
 
     /**

@@ -69,7 +69,7 @@ class Position extends Model
      */
     public function holder(): HasOne
     {
-        return $this->hasOne(Employment::class);
+        return $this->hasOne(Employment::class)->whereNull('ended_at');
     }
 
     /**
