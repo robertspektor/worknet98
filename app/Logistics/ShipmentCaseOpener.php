@@ -10,6 +10,7 @@ use App\Cases\WorkCaseKind;
 use App\Logistics\Templates\ShipmentCaseBuilder;
 use App\Logistics\Templates\ShipmentTemplate;
 use App\Mailbox\Mailbox;
+use App\Models\Position;
 use App\Models\Shipment;
 use App\Models\WorkCase;
 use App\Workplace\CustomerIntake;
@@ -27,7 +28,7 @@ class ShipmentCaseOpener
         private readonly Mailbox $mailbox,
     ) {}
 
-    public function open(Shipment $shipment, ShipmentTemplate $template): WorkCase
+    public function open(Shipment $shipment, ShipmentTemplate $template, ?Position $assignee = null): WorkCase
     {
         $contact = $this->intake->businessContactFor($shipment->branch, $this->router->assigneeFor($shipment->sender, self::SENDER_RESPONSIBILITY));
         $workCase = $this->assignment->assign($shipment->branch, $template->responsibility, [
@@ -35,7 +36,7 @@ class ShipmentCaseOpener
             'kind' => WorkCaseKind::Shipment,
             'case_slug' => $template->slug,
             'shipment_id' => $shipment->id,
-        ]);
+        ], $assignee);
         $employment = $workCase->employment;
 
         if ($employment !== null) {

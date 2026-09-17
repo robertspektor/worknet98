@@ -2,6 +2,7 @@
 
 use App\Logistics\TourExecutor;
 use App\Models\Branch;
+use App\Models\CivilApplication;
 use App\Models\Company;
 use App\Models\Driver;
 use App\Models\Employment;
@@ -12,6 +13,8 @@ use App\Models\Shift;
 use App\Models\Shipment;
 use App\Models\Technician;
 use App\Models\User;
+use App\Models\WorkCase;
+use App\Models\WorldEvent;
 use App\Work\LedgerReason;
 use App\Workplace\AppointmentExecutor;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -71,9 +74,17 @@ function driver(string $slug): Driver
     return Driver::query()->whereRelation('person', 'slug', $slug)->sole();
 }
 
-function planShipment(User $dispatcher, string $driver, string $date, string $tour): Shipment
+function skipOnboardingTask(User $player): void
 {
-    $shipment = Shipment::query()->sole();
+    WorkCase::query()->where('employment_id', $player->employment?->id)->delete();
+    Shipment::query()->where('order_key', 'like', 'onboarding|%')->delete();
+    WorldEvent::query()->where('key', 'like', 'onboarding|%')->delete();
+    CivilApplication::query()->whereDoesntHave('workCase')->delete();
+}
+
+function planShipment(User $dispatcher, string $driver, string $date, string $tour, ?Shipment $shipment = null): Shipment
+{
+    $shipment ??= Shipment::query()->whereNull('order_key')->sole();
     test()->actingAs($dispatcher)
         ->putJson(route('api.v1.shipments.plan.update', $shipment), ['driver_id' => driver($driver)->id, 'date' => $date, 'tour' => $tour])
         ->assertOk();

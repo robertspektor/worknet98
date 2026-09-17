@@ -30,6 +30,7 @@ function clerkOnDuty(): User
 {
     $clerk = User::findOrFail(employAtSeededPosition('millbrook-city-hall', 'clerk-1')->user_id);
     workAs($clerk, 'POST', 'api.v1.shift.clock-in');
+    skipOnboardingTask($clerk);
 
     return $clerk;
 }
@@ -89,7 +90,7 @@ it('sends the clerk the application with the details the applicant gave', functi
 
     fileMove($this->office, 'margaret-hollis');
 
-    $request = Email::query()->where('user_id', $clerk->id)->sole();
+    $request = Email::query()->where('user_id', $clerk->id)->where('subject', 'Change of address: Margaret Hollis')->sole();
     expect($request->subject)->toBe('Change of address: Margaret Hollis')
         ->and($request->sender_address)->toBe('m.hollis@mail.wn')
         ->and($request->body)->toContain('Previous address: 14 Birch Lane, Maple Falls')

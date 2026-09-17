@@ -78,7 +78,7 @@ it('places no supply orders on the weekend', function () {
 
     $this->artisan('game:tick')->assertSuccessful();
 
-    expect(Shipment::count())->toBe(0);
+    expect(Shipment::query()->whereNotNull('order_key')->count())->toBe(0);
 });
 
 it('asks the dispatcher to pick up the restock at the supplier', function () {
@@ -87,7 +87,7 @@ it('asks the dispatcher to pick up the restock at the supplier', function () {
 
     sendDrugstoreRestock('2026-09-22');
 
-    $request = Email::query()->where('user_id', $dispatcher->id)->sole();
+    $request = Email::query()->where('user_id', $dispatcher->id)->where('subject', 'like', 'Pickup:%')->sole();
     expect($request->subject)->toBe("Pickup: dish brushes, 1 carton for Crane's Drugstore")
         ->and($request->sender_name)->toBe('Judy Brennan')
         ->and($request->sender_address)->toBe('judy.brennan@happyconsumer.wn')
@@ -99,9 +99,10 @@ it('lets the shop complain when the restock arrives late', function () {
     $this->travelTo('2026-09-21 09:00:00');
     $dispatcher = User::findOrFail(employAtSeededPosition('transglobal-logistics', 'dispatch-coordinator-1')->user_id);
     workAs($dispatcher, 'POST', 'api.v1.shift.clock-in');
+    skipOnboardingTask($dispatcher);
     $shipment = sendDrugstoreRestock('2026-09-22');
 
-    planShipment($dispatcher, 'rusty-calhoun', '2026-09-22', 'afternoon');
+    planShipment($dispatcher, 'rusty-calhoun', '2026-09-22', 'afternoon', $shipment);
     deliverShipmentsAt('2026-09-22 16:30:00');
 
     $complaint = Email::query()->where('user_id', $dispatcher->id)->where('subject', 'Complaint: dish brushes, 1 carton')->sole();
@@ -116,13 +117,14 @@ it('keeps the shop quiet when the restock arrives in time', function () {
     $this->travelTo('2026-09-21 09:00:00');
     $dispatcher = User::findOrFail(employAtSeededPosition('transglobal-logistics', 'dispatch-coordinator-1')->user_id);
     workAs($dispatcher, 'POST', 'api.v1.shift.clock-in');
-    sendDrugstoreRestock('2026-09-22');
+    skipOnboardingTask($dispatcher);
+    $shipment = sendDrugstoreRestock('2026-09-22');
 
-    planShipment($dispatcher, 'rusty-calhoun', '2026-09-22', 'morning');
+    planShipment($dispatcher, 'rusty-calhoun', '2026-09-22', 'morning', $shipment);
     deliverShipmentsAt('2026-09-22 10:30:00');
 
     expect(Email::query()->where('user_id', $dispatcher->id)->where('subject', 'like', 'Complaint:%')->exists())->toBeFalse()
-        ->and(WorkCase::query()->where('kind', WorkCaseKind::Shipment)->sole()->status->value)->toBe('resolved');
+        ->and(WorkCase::query()->where('shipment_id', $shipment->id)->sole()->status->value)->toBe('resolved');
 });
 
 it('only runs supply routes between companies of the same city with a sales desk at the supplier', function () {

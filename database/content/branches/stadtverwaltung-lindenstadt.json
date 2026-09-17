@@ -9,14 +9,23 @@
                 "slug": "office-head",
                 "title": "Amtsleitung Bürgerbüro",
                 "person": "hannelore-brueckmann",
-                "work_address": "hannelore.brueckmann@lindenstadt.wn"
+                "work_address": "hannelore.brueckmann@lindenstadt.wn",
+                "responsibilities": ["registration"],
+                "daily_salary": 160
             },
             {
                 "slug": "office-coordinator",
                 "title": "Geschäftszimmer",
                 "reports_to": "office-head",
                 "person": "detlef-sauer",
-                "work_address": "detlef.sauer@lindenstadt.wn"
+                "work_address": "detlef.sauer@lindenstadt.wn",
+                "responsibilities": ["registration"],
+                "daily_salary": 125,
+                "promotion": {
+                    "to": ["office-head"],
+                    "excellent_reviews": 2,
+                    "clean_months": 2
+                }
             },
             {
                 "slug": "clerk-1",
@@ -26,7 +35,12 @@
                 "person": "petra-wiesner",
                 "work_address": "petra.wiesner@lindenstadt.wn",
                 "responsibilities": ["registration"],
-                "daily_salary": 90
+                "daily_salary": 90,
+                "promotion": {
+                    "to": ["office-coordinator"],
+                    "excellent_reviews": 2,
+                    "clean_months": 2
+                }
             },
             {
                 "slug": "clerk-2",
@@ -36,7 +50,12 @@
                 "person": "manfred-kuehl",
                 "work_address": "manfred.kuehl@lindenstadt.wn",
                 "responsibilities": ["registration"],
-                "daily_salary": 90
+                "daily_salary": 90,
+                "promotion": {
+                    "to": ["office-coordinator"],
+                    "excellent_reviews": 2,
+                    "clean_months": 2
+                }
             },
             {
                 "slug": "clerk-3",
@@ -46,7 +65,12 @@
                 "person": "yvonne-brandl",
                 "work_address": "yvonne.brandl@lindenstadt.wn",
                 "responsibilities": ["registration"],
-                "daily_salary": 90
+                "daily_salary": 90,
+                "promotion": {
+                    "to": ["office-coordinator"],
+                    "excellent_reviews": 2,
+                    "clean_months": 2
+                }
             }
         ]
     }

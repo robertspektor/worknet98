@@ -16,14 +16,23 @@
                 "title": "Leitung Disposition",
                 "reports_to": "branch-manager",
                 "person": "tanja-brueckner",
-                "work_address": "tanja.brueckner@nordwerk.wn"
+                "work_address": "tanja.brueckner@nordwerk.wn",
+                "responsibilities": ["dispatch"],
+                "daily_salary": 185
             },
             {
                 "slug": "office-coordinator",
                 "title": "Büroorganisation",
                 "reports_to": "branch-manager",
                 "person": "martin-hollmeier",
-                "work_address": "martin.hollmeier@nordwerk.wn"
+                "work_address": "martin.hollmeier@nordwerk.wn",
+                "responsibilities": ["dispatch"],
+                "daily_salary": 150,
+                "promotion": {
+                    "to": ["team-lead"],
+                    "excellent_reviews": 2,
+                    "clean_months": 2
+                }
             },
             {
                 "slug": "dispatch-coordinator-1",
@@ -32,7 +41,13 @@
                 "job_opening": "junior-disponent",
                 "person": "holger-mahler",
                 "work_address": "holger.mahler@nordwerk.wn",
-                "responsibilities": ["dispatch"]
+                "responsibilities": ["dispatch"],
+                "daily_salary": 120,
+                "promotion": {
+                    "to": ["office-coordinator"],
+                    "excellent_reviews": 2,
+                    "clean_months": 2
+                }
             },
             {
                 "slug": "dispatch-coordinator-2",
@@ -41,7 +56,13 @@
                 "job_opening": "junior-disponent",
                 "person": "kerstin-mohr",
                 "work_address": "kerstin.mohr@nordwerk.wn",
-                "responsibilities": ["dispatch"]
+                "responsibilities": ["dispatch"],
+                "daily_salary": 120,
+                "promotion": {
+                    "to": ["office-coordinator"],
+                    "excellent_reviews": 2,
+                    "clean_months": 2
+                }
             },
             {
                 "slug": "dispatch-coordinator-3",
@@ -50,7 +71,13 @@
                 "job_opening": "junior-disponent",
                 "person": "otto-pfennig",
                 "work_address": "otto.pfennig@nordwerk.wn",
-                "responsibilities": ["dispatch"]
+                "responsibilities": ["dispatch"],
+                "daily_salary": 120,
+                "promotion": {
+                    "to": ["office-coordinator"],
+                    "excellent_reviews": 2,
+                    "clean_months": 2
+                }
             }
         ],
         "drivers": [

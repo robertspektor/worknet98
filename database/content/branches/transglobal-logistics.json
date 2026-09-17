@@ -16,14 +16,23 @@
                 "title": "Dispatch Supervisor",
                 "reports_to": "branch-manager",
                 "person": "tammy-briggs",
-                "work_address": "tammy.briggs@transglobal.wn"
+                "work_address": "tammy.briggs@transglobal.wn",
+                "responsibilities": ["dispatch"],
+                "daily_salary": 185
             },
             {
                 "slug": "office-coordinator",
                 "title": "Office Coordinator",
                 "reports_to": "branch-manager",
                 "person": "martin-hollister",
-                "work_address": "martin.hollister@transglobal.wn"
+                "work_address": "martin.hollister@transglobal.wn",
+                "responsibilities": ["dispatch"],
+                "daily_salary": 150,
+                "promotion": {
+                    "to": ["team-lead"],
+                    "excellent_reviews": 2,
+                    "clean_months": 2
+                }
             },
             {
                 "slug": "dispatch-coordinator-1",
@@ -32,7 +41,13 @@
                 "job_opening": "junior-dispatch-coordinator",
                 "person": "hank-mulligan",
                 "work_address": "hank.mulligan@transglobal.wn",
-                "responsibilities": ["dispatch"]
+                "responsibilities": ["dispatch"],
+                "daily_salary": 120,
+                "promotion": {
+                    "to": ["office-coordinator"],
+                    "excellent_reviews": 2,
+                    "clean_months": 2
+                }
             },
             {
                 "slug": "dispatch-coordinator-2",
@@ -41,7 +56,13 @@
                 "job_opening": "junior-dispatch-coordinator",
                 "person": "keisha-monroe",
                 "work_address": "keisha.monroe@transglobal.wn",
-                "responsibilities": ["dispatch"]
+                "responsibilities": ["dispatch"],
+                "daily_salary": 120,
+                "promotion": {
+                    "to": ["office-coordinator"],
+                    "excellent_reviews": 2,
+                    "clean_months": 2
+                }
             },
             {
                 "slug": "dispatch-coordinator-3",
@@ -50,7 +71,13 @@
                 "job_opening": "junior-dispatch-coordinator",
                 "person": "otis-pennington",
                 "work_address": "otis.pennington@transglobal.wn",
-                "responsibilities": ["dispatch"]
+                "responsibilities": ["dispatch"],
+                "daily_salary": 120,
+                "promotion": {
+                    "to": ["office-coordinator"],
+                    "excellent_reviews": 2,
+                    "clean_months": 2
+                }
             }
         ],
         "drivers": [

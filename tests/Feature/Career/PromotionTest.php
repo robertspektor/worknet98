@@ -44,7 +44,6 @@ function earnPromotionOffer(): PromotionOffer
 {
     excellentMonthUntil('2026-07-01');
     excellentMonthUntil('2026-08-01');
-    excellentMonthUntil('2026-09-01');
 
     return PromotionOffer::query()->sole();
 }
@@ -54,14 +53,13 @@ function seededPosition(string $slug): Position
     return Position::query()->whereRelation('branch.company', 'slug', 'flowright-plumbing')->where('slug', $slug)->sole();
 }
 
-it('does not offer a promotion before three excellent months', function () {
+it('does not offer a promotion before two excellent months', function () {
     excellentMonthUntil('2026-07-01');
-    excellentMonthUntil('2026-08-01');
 
     expect(PromotionOffer::count())->toBe(0);
 });
 
-it('offers the next positions after three excellent months', function () {
+it('offers the next positions after two excellent months', function () {
     $offer = earnPromotionOffer();
 
     expect($offer->status)->toBe(PromotionOfferStatus::Pending)
@@ -74,18 +72,17 @@ it('offers the next positions after three excellent months', function () {
         ->and($mail->sender_name)->toBe('Gary Flowright')
         ->and($mail->body)->toContain('- Emergency Dispatcher, 130 credits per day')
         ->and($mail->body)->toContain('Right now you make 100 credits per day')
-        ->and($mail->body)->toContain('until the end of September 2026');
+        ->and($mail->body)->toContain('until the end of August 2026');
 });
 
 it('does not offer a promotion while a recent month was poor', function () {
     excellentMonthUntil('2026-07-01');
-    excellentMonthUntil('2026-08-01');
-    poorMonthUntil('2026-09-01');
-    excellentMonthUntil('2026-10-01');
+    poorMonthUntil('2026-08-01');
+    excellentMonthUntil('2026-09-01');
 
     expect(PromotionOffer::count())->toBe(0);
 
-    excellentMonthUntil('2026-11-01');
+    excellentMonthUntil('2026-10-01');
 
     expect(PromotionOffer::count())->toBe(1);
 });
@@ -181,7 +178,7 @@ it('routes cases of the new responsibility to the promoted player', function () 
         ->and(Email::query()->where('subject', 'EMERGENCY: burst pipe')->sole()->user_id)->toBe($this->player->id);
 });
 
-it('lets the player decline and waits for three new excellent months', function () {
+it('lets the player decline and waits for two new excellent months', function () {
     $offer = earnPromotionOffer();
 
     $this->actingAs($this->player)
@@ -189,11 +186,10 @@ it('lets the player decline and waits for three new excellent months', function 
         ->assertSuccessful()
         ->assertJsonPath('data.status', 'declined');
 
-    excellentMonthUntil('2026-10-01');
-    excellentMonthUntil('2026-11-01');
+    excellentMonthUntil('2026-09-01');
     expect(PromotionOffer::count())->toBe(1);
 
-    excellentMonthUntil('2026-12-01');
+    excellentMonthUntil('2026-10-01');
     expect(PromotionOffer::count())->toBe(2);
 });
 
@@ -251,12 +247,12 @@ it('starts the warnings from zero in the new position', function () {
     poorMonthUntil('2026-07-01');
     excellentMonthUntil('2026-08-01');
     excellentMonthUntil('2026-09-01');
-    excellentMonthUntil('2026-10-01');
+
     $this->actingAs($this->player)
         ->postJson(route('api.v1.promotion-offers.acceptance.store', PromotionOffer::query()->sole()), ['position_id' => seededPosition('emergency-dispatcher')->id])
         ->assertSuccessful();
 
-    poorMonthUntil('2026-11-01');
+    poorMonthUntil('2026-10-01');
 
-    expect(Email::query()->where('subject', 'Your review for October 2026')->sole()->body)->toContain('Official warnings in this job: 1 of 3');
+    expect(Email::query()->where('subject', 'Your review for September 2026')->sole()->body)->toContain('Official warnings in this job: 1 of 3');
 });

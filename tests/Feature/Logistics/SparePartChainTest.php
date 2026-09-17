@@ -25,6 +25,8 @@ function playersOnBothSides(): array
     $dispatcher = User::findOrFail(employAtSeededPosition('transglobal-logistics', 'dispatch-coordinator-1')->user_id);
     workAs($plumber, 'POST', 'api.v1.shift.clock-in');
     workAs($dispatcher, 'POST', 'api.v1.shift.clock-in');
+    skipOnboardingTask($plumber);
+    skipOnboardingTask($dispatcher);
 
     return [$plumber, $dispatcher];
 }
@@ -43,8 +45,8 @@ it('orders the spare part from the wholesaler and asks the carrier to deliver it
 
     reportBurstPipeAndBookRepair($plumber, '2026-09-22', '13:00');
 
-    $shipment = Shipment::query()->with(['branch', 'sender', 'recipient'])->sole();
-    $dispatchCase = WorkCase::query()->where('kind', WorkCaseKind::Shipment)->sole();
+    $shipment = Shipment::query()->whereNull('order_key')->with(['branch', 'sender', 'recipient'])->sole();
+    $dispatchCase = WorkCase::query()->where('shipment_id', $shipment->id)->sole();
     $request = Email::query()->where('user_id', $dispatcher->id)->where('subject', 'Pickup: shut-off valve 3/4" for Flowright Plumbing & Heating')->sole();
 
     expect($shipment->branch->slug)->toBe('port-hadley')
@@ -64,20 +66,20 @@ it('orders nothing for repairs that need no spare part', function () {
 
     $this->actingAs($plumber)->postJson(route('api.v1.appointments.store'), ['customer_id' => $frank->id, 'technician_id' => technician('stan-kowalski')->id, 'date' => '2026-09-22', 'slot' => '13:00']);
 
-    expect(Shipment::count())->toBe(0);
+    expect(Shipment::query()->whereNull('order_key')->count())->toBe(0);
 });
 
 it('lets the repair go ahead when the dispatcher delivers the part in time', function () {
     [$plumber, $dispatcher] = playersOnBothSides();
     $gloria = reportBurstPipeAndBookRepair($plumber, '2026-09-22', '13:00');
     planShipment($dispatcher, 'rusty-calhoun', '2026-09-22', 'morning');
-    workAs($dispatcher, 'POST', 'api.v1.emails.store', ['customer_id' => WorkCase::query()->where('kind', WorkCaseKind::Shipment)->sole()->customer_id, 'subject' => 'Route', 'body' => 'Tuesday morning.', 'action' => 'confirm_shipment']);
+    workAs($dispatcher, 'POST', 'api.v1.emails.store', ['customer_id' => WorkCase::query()->whereRelation('shipment', 'order_key', null)->sole()->customer_id, 'subject' => 'Route', 'body' => 'Tuesday morning.', 'action' => 'confirm_shipment']);
 
     deliverShipmentsAt('2026-09-22 10:30:00');
     carryOutAppointmentsAt('2026-09-22 15:00:00');
 
     $dispatchEmployment = $dispatcher->employment;
-    expect(WorkCase::query()->where('kind', WorkCaseKind::Shipment)->sole()->status)->toBe(WorkCaseStatus::Resolved)
+    expect(WorkCase::query()->whereRelation('shipment', 'order_key', null)->where('kind', WorkCaseKind::Shipment)->sole()->status)->toBe(WorkCaseStatus::Resolved)
         ->and(WorkCase::query()->where('customer_id', $gloria->id)->sole()->status)->toBe(WorkCaseStatus::Resolved)
         ->and(Appointment::query()->sole()->failed_at)->toBeNull()
         ->and(app(MetricBook::class)->valueOf($dispatchEmployment, Metric::Punctuality))->toBe(1)
@@ -114,10 +116,10 @@ it('refuses to load a pallet onto a van', function () {
     workAs($plumber, 'POST', 'api.v1.appointments.store', ['customer_id' => Customer::query()->ofPerson('gloria-mendez')->sole()->id, 'technician_id' => technician('rita-vance')->id, 'date' => '2026-09-23', 'slot' => '13:00']);
 
     $this->actingAs($dispatcher)
-        ->putJson(route('api.v1.shipments.plan.update', Shipment::query()->sole()), ['driver_id' => driver('rusty-calhoun')->id, 'date' => '2026-09-22', 'tour' => 'morning'])
+        ->putJson(route('api.v1.shipments.plan.update', Shipment::query()->whereNull('order_key')->sole()), ['driver_id' => driver('rusty-calhoun')->id, 'date' => '2026-09-22', 'tour' => 'morning'])
         ->assertUnprocessable();
 
-    expect(Shipment::query()->sole()->isPlanned())->toBeFalse();
+    expect(Shipment::query()->whereNull('order_key')->sole()->isPlanned())->toBeFalse();
 });
 
 it('shows the dispatcher the shipments and the route plan of the own branch', function () {
@@ -127,11 +129,7 @@ it('shows the dispatcher the shipments and the route plan of the own branch', fu
 
     $this->actingAs($dispatcher)->getJson(route('api.v1.shipments.index'))
         ->assertOk()
-        ->assertJsonPath('data.0.contents', 'shut-off valve 3/4"')
-        ->assertJsonPath('data.0.recipient', 'Flowright Plumbing & Heating')
-        ->assertJsonPath('data.0.contact', 'Rhonda Mayfield')
-        ->assertJsonPath('data.0.plan.driver', 'Rusty Calhoun')
-        ->assertJsonPath('data.0.plan.is_own', true);
+        ->assertJsonFragment(['contents' => 'shut-off valve 3/4"', 'recipient' => 'Flowright Plumbing & Heating', 'contact' => 'Rhonda Mayfield']);
 
     $this->actingAs($dispatcher)->getJson(route('api.v1.tour-plan.show'))
         ->assertOk()

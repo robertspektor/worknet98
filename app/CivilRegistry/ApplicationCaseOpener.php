@@ -10,6 +10,7 @@ use App\CivilRegistry\Templates\ApplicationCaseBuilder;
 use App\CivilRegistry\Templates\ApplicationTemplate;
 use App\Mailbox\Mailbox;
 use App\Models\CivilApplication;
+use App\Models\Position;
 use App\Models\WorkCase;
 use App\Models\WorldEvent;
 use App\Workplace\CustomerIntake;
@@ -24,7 +25,7 @@ class ApplicationCaseOpener
         private readonly Mailbox $mailbox,
     ) {}
 
-    public function open(CivilApplication $application, ApplicationTemplate $template, WorldEvent $event): WorkCase
+    public function open(CivilApplication $application, ApplicationTemplate $template, WorldEvent $event, ?Position $assignee = null): WorkCase
     {
         $applicant = $this->intake->customerFor($application->branch, $application->applicant);
         $workCase = $this->assignment->assign($application->branch, $template->responsibility, [
@@ -33,7 +34,7 @@ class ApplicationCaseOpener
             'case_slug' => $template->slug,
             'civil_application_id' => $application->id,
             'world_event_id' => $event->id,
-        ]);
+        ], $assignee);
         $employment = $workCase->employment;
 
         if ($employment !== null) {

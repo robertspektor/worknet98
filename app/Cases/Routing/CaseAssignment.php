@@ -4,6 +4,7 @@ namespace App\Cases\Routing;
 
 use App\Cases\WorkCaseStatus;
 use App\Models\Branch;
+use App\Models\Position;
 use App\Models\WorkCase;
 use App\Work\OpenShift;
 use Illuminate\Support\Facades\DB;
@@ -18,11 +19,11 @@ class CaseAssignment
     /**
      * @param  array<string, mixed>  $attributes
      */
-    public function assign(Branch $branch, string $responsibility, array $attributes): WorkCase
+    public function assign(Branch $branch, string $responsibility, array $attributes, ?Position $assignee = null): WorkCase
     {
-        return DB::transaction(function () use ($branch, $responsibility, $attributes): WorkCase {
+        return DB::transaction(function () use ($branch, $responsibility, $attributes, $assignee): WorkCase {
             Branch::query()->whereKey($branch->id)->lockForUpdate()->first();
-            $position = $this->router->assigneeFor($branch, $responsibility);
+            $position = $assignee ?? $this->router->assigneeFor($branch, $responsibility);
             $employment = $position->holder;
 
             return WorkCase::create([

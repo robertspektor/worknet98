@@ -28,8 +28,9 @@ class CaseRouter
         return Position::query()
             ->whereBelongsTo($branch)
             ->responsibleFor($responsibility)
-            ->withCount(['workCases' => fn ($query) => $query->open()])
+            ->withCount(['workCases' => fn ($query) => $query->open(), 'holder'])
             ->orderBy('work_cases_count')
+            ->orderByDesc('holder_count')
             ->orderBy('id');
     }
 }

@@ -1,0 +1,6 @@
+{
+    "briefing_mail": {
+        "subject": "Welcome to dispatch",
+        "body": "Hey,\n\nwelcome to TransGlobal. The short version, then we let you work.\n\nThe Shipment Log lists every shipment with its recipient and the time it is due. In the Route Planner you put it on a route: vans take parcels, trucks take pallets. Then you confirm the route to the sender by mail.\n\nA route that arrives late is not a route, it is a complaint. Your first shipment is already in the list.\n\nTammy"
+    }
+}
