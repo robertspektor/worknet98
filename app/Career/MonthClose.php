@@ -9,7 +9,10 @@ use App\Mailbox\Mailbox;
 use App\Models\Employment;
 use App\Models\LedgerEntry;
 use App\Models\PerformanceReview;
+use App\Work\ContractPeriods;
 use App\Work\LedgerReason;
+use App\Work\MonthlySalary;
+use App\Work\WorkedTime;
 use Carbon\CarbonImmutable;
 use Illuminate\Support\Facades\DB;
 
@@ -27,6 +30,10 @@ class MonthClose
         private readonly Dismissal $dismissal,
         private readonly PromotionOfferer $promotions,
         private readonly EmployeeOfTheMonth $awards,
+        private readonly ContractPeriods $periods,
+        private readonly WorkedTime $workedTime,
+        private readonly MonthlySalary $salary,
+        private readonly PayslipLetter $payslip,
     ) {}
 
     public function closeDue(): int
@@ -69,6 +76,7 @@ class MonthClose
 
             $warnings = $this->warningsOf($employment);
             $this->payBonus($review);
+            $this->paySalary($review, $period);
             $this->mailbox->deliver($employment->user, $this->letter->compose($review, $warnings, self::WARNINGS_UNTIL_DISMISSAL), $employment);
 
             if ($warnings >= self::WARNINGS_UNTIL_DISMISSAL) {
@@ -79,6 +87,19 @@ class MonthClose
 
             $this->promotions->offerIfEligible($review);
         });
+    }
+
+    private function paySalary(PerformanceReview $review, CarbonImmutable $period): void
+    {
+        $employment = $review->employment;
+        $workedSeconds = $this->workedTime->secondsIn($employment, $this->periods->of($period));
+        $paid = $this->salary->earnedFor($employment, $workedSeconds);
+
+        if ($paid > 0) {
+            LedgerEntry::create(['user_id' => $employment->user_id, 'amount' => $paid, 'reason' => LedgerReason::Salary]);
+        }
+
+        $this->mailbox->deliver($employment->user, $this->payslip->compose($review, $workedSeconds, $paid), $employment);
     }
 
     private function payBonus(PerformanceReview $review): void

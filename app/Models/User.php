@@ -38,6 +38,14 @@ class User extends Authenticatable
     }
 
     /**
+     * @return HasMany<LivingCostBill, $this>
+     */
+    public function livingCostBills(): HasMany
+    {
+        return $this->hasMany(LivingCostBill::class);
+    }
+
+    /**
      * @return HasMany<JobApplication, $this>
      */
     public function jobApplications(): HasMany

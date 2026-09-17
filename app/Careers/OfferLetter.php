@@ -4,6 +4,7 @@ namespace App\Careers;
 
 use App\Mailbox\EmailDraft;
 use App\Models\JobApplication;
+use App\Work\MonthlySalary;
 
 class OfferLetter
 {
@@ -14,7 +15,7 @@ class OfferLetter
         $replacements = [
             'company' => $company->name,
             'job' => $opening->title,
-            'salary' => $opening->daily_salary,
+            'salary' => $opening->daily_salary * MonthlySalary::WORK_DAYS_PER_MONTH,
             'contact' => $company->hr_contact_name,
             'note' => $company->hiring_note,
         ];

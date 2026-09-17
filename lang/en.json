@@ -107,7 +107,7 @@
     "inbox.select": "Select a message to read it.",
     "inbox.unread": ":count unread message(s)",
     "game_mail.offer.subject": "Your application as :job",
-    "game_mail.offer.body": "Dear applicant,\n\nThank you for your application as :job. We are delighted to inform you that you got the job! Congratulations and welcome to :company.\n\nYour salary is :salary credits per day. Your company badge is waiting on your desk. Take it with you when you go to work. Your first shift starts as soon as you clock in.\n\n:note\n\nKind regards,\n:contact\nHuman Resources, :company",
+    "game_mail.offer.body": "Dear applicant,\n\nThank you for your application as :job. We are delighted to inform you that you got the job! Congratulations and welcome to :company.\n\nYour salary is :salary credits per month. Your company badge is waiting on your desk. Take it with you when you go to work. Your first shift starts as soon as you clock in.\n\n:note\n\nKind regards,\n:contact\nHuman Resources, :company",
     "game_mail.rejection.subject": "Your application as :job",
     "game_mail.rejection.body": "Dear applicant,\n\nThank you for your application as :job and for your interest in :company.\n\nUnfortunately, the position has been filled in the meantime. Your application was very strong. It was also second.\n\nWe will keep your documents on file. The file is a drawer. It is full.\n\nKind regards,\n:contact\nHuman Resources, :company",
     "game_mail.case_handed_over.subject": ":customer: handed over",
@@ -550,5 +550,18 @@
     "forum.rankings.score": "Score",
     "forum.rankings.excellent": ":count excellent",
     "office.plaque.title": "Employee of the month",
-    "office.plaque.hint": "It is heavier than it looks."
+    "office.plaque.hint": "It is heavier than it looks.",
+    "game_mail.payslip.subject": "Payslip :month",
+    "game_mail.payslip.intro": "Dear colleague,\n\nhere is your payslip for :month. Please check it and file it. We file everything.",
+    "game_mail.payslip.lines": "Active time: :worked of :target minutes\nContract salary: :full C\nPaid out: :salary C\nBonus: :bonus C\nTotal: :total C",
+    "game_mail.payslip.short_time": "You stayed below the contract time, so the salary is reduced accordingly. The clock does not negotiate.",
+    "game_mail.payslip.outro": "The amount is on its way to your account.\n\nKind regards,\n:contact\nPayroll, :company",
+    "game_mail.bill.rent.subject": "Rent :month",
+    "game_mail.bill.rent.body": "Dear tenant,\n\nthe rent of :amount C for :month has been debited.\n\nThe radiator in the hallway is on the list. It has been on the list since 1994.\n\nKind regards,\n:sender",
+    "game_mail.bill.electricity.subject": "Electricity bill :month",
+    "game_mail.bill.electricity.body": "Dear customer,\n\nyour electricity bill for :month comes to :amount C and has been debited.\n\nA computer running all night is a wonderful thing. For us.\n\nKind regards,\n:sender",
+    "game_mail.bill.phone.subject": "Phone and network :month",
+    "game_mail.bill.phone.body": "Dear customer,\n\nyour bill for :month comes to :amount C and has been debited.\n\nIncluded: the line, the modem tariff and the four minutes of hold music you listened to last week.\n\nKind regards,\n:sender",
+    "time_clock.salary": "Salary so far",
+    "time_clock.salary_value": ":earned of :full C"
 }

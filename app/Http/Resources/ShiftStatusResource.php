@@ -26,6 +26,8 @@ class ShiftStatusResource extends JsonResource
             'clocked_out_automatically' => $status->wasClockedOutAutomatically(),
             'worked_seconds' => $status->workedSeconds,
             'target_seconds' => $status->targetSeconds,
+            'full_salary' => $status->fullSalary,
+            'earned_salary' => $status->earnedSalary,
             'period' => [
                 'starts_on' => $status->period->startsOn->toDateString(),
                 'ends_on' => $status->period->endsOn->toDateString(),

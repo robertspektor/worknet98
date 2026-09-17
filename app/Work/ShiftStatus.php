@@ -11,6 +11,8 @@ readonly class ShiftStatus
         public ContractPeriod $period,
         public int $workedSeconds,
         public int $targetSeconds,
+        public int $fullSalary = 0,
+        public int $earnedSalary = 0,
     ) {}
 
     public function state(): string

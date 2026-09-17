@@ -3,6 +3,7 @@
 namespace App\Work;
 
 use App\Game\GameClock;
+use Carbon\CarbonImmutable;
 
 class ContractPeriods
 {
@@ -10,7 +11,11 @@ class ContractPeriods
 
     public function current(): ContractPeriod
     {
-        $month = $this->clock->today()->startOfMonth();
+        return $this->of($this->clock->today()->startOfMonth());
+    }
+
+    public function of(CarbonImmutable $month): ContractPeriod
+    {
         $nextMonth = $month->addMonthNoOverflow();
 
         return new ContractPeriod(

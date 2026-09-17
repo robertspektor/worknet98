@@ -12,5 +12,7 @@ export type ShiftStatus = {
     clocked_out_automatically: boolean;
     worked_seconds: number;
     target_seconds: number;
+    full_salary: number;
+    earned_salary: number;
     period: ContractPeriod;
 };

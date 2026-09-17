@@ -1,0 +1,42 @@
+{
+    "de": [
+        {
+            "kind": "rent",
+            "sender_name": "Hausverwaltung Kettler",
+            "sender_address": "miete@kettler-hausverwaltung.wn",
+            "amount": 620
+        },
+        {
+            "kind": "electricity",
+            "sender_name": "Stadtwerke Lindenstadt",
+            "sender_address": "abrechnung@stadtwerke-lindenstadt.wn",
+            "amount": 85
+        },
+        {
+            "kind": "phone",
+            "sender_name": "NetzTel",
+            "sender_address": "rechnung@netztel.wn",
+            "amount": 45
+        }
+    ],
+    "en": [
+        {
+            "kind": "rent",
+            "sender_name": "Hartwell Property Management",
+            "sender_address": "rent@hartwellproperties.wn",
+            "amount": 620
+        },
+        {
+            "kind": "electricity",
+            "sender_name": "Millbrook Power & Light",
+            "sender_address": "billing@millbrookpower.wn",
+            "amount": 85
+        },
+        {
+            "kind": "phone",
+            "sender_name": "BellCom",
+            "sender_address": "billing@bellcom.wn",
+            "amount": 45
+        }
+    ]
+}

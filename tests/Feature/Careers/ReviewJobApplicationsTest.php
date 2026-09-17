@@ -54,7 +54,7 @@ it('sends the job offer by mail in the company language', function () {
         ->and($email->sender_address)->toBe('birgit.kowalski@nordwerk.wn')
         ->and($email->subject)->toBe('Ihre Bewerbung als Junior Dispatch Coordinator')
         ->and($email->body)->toContain('willkommen bei Nordwerk Logistik AG')
-        ->and($email->body)->toContain('120 Credits pro Tag')
+        ->and($email->body)->toContain('2520 Credits pro Monat')
         ->and($email->body)->toContain('Gerd hat ein Banner gebastelt.')
         ->and($email->body)->toContain('Ihr Firmenausweis liegt auf Ihrem Schreibtisch')
         ->and($email->body)->not->toContain('folgen in Kürze')

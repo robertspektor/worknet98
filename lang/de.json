@@ -107,7 +107,7 @@
     "inbox.select": "Wähle eine Nachricht aus, um sie zu lesen.",
     "inbox.unread": ":count ungelesene Nachricht(en)",
     "game_mail.offer.subject": "Ihre Bewerbung als :job",
-    "game_mail.offer.body": "Guten Tag,\n\nvielen Dank für Ihre Bewerbung als :job. Wir freuen uns, Ihnen mitzuteilen: Sie haben die Stelle! Herzlichen Glückwunsch und willkommen bei :company.\n\nIhr Gehalt beträgt :salary Credits pro Tag. Ihr Firmenausweis liegt auf Ihrem Schreibtisch bereit. Nehmen Sie ihn mit, wenn Sie zur Arbeit gehen. Ihre erste Schicht beginnt, sobald Sie sich einstempeln.\n\n:note\n\nMit freundlichen Grüßen\n:contact\nPersonalabteilung, :company",
+    "game_mail.offer.body": "Guten Tag,\n\nvielen Dank für Ihre Bewerbung als :job. Wir freuen uns, Ihnen mitzuteilen: Sie haben die Stelle! Herzlichen Glückwunsch und willkommen bei :company.\n\nIhr Gehalt beträgt :salary Credits pro Monat. Ihr Firmenausweis liegt auf Ihrem Schreibtisch bereit. Nehmen Sie ihn mit, wenn Sie zur Arbeit gehen. Ihre erste Schicht beginnt, sobald Sie sich einstempeln.\n\n:note\n\nMit freundlichen Grüßen\n:contact\nPersonalabteilung, :company",
     "game_mail.rejection.subject": "Ihre Bewerbung als :job",
     "game_mail.rejection.body": "Guten Tag,\n\nvielen Dank für Ihre Bewerbung als :job und Ihr Interesse an :company.\n\nLeider wurde die Stelle inzwischen besetzt. Ihre Bewerbung war sehr stark. Sie war nur leider die zweite.\n\nWir bewahren Ihre Unterlagen auf. Die Ablage ist eine Schublade. Sie ist voll.\n\nMit freundlichen Grüßen\n:contact\nPersonalabteilung, :company",
     "game_mail.case_handed_over.subject": ":customer: abgegeben",
@@ -550,5 +550,18 @@
     "forum.rankings.score": "Punkte",
     "forum.rankings.excellent": ":count mal sehr gut",
     "office.plaque.title": "Mitarbeiter des Monats",
-    "office.plaque.hint": "Sie ist schwerer, als sie aussieht."
+    "office.plaque.hint": "Sie ist schwerer, als sie aussieht.",
+    "game_mail.payslip.subject": "Gehaltsabrechnung :month",
+    "game_mail.payslip.intro": "Guten Tag,\n\nhier ist Ihre Gehaltsabrechnung für :month. Bitte prüfen und ablegen. Wir legen alles ab.",
+    "game_mail.payslip.lines": "Aktive Zeit: :worked von :target Minuten\nVertragsgehalt: :full C\nAusgezahlt: :salary C\nBonus: :bonus C\nGesamt: :total C",
+    "game_mail.payslip.short_time": "Sie lagen unter der vereinbarten Zeit, das Gehalt wurde entsprechend gekürzt. Die Stempeluhr verhandelt nicht.",
+    "game_mail.payslip.outro": "Der Betrag ist auf dem Weg zu Ihrem Konto.\n\nMit freundlichen Grüßen\n:contact\nLohnbuchhaltung, :company",
+    "game_mail.bill.rent.subject": "Miete :month",
+    "game_mail.bill.rent.body": "Sehr geehrte Mieterin, sehr geehrter Mieter,\n\ndie Miete in Höhe von :amount C für :month wurde abgebucht.\n\nDer Heizkörper im Flur steht auf der Liste. Er steht seit 1994 auf der Liste.\n\nMit freundlichen Grüßen\n:sender",
+    "game_mail.bill.electricity.subject": "Stromrechnung :month",
+    "game_mail.bill.electricity.body": "Sehr geehrte Kundin, sehr geehrter Kunde,\n\nIhre Stromrechnung für :month beträgt :amount C und wurde abgebucht.\n\nEin Rechner, der die ganze Nacht läuft, ist eine schöne Sache. Für uns.\n\nMit freundlichen Grüßen\n:sender",
+    "game_mail.bill.phone.subject": "Telefon und Netz :month",
+    "game_mail.bill.phone.body": "Sehr geehrte Kundin, sehr geehrter Kunde,\n\nIhre Rechnung für :month beträgt :amount C und wurde abgebucht.\n\nEnthalten: der Anschluss, der Modemtarif und die vier Minuten Wartemusik von letzter Woche.\n\nMit freundlichen Grüßen\n:sender",
+    "time_clock.salary": "Gehalt bisher",
+    "time_clock.salary_value": ":earned von :full C"
 }

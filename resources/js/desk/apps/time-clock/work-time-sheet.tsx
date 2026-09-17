@@ -2,6 +2,7 @@ import type { CSSProperties } from 'react';
 import { useTranslation } from '@/i18n/use-translation';
 import type { ShiftStatus } from '@/types';
 import { formatWorkTime, summarizeWorkTime } from '../../shift/work-time';
+import { formatAmount } from '../../ui/format';
 
 function contractMonth(startsOn: string, locale: string): string {
     return new Date(`${startsOn}T00:00:00`).toLocaleDateString(locale, {
@@ -45,6 +46,13 @@ export function WorkTimeSheet({ shift }: { shift: ShiftStatus }) {
                 <dd>{hours(time.workedSeconds)}</dd>
                 <dt>{t('time_clock.target')}</dt>
                 <dd>{hours(time.targetSeconds)}</dd>
+                <dt>{t('time_clock.salary')}</dt>
+                <dd>
+                    {t('time_clock.salary_value', {
+                        earned: formatAmount(shift.earned_salary, locale),
+                        full: formatAmount(shift.full_salary, locale),
+                    })}
+                </dd>
                 <dt>
                     {t(
                         isOvertime
