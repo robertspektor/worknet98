@@ -1,33 +1,35 @@
 <?php
 
 use App\Models\FloppyDisk;
-use App\Models\FloppyDiskOrder;
+use App\Models\Order;
 use App\Models\User;
 use Illuminate\Testing\TestResponse;
 
-function unpackParcel(User $player, FloppyDiskOrder $order): TestResponse
+function unpackParcel(User $player, Order $order): TestResponse
 {
     return test()->actingAs($player)->postJson(route('api.v1.parcels.unpacking.store', $order));
 }
 
 it('lists the parcels waiting on the desk', function () {
     $player = User::factory()->create();
-    $waiting = FloppyDiskOrder::factory()->delivered()->create(['user_id' => $player->id]);
-    FloppyDiskOrder::factory()->create(['user_id' => $player->id]);
-    FloppyDiskOrder::factory()->unpacked()->create(['user_id' => $player->id]);
-    FloppyDiskOrder::factory()->delivered()->create();
+    $waiting = Order::factory()->delivered()->create(['user_id' => $player->id]);
+    Order::factory()->create(['user_id' => $player->id]);
+    Order::factory()->unpacked()->create(['user_id' => $player->id]);
+    Order::factory()->delivered()->create();
 
     $this->actingAs($player)
         ->getJson(route('api.v1.parcels.index'))
         ->assertOk()
         ->assertJsonCount(1, 'data')
         ->assertJsonPath('data.0.id', $waiting->id)
-        ->assertJsonPath('data.0.floppy_disk.id', $waiting->floppy_disk_id);
+        ->assertJsonPath('data.0.storefront', 'diskdepot')
+        ->assertJsonPath('data.0.product.type', 'floppy_disk')
+        ->assertJsonPath('data.0.product.id', $waiting->product_id);
 });
 
 it('moves the disk of an unpacked parcel into the disk box', function () {
     $this->freezeSecond();
-    $order = FloppyDiskOrder::factory()->delivered()->create();
+    $order = Order::factory()->delivered()->create();
     $starter = FloppyDisk::factory()->starter()->create();
 
     unpackParcel($order->user, $order)->assertNoContent();
@@ -35,11 +37,11 @@ it('moves the disk of an unpacked parcel into the disk box', function () {
     expect($order->fresh()?->unpacked_at?->equalTo(now()))->toBeTrue();
     $this->actingAs($order->user)
         ->getJson(route('api.v1.floppy-disks.index'))
-        ->assertJsonPath('data.*.id', [$order->floppy_disk_id, $starter->id]);
+        ->assertJsonPath('data.*.id', [$order->product_id, $starter->id]);
 });
 
 it('does not put ordered disks into other players boxes', function () {
-    FloppyDiskOrder::factory()->unpacked()->create();
+    Order::factory()->unpacked()->create();
 
     $this->actingAs(User::factory()->create())
         ->getJson(route('api.v1.floppy-disks.index'))
@@ -47,7 +49,7 @@ it('does not put ordered disks into other players boxes', function () {
 });
 
 it('refuses to unpack parcels that have not arrived', function () {
-    $order = FloppyDiskOrder::factory()->create();
+    $order = Order::factory()->create();
 
     unpackParcel($order->user, $order)->assertForbidden();
 
@@ -55,7 +57,7 @@ it('refuses to unpack parcels that have not arrived', function () {
 });
 
 it('refuses to unpack the parcels of other players', function () {
-    $order = FloppyDiskOrder::factory()->delivered()->create();
+    $order = Order::factory()->delivered()->create();
 
     unpackParcel(User::factory()->create(), $order)->assertForbidden();
 });

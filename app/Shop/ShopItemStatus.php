@@ -2,7 +2,7 @@
 
 namespace App\Shop;
 
-use App\Models\FloppyDiskOrder;
+use App\Models\Order;
 
 enum ShopItemStatus: string
 {
@@ -11,7 +11,7 @@ enum ShopItemStatus: string
     case Delivered = 'delivered';
     case Owned = 'owned';
 
-    public static function of(?FloppyDiskOrder $order): self
+    public static function of(?Order $order): self
     {
         return match (true) {
             $order === null => self::Available,

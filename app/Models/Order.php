@@ -2,18 +2,21 @@
 
 namespace App\Models;
 
+use App\Shop\Product;
 use Carbon\CarbonImmutable;
-use Database\Factories\FloppyDiskOrderFactory;
+use Database\Factories\OrderFactory;
 use Illuminate\Database\Eloquent\Attributes\Fillable;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\MorphTo;
 
 /**
  * @property int $id
  * @property int $user_id
- * @property int $floppy_disk_id
+ * @property string $product_type
+ * @property int $product_id
  * @property int $price
  * @property CarbonImmutable $delivers_at
  * @property CarbonImmutable|null $delivered_at
@@ -21,12 +24,12 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property CarbonImmutable|null $created_at
  * @property CarbonImmutable|null $updated_at
  * @property-read User $user
- * @property-read FloppyDisk $floppyDisk
+ * @property-read Product&Model $product
  */
-#[Fillable(['user_id', 'floppy_disk_id', 'price', 'delivers_at', 'delivered_at', 'unpacked_at'])]
-class FloppyDiskOrder extends Model
+#[Fillable(['user_id', 'product_type', 'product_id', 'price', 'delivers_at', 'delivered_at', 'unpacked_at'])]
+class Order extends Model
 {
-    /** @use HasFactory<FloppyDiskOrderFactory> */
+    /** @use HasFactory<OrderFactory> */
     use HasFactory;
 
     /**
@@ -38,11 +41,11 @@ class FloppyDiskOrder extends Model
     }
 
     /**
-     * @return BelongsTo<FloppyDisk, $this>
+     * @return MorphTo<Model, $this>
      */
-    public function floppyDisk(): BelongsTo
+    public function product(): MorphTo
     {
-        return $this->belongsTo(FloppyDisk::class);
+        return $this->morphTo();
     }
 
     public function isDelivered(): bool
@@ -56,7 +59,7 @@ class FloppyDiskOrder extends Model
     }
 
     /**
-     * @param  Builder<FloppyDiskOrder>  $query
+     * @param  Builder<Order>  $query
      */
     public function scopeDueForDelivery(Builder $query): void
     {
@@ -64,7 +67,7 @@ class FloppyDiskOrder extends Model
     }
 
     /**
-     * @param  Builder<FloppyDiskOrder>  $query
+     * @param  Builder<Order>  $query
      */
     public function scopeWaitingOnDesk(Builder $query): void
     {
@@ -72,7 +75,7 @@ class FloppyDiskOrder extends Model
     }
 
     /**
-     * @param  Builder<FloppyDiskOrder>  $query
+     * @param  Builder<Order>  $query
      */
     public function scopeUnpacked(Builder $query): void
     {

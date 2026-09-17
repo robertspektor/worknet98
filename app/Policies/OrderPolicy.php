@@ -2,12 +2,12 @@
 
 namespace App\Policies;
 
-use App\Models\FloppyDiskOrder;
+use App\Models\Order;
 use App\Models\User;
 
-class FloppyDiskOrderPolicy
+class OrderPolicy
 {
-    public function unpack(User $player, FloppyDiskOrder $order): bool
+    public function unpack(User $player, Order $order): bool
     {
         return $order->user_id === $player->id && $order->isDelivered();
     }

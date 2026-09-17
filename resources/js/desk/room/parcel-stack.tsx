@@ -1,13 +1,19 @@
 import { useState } from 'react';
 import { useTranslation } from '@/i18n/use-translation';
-import { useFloppyDrive } from '../floppy/floppy-drive-provider';
+import type { Storefront } from '@/types';
+import { useParcels } from '../parcels/parcel-provider';
 import { sound } from '../sound/sound';
 
 const UNPACK_MS = 600;
 
+const SENDER_LABELS: Record<Storefront, string> = {
+    diskdepot: 'DiskDepot',
+    chipcity: 'ChipCity',
+};
+
 export function ParcelStack() {
     const { t } = useTranslation();
-    const { parcels, unpack } = useFloppyDrive();
+    const { parcels, unpack } = useParcels();
     const [isOpening, setOpening] = useState(false);
     const next = parcels.at(0);
 
@@ -42,7 +48,9 @@ export function ParcelStack() {
                 <span className="parcel-flap is-left" />
                 <span className="parcel-flap is-right" />
                 <span className="parcel-tape" />
-                <span className="parcel-label">DiskDepot</span>
+                <span className={`parcel-label is-${next.storefront}`}>
+                    {SENDER_LABELS[next.storefront]}
+                </span>
             </span>
             <span className="desk-item-caption">{t('parcel.caption')}</span>
         </button>

@@ -13,7 +13,7 @@ it('runs a new player on the slow starter processor', function () {
     $this->actingAs(User::factory()->create())
         ->getJson(route('api.v1.home-computer.show'))
         ->assertOk()
-        ->assertExactJson(['data' => ['cpu' => ['slug' => 'kalkulon-75', 'speed_mhz' => 75, 'needs_thermal_paste' => false]]]);
+        ->assertExactJson(['data' => ['cpu' => ['slug' => 'kalkulon-75', 'speed_mhz' => 75, 'needs_thermal_paste' => false], 'desk_parts' => []]]);
 });
 
 it('runs on the installed processor', function () {

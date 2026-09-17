@@ -3,23 +3,24 @@
 namespace App\Shop;
 
 use App\Mailbox\EmailDraft;
-use App\Models\FloppyDiskOrder;
+use App\Models\Order;
 
 class ShippingNotice
 {
-    public function compose(FloppyDiskOrder $order): EmailDraft
+    public function compose(Order $order): EmailDraft
     {
         $locale = $order->user->locale;
+        $storefront = $order->product->storefront();
         $replacements = [
-            'disk' => __("floppy_disk.{$order->floppyDisk->slug}.label", [], $locale),
+            'item' => __($order->product->labelKey(), [], $locale),
             'price' => $order->price,
         ];
 
         return new EmailDraft(
-            senderName: 'DiskDepot',
-            senderAddress: 'orders@diskdepot.wn',
-            subject: __('game_mail.parcel.subject', $replacements, $locale),
-            body: __('game_mail.parcel.body', $replacements, $locale),
+            senderName: $storefront->senderName(),
+            senderAddress: $storefront->senderAddress(),
+            subject: __("game_mail.parcel.{$storefront->value}.subject", $replacements, $locale),
+            body: __("game_mail.parcel.{$storefront->value}.body", $replacements, $locale),
         );
     }
 }

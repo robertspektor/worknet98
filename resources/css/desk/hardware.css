@@ -1,0 +1,265 @@
+.cpu-chip {
+    --chip-ceramic: #d9d3c4;
+    --chip-ceramic-edge: #a79f8b;
+    --chip-pin: #c9a640;
+
+    position: relative;
+    display: block;
+    width: 4em;
+    height: 4em;
+}
+
+.cpu-chip.is-used {
+    --chip-ceramic: #c7bfad;
+    --chip-ceramic-edge: #8f8672;
+    --chip-pin: #9c8a55;
+}
+
+.cpu-chip-body {
+    position: absolute;
+    inset: 0.45em;
+    border-radius: 0.12em;
+    background: linear-gradient(
+        145deg,
+        var(--chip-ceramic) 55%,
+        var(--chip-ceramic-edge)
+    );
+    box-shadow: 0 0.12em 0.2em #0006;
+}
+
+.cpu-chip-notch {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0.55em;
+    height: 0.55em;
+    background: var(--chip-ceramic-edge);
+    clip-path: polygon(0 0, 100% 0, 0 100%);
+}
+
+.cpu-chip-die {
+    position: absolute;
+    inset: 28%;
+    border-radius: 0.06em;
+    background: linear-gradient(135deg, #b8bcc0, #7d8388 60%, #9aa0a5);
+}
+
+.cpu-chip.is-used .cpu-chip-die {
+    background:
+        radial-gradient(circle at 40% 45%, #d4d4d499 0 25%, transparent 45%),
+        linear-gradient(135deg, #9aa0a5, #6b7075 60%, #858b90);
+}
+
+.cpu-chip-brand {
+    position: absolute;
+    right: 0;
+    bottom: 0.14em;
+    left: 0;
+    font:
+        700 0.32em / 1 Tahoma,
+        sans-serif;
+    letter-spacing: 0.08em;
+    color: #4a4538;
+    text-align: center;
+}
+
+.cpu-chip-pins {
+    position: absolute;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.cpu-chip-pins.is-top,
+.cpu-chip-pins.is-bottom {
+    right: 0.6em;
+    left: 0.6em;
+    height: 0.5em;
+}
+
+.cpu-chip-pins.is-top {
+    top: 0;
+}
+
+.cpu-chip-pins.is-bottom {
+    bottom: 0;
+}
+
+.cpu-chip-pins.is-left,
+.cpu-chip-pins.is-right {
+    top: 0.6em;
+    bottom: 0.6em;
+    flex-direction: column;
+    width: 0.5em;
+}
+
+.cpu-chip-pins.is-left {
+    left: 0;
+}
+
+.cpu-chip-pins.is-right {
+    right: 0;
+}
+
+.cpu-chip-pin {
+    flex: 0 0 0.12em;
+    background: var(--chip-pin);
+}
+
+.chip-city {
+    padding: 0 0 12px;
+    font-family: Arial, Helvetica, sans-serif;
+    background: #f4f7f4;
+}
+
+.chip-city-banner {
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+    padding: 10px 16px 8px;
+    color: #d8ffd8;
+    background:
+        repeating-linear-gradient(90deg, #0000 0 22px, #1b5e2b33 22px 24px),
+        linear-gradient(180deg, #0b3d1a, #145a28);
+    border-bottom: 3px solid #39d353;
+}
+
+.chip-city-logo {
+    font:
+        600 26px / 1 'Pixelify Sans',
+        Tahoma,
+        sans-serif;
+    color: #fff;
+}
+
+.chip-city-logo b {
+    font-weight: 600;
+    color: #39d353;
+}
+
+.chip-city-tagline {
+    font:
+        20px / 1 'VT323',
+        monospace;
+    color: #9fe8a9;
+}
+
+.chip-city-account {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 4px 12px;
+    padding: 6px 16px;
+    font-weight: bold;
+    background: #e3f2e3;
+    border-bottom: 1px solid #b7d4b7;
+}
+
+.chip-city-account .muted {
+    font-weight: normal;
+}
+
+.chip-city .shop-item {
+    grid-template-columns: 60px 1fr auto;
+    background: #fff;
+    border-color: #b7d4b7;
+}
+
+.chip-city .shop-item-name {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.chip-city .shop-item-price {
+    color: #145a28;
+}
+
+.chip-city-chip {
+    display: grid;
+    place-items: center;
+    font-size: 14px;
+}
+
+.chip-city-turbo {
+    padding: 1px 5px;
+    font:
+        bold 10px / 1.2 Tahoma,
+        sans-serif;
+    letter-spacing: 1px;
+    color: #fff;
+    background: linear-gradient(180deg, #ff5a1f, #c42a00);
+    box-shadow: 1px 1px 0 #7a1a00;
+    rotate: -3deg;
+}
+
+.chip-city-speed {
+    margin: 4px 0 0;
+    font:
+        18px / 1 'VT323',
+        monospace;
+    color: #145a28;
+}
+
+.parcel-label.is-chipcity {
+    color: #145a28;
+}
+
+.desk-parts {
+    bottom: 1.5vh;
+    left: calc(100% - var(--side-space) / 2 - 22em);
+    display: flex;
+    align-items: end;
+    gap: 1.6em;
+    font-size: clamp(8px, min(calc(var(--side-space) / 20), 1.5vh), 16px);
+    translate: -50% 0;
+}
+
+.desk-part {
+    display: grid;
+    justify-items: center;
+    gap: 0.4em;
+}
+
+.desk-part .cpu-chip {
+    font-size: 1.2em;
+}
+
+.desk-part.is-used .cpu-chip {
+    rotate: 14deg;
+}
+
+.anti-static-bag {
+    position: relative;
+    display: grid;
+    place-items: center;
+    width: 7.5em;
+    height: 8.5em;
+    border-radius: 0.3em 0.3em 0.2em 0.2em;
+    background:
+        linear-gradient(115deg, #fff3 20%, #0000 35% 70%, #fff2 85%),
+        linear-gradient(180deg, #8c96a0cc, #5f6973dd);
+    box-shadow:
+        inset 0 0 0 0.12em #c4ccd466,
+        0 0.2em 0.4em #0008;
+    rotate: -6deg;
+}
+
+.anti-static-bag .cpu-chip {
+    opacity: 0.8;
+}
+
+.anti-static-seal {
+    position: absolute;
+    top: 0.5em;
+    right: 0.4em;
+    left: 0.4em;
+    height: 0.5em;
+    border-top: 0.12em dashed #d7dde2aa;
+}
+
+@media (max-width: 900px), (max-aspect-ratio: 5/4) {
+    .desk-parts {
+        display: none;
+    }
+}

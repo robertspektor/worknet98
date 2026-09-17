@@ -4,21 +4,22 @@ namespace App\Http\Controllers\Api\V1;
 
 use App\Http\Resources\ShopItemResource;
 use App\Models\FloppyDisk;
-use App\Shop\DiskOrderPlacer;
-use App\Shop\DiskShop;
+use App\Shop\Catalog;
+use App\Shop\OrderPlacer;
 use App\Shop\ShopItem;
+use App\Shop\Storefront;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 
 class ShopController extends ApiController
 {
-    public function index(Request $request, DiskShop $shop): AnonymousResourceCollection
+    public function index(Request $request, Catalog $catalog): AnonymousResourceCollection
     {
-        return ShopItemResource::collection($shop->catalogFor($this->player($request)));
+        return ShopItemResource::collection($catalog->for($this->player($request), Storefront::DiskDepot));
     }
 
-    public function store(Request $request, FloppyDisk $floppyDisk, DiskOrderPlacer $placer): JsonResponse
+    public function store(Request $request, FloppyDisk $floppyDisk, OrderPlacer $placer): JsonResponse
     {
         $order = $placer->place($this->player($request), $floppyDisk);
 

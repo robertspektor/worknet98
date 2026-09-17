@@ -1,4 +1,5 @@
 import type { ComponentType } from 'react';
+import { ChipCitySite } from './chip-city-site';
 import { DiskDepotSite } from './disk-depot-site';
 import { StartPage } from './start-page';
 
@@ -14,6 +15,10 @@ export const SITES = {
     diskdepot: {
         address: 'http://www.diskdepot.wn/',
         component: DiskDepotSite,
+    },
+    chipcity: {
+        address: 'http://www.chipcity.wn/',
+        component: ChipCitySite,
     },
 } satisfies Record<string, SiteDefinition>;
 

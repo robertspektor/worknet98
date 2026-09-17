@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Api\V1;
 
 use App\Http\Resources\ParcelResource;
-use App\Models\FloppyDiskOrder;
+use App\Models\Order;
 use App\Shop\ParcelUnpacker;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
@@ -13,10 +13,10 @@ class ParcelController extends ApiController
 {
     public function index(Request $request): AnonymousResourceCollection
     {
-        $parcels = FloppyDiskOrder::query()
+        $parcels = Order::query()
             ->where('user_id', $this->player($request)->id)
             ->waitingOnDesk()
-            ->with('floppyDisk')
+            ->with('product')
             ->orderBy('delivered_at')
             ->orderBy('id')
             ->get();
@@ -24,9 +24,9 @@ class ParcelController extends ApiController
         return ParcelResource::collection($parcels);
     }
 
-    public function store(FloppyDiskOrder $floppyDiskOrder, ParcelUnpacker $unpacker): Response
+    public function store(Order $order, ParcelUnpacker $unpacker): Response
     {
-        $unpacker->unpack($floppyDiskOrder);
+        $unpacker->unpack($order);
 
         return response()->noContent();
     }

@@ -3,42 +3,43 @@
 namespace App\Shop;
 
 use App\Game\ActionRefused;
-use App\Models\FloppyDisk;
-use App\Models\FloppyDiskOrder;
+use App\Models\Order;
 use App\Models\User;
 use App\Work\LedgerReason;
 use App\Work\WalletCharge;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
 
-class DiskOrderPlacer
+class OrderPlacer
 {
     public function __construct(
         private readonly WalletCharge $walletCharge,
         private readonly ParcelSchedule $parcelSchedule,
     ) {}
 
-    public function place(User $player, FloppyDisk $disk): FloppyDiskOrder
+    public function place(User $player, Product&Model $product): Order
     {
-        $price = $disk->price ?? throw new ActionRefused(ShopRefusal::NotForSale);
+        $price = $product->salePrice() ?? throw new ActionRefused(ShopRefusal::NotForSale);
 
-        return DB::transaction(function () use ($player, $disk, $price): FloppyDiskOrder {
-            $this->refuseRepeatedOrder($player, $disk);
+        return DB::transaction(function () use ($player, $product, $price): Order {
+            $this->refuseRepeatedOrder($player, $product);
             $this->walletCharge->charge($player, $price, LedgerReason::Purchase);
 
-            return FloppyDiskOrder::create([
+            return Order::create([
                 'user_id' => $player->id,
-                'floppy_disk_id' => $disk->id,
+                'product_type' => $product->getMorphClass(),
+                'product_id' => $product->getKey(),
                 'price' => $price,
                 'delivers_at' => $this->parcelSchedule->deliveryTime(),
             ]);
         });
     }
 
-    private function refuseRepeatedOrder(User $player, FloppyDisk $disk): void
+    private function refuseRepeatedOrder(User $player, Product&Model $product): void
     {
-        $isOrdered = FloppyDiskOrder::query()
+        $isOrdered = Order::query()
             ->where('user_id', $player->id)
-            ->where('floppy_disk_id', $disk->id)
+            ->whereMorphedTo('product', $product)
             ->exists();
 
         if ($isOrdered) {

@@ -8,7 +8,7 @@ use Illuminate\Console\Attributes\Signature;
 use Illuminate\Console\Command;
 
 #[Signature('shop:deliver-parcels')]
-#[Description('Deliver ordered floppy disks whose delivery time has come')]
+#[Description('Deliver ordered parcels whose delivery time has come')]
 class DeliverParcels extends Command
 {
     public function handle(ParcelCourier $courier): int

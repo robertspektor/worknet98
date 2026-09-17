@@ -2,14 +2,14 @@
 
 use App\Models\Email;
 use App\Models\FloppyDisk;
-use App\Models\FloppyDiskOrder;
+use App\Models\Order;
 use App\Models\User;
 
 it('delivers due parcels with a shipping mail in the player language', function () {
     $this->freezeSecond();
     $player = User::factory()->locale('de')->create();
     $disk = FloppyDisk::factory()->forSale(40)->create(['slug' => 'calculator']);
-    $order = FloppyDiskOrder::factory()->due()->create(['user_id' => $player->id, 'floppy_disk_id' => $disk->id, 'price' => 40]);
+    $order = Order::factory()->of($disk)->due()->create(['user_id' => $player->id, 'price' => 40]);
 
     $this->artisan('shop:deliver-parcels')->assertSuccessful();
 
@@ -22,7 +22,7 @@ it('delivers due parcels with a shipping mail in the player language', function 
 });
 
 it('keeps parcels in transit until their delivery time', function () {
-    $order = FloppyDiskOrder::factory()->create(['delivers_at' => now()->addMinute()]);
+    $order = Order::factory()->create(['delivers_at' => now()->addMinute()]);
 
     $this->artisan('shop:deliver-parcels')->assertSuccessful();
 
@@ -31,7 +31,7 @@ it('keeps parcels in transit until their delivery time', function () {
 });
 
 it('delivers every parcel only once', function () {
-    FloppyDiskOrder::factory()->due()->create();
+    Order::factory()->due()->create();
 
     $this->artisan('shop:deliver-parcels')->assertSuccessful();
     $this->artisan('shop:deliver-parcels')->assertSuccessful();

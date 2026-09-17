@@ -1,28 +1,20 @@
 import { useEffect, useState } from 'react';
-import type { ShopItem } from '@/types';
-import {
-    fetchBalance,
-    fetchShopItems,
-    orderDisk,
-} from '../../../floppy/shop-api';
-import { useOptionalFloppyDrive } from '../../../floppy/floppy-drive-provider';
+import type { ShopOffer } from '@/types';
+import { useOptionalParcels } from '../../../parcels/parcel-provider';
+import { fetchBalance } from '../../../shop/shop-api';
+import type { ShopApi } from '../../../shop/shop-api';
 
-function useDeskContentsKey(): string {
-    const floppyDrive = useOptionalFloppyDrive();
-
-    return `${floppyDrive?.parcels.length}:${floppyDrive?.disks.length}`;
-}
-
-export function useDiskDepot() {
-    const [items, setItems] = useState<ShopItem[] | null>(null);
+export function useShop<Item extends ShopOffer>(api: ShopApi<Item>) {
+    const [items, setItems] = useState<Item[] | null>(null);
     const [balance, setBalance] = useState<number | null>(null);
-    const deskContents = useDeskContentsKey();
+    const parcelCount = useOptionalParcels()?.parcels.length;
 
     useEffect(() => {
-        void fetchShopItems()
+        void api
+            .fetchItems()
             .then(setItems)
             .catch(() => setItems([]));
-    }, [deskContents]);
+    }, [api, parcelCount]);
 
     useEffect(() => {
         void fetchBalance()
@@ -30,8 +22,8 @@ export function useDiskDepot() {
             .catch(() => undefined);
     }, []);
 
-    const order = async (item: ShopItem) => {
-        const ordered = await orderDisk(item);
+    const order = async (item: Item) => {
+        const ordered = await api.order(item);
         setItems(
             (current) =>
                 current?.map((candidate) =>

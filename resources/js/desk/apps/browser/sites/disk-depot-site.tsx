@@ -1,58 +1,19 @@
 import { useTranslation } from '@/i18n/use-translation';
-import type { ShopItem } from '@/types';
-import { GameApiError } from '../../../api/game-api';
-import { useDialogs } from '../../../dialogs/dialog-provider';
-import { sound } from '../../../sound/sound';
+import { DISK_DEPOT_API } from '../../../shop/shop-api';
 import { AppLoading } from '../../../ui/app-loading';
 import { ShopItemCard } from './shop-item-card';
-import { useDiskDepot } from './use-disk-depot';
-
-function useOrderFlow(order: (item: ShopItem) => Promise<void>) {
-    const { t } = useTranslation();
-    const dialogs = useDialogs();
-
-    return async (item: ShopItem) => {
-        const disk = t(`floppy_disk.${item.slug}.label`);
-        const confirmed = await dialogs.confirm({
-            title: t('diskdepot.confirm_title'),
-            message: t('diskdepot.confirm_message', {
-                disk,
-                price: item.price,
-            }),
-            icon: 'floppy',
-            confirmLabel: t('diskdepot.confirm'),
-            cancelLabel: t('dialog.cancel'),
-        });
-
-        if (!confirmed) {
-            return;
-        }
-
-        try {
-            await order(item);
-            await dialogs.alert({
-                title: t('diskdepot.order_placed_title'),
-                message: t('diskdepot.order_placed_message', { disk }),
-                icon: 'info',
-            });
-        } catch (error) {
-            sound.error();
-            await dialogs.alert({
-                title: t('diskdepot.order_failed_title'),
-                message:
-                    error instanceof GameApiError
-                        ? error.message
-                        : t('program_setup.failed'),
-                icon: 'warning',
-            });
-        }
-    };
-}
+import { useOrderFlow } from './use-order-flow';
+import { useShop } from './use-shop';
 
 export function DiskDepotSite() {
     const { t } = useTranslation();
-    const depot = useDiskDepot();
-    const startOrder = useOrderFlow(depot.order);
+    const depot = useShop(DISK_DEPOT_API);
+    const startOrder = useOrderFlow({
+        storefront: 'diskdepot',
+        icon: 'floppy',
+        itemLabel: (item) => t(`floppy_disk.${item.slug}.label`),
+        order: depot.order,
+    });
 
     return (
         <div className="web-page disk-depot">

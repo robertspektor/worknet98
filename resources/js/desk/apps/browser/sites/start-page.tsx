@@ -19,6 +19,15 @@ export function StartPage({ onOpen }: SiteProps) {
                         {t('browser.start.diskdepot')}
                     </button>
                 </li>
+                <li>
+                    <button
+                        type="button"
+                        className="web-link"
+                        onClick={() => onOpen('chipcity')}
+                    >
+                        {t('browser.start.chipcity')}
+                    </button>
+                </li>
             </ul>
             <p className="start-page-counter">
                 {t('browser.start.counter', { count: '000451' })}

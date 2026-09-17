@@ -1,7 +1,7 @@
 <?php
 
 use App\Models\FloppyDisk;
-use App\Models\FloppyDiskOrder;
+use App\Models\Order;
 use App\Models\User;
 
 it('lists the disks for sale with their status for the player', function () {
@@ -10,9 +10,9 @@ it('lists the disks for sale with their status for the player', function () {
     $ordered = FloppyDisk::factory()->forSale(60)->create(['slug' => 'notepad']);
     $owned = FloppyDisk::factory()->forSale(80)->create(['slug' => 'paint']);
     FloppyDisk::factory()->starter()->create();
-    FloppyDiskOrder::factory()->create(['user_id' => $player->id, 'floppy_disk_id' => $ordered->id, 'delivers_at' => '2026-09-17 00:00:00']);
-    FloppyDiskOrder::factory()->unpacked()->create(['user_id' => $player->id, 'floppy_disk_id' => $owned->id]);
-    FloppyDiskOrder::factory()->create(['floppy_disk_id' => $available->id]);
+    Order::factory()->of($ordered)->create(['user_id' => $player->id, 'delivers_at' => '2026-09-17 00:00:00']);
+    Order::factory()->of($owned)->unpacked()->create(['user_id' => $player->id]);
+    Order::factory()->of($available)->create();
 
     $this->actingAs($player)
         ->getJson(route('api.v1.shop.floppy-disks.index'))

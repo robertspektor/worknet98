@@ -2,14 +2,14 @@
 
 namespace App\Shop;
 
-use App\Models\FloppyDisk;
-use App\Models\FloppyDiskOrder;
+use App\Models\Order;
+use Illuminate\Database\Eloquent\Model;
 
 readonly class ShopItem
 {
     public function __construct(
-        public FloppyDisk $disk,
-        public ?FloppyDiskOrder $order,
+        public Product&Model $product,
+        public ?Order $order,
     ) {}
 
     public function status(): ShopItemStatus

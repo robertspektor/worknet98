@@ -4,10 +4,12 @@ use App\Models\Branch;
 use App\Models\Company;
 use App\Models\Employment;
 use App\Models\JobOpening;
+use App\Models\LedgerEntry;
 use App\Models\Position;
 use App\Models\Shift;
 use App\Models\Technician;
 use App\Models\User;
+use App\Work\LedgerReason;
 use App\Workplace\AppointmentExecutor;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
@@ -51,4 +53,12 @@ function carryOutAppointmentsAt(string $time): void
 {
     test()->travelTo($time);
     app(AppointmentExecutor::class)->executeDue();
+}
+
+function playerWithCredits(int $credits): User
+{
+    $player = User::factory()->create();
+    LedgerEntry::create(['user_id' => $player->id, 'amount' => $credits, 'reason' => LedgerReason::Salary]);
+
+    return $player;
 }

@@ -2,8 +2,11 @@
 
 namespace App\Providers;
 
+use App\Models\FloppyDisk;
+use App\Models\HardwarePart;
 use Carbon\CarbonImmutable;
 use Illuminate\Cache\RateLimiting\Limit;
+use Illuminate\Database\Eloquent\Relations\Relation;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Date;
 use Illuminate\Support\Facades\DB;
@@ -24,6 +27,11 @@ class AppServiceProvider extends ServiceProvider
         Date::use(CarbonImmutable::class);
 
         DB::prohibitDestructiveCommands(app()->isProduction());
+
+        Relation::morphMap([
+            'floppy_disk' => FloppyDisk::class,
+            'hardware_part' => HardwarePart::class,
+        ]);
     }
 
     private function configureRateLimits(): void

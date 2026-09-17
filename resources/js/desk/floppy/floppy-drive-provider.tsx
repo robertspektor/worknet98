@@ -1,6 +1,6 @@
 import type { ReactNode } from 'react';
 import { createContext, use, useEffect, useReducer, useState } from 'react';
-import type { FloppyDisk, Parcel } from '@/types';
+import type { FloppyDisk } from '@/types';
 import type { AppId } from '../apps/app-registry';
 import { sound } from '../sound/sound';
 import type { DriveState } from './drive-state';
@@ -11,7 +11,6 @@ import {
     installProgramFrom,
 } from './floppy-disk-api';
 import { installedApps } from './installed-apps';
-import { useParcels } from './use-parcels';
 
 export const DISK_SLIDE_MS = 700;
 
@@ -23,8 +22,7 @@ type FloppyDrive = {
     insert: (disk: FloppyDisk) => void;
     eject: () => void;
     install: (disk: FloppyDisk) => Promise<void>;
-    parcels: Parcel[];
-    unpack: (parcel: Parcel) => Promise<void>;
+    refreshDisks: () => void;
 };
 
 const FloppyDriveContext = createContext<FloppyDrive | null>(null);
@@ -107,7 +105,6 @@ export function FloppyDriveProvider({
     const { drive, insert, eject } = useDriveMechanics();
     const { disks, refreshDisks, installedPrograms, install } =
         useDiskBoxContents(isSignedIn);
-    const { parcels, unpack } = useParcels(isSignedIn, refreshDisks);
     const loadedId = loadedDiskId(drive);
 
     return (
@@ -120,8 +117,7 @@ export function FloppyDriveProvider({
                 insert,
                 eject,
                 install,
-                parcels,
-                unpack,
+                refreshDisks,
             }}
         >
             {children}

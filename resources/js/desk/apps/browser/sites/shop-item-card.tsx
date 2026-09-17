@@ -1,18 +1,13 @@
 import { useTranslation } from '@/i18n/use-translation';
-import type { ShopItem, ShopItemStatus } from '@/types';
-
-const STATUS_KEYS: Record<Exclude<ShopItemStatus, 'available'>, string> = {
-    ordered: 'diskdepot.ordered',
-    delivered: 'diskdepot.delivered',
-    owned: 'diskdepot.owned',
-};
+import type { DiskShopItem } from '@/types';
+import { ShopBuyBox } from './shop-status';
 
 export function ShopItemCard({
     item,
     onOrder,
 }: {
-    item: ShopItem;
-    onOrder: (item: ShopItem) => void;
+    item: DiskShopItem;
+    onOrder: (item: DiskShopItem) => void;
 }) {
     const { t } = useTranslation();
 
@@ -33,24 +28,7 @@ export function ShopItemCard({
                     {t(`floppy_disk.${item.slug}.description`)}
                 </p>
             </div>
-            <div className="shop-item-buy">
-                <span className="shop-item-price">
-                    {t('diskdepot.price', { amount: item.price })}
-                </span>
-                {item.status === 'available' ? (
-                    <button
-                        type="button"
-                        className="button"
-                        onClick={() => onOrder(item)}
-                    >
-                        {t('diskdepot.order')}
-                    </button>
-                ) : (
-                    <span className={`shop-item-status is-${item.status}`}>
-                        {t(STATUS_KEYS[item.status])}
-                    </span>
-                )}
-            </div>
+            <ShopBuyBox storefront="diskdepot" item={item} onOrder={onOrder} />
         </li>
     );
 }

@@ -3,14 +3,16 @@
 namespace Database\Factories;
 
 use App\Models\FloppyDisk;
-use App\Models\FloppyDiskOrder;
+use App\Models\Order;
 use App\Models\User;
+use App\Shop\Product;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Database\Eloquent\Model;
 
 /**
- * @extends Factory<FloppyDiskOrder>
+ * @extends Factory<Order>
  */
-class FloppyDiskOrderFactory extends Factory
+class OrderFactory extends Factory
 {
     /**
      * @return array<string, mixed>
@@ -19,10 +21,19 @@ class FloppyDiskOrderFactory extends Factory
     {
         return [
             'user_id' => User::factory(),
-            'floppy_disk_id' => FloppyDisk::factory()->forSale(),
+            'product_type' => (new FloppyDisk)->getMorphClass(),
+            'product_id' => FloppyDisk::factory()->forSale(),
             'price' => 40,
             'delivers_at' => now()->addDay(),
         ];
+    }
+
+    public function of(Product&Model $product): static
+    {
+        return $this->state(fn (): array => [
+            'product_type' => $product->getMorphClass(),
+            'product_id' => $product->getKey(),
+        ]);
     }
 
     public function due(): static

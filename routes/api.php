@@ -10,6 +10,7 @@ use App\Http\Controllers\Api\V1\CustomerController;
 use App\Http\Controllers\Api\V1\EmailController;
 use App\Http\Controllers\Api\V1\EmailReadController;
 use App\Http\Controllers\Api\V1\FloppyDiskController;
+use App\Http\Controllers\Api\V1\HardwareShopController;
 use App\Http\Controllers\Api\V1\HomeComputerController;
 use App\Http\Controllers\Api\V1\InstalledProgramController;
 use App\Http\Controllers\Api\V1\JobApplicationController;
@@ -68,8 +69,10 @@ Route::prefix('v1')->middleware('auth:sanctum')->name('api.v1.')->group(function
     Route::get('shop/floppy-disks', [ShopController::class, 'index'])->name('shop.floppy-disks.index');
     Route::post('shop/floppy-disks/{floppyDisk}/orders', [ShopController::class, 'store'])->name('shop.floppy-disks.orders.store');
     Route::get('parcels', [ParcelController::class, 'index'])->name('parcels.index');
-    Route::post('parcels/{floppyDiskOrder}/unpacking', [ParcelController::class, 'store'])
-        ->middleware('can:unpack,floppyDiskOrder')
+    Route::get('shop/hardware-parts', [HardwareShopController::class, 'index'])->name('shop.hardware-parts.index');
+    Route::post('shop/hardware-parts/{hardwarePart}/orders', [HardwareShopController::class, 'store'])->name('shop.hardware-parts.orders.store');
+    Route::post('parcels/{order}/unpacking', [ParcelController::class, 'store'])
+        ->middleware('can:unpack,order')
         ->name('parcels.unpacking.store');
 
     Route::get('note', [NoteController::class, 'show'])->name('note.show');

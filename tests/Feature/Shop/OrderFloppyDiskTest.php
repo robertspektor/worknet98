@@ -1,20 +1,12 @@
 <?php
 
 use App\Models\FloppyDisk;
-use App\Models\FloppyDiskOrder;
 use App\Models\LedgerEntry;
+use App\Models\Order;
 use App\Models\User;
 use App\Work\LedgerReason;
 use App\Work\Wallet;
 use Illuminate\Testing\TestResponse;
-
-function playerWithCredits(int $credits): User
-{
-    $player = User::factory()->create();
-    LedgerEntry::create(['user_id' => $player->id, 'amount' => $credits, 'reason' => LedgerReason::Salary]);
-
-    return $player;
-}
 
 function orderDisk(User $player, FloppyDisk $disk): TestResponse
 {
@@ -35,7 +27,7 @@ it('charges the price and ships the disk on the next game day', function () {
         ->assertJsonPath('data.status', 'ordered')
         ->assertJsonPath('data.delivers_at', '2026-09-17T00:00:00+00:00');
 
-    $order = FloppyDiskOrder::sole();
+    $order = Order::sole();
     expect($order->user_id)->toBe($player->id)
         ->and($order->price)->toBe(40)
         ->and(app(Wallet::class)->balanceOf($player))->toBe(60)
@@ -47,7 +39,7 @@ it('uses the configured delivery delay', function () {
 
     orderDisk(playerWithCredits(100), FloppyDisk::factory()->forSale(40)->create())->assertCreated();
 
-    expect(FloppyDiskOrder::sole()->delivers_at->equalTo(now()->addSeconds(90)))->toBeTrue();
+    expect(Order::sole()->delivers_at->equalTo(now()->addSeconds(90)))->toBeTrue();
 });
 
 it('refuses orders the player cannot afford', function () {
@@ -57,7 +49,7 @@ it('refuses orders the player cannot afford', function () {
         ->assertUnprocessable()
         ->assertExactJson(['message' => 'Your account balance is too low for this purchase.', 'refusal' => 'insufficient_funds']);
 
-    expect(FloppyDiskOrder::count())->toBe(0)
+    expect(Order::count())->toBe(0)
         ->and(app(Wallet::class)->balanceOf($player))->toBe(39);
 });
 
@@ -66,7 +58,7 @@ it('refuses disks that are not for sale', function () {
         ->assertUnprocessable()
         ->assertJsonPath('refusal', 'not_for_sale');
 
-    expect(FloppyDiskOrder::count())->toBe(0);
+    expect(Order::count())->toBe(0);
 });
 
 it('refuses a second order of the same disk without charging again', function () {
@@ -78,7 +70,7 @@ it('refuses a second order of the same disk without charging again', function ()
         ->assertUnprocessable()
         ->assertJsonPath('refusal', 'already_ordered');
 
-    expect(FloppyDiskOrder::count())->toBe(1)
+    expect(Order::count())->toBe(1)
         ->and(app(Wallet::class)->balanceOf($player))->toBe(60);
 });
 

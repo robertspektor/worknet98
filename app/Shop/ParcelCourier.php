@@ -3,7 +3,7 @@
 namespace App\Shop;
 
 use App\Mailbox\Mailbox;
-use App\Models\FloppyDiskOrder;
+use App\Models\Order;
 use Illuminate\Support\Facades\DB;
 
 class ParcelCourier
@@ -17,11 +17,11 @@ class ParcelCourier
     {
         $delivered = 0;
 
-        FloppyDiskOrder::query()
+        Order::query()
             ->dueForDelivery()
-            ->with(['user', 'floppyDisk'])
+            ->with(['user', 'product'])
             ->lazyById()
-            ->each(function (FloppyDiskOrder $order) use (&$delivered): void {
+            ->each(function (Order $order) use (&$delivered): void {
                 if (DB::transaction(fn (): bool => $this->deliverIfDue($order))) {
                     $delivered++;
                 }
@@ -30,9 +30,9 @@ class ParcelCourier
         return $delivered;
     }
 
-    private function deliverIfDue(FloppyDiskOrder $order): bool
+    private function deliverIfDue(Order $order): bool
     {
-        $isDue = FloppyDiskOrder::query()->whereKey($order->id)->dueForDelivery()->lockForUpdate()->exists();
+        $isDue = Order::query()->whereKey($order->id)->dueForDelivery()->lockForUpdate()->exists();
 
         if (! $isDue) {
             return false;

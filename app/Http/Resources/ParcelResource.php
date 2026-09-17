@@ -2,12 +2,12 @@
 
 namespace App\Http\Resources;
 
-use App\Models\FloppyDiskOrder;
+use App\Models\Order;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 /**
- * @mixin FloppyDiskOrder
+ * @mixin Order
  */
 class ParcelResource extends JsonResource
 {
@@ -18,7 +18,11 @@ class ParcelResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'floppy_disk' => new FloppyDiskResource($this->floppyDisk),
+            'storefront' => $this->product->storefront()->value,
+            'product' => [
+                'type' => $this->product_type,
+                ...ProductResource::of($this->product)->resolve($request),
+            ],
         ];
     }
 }

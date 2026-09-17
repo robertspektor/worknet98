@@ -3,12 +3,15 @@
 namespace App\Models;
 
 use App\Hardware\HardwareSlot;
+use App\Shop\Product;
+use App\Shop\Storefront;
 use Carbon\CarbonImmutable;
 use Database\Factories\HardwarePartFactory;
 use Illuminate\Database\Eloquent\Attributes\Fillable;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\MorphMany;
 
 /**
  * @property int $id
@@ -21,10 +24,33 @@ use Illuminate\Database\Eloquent\Model;
  * @property CarbonImmutable|null $updated_at
  */
 #[Fillable(['slug', 'slot', 'speed_mhz', 'is_starter', 'price'])]
-class HardwarePart extends Model
+class HardwarePart extends Model implements Product
 {
     /** @use HasFactory<HardwarePartFactory> */
     use HasFactory;
+
+    /**
+     * @return MorphMany<Order, $this>
+     */
+    public function orders(): MorphMany
+    {
+        return $this->morphMany(Order::class, 'product');
+    }
+
+    public function storefront(): Storefront
+    {
+        return Storefront::ChipCity;
+    }
+
+    public function salePrice(): ?int
+    {
+        return $this->price;
+    }
+
+    public function labelKey(): string
+    {
+        return "hardware_part.{$this->slug}.label";
+    }
 
     /**
      * @param  Builder<HardwarePart>  $query
@@ -32,6 +58,14 @@ class HardwarePart extends Model
     public function scopeStarter(Builder $query): void
     {
         $query->where('is_starter', true);
+    }
+
+    /**
+     * @param  Builder<HardwarePart>  $query
+     */
+    public function scopeForSale(Builder $query): void
+    {
+        $query->whereNotNull('price');
     }
 
     /**

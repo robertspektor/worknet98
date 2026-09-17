@@ -17,8 +17,8 @@ class ShopItemResource extends JsonResource
     public function toArray(Request $request): array
     {
         return [
-            ...(new FloppyDiskResource($this->resource->disk))->toArray($request),
-            'price' => $this->resource->disk->price,
+            ...ProductResource::of($this->resource->product)->resolve($request),
+            'price' => $this->resource->product->salePrice(),
             'status' => $this->resource->status()->value,
             'delivers_at' => $this->resource->order?->delivers_at->toIso8601String(),
         ];
