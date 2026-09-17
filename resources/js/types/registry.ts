@@ -26,5 +26,7 @@ export type RegistryPerson = {
     street: string;
     district: string;
     phone: string | null;
+    occupation: 'employed' | 'unemployed' | 'retired' | 'in_training' | null;
+    profession: string | null;
     household: string[];
 };

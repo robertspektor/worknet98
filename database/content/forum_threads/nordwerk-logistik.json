@@ -1,0 +1,40 @@
+[
+    {
+        "slug": "tor-3",
+        "author": "office-coordinator",
+        "title": "Tor 3 klemmt",
+        "posts": [
+            {
+                "author": "office-coordinator",
+                "body": "Tor 3 klemmt wieder. Der Hausmeister sagt, das liegt am Wetter. Es regnet seit November.\n\nBis zur Reparatur bitte über Tor 2 rangieren."
+            },
+            {
+                "author": "team-lead",
+                "body": "Über Tor 2 passt kein Lkw mit Anhänger."
+            },
+            {
+                "author": "office-coordinator",
+                "body": "Dann bitte ohne Anhänger."
+            }
+        ]
+    },
+    {
+        "slug": "tourenlisten",
+        "author": "team-lead",
+        "title": "Tourenlisten bitte vollständig",
+        "posts": [
+            {
+                "author": "team-lead",
+                "body": "Auf drei Tourenlisten stand diese Woche nur \"div.\". Fahrer wissen dann nicht, was sie ausladen sollen.\n\nBitte Empfänger und Stückzahl eintragen. Auch bei Eile."
+            },
+            {
+                "author": "dispatch-coordinator-2",
+                "body": "Bei Eile ist genau das Problem die Eile."
+            },
+            {
+                "author": "team-lead",
+                "body": "Dann eben schneller schreiben."
+            }
+        ]
+    }
+]

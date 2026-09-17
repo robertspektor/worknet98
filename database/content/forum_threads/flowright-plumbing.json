@@ -1,0 +1,59 @@
+[
+    {
+        "slug": "coffee-fund",
+        "author": "office-coordinator",
+        "title": "Coffee fund",
+        "posts": [
+            {
+                "author": "office-coordinator",
+                "body": "The coffee fund is empty again. There was a note in the tin that said \"IOU\" and no name.\n\n50 cents a cup. That sign has been on the machine since 1994."
+            },
+            {
+                "author": "emergency-dispatcher",
+                "body": "I only drink tea."
+            },
+            {
+                "author": "office-coordinator",
+                "body": "The tea comes out of the coffee fund too."
+            }
+        ]
+    },
+    {
+        "slug": "the-van",
+        "author": "branch-manager",
+        "title": "The van smells of fish",
+        "posts": [
+            {
+                "author": "branch-manager",
+                "body": "Whoever had the van on Friday: it smells of fish. The van is a work vehicle, not a cold store.\n\nOwn up. Anonymously is fine, but I already know."
+            },
+            {
+                "author": "service-contract-planner",
+                "body": "That was not fish. That was a trap from 3 Main Street."
+            },
+            {
+                "author": "branch-manager",
+                "body": "That is worse."
+            }
+        ]
+    },
+    {
+        "slug": "holiday-plan",
+        "author": "office-coordinator",
+        "title": "Summer holiday plan",
+        "posts": [
+            {
+                "author": "office-coordinator",
+                "body": "The holiday list is on the notice board. Please write on it, do not paste over it.\n\nTwo people per week, not three, and the emergency desk stays staffed."
+            },
+            {
+                "author": "office-assistant-2",
+                "body": "I would like the week when nobody calls."
+            },
+            {
+                "author": "office-coordinator",
+                "body": "There is no such week."
+            }
+        ]
+    }
+]

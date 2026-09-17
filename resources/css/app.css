@@ -17,5 +17,6 @@
 @import './desk/workbench.css';
 @import './desk/programs.css';
 @import './desk/placement.css';
+@import './desk/citynet.css';
 
 @source '../views';

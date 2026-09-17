@@ -80,6 +80,20 @@ export function SearchTab() {
                                     <br />
                                     {selected.district}
                                 </dd>
+                                <dt>{t('registry.occupation')}</dt>
+                                <dd>
+                                    {selected.occupation
+                                        ? t(
+                                              `registry.occupations.${selected.occupation}`,
+                                          )
+                                        : '-'}
+                                    {selected.profession && (
+                                        <>
+                                            <br />
+                                            {selected.profession}
+                                        </>
+                                    )}
+                                </dd>
                                 <dt>{t('records.phone')}</dt>
                                 <dd>{selected.phone ?? '-'}</dd>
                                 <dt>{t('registry.household')}</dt>

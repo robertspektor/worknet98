@@ -45,9 +45,12 @@ class HouseholdWriter
             'slug' => $member->slug,
             'name' => $member->name,
             'email_address' => $member->emailAddress,
+            'occupation' => $member->livelihood?->occupation,
+            'profession' => $member->livelihood?->profession,
+            'monthly_income' => $member->livelihood?->monthlyIncome,
             'created_at' => $now,
             'updated_at' => $now,
-        ], $household->members), $households)), ['city_id', 'slug'], ['household_id', 'name', 'email_address', 'updated_at']);
+        ], $household->members), $households)), ['city_id', 'slug'], ['household_id', 'name', 'email_address', 'occupation', 'profession', 'monthly_income', 'updated_at']);
     }
 
     /**

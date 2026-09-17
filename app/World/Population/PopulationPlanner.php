@@ -22,6 +22,8 @@ class PopulationPlanner
 
     private NamePool $pool;
 
+    public function __construct(private readonly Livelihoods $livelihoods) {}
+
     /** @var array<string, true> */
     private array $takenAddresses = [];
 
@@ -112,6 +114,7 @@ class PopulationPlanner
             slug: $slug,
             name: "{$firstName} {$lastName}",
             emailAddress: $this->chance(self::EMAIL_PERCENT) ? $this->emailAddress($slug) : null,
+            livelihood: $this->livelihoods->draw($this->randomizer, $this->pool),
         );
     }
 

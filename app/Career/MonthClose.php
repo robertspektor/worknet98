@@ -26,6 +26,7 @@ class MonthClose
         private readonly Mailbox $mailbox,
         private readonly Dismissal $dismissal,
         private readonly PromotionOfferer $promotions,
+        private readonly EmployeeOfTheMonth $awards,
     ) {}
 
     public function closeDue(): int
@@ -43,6 +44,8 @@ class MonthClose
                 $this->review($employment, $period);
                 $reviewed++;
             });
+
+        $this->awards->awardFor($period);
 
         return $reviewed;
     }

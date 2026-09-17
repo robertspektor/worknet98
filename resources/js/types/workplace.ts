@@ -1,3 +1,53 @@
+export type RankingEntry = {
+    employment_id: number;
+    name: string;
+    title: string;
+    company: string;
+    score: number;
+    excellent_reviews: number;
+    is_own: boolean;
+};
+
+export type EmployeeAward = {
+    period: string;
+    name: string;
+    title: string;
+    branch: string;
+    is_own: boolean;
+};
+
+export type Rankings = {
+    branch: RankingEntry[];
+    world: RankingEntry[];
+    awards: EmployeeAward[];
+};
+
+export type ForumThread = {
+    id: number;
+    title: string;
+    author: string;
+    author_title: string;
+    is_own: boolean;
+    posts_count: number;
+    last_posted_at: string;
+};
+
+export type ForumPost = {
+    id: number;
+    body: string;
+    author: string;
+    author_title: string;
+    is_own: boolean;
+    posted_at: string;
+};
+
+export type Colleague = {
+    position_id: number;
+    name: string;
+    title: string;
+    address: string;
+};
+
 export type SoftwareType =
     | 'records'
     | 'scheduler'

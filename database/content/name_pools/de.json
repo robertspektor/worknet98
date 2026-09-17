@@ -174,5 +174,49 @@
     ],
     "street_format": ":street :number",
     "phone_format": "0555 ####",
-    "email_domains": ["post.wn", "altpost.wn", "netzwerk.wn"]
+    "email_domains": ["post.wn", "altpost.wn", "netzwerk.wn"],
+    "professions": [
+        "Bankkaufmann",
+        "Bäckerin",
+        "Busfahrer",
+        "Buchhalterin",
+        "Dreher",
+        "Einzelhandelskaufmann",
+        "Elektriker",
+        "Erzieherin",
+        "Fleischer",
+        "Friseurin",
+        "Gärtner",
+        "Industriemechaniker",
+        "Kfz-Mechaniker",
+        "Krankenschwester",
+        "Lagerist",
+        "Lehrerin",
+        "Maler",
+        "Maurer",
+        "Metzgerin",
+        "Postbote",
+        "Rechtsanwaltsgehilfin",
+        "Schlosser",
+        "Schreiner",
+        "Sekretärin",
+        "Speditionskaufmann",
+        "Steuerfachangestellte",
+        "Verkäuferin",
+        "Versicherungskauffrau",
+        "Werkzeugmacher",
+        "Zahnarzthelferin"
+    ],
+    "occupation_weights": {
+        "employed": 58,
+        "unemployed": 7,
+        "retired": 22,
+        "in_training": 13
+    },
+    "income_ranges": {
+        "employed": [1700, 4600],
+        "unemployed": [600, 1200],
+        "retired": [900, 2100],
+        "in_training": [400, 900]
+    }
 }

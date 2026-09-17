@@ -7,6 +7,7 @@ use App\Http\Controllers\Api\V1\ChatReadController;
 use App\Http\Controllers\Api\V1\ChatReplyController;
 use App\Http\Controllers\Api\V1\CivilApplicationController;
 use App\Http\Controllers\Api\V1\CivilApplicationDecisionController;
+use App\Http\Controllers\Api\V1\ColleagueController;
 use App\Http\Controllers\Api\V1\CompanySoftwareController;
 use App\Http\Controllers\Api\V1\CustomerController;
 use App\Http\Controllers\Api\V1\DeskPartInstallationController;
@@ -16,6 +17,8 @@ use App\Http\Controllers\Api\V1\EmailController;
 use App\Http\Controllers\Api\V1\EmailReadController;
 use App\Http\Controllers\Api\V1\FloppyDiskController;
 use App\Http\Controllers\Api\V1\FloppyDiskLabelController;
+use App\Http\Controllers\Api\V1\ForumPostController;
+use App\Http\Controllers\Api\V1\ForumThreadController;
 use App\Http\Controllers\Api\V1\HardwareShopController;
 use App\Http\Controllers\Api\V1\HomeComputerController;
 use App\Http\Controllers\Api\V1\InstalledProgramController;
@@ -26,6 +29,7 @@ use App\Http\Controllers\Api\V1\ParcelController;
 use App\Http\Controllers\Api\V1\PlayerController;
 use App\Http\Controllers\Api\V1\PromotionOfferAcceptanceController;
 use App\Http\Controllers\Api\V1\PromotionOfferDeclineController;
+use App\Http\Controllers\Api\V1\RankingController;
 use App\Http\Controllers\Api\V1\RegistryPersonController;
 use App\Http\Controllers\Api\V1\ScheduleController;
 use App\Http\Controllers\Api\V1\ShiftController;
@@ -91,6 +95,21 @@ Route::prefix('v1')->middleware('auth:sanctum')->name('api.v1.')->group(function
     Route::delete('shipments/{shipment}/plan', [ShipmentPlanController::class, 'destroy'])
         ->middleware('can:plan,shipment')
         ->name('shipments.plan.destroy');
+
+    Route::get('rankings', [RankingController::class, 'show'])->name('rankings.show');
+    Route::get('colleagues', [ColleagueController::class, 'index'])->name('colleagues.index');
+
+    Route::get('forum/threads', [ForumThreadController::class, 'index'])->name('forum.threads.index');
+    Route::post('forum/threads', [ForumThreadController::class, 'store'])->name('forum.threads.store');
+    Route::get('forum/threads/{forumThread}/posts', [ForumPostController::class, 'index'])
+        ->middleware('can:read,forumThread')
+        ->name('forum.threads.posts.index');
+    Route::post('forum/threads/{forumThread}/posts', [ForumPostController::class, 'store'])
+        ->middleware('can:read,forumThread')
+        ->name('forum.threads.posts.store');
+    Route::delete('forum/posts/{forumPost}', [ForumPostController::class, 'destroy'])
+        ->middleware('can:delete,forumPost')
+        ->name('forum.posts.destroy');
 
     Route::get('registry/people', [RegistryPersonController::class, 'index'])->name('registry.people.index');
     Route::get('civil-applications', [CivilApplicationController::class, 'index'])->name('civil-applications.index');

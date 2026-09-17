@@ -6,20 +6,26 @@ use App\Models\JobApplication;
 
 class JobApplicationReviewer
 {
-    public function __construct(private readonly Hiring $hiring) {}
+    public function __construct(
+        private readonly Hiring $hiring,
+        private readonly CandidateRanking $ranking,
+    ) {}
 
     public function reviewDue(): int
     {
         $reviewed = 0;
 
-        JobApplication::query()
+        $due = JobApplication::query()
             ->dueForResponse()
             ->with(['user', 'jobOpening.company'])
-            ->lazyById()
-            ->each(function (JobApplication $application) use (&$reviewed): void {
+            ->get();
+
+        foreach ($due->groupBy('job_opening_id') as $candidates) {
+            foreach ($this->ranking->sort($candidates) as $application) {
                 $this->hiring->hire($application);
                 $reviewed++;
-            });
+            }
+        }
 
         return $reviewed;
     }

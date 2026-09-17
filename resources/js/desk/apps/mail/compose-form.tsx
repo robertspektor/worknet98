@@ -1,36 +1,37 @@
 import { useState } from 'react';
 import { useTranslation } from '@/i18n/use-translation';
+import { index as colleaguesIndex } from '@/routes/api/v1/colleagues';
 import { index as customersIndex } from '@/routes/api/v1/customers';
-import type { Customer, Email, EmailAction } from '@/types';
+import type { Colleague, Customer, Email, EmailAction } from '@/types';
 import { useApiResource } from '../../api/use-api-resource';
 import { useCompanySoftware } from '../../company-software/company-software-provider';
 import type { OutgoingEmail } from '../../mailbox/mailbox-provider';
 import { AppLoading } from '../../ui/app-loading';
 import { actionsFor } from './compose-actions';
+import { recipientFields, recipientsOf } from './compose-recipients';
+import type { Recipient } from './compose-recipients';
 
 function replySubject(subject: string): string {
     return subject.startsWith('Re: ') ? subject : `Re: ${subject}`;
 }
 
 function ComposeFields({
-    customers,
+    recipients,
     replyTo,
     onSend,
     onCancel,
 }: {
-    customers: Customer[];
+    recipients: Recipient[];
     replyTo: Email | null;
     onSend: (email: OutgoingEmail) => Promise<boolean>;
     onCancel: () => void;
 }) {
     const { t } = useTranslation();
-    const [customerId, setCustomerId] = useState(() =>
-        String(
-            customers.find(
-                (customer) =>
-                    customer.email_address === replyTo?.sender_address,
-            )?.id ?? '',
-        ),
+    const [recipient, setRecipient] = useState(
+        () =>
+            recipients.find(
+                (entry) => entry.address === replyTo?.sender_address,
+            )?.value ?? '',
     );
     const [subject, setSubject] = useState(
         replyTo ? replySubject(replyTo.subject) : '',
@@ -40,12 +41,12 @@ function ComposeFields({
     const [action, setAction] = useState<EmailAction>(actions[0]);
     const [isSending, setSending] = useState(false);
     const isComplete =
-        customerId !== '' && subject.trim() !== '' && body.trim() !== '';
+        recipient !== '' && subject.trim() !== '' && body.trim() !== '';
 
     const submit = async () => {
         setSending(true);
         const sent = await onSend({
-            customer_id: Number(customerId),
+            ...recipientFields(recipient),
             subject,
             body,
             action,
@@ -69,13 +70,13 @@ function ComposeFields({
                 <select
                     id="compose-to"
                     className="select"
-                    value={customerId}
-                    onChange={(event) => setCustomerId(event.target.value)}
+                    value={recipient}
+                    onChange={(event) => setRecipient(event.target.value)}
                 >
                     <option value="">{t('inbox.choose_recipient')}</option>
-                    {customers.map((customer) => (
-                        <option key={customer.id} value={customer.id}>
-                            {customer.name} &lt;{customer.email_address}&gt;
+                    {recipients.map((entry) => (
+                        <option key={entry.value} value={entry.value}>
+                            {entry.label} &lt;{entry.address}&gt;
                         </option>
                     ))}
                 </select>
@@ -138,9 +139,15 @@ export function ComposeForm(props: {
     const { data: customers } = useApiResource<Customer[]>(
         customersIndex.url(),
     );
+    const { data: colleagues } = useApiResource<Colleague[]>(
+        colleaguesIndex.url(),
+    );
 
-    return customers ? (
-        <ComposeFields customers={customers} {...props} />
+    return customers && colleagues ? (
+        <ComposeFields
+            recipients={recipientsOf(customers, colleagues)}
+            {...props}
+        />
     ) : (
         <AppLoading />
     );

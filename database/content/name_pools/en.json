@@ -171,5 +171,49 @@
     ],
     "street_format": ":number :street",
     "phone_format": "555-####",
-    "email_domains": ["mail.wn", "oldmail.wn", "netlink.wn"]
+    "email_domains": ["mail.wn", "oldmail.wn", "netlink.wn"],
+    "professions": [
+        "accountant",
+        "baker",
+        "bank clerk",
+        "bus driver",
+        "butcher",
+        "carpenter",
+        "dental assistant",
+        "electrician",
+        "forklift operator",
+        "gardener",
+        "hairdresser",
+        "insurance clerk",
+        "legal secretary",
+        "machinist",
+        "mail carrier",
+        "mason",
+        "mechanic",
+        "nurse",
+        "painter",
+        "paralegal",
+        "retail clerk",
+        "salesperson",
+        "secretary",
+        "shipping clerk",
+        "teacher",
+        "tool maker",
+        "truck driver",
+        "warehouse worker",
+        "welder",
+        "yard hand"
+    ],
+    "occupation_weights": {
+        "employed": 58,
+        "unemployed": 7,
+        "retired": 22,
+        "in_training": 13
+    },
+    "income_ranges": {
+        "employed": [1700, 4600],
+        "unemployed": [600, 1200],
+        "retired": [900, 2100],
+        "in_training": [400, 900]
+    }
 }

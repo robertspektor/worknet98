@@ -8,11 +8,14 @@ use App\Models\Company;
 use App\Models\Person;
 use App\Models\Position;
 use App\Organization\BranchCatalog;
+use App\World\Population\LivelihoodFiller;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Arr;
 
 class BranchSeeder extends Seeder
 {
+    public function __construct(private readonly LivelihoodFiller $livelihoods) {}
+
     public function run(BranchCatalog $catalog): void
     {
         foreach ($catalog->companySlugs() as $slug) {
@@ -64,6 +67,7 @@ class BranchSeeder extends Seeder
             $record = Position::query()->whereBelongsTo($branch)->where('slug', $position['slug'])->sole();
             $record->update(['reports_to_position_id' => $this->positionId($branch, $position['reports_to'] ?? null)]);
             $record->promotionTargets()->sync($this->promotionTargetIds($branch, $position['promotion']['to'] ?? []));
+            $this->livelihoods->employAt($record->load('person'));
         }
     }
 

@@ -19,6 +19,7 @@ class WorkplaceResource extends JsonResource
         return [
             'company' => $this->company->name,
             'jobTitle' => $this->position->title,
+            'award' => $this->awards()->latest('period')->value('period'),
         ];
     }
 }

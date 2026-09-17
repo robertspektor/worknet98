@@ -1,0 +1,40 @@
+[
+    {
+        "slug": "stempel",
+        "author": "office-coordinator",
+        "title": "Stempel Nr. 4 ist verschwunden",
+        "posts": [
+            {
+                "author": "office-coordinator",
+                "body": "Stempel Nr. 4 fehlt seit Montag. Er ist Eigentum der Stadt und nicht übertragbar.\n\nFalls er wieder auftaucht: bitte kommentarlos ins Geschäftszimmer legen."
+            },
+            {
+                "author": "clerk-2",
+                "body": "Stempel Nr. 4 ist der mit dem krummen Rand. Den wollte niemand."
+            },
+            {
+                "author": "office-coordinator",
+                "body": "Trotzdem."
+            }
+        ]
+    },
+    {
+        "slug": "wartemarken",
+        "author": "office-head",
+        "title": "Wartemarken und Realität",
+        "posts": [
+            {
+                "author": "office-head",
+                "body": "Wir haben heute Wartemarke 87 aufgerufen, im Raum saßen vier Personen. Drei davon hatten Nummer 12, 13 und 14.\n\nBitte Nummern der Reihe nach ausgeben. Nicht stapelweise."
+            },
+            {
+                "author": "clerk-3",
+                "body": "Der Automat gibt drei Marken auf einmal aus, wenn man zu fest drückt."
+            },
+            {
+                "author": "office-head",
+                "body": "Dann bitte sanfter drücken. Ein neuer Automat ist beantragt. Seit 1996."
+            }
+        ]
+    }
+]

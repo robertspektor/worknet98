@@ -18,7 +18,7 @@ it('shows the office with the workplace of an employed player', function () {
         ->assertOk()
         ->assertInertia(fn (Assert $page) => $page
             ->component('office')
-            ->where('workplace', ['company' => 'TransGlobal Logistics', 'jobTitle' => 'Junior Dispatcher']));
+            ->where('workplace', ['company' => 'TransGlobal Logistics', 'jobTitle' => 'Junior Dispatcher', 'award' => null]));
 });
 
 it('sends unemployed players back home', function () {

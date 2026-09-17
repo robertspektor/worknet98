@@ -1,0 +1,40 @@
+[
+    {
+        "slug": "stamp",
+        "author": "office-coordinator",
+        "title": "Stamp no. 4 has disappeared",
+        "posts": [
+            {
+                "author": "office-coordinator",
+                "body": "Stamp no. 4 has been missing since Monday. It is city property and not transferable.\n\nIf it turns up: put it on the front office desk, no questions asked."
+            },
+            {
+                "author": "clerk-2",
+                "body": "Stamp no. 4 is the one with the crooked edge. Nobody wanted it."
+            },
+            {
+                "author": "office-coordinator",
+                "body": "Still."
+            }
+        ]
+    },
+    {
+        "slug": "ticket-numbers",
+        "author": "office-head",
+        "title": "Ticket numbers and reality",
+        "posts": [
+            {
+                "author": "office-head",
+                "body": "We called ticket 87 today. Four people were in the room. Three of them held 12, 13 and 14.\n\nPlease hand out numbers in order. Not in stacks."
+            },
+            {
+                "author": "clerk-3",
+                "body": "The machine spits out three tickets at once if you press too hard."
+            },
+            {
+                "author": "office-head",
+                "body": "Then press gently. A new machine has been requested. Since 1996."
+            }
+        ]
+    }
+]

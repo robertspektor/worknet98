@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Auth\Role;
 use Carbon\CarbonImmutable;
 use Database\Factories\UserFactory;
 use Illuminate\Database\Eloquent\Attributes\Fillable;
@@ -17,18 +18,24 @@ use Illuminate\Notifications\Notifiable;
  * @property string $email
  * @property CarbonImmutable|null $email_verified_at
  * @property string $locale
+ * @property Role $role
  * @property CarbonImmutable $age_confirmed_at
  * @property string|null $remember_token
  * @property CarbonImmutable|null $created_at
  * @property CarbonImmutable|null $updated_at
  * @property-read Employment|null $employment
  */
-#[Fillable(['email', 'email_verified_at', 'locale', 'age_confirmed_at'])]
+#[Fillable(['email', 'email_verified_at', 'locale', 'age_confirmed_at', 'role'])]
 #[Hidden(['remember_token'])]
 class User extends Authenticatable
 {
     /** @use HasFactory<UserFactory> */
     use HasFactory, Notifiable;
+
+    public function isMayor(): bool
+    {
+        return $this->role === Role::Mayor;
+    }
 
     /**
      * @return HasMany<JobApplication, $this>
@@ -78,6 +85,7 @@ class User extends Authenticatable
         return [
             'email_verified_at' => 'datetime',
             'age_confirmed_at' => 'datetime',
+            'role' => Role::class,
         ];
     }
 }

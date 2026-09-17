@@ -2,6 +2,8 @@
 
 return [
 
+    'mayor_name' => env('GAME_MAYOR_NAME', 'Bill Rixx'),
+
     /*
     | The game clock runs faster than real time. Game time starts at the
     | game epoch when real time is at the real epoch. With a scale of 4.35,

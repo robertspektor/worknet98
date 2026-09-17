@@ -22,6 +22,8 @@ class RegistryPersonResource extends JsonResource
             'street' => $this->household->street,
             'district' => $this->household->district,
             'phone' => $this->household->phone,
+            'occupation' => $this->occupation?->value,
+            'profession' => $this->profession,
             'household' => $this->household->members
                 ->reject(fn (Person $member): bool => $member->id === $this->id)
                 ->pluck('name')

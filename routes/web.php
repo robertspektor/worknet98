@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\SignInController;
+use App\Http\Controllers\CitynetController;
 use App\Http\Controllers\ComputerController;
 use App\Http\Controllers\LocaleController;
 use App\Http\Controllers\OfficeController;
@@ -13,6 +14,10 @@ Route::get('/', [ComputerController::class, 'show'])->name('home');
 Route::get('office', [OfficeController::class, 'show'])
     ->middleware(EnsurePlayerIsEmployed::class)
     ->name('office');
+
+Route::get('citynet', [CitynetController::class, 'show'])
+    ->middleware(['auth', 'can:enter-citynet'])
+    ->name('citynet');
 
 Route::put('locale', [LocaleController::class, 'update'])->name('locale.update');
 

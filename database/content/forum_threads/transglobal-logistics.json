@@ -1,0 +1,40 @@
+[
+    {
+        "slug": "gate-3",
+        "author": "office-coordinator",
+        "title": "Gate 3 is stuck",
+        "posts": [
+            {
+                "author": "office-coordinator",
+                "body": "Gate 3 is stuck again. Maintenance says it is the weather. It has been raining since November.\n\nUntil it is fixed, please use gate 2."
+            },
+            {
+                "author": "team-lead",
+                "body": "A truck with a trailer does not fit through gate 2."
+            },
+            {
+                "author": "office-coordinator",
+                "body": "Then please without the trailer."
+            }
+        ]
+    },
+    {
+        "slug": "route-sheets",
+        "author": "team-lead",
+        "title": "Route sheets, please fill them in",
+        "posts": [
+            {
+                "author": "team-lead",
+                "body": "Three route sheets this week only said \"misc\". Drivers then do not know what to unload.\n\nPlease write down the recipient and the count. Even when it is urgent."
+            },
+            {
+                "author": "dispatch-coordinator-2",
+                "body": "When it is urgent, the urgency is exactly the problem."
+            },
+            {
+                "author": "team-lead",
+                "body": "Then write faster."
+            }
+        ]
+    }
+]

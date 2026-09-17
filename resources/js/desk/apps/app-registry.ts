@@ -8,6 +8,7 @@ import { CalendarApp } from './calendar/calendar-app';
 import { ControlPanelApp } from './control-panel-app';
 import { CustomerBaseApp } from './customer-base/customer-base-app';
 import { FloppyDriveApp } from './floppy-drive/floppy-drive-app';
+import { ForumApp } from './forum/forum-app';
 import { MailApp } from './mail/mail-app';
 import { MessengerApp } from './messenger/messenger-app';
 import { MinefieldApp } from './minefield/minefield-app';
@@ -100,6 +101,12 @@ export const APPS = {
         size: { width: 600, height: 400 },
         component: RegistryApp,
         softwareType: 'registry',
+    },
+    forum: {
+        titleKey: 'forum.title',
+        icon: 'forum',
+        size: { width: 560, height: 400 },
+        component: ForumApp,
     },
     calendar: {
         titleKey: 'desktop.calendar',

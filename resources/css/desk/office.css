@@ -181,6 +181,40 @@
     clip-path: polygon(3% 0, 97% 0, 100% 100%, 0 100%);
 }
 
+.employee-plaque {
+    right: max(calc(var(--side-space) / 2 + 7em), 11em);
+    bottom: 1vh;
+    width: 9.5em;
+    padding: 0.3em;
+    background: linear-gradient(#8a6a2b, #6d5320);
+    border: 0.2em solid #533c16;
+    box-shadow: 0 0.3em 0.4em #0007;
+    transform: translateX(50%);
+}
+
+.employee-plaque-face {
+    display: block;
+    padding: 0.4em 0.3em;
+    border: 1px solid #d8c07a;
+    font:
+        0.78em / 1.3 Tahoma,
+        sans-serif;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    text-align: center;
+    color: #f4e6bd;
+}
+
+.employee-plaque-star {
+    display: block;
+    color: #ffd800;
+}
+
+.employee-plaque-period {
+    display: block;
+    letter-spacing: 0;
+}
+
 .coffee-mug {
     right: max(calc(var(--side-space) / 2), 4em);
     bottom: 3vh;
@@ -283,7 +317,8 @@
 
 @media (max-width: 640px) {
     .in-tray,
-    .coffee-mug {
+    .coffee-mug,
+    .employee-plaque {
         display: none;
     }
 

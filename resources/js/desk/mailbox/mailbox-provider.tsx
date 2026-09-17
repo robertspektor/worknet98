@@ -15,7 +15,8 @@ import { hasNewUnread, markRead, unreadCount } from './mailbox-state';
 const POLL_INTERVAL_MS = 15_000;
 
 export type OutgoingEmail = {
-    customer_id: number;
+    customer_id?: number;
+    colleague_position_id?: number;
     subject: string;
     body: string;
     action: EmailAction;

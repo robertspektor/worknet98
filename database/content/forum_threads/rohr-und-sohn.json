@@ -1,0 +1,59 @@
+[
+    {
+        "slug": "kaffeekasse",
+        "author": "office-coordinator",
+        "title": "Kaffeekasse",
+        "posts": [
+            {
+                "author": "office-coordinator",
+                "body": "Die Kaffeekasse ist wieder leer. In der Kasse lag ein Zettel mit \"IOU\" und kein Name.\n\nBitte 50 Cent pro Tasse. Das steht seit 1994 an der Maschine."
+            },
+            {
+                "author": "emergency-dispatcher",
+                "body": "Ich trinke nur Tee."
+            },
+            {
+                "author": "office-coordinator",
+                "body": "Der Tee wird auch aus der Kaffeekasse bezahlt."
+            }
+        ]
+    },
+    {
+        "slug": "firmenwagen",
+        "author": "branch-manager",
+        "title": "Der Transporter riecht nach Fisch",
+        "posts": [
+            {
+                "author": "branch-manager",
+                "body": "Wer auch immer den Transporter am Freitag hatte: Er riecht nach Fisch. Das Fahrzeug ist ein Arbeitsmittel, kein Kühlhaus.\n\nBitte melden. Anonym geht auch, aber ich weiß es sowieso."
+            },
+            {
+                "author": "service-contract-planner",
+                "body": "Das war kein Fisch. Das war ein Siphon aus der Hauptstraße 3."
+            },
+            {
+                "author": "branch-manager",
+                "body": "Das ist schlimmer."
+            }
+        ]
+    },
+    {
+        "slug": "urlaubsplanung",
+        "author": "office-coordinator",
+        "title": "Urlaubsplanung Sommer",
+        "posts": [
+            {
+                "author": "office-coordinator",
+                "body": "Die Urlaubsliste hängt am schwarzen Brett. Bitte eintragen, nicht überkleben.\n\nZwei Personen pro Woche, nicht drei, und Notdienst muss besetzt bleiben."
+            },
+            {
+                "author": "office-assistant-2",
+                "body": "Ich hätte gern die Woche, in der niemand anruft."
+            },
+            {
+                "author": "office-coordinator",
+                "body": "Die gibt es nicht."
+            }
+        ]
+    }
+]

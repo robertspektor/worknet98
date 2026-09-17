@@ -4,12 +4,14 @@ namespace App\Providers;
 
 use App\Models\FloppyDisk;
 use App\Models\HardwarePart;
+use App\Models\User;
 use Carbon\CarbonImmutable;
 use Illuminate\Cache\RateLimiting\Limit;
 use Illuminate\Database\Eloquent\Relations\Relation;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Date;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Str;
@@ -20,6 +22,12 @@ class AppServiceProvider extends ServiceProvider
     {
         $this->configureDefaults();
         $this->configureRateLimits();
+        $this->configureGates();
+    }
+
+    private function configureGates(): void
+    {
+        Gate::define('enter-citynet', fn (User $player): bool => $player->isMayor());
     }
 
     private function configureDefaults(): void

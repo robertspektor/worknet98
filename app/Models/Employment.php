@@ -26,6 +26,8 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  * @property-read Company $company
  * @property-read JobOpening $jobOpening
  * @property-read Position $position
+ * @property int|null $review_score
+ * @property int|null $excellent_reviews
  * @property-read User $user
  */
 #[Fillable(['user_id', 'company_id', 'job_opening_id', 'position_id', 'daily_salary', 'hired_at', 'position_started_at', 'ended_at'])]
@@ -69,6 +71,14 @@ class Employment extends Model
     public function scopeActive(Builder $query): void
     {
         $query->whereNull('ended_at');
+    }
+
+    /**
+     * @return HasMany<EmployeeAward, $this>
+     */
+    public function awards(): HasMany
+    {
+        return $this->hasMany(EmployeeAward::class);
     }
 
     /**
