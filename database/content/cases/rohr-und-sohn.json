@@ -8,7 +8,10 @@
             "body": "Guten Tag,\n\nunter meiner Küchenspüle steht Wasser, und es wird immer mehr. Ich habe eine Salatschüssel daruntergestellt, aber es ist meine gute Salatschüssel.\n\nKann bitte so schnell wie möglich jemand kommen? Ich bin nur vormittags zu Hause. Nachmittags helfe ich ehrenamtlich in der Bücherei.\n\nMit freundlichen Grüßen\nMargarete Hollmann"
         },
         "goals": [
-            { "type": "appointment_booked", "customer": "margarete-hollmann" },
+            {
+                "type": "appointment_booked",
+                "customer": "margarete-hollmann"
+            },
             {
                 "type": "email_sent",
                 "customer": "margarete-hollmann",
@@ -24,7 +27,7 @@
                 "slug": "bruno-warning",
                 "trigger": "case_opened",
                 "delay_seconds": 30,
-                "sender": "bettina-mertens",
+                "sender": "office-coordinator",
                 "body": "psst. hab die Mail von Frau Hollmann gesehen. egal was du machst, schick nicht den Heinz. Bruno und Heinz haben eine Vorgeschichte. da war eine Leiter im Spiel.",
                 "replies": [
                     {
@@ -43,7 +46,7 @@
                 "slug": "heinz-booked",
                 "trigger": "appointment_booked",
                 "delay_seconds": 20,
-                "sender": "bettina-mertens",
+                "sender": "office-coordinator",
                 "when": {
                     "type": "technician_is",
                     "customer": "margarete-hollmann",
@@ -72,8 +75,12 @@
                     "from": "08:00",
                     "to": "12:00"
                 },
-                "effects": { "customer_satisfaction": 2 },
-                "otherwise": { "customer_satisfaction": -2 },
+                "effects": {
+                    "customer_satisfaction": 2
+                },
+                "otherwise": {
+                    "customer_satisfaction": -2
+                },
                 "feedback": "Frau Hollmann hat angerufen, der Vormittagstermin passt perfekt. Sie hat uns \"ein Goldstück\" genannt. Ich beziehe das auf mich.",
                 "otherwise_feedback": "Frau Hollmann hat angerufen. Nachmittags ist sie nicht zu Hause, da ist sie in der Bücherei. Danach hat sie mir den kompletten Dienstplan der Bücherei erklärt. Vierzig Minuten."
             },
@@ -84,7 +91,9 @@
                     "skill": "plumbing"
                 },
                 "effects": {},
-                "otherwise": { "cost": -2 },
+                "otherwise": {
+                    "cost": -2
+                },
                 "feedback": "Auch beim Monteur gut gewählt.",
                 "otherwise_feedback": "Du hast einen Heizungsmann zu einer tropfenden Spüle geschickt. Der guckt sich das an, ruft einen Sanitärmann und fährt nochmal raus. Zwei Anfahrten. Ich bin nicht sauer. Ich bin enttäuscht."
             },
@@ -94,8 +103,12 @@
                     "customer": "margarete-hollmann",
                     "days": 2
                 },
-                "effects": { "punctuality": 1 },
-                "otherwise": { "punctuality": -1 },
+                "effects": {
+                    "punctuality": 1
+                },
+                "otherwise": {
+                    "punctuality": -1
+                },
                 "feedback": "Und schnell. So mag ich das.",
                 "otherwise_feedback": "Das ist eine tropfende Spüle. Bis wir da sind, hat sie einen Teich. Vielleicht mit Ente."
             },
@@ -105,7 +118,9 @@
                     "customer": "margarete-hollmann",
                     "technician": "heinz-kowalczyk"
                 },
-                "effects": { "customer_satisfaction": -2 },
+                "effects": {
+                    "customer_satisfaction": -2
+                },
                 "otherwise": {},
                 "feedback": "Außerdem hat Bruno den Heinz wieder die Leiter hochgejagt. Heinz geht es gut. Der Leiter nicht. Frau Hollmann hat zur Entschuldigung einen Kuchen geschickt. An Heinz, nicht an uns.",
                 "otherwise_feedback": "Und niemand wurde eine Leiter hochgejagt. Für Frau Hollmann ist das ein richtig guter Tag."

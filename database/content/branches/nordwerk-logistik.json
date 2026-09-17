@@ -1,0 +1,53 @@
+[
+    {
+        "slug": "hafenstedt",
+        "name": "Hafenstedt",
+        "office_address": "disposition@nordwerk.wn",
+        "positions": [
+            {
+                "slug": "branch-manager",
+                "title": "Niederlassungsleitung",
+                "npc_name": "Rolf Dietrich",
+                "npc_address": "rolf.dietrich@nordwerk.wn"
+            },
+            {
+                "slug": "team-lead",
+                "title": "Leitung Disposition",
+                "reports_to": "branch-manager",
+                "npc_name": "Tanja Brückner",
+                "npc_address": "tanja.brueckner@nordwerk.wn"
+            },
+            {
+                "slug": "office-coordinator",
+                "title": "Büroorganisation",
+                "reports_to": "branch-manager",
+                "npc_name": "Lore Fischbach",
+                "npc_address": "lore.fischbach@nordwerk.wn"
+            },
+            {
+                "slug": "dispatch-coordinator-1",
+                "title": "Junior-Disponent",
+                "reports_to": "team-lead",
+                "job_opening": "junior-disponent",
+                "npc_name": "Holger Mahler",
+                "npc_address": "holger.mahler@nordwerk.wn"
+            },
+            {
+                "slug": "dispatch-coordinator-2",
+                "title": "Junior-Disponentin",
+                "reports_to": "team-lead",
+                "job_opening": "junior-disponent",
+                "npc_name": "Kerstin Mohr",
+                "npc_address": "kerstin.mohr@nordwerk.wn"
+            },
+            {
+                "slug": "dispatch-coordinator-3",
+                "title": "Junior-Disponent",
+                "reports_to": "team-lead",
+                "job_opening": "junior-disponent",
+                "npc_name": "Otto Pfennig",
+                "npc_address": "otto.pfennig@nordwerk.wn"
+            }
+        ]
+    }
+]

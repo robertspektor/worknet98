@@ -1,0 +1,53 @@
+[
+    {
+        "slug": "port-hadley",
+        "name": "Port Hadley",
+        "office_address": "dispatch@transglobal.wn",
+        "positions": [
+            {
+                "slug": "branch-manager",
+                "title": "Branch Manager",
+                "npc_name": "Roy Delgado",
+                "npc_address": "roy.delgado@transglobal.wn"
+            },
+            {
+                "slug": "team-lead",
+                "title": "Dispatch Supervisor",
+                "reports_to": "branch-manager",
+                "npc_name": "Tammy Briggs",
+                "npc_address": "tammy.briggs@transglobal.wn"
+            },
+            {
+                "slug": "office-coordinator",
+                "title": "Office Coordinator",
+                "reports_to": "branch-manager",
+                "npc_name": "Lorna Fitch",
+                "npc_address": "lorna.fitch@transglobal.wn"
+            },
+            {
+                "slug": "dispatch-coordinator-1",
+                "title": "Junior Dispatch Coordinator",
+                "reports_to": "team-lead",
+                "job_opening": "junior-dispatch-coordinator",
+                "npc_name": "Hank Mulligan",
+                "npc_address": "hank.mulligan@transglobal.wn"
+            },
+            {
+                "slug": "dispatch-coordinator-2",
+                "title": "Junior Dispatch Coordinator",
+                "reports_to": "team-lead",
+                "job_opening": "junior-dispatch-coordinator",
+                "npc_name": "Keisha Monroe",
+                "npc_address": "keisha.monroe@transglobal.wn"
+            },
+            {
+                "slug": "dispatch-coordinator-3",
+                "title": "Junior Dispatch Coordinator",
+                "reports_to": "team-lead",
+                "job_opening": "junior-dispatch-coordinator",
+                "npc_name": "Otis Pennington",
+                "npc_address": "otis.pennington@transglobal.wn"
+            }
+        ]
+    }
+]

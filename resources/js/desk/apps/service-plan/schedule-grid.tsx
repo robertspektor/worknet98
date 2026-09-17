@@ -1,6 +1,6 @@
 import { useTranslation } from '@/i18n/use-translation';
 import type { Schedule } from '@/types';
-import { slotState } from './slot-state';
+import { isForeign, slotState } from './slot-state';
 
 export type SelectedSlot = { technicianId: number; slot: string };
 
@@ -55,7 +55,7 @@ export function ScheduleGrid({
                                 <td key={slot}>
                                     <button
                                         type="button"
-                                        className={`schedule-cell is-${state.kind} ${isSelected ? 'is-selected' : ''}`}
+                                        className={`schedule-cell is-${state.kind} ${isForeign(state) ? 'is-foreign' : ''} ${isSelected ? 'is-selected' : ''}`}
                                         disabled={state.kind === 'busy'}
                                         onClick={() =>
                                             onSelect({

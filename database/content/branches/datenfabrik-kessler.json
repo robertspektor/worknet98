@@ -1,0 +1,53 @@
+[
+    {
+        "slug": "neuwiesen",
+        "name": "Neuwiesen",
+        "office_address": "support@datenfabrik.wn",
+        "positions": [
+            {
+                "slug": "branch-manager",
+                "title": "Standortleitung",
+                "npc_name": "Christian Wendt",
+                "npc_address": "christian.wendt@datenfabrik.wn"
+            },
+            {
+                "slug": "team-lead",
+                "title": "Teamleitung Support",
+                "reports_to": "branch-manager",
+                "npc_name": "Nadine Petzold",
+                "npc_address": "nadine.petzold@datenfabrik.wn"
+            },
+            {
+                "slug": "office-coordinator",
+                "title": "Büroorganisation",
+                "reports_to": "branch-manager",
+                "npc_name": "Sabine Tannert",
+                "npc_address": "sabine.tannert@datenfabrik.wn"
+            },
+            {
+                "slug": "helpdesk-associate-1",
+                "title": "Helpdesk 1st Level",
+                "reports_to": "team-lead",
+                "job_opening": "helpdesk-1st-level",
+                "npc_name": "Björn Lindemann",
+                "npc_address": "bjoern.lindemann@datenfabrik.wn"
+            },
+            {
+                "slug": "helpdesk-associate-2",
+                "title": "Helpdesk 1st Level",
+                "reports_to": "team-lead",
+                "job_opening": "helpdesk-1st-level",
+                "npc_name": "Melanie Dörr",
+                "npc_address": "melanie.doerr@datenfabrik.wn"
+            },
+            {
+                "slug": "helpdesk-associate-3",
+                "title": "Helpdesk 1st Level",
+                "reports_to": "team-lead",
+                "job_opening": "helpdesk-1st-level",
+                "npc_name": "Torsten Bach",
+                "npc_address": "torsten.bach@datenfabrik.wn"
+            }
+        ]
+    }
+]

@@ -11,6 +11,7 @@ enum ApplicationRefusal: string implements Refusal
     case AlreadyEmployed = 'already_employed';
     case AlreadyApplied = 'already_applied';
     case ApplicationPending = 'application_pending';
+    case NoVacancy = 'no_vacancy';
 
     public function message(): string
     {

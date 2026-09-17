@@ -18,10 +18,10 @@ class SendWorkEmailRequest extends FormRequest
     public function rules(): array
     {
         $player = $this->user();
-        $companyId = $player instanceof User ? $player->employment?->company_id : null;
+        $branchId = $player instanceof User ? $player->employment?->position->branch_id : null;
 
         return [
-            'customer_id' => ['required', 'integer', Rule::exists('customers', 'id')->where('company_id', $companyId)],
+            'customer_id' => ['required', 'integer', Rule::exists('customers', 'id')->where('branch_id', $branchId)],
             'subject' => ['required', 'string', 'max:120'],
             'body' => ['required', 'string', 'max:2000'],
             'action' => ['required', Rule::enum(EmailAction::class)],

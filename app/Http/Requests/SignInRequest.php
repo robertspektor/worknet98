@@ -7,7 +7,7 @@ use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
-class RequestLoginLinkRequest extends FormRequest
+class SignInRequest extends FormRequest
 {
     /**
      * @return array<string, ValidationRule|array<mixed>|string>

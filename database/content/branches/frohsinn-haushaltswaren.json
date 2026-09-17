@@ -1,0 +1,53 @@
+[
+    {
+        "slug": "kleinbuettel",
+        "name": "Kleinbüttel",
+        "office_address": "kundendienst@frohsinn.wn",
+        "positions": [
+            {
+                "slug": "branch-manager",
+                "title": "Niederlassungsleitung",
+                "npc_name": "Gerd Hummel",
+                "npc_address": "gerd.hummel@frohsinn.wn"
+            },
+            {
+                "slug": "team-lead",
+                "title": "Leitung Kundendienst",
+                "reports_to": "branch-manager",
+                "npc_name": "Waltraud Seidel",
+                "npc_address": "waltraud.seidel@frohsinn.wn"
+            },
+            {
+                "slug": "office-coordinator",
+                "title": "Büroorganisation",
+                "reports_to": "branch-manager",
+                "npc_name": "Doris Keller",
+                "npc_address": "doris.keller@frohsinn.wn"
+            },
+            {
+                "slug": "complaints-clerk-1",
+                "title": "Reklamationssachbearbeitung",
+                "reports_to": "team-lead",
+                "job_opening": "reklamationssachbearbeitung",
+                "npc_name": "Philipp Garbe",
+                "npc_address": "philipp.garbe@frohsinn.wn"
+            },
+            {
+                "slug": "complaints-clerk-2",
+                "title": "Reklamationssachbearbeitung",
+                "reports_to": "team-lead",
+                "job_opening": "reklamationssachbearbeitung",
+                "npc_name": "Rosi Jahnke",
+                "npc_address": "rosi.jahnke@frohsinn.wn"
+            },
+            {
+                "slug": "complaints-clerk-3",
+                "title": "Reklamationssachbearbeitung",
+                "reports_to": "team-lead",
+                "job_opening": "reklamationssachbearbeitung",
+                "npc_name": "Stefan Weber",
+                "npc_address": "stefan.weber@frohsinn.wn"
+            }
+        ]
+    }
+]

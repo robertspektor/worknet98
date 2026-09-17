@@ -1,7 +1,7 @@
 <?php
 
 use App\Models\Appointment;
-use App\Models\Company;
+use App\Models\Branch;
 use App\Models\Customer;
 use App\Models\Shift;
 use App\Models\Technician;
@@ -12,12 +12,12 @@ use Illuminate\Testing\TestResponse;
 
 beforeEach(function () {
     $this->travelTo('2026-09-18 09:00:00');
-    $this->company = Company::factory()->create();
-    $this->customer = Customer::factory()->for($this->company)->create();
-    $this->technician = Technician::factory()->for($this->company)->create([
+    $this->branch = Branch::factory()->create();
+    $this->customer = Customer::factory()->for($this->branch)->create();
+    $this->technician = Technician::factory()->for($this->branch)->create([
         'busy_slots' => [['weekday' => 1, 'slot' => '08:00']],
     ]);
-    $this->player = playerOnDutyAt($this->company);
+    $this->player = playerOnDutyAt($this->branch);
 });
 
 function book(User $player, array $overrides = []): TestResponse
@@ -41,7 +41,8 @@ it('books an appointment for a customer with a technician', function () {
         ->assertJsonPath('data.customer.name', $this->customer->name);
 
     $appointment = Appointment::sole();
-    expect($appointment->employment_id)->toBe($this->player->employment?->id)
+    expect($appointment->booked_by_employment_id)->toBe($this->player->employment?->id)
+        ->and($appointment->branch_id)->toBe($this->branch->id)
         ->and($appointment->technician_id)->toBe($this->technician->id);
     Event::assertDispatched(AppointmentBooked::class);
 });
@@ -62,20 +63,28 @@ it('refuses slots that are already booked', function () {
     book($this->player)->assertUnprocessable()->assertJsonPath('refusal', 'slot_taken');
 });
 
+it('refuses slots that a colleague in the same branch already booked', function () {
+    book(playerOnDutyAt($this->branch))->assertCreated();
+
+    book($this->player)->assertUnprocessable()->assertJsonPath('refusal', 'slot_taken');
+});
+
 it('refuses dates outside of the next five working days', function (string $date) {
     book($this->player, ['date' => $date])->assertUnprocessable()->assertJsonPath('refusal', 'outside_booking_window');
 })->with(['today' => '2026-09-18', 'weekend' => '2026-09-19', 'too far ahead' => '2026-09-28']);
 
-it('only books customers and technicians of the own company', function () {
+it('only books customers and technicians of the own branch', function () {
+    $otherBranch = Branch::factory()->for($this->branch->company)->create();
+
     book($this->player, [
-        'customer_id' => Customer::factory()->create()->id,
-        'technician_id' => Technician::factory()->create()->id,
+        'customer_id' => Customer::factory()->for($otherBranch)->create()->id,
+        'technician_id' => Technician::factory()->for($otherBranch)->create()->id,
         'slot' => '11:00',
     ])->assertUnprocessable()->assertJsonValidationErrors(['customer_id', 'technician_id', 'slot']);
 });
 
 it('cancels an own appointment', function () {
-    $appointment = Appointment::factory()->create(['employment_id' => $this->player->employment?->id]);
+    $appointment = Appointment::factory()->for($this->branch)->create(['booked_by_employment_id' => $this->player->employment?->id]);
 
     $this->actingAs($this->player)
         ->deleteJson(route('api.v1.appointments.destroy', $appointment))
@@ -84,8 +93,9 @@ it('cancels an own appointment', function () {
     expect(Appointment::count())->toBe(0);
 });
 
-it('does not cancel appointments of other players', function () {
-    $appointment = Appointment::factory()->create();
+it('does not cancel appointments of colleagues', function () {
+    $colleague = playerOnDutyAt($this->branch);
+    $appointment = Appointment::factory()->for($this->branch)->create(['booked_by_employment_id' => $colleague->employment?->id]);
 
     $this->actingAs($this->player)
         ->deleteJson(route('api.v1.appointments.destroy', $appointment))

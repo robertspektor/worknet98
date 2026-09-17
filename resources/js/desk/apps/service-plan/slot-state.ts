@@ -30,3 +30,7 @@ export function slotState(
         ? { kind: 'busy' }
         : { kind: 'free' };
 }
+
+export function isForeign(state: SlotState): boolean {
+    return state.kind === 'booked' && !state.appointment.is_own;
+}

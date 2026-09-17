@@ -39,7 +39,7 @@ class CaseReviewer
         $goalsMet = collect($definition->goals)->every(fn (Conditions\Condition $goal): bool => $goal->isMetBy($state));
 
         if (! $goalsMet) {
-            $this->mailbox->deliver($shift->user, $this->mails->reminder($definition, $company), $shift->employment);
+            $this->mailbox->deliver($shift->user, $this->mails->reminder($definition, $shift->employment), $shift->employment);
 
             return;
         }
@@ -58,7 +58,7 @@ class CaseReviewer
         }
 
         $workCase->update(['status' => WorkCaseStatus::Resolved, 'resolved_at' => now()]);
-        $this->mailbox->deliver($shift->user, $this->mails->feedback($definition, $shift->employment->company, $feedback), $shift->employment);
+        $this->mailbox->deliver($shift->user, $this->mails->feedback($definition, $shift->employment, $feedback), $shift->employment);
 
         CaseResolved::dispatch($workCase);
     }

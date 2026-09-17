@@ -31,7 +31,7 @@ class CaseOpener
     private function open(Shift $shift, CaseDefinition $definition): void
     {
         $employment = $shift->employment;
-        $customer = $employment->company->customers()->where('slug', $definition->requestMail['customer'])->firstOrFail();
+        $customer = $employment->branch()->customers()->where('slug', $definition->requestMail['customer'])->firstOrFail();
 
         $workCase = WorkCase::create([
             'employment_id' => $employment->id,

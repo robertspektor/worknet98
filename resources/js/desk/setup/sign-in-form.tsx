@@ -1,7 +1,7 @@
 import { useForm, usePage } from '@inertiajs/react';
 import type { FormEvent } from 'react';
 import { useTranslation } from '@/i18n/use-translation';
-import { store } from '@/routes/login-link';
+import { store } from '@/routes/sign-in';
 import { LocaleSelect } from '../ui/locale-select';
 import { useLocaleSwitch } from '../ui/use-locale-switch';
 
@@ -14,7 +14,14 @@ export function SignInForm({ onSent }: { onSent: () => void }) {
     const submit = (event: FormEvent) => {
         event.preventDefault();
         form.transform((data) => ({ ...data, locale }));
-        form.post(store.url(), { preserveState: true, onSuccess: onSent });
+        form.post(store.url(), {
+            preserveState: true,
+            onSuccess: (page) => {
+                if (page.props.status === 'login-link-sent') {
+                    onSent();
+                }
+            },
+        });
     };
 
     return (

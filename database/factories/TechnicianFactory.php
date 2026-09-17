@@ -2,7 +2,7 @@
 
 namespace Database\Factories;
 
-use App\Models\Company;
+use App\Models\Branch;
 use App\Models\Technician;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
@@ -20,7 +20,7 @@ class TechnicianFactory extends Factory
         $name = fake()->unique()->name();
 
         return [
-            'company_id' => Company::factory(),
+            'branch_id' => Branch::factory(),
             'slug' => Str::slug($name),
             'name' => $name,
             'skills' => ['plumbing'],

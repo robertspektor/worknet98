@@ -11,16 +11,16 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
  * @property int $id
- * @property int $company_id
+ * @property int $branch_id
  * @property string $slug
  * @property string $name
  * @property list<string> $skills
  * @property list<array{weekday: int, slot: string}> $busy_slots
  * @property CarbonImmutable|null $created_at
  * @property CarbonImmutable|null $updated_at
- * @property-read Company $company
+ * @property-read Branch $branch
  */
-#[Fillable(['company_id', 'slug', 'name', 'skills', 'busy_slots'])]
+#[Fillable(['branch_id', 'slug', 'name', 'skills', 'busy_slots'])]
 class Technician extends Model
 {
     /** @use HasFactory<TechnicianFactory> */
@@ -39,11 +39,11 @@ class Technician extends Model
     }
 
     /**
-     * @return BelongsTo<Company, $this>
+     * @return BelongsTo<Branch, $this>
      */
-    public function company(): BelongsTo
+    public function branch(): BelongsTo
     {
-        return $this->belongsTo(Company::class);
+        return $this->belongsTo(Branch::class);
     }
 
     /**

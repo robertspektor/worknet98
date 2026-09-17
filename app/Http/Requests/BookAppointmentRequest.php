@@ -19,11 +19,11 @@ class BookAppointmentRequest extends FormRequest
      */
     public function rules(): array
     {
-        $companyId = $this->companyId();
+        $branchId = $this->branchId();
 
         return [
-            'customer_id' => ['required', 'integer', Rule::exists('customers', 'id')->where('company_id', $companyId)],
-            'technician_id' => ['required', 'integer', Rule::exists('technicians', 'id')->where('company_id', $companyId)],
+            'customer_id' => ['required', 'integer', Rule::exists('customers', 'id')->where('branch_id', $branchId)],
+            'technician_id' => ['required', 'integer', Rule::exists('technicians', 'id')->where('branch_id', $branchId)],
             'date' => ['required', 'date_format:Y-m-d'],
             'slot' => ['required', Rule::in(ServiceSlots::ALL)],
         ];
@@ -39,10 +39,10 @@ class BookAppointmentRequest extends FormRequest
         );
     }
 
-    private function companyId(): ?int
+    private function branchId(): ?int
     {
         $player = $this->user();
 
-        return $player instanceof User ? $player->employment?->company_id : null;
+        return $player instanceof User ? $player->employment?->position->branch_id : null;
     }
 }

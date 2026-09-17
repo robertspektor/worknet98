@@ -3,8 +3,8 @@
 namespace Database\Factories;
 
 use App\Models\Appointment;
+use App\Models\Branch;
 use App\Models\Customer;
-use App\Models\Employment;
 use App\Models\Technician;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -19,9 +19,10 @@ class AppointmentFactory extends Factory
     public function definition(): array
     {
         return [
-            'employment_id' => Employment::factory(),
-            'customer_id' => Customer::factory(),
-            'technician_id' => Technician::factory(),
+            'branch_id' => Branch::factory(),
+            'booked_by_employment_id' => null,
+            'customer_id' => fn (array $attributes): int => Customer::factory()->create(['branch_id' => $attributes['branch_id']])->id,
+            'technician_id' => fn (array $attributes): int => Technician::factory()->create(['branch_id' => $attributes['branch_id']])->id,
             'date' => now()->addWeekday()->toDateString(),
             'slot' => '10:00',
         ];

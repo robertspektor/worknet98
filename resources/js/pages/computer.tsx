@@ -1,4 +1,4 @@
-import { Head, usePage } from '@inertiajs/react';
+import { Head, usePage, usePoll } from '@inertiajs/react';
 import { HomeWorkstation } from '@/desk/computer/home-workstation';
 import { FloppyDriveProvider } from '@/desk/floppy/floppy-drive-provider';
 import { EmployeeBadge } from '@/desk/room/employee-badge';
@@ -8,8 +8,11 @@ import { PcTower } from '@/desk/room/pc-tower';
 import { Room } from '@/desk/room/room';
 import { StickyNote } from '@/desk/room/sticky-note';
 
+const PLAYER_POLL_INTERVAL_MS = 15_000;
+
 export default function Computer() {
     const { player, status } = usePage().props;
+    usePoll(PLAYER_POLL_INTERVAL_MS, { only: ['player'] });
 
     return (
         <>

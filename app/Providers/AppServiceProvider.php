@@ -28,7 +28,7 @@ class AppServiceProvider extends ServiceProvider
 
     private function configureRateLimits(): void
     {
-        RateLimiter::for('login-links', fn (Request $request): array => [
+        RateLimiter::for('sign-in', fn (Request $request): array => [
             Limit::perMinute(3)->by('email:'.Str::lower($request->string('email')->toString())),
             Limit::perHour(20)->by('ip:'.$request->ip()),
         ]);

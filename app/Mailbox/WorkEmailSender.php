@@ -19,7 +19,7 @@ class WorkEmailSender
             'employment_id' => $employment->id,
             'folder' => EmailFolder::Sent,
             'sender_name' => $employment->company->name,
-            'sender_address' => (string) $employment->company->office_address,
+            'sender_address' => $employment->branch()->office_address,
             'recipient_name' => $outgoing->recipient->name,
             'recipient_address' => $outgoing->recipient->email_address,
             'subject' => $outgoing->subject,

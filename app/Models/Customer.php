@@ -11,7 +11,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
  * @property int $id
- * @property int $company_id
+ * @property int $branch_id
  * @property string $slug
  * @property string $name
  * @property string $street
@@ -21,19 +21,19 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property string $notes
  * @property CarbonImmutable|null $created_at
  * @property CarbonImmutable|null $updated_at
- * @property-read Company $company
+ * @property-read Branch $branch
  */
-#[Fillable(['company_id', 'slug', 'name', 'street', 'city', 'phone', 'email_address', 'notes'])]
+#[Fillable(['branch_id', 'slug', 'name', 'street', 'city', 'phone', 'email_address', 'notes'])]
 class Customer extends Model
 {
     /** @use HasFactory<CustomerFactory> */
     use HasFactory;
 
     /**
-     * @return BelongsTo<Company, $this>
+     * @return BelongsTo<Branch, $this>
      */
-    public function company(): BelongsTo
+    public function branch(): BelongsTo
     {
-        return $this->belongsTo(Company::class);
+        return $this->belongsTo(Branch::class);
     }
 }

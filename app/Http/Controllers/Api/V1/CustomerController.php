@@ -10,6 +10,6 @@ class CustomerController extends ApiController
 {
     public function index(Request $request): AnonymousResourceCollection
     {
-        return CustomerResource::collection($this->employment($request)->company->customers()->orderBy('name')->get());
+        return CustomerResource::collection($this->employment($request)->branch()->customers()->orderBy('name')->get());
     }
 }

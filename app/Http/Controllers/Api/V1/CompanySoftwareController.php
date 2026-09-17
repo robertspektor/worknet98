@@ -9,6 +9,6 @@ class CompanySoftwareController extends ApiController
 {
     public function show(Request $request): CompanySoftwareResource
     {
-        return new CompanySoftwareResource($this->employment($request)->company);
+        return new CompanySoftwareResource($this->employment($request)->branch());
     }
 }

@@ -11,29 +11,39 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
  * @property int $id
- * @property int $employment_id
+ * @property int $branch_id
+ * @property int|null $booked_by_employment_id
  * @property int $customer_id
  * @property int $technician_id
  * @property CarbonImmutable $date
  * @property string $slot
  * @property CarbonImmutable|null $created_at
  * @property CarbonImmutable|null $updated_at
- * @property-read Employment $employment
+ * @property-read Branch $branch
+ * @property-read Employment|null $bookedBy
  * @property-read Customer $customer
  * @property-read Technician $technician
  */
-#[Fillable(['employment_id', 'customer_id', 'technician_id', 'date', 'slot'])]
+#[Fillable(['branch_id', 'booked_by_employment_id', 'customer_id', 'technician_id', 'date', 'slot'])]
 class Appointment extends Model
 {
     /** @use HasFactory<AppointmentFactory> */
     use HasFactory;
 
     /**
+     * @return BelongsTo<Branch, $this>
+     */
+    public function branch(): BelongsTo
+    {
+        return $this->belongsTo(Branch::class);
+    }
+
+    /**
      * @return BelongsTo<Employment, $this>
      */
-    public function employment(): BelongsTo
+    public function bookedBy(): BelongsTo
     {
-        return $this->belongsTo(Employment::class);
+        return $this->belongsTo(Employment::class, 'booked_by_employment_id');
     }
 
     /**

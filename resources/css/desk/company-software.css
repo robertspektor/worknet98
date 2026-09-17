@@ -190,6 +190,12 @@
     background: var(--title);
 }
 
+.schedule-cell.is-booked.is-foreign {
+    font-weight: normal;
+    color: #000;
+    background: #c0c8e0;
+}
+
 .schedule-cell.is-selected {
     border: 1px dotted #000;
     outline: 1px solid #ffd800;

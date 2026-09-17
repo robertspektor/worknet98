@@ -6,6 +6,7 @@ use App\Models\Company;
 use App\Models\Employment;
 use App\Models\JobApplication;
 use App\Models\JobOpening;
+use App\Models\Position;
 use App\Models\User;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Testing\TestResponse;
@@ -23,7 +24,7 @@ function applyFor(User $player, JobOpening $opening, array $payload = []): TestR
 it('submits an application that the company answers later', function () {
     Event::fake([JobApplicationSubmitted::class]);
     $player = User::factory()->create();
-    $opening = JobOpening::factory()->create();
+    $opening = JobOpening::factory()->withVacancy()->create();
 
     applyFor($player, $opening, ['message' => '  I can type 40 words per minute.  '])
         ->assertCreated()
@@ -39,7 +40,7 @@ it('submits an application that the company answers later', function () {
 });
 
 it('stores an empty message as no message', function () {
-    applyFor(User::factory()->create(), JobOpening::factory()->create(), ['message' => '   '])->assertCreated();
+    applyFor(User::factory()->create(), JobOpening::factory()->withVacancy()->create(), ['message' => '   '])->assertCreated();
 
     expect(JobApplication::sole()->message)->toBeNull();
 });
@@ -86,6 +87,15 @@ it('refuses applications from employed players', function () {
     applyFor(User::findOrFail($employment->user_id), JobOpening::factory()->create())
         ->assertUnprocessable()
         ->assertJsonPath('refusal', 'already_employed');
+});
+
+it('refuses applications when every position is held by a player', function () {
+    $opening = JobOpening::factory()->withVacancy()->create();
+    Employment::factory()->at(Position::query()->whereBelongsTo($opening)->sole())->create();
+
+    applyFor(User::factory()->create(), $opening)
+        ->assertUnprocessable()
+        ->assertJsonPath('refusal', 'no_vacancy');
 });
 
 it('limits the length of the application message', function () {

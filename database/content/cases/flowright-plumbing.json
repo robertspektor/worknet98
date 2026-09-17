@@ -8,7 +8,10 @@
             "body": "Hello,\n\nThere is water under my kitchen sink and it is getting worse. I put a salad bowl under it, but it is my good salad bowl.\n\nCan someone come as soon as possible? I am only home in the mornings. In the afternoons I volunteer at the library.\n\nThank you,\nMargaret Hollis"
         },
         "goals": [
-            { "type": "appointment_booked", "customer": "margaret-hollis" },
+            {
+                "type": "appointment_booked",
+                "customer": "margaret-hollis"
+            },
             {
                 "type": "email_sent",
                 "customer": "margaret-hollis",
@@ -24,7 +27,7 @@
                 "slug": "duke-warning",
                 "trigger": "case_opened",
                 "delay_seconds": 30,
-                "sender": "bev-mercer",
+                "sender": "office-coordinator",
                 "body": "psst. saw the Hollis mail come in. whatever you do, don't send Stan. Duke and Stan have history. there was a ladder involved.",
                 "replies": [
                     {
@@ -43,7 +46,7 @@
                 "slug": "stan-booked",
                 "trigger": "appointment_booked",
                 "delay_seconds": 20,
-                "sender": "bev-mercer",
+                "sender": "office-coordinator",
                 "when": {
                     "type": "technician_is",
                     "customer": "margaret-hollis",
@@ -72,8 +75,12 @@
                     "from": "08:00",
                     "to": "12:00"
                 },
-                "effects": { "customer_satisfaction": 2 },
-                "otherwise": { "customer_satisfaction": -2 },
+                "effects": {
+                    "customer_satisfaction": 2
+                },
+                "otherwise": {
+                    "customer_satisfaction": -2
+                },
                 "feedback": "Mrs. Hollis called to say the morning appointment is perfect. She called us \"a gem\". I am choosing to believe she meant me.",
                 "otherwise_feedback": "Mrs. Hollis called. She is not home in the afternoons. She volunteers at the library. She then explained the entire library schedule to me. Forty minutes."
             },
@@ -84,7 +91,9 @@
                     "skill": "plumbing"
                 },
                 "effects": {},
-                "otherwise": { "cost": -2 },
+                "otherwise": {
+                    "cost": -2
+                },
                 "feedback": "Good pick on the technician, too.",
                 "otherwise_feedback": "You sent a heating guy to a leaking sink. He will look at it, call a plumber and drive out again. Two trips. I am not angry. I am disappointed."
             },
@@ -94,8 +103,12 @@
                     "customer": "margaret-hollis",
                     "days": 2
                 },
-                "effects": { "punctuality": 1 },
-                "otherwise": { "punctuality": -1 },
+                "effects": {
+                    "punctuality": 1
+                },
+                "otherwise": {
+                    "punctuality": -1
+                },
                 "feedback": "And fast. Love to see it.",
                 "otherwise_feedback": "It is a leaking sink. By the time we get there, she will have a pond. Maybe a duck."
             },
@@ -105,7 +118,9 @@
                     "customer": "margaret-hollis",
                     "technician": "stan-kowalski"
                 },
-                "effects": { "customer_satisfaction": -2 },
+                "effects": {
+                    "customer_satisfaction": -2
+                },
                 "otherwise": {},
                 "feedback": "Also, Duke chased Stan up his ladder again. Stan is fine. The ladder is not. Mrs. Hollis sent a cake to apologize. To Stan, not to us.",
                 "otherwise_feedback": "And nobody got chased up a ladder. By Hollis standards, that is a great day."

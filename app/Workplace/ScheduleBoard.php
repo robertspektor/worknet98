@@ -2,22 +2,24 @@
 
 namespace App\Workplace;
 
-use App\Models\Employment;
+use App\Models\Branch;
 
 class ScheduleBoard
 {
     public function __construct(private readonly BookingWindow $window) {}
 
-    public function for(Employment $employment): Schedule
+    public function for(Branch $branch): Schedule
     {
         $days = $this->window->days();
 
         return new Schedule(
             days: $days,
-            technicians: $employment->company->technicians()->orderBy('name')->get(),
-            appointments: $employment->appointments()
-                ->with('customer')
+            technicians: $branch->technicians()->orderBy('name')->get(),
+            appointments: $branch->appointments()
+                ->with(['customer', 'bookedBy.position'])
                 ->whereBetween('date', [$days[0]->toDateString(), $days[count($days) - 1]->toDateString()])
+                ->orderBy('date')
+                ->orderBy('slot')
                 ->get(),
         );
     }

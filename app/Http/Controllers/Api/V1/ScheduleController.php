@@ -10,6 +10,6 @@ class ScheduleController extends ApiController
 {
     public function show(Request $request, ScheduleBoard $board): ScheduleResource
     {
-        return new ScheduleResource($board->for($this->employment($request)));
+        return new ScheduleResource($board->for($this->employment($request)->branch()));
     }
 }

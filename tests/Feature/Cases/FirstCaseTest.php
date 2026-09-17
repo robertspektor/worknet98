@@ -3,24 +3,17 @@
 use App\Cases\Metric;
 use App\Cases\MetricBook;
 use App\Cases\WorkCaseStatus;
-use App\Models\Company;
 use App\Models\Customer;
 use App\Models\Email;
-use App\Models\Employment;
-use App\Models\JobOpening;
 use App\Models\User;
 use App\Models\WorkCase;
+use Database\Seeders\BranchSeeder;
 use Database\Seeders\CompanySeeder;
-use Database\Seeders\CompanySoftwareSeeder;
 
 beforeEach(function () {
     $this->travelTo('2026-09-21 09:00:00');
-    $this->seed([CompanySeeder::class, CompanySoftwareSeeder::class]);
-    $company = Company::query()->where('slug', 'flowright-plumbing')->sole();
-    $employment = Employment::factory()->create([
-        'company_id' => $company->id,
-        'job_opening_id' => JobOpening::query()->where('company_id', $company->id)->sole()->id,
-    ]);
+    $this->seed([CompanySeeder::class, BranchSeeder::class]);
+    $employment = employAtSeededPosition('flowright-plumbing');
     $this->employment = $employment;
     $this->player = User::findOrFail($employment->user_id);
     $this->hollis = Customer::query()->where('slug', 'margaret-hollis')->sole();
@@ -95,6 +88,18 @@ it('upsets the customer when Stan is sent despite the warning', function () {
 
     expect(app(MetricBook::class)->valueOf($this->employment, Metric::CustomerSatisfaction))->toBe(0)
         ->and(Email::query()->where('subject', 'Re: Mrs. Hollis')->sole()->body)->toContain('Duke chased Stan');
+});
+
+it('only counts the work of the player, not of colleagues in the same branch', function () {
+    $colleague = User::findOrFail(employAtSeededPosition('flowright-plumbing', 'office-assistant-2')->user_id);
+    workAs($colleague, 'POST', 'api.v1.shift.clock-in');
+    workAs($this->player, 'POST', 'api.v1.shift.clock-in');
+    handleHollisCase($colleague, $this->hollis, 'rita-vance', '2026-09-22', '10:00');
+
+    workAs($this->player, 'POST', 'api.v1.shift.clock-out');
+
+    expect(WorkCase::query()->whereBelongsTo($this->employment)->sole()->status)->toBe(WorkCaseStatus::Open)
+        ->and(Email::query()->whereBelongsTo($this->player)->where('subject', 'Mrs. Hollis?')->exists())->toBeTrue();
 });
 
 it('keeps the case open and sends a reminder when a step is missing', function () {

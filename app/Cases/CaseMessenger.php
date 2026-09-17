@@ -5,15 +5,14 @@ namespace App\Cases;
 use App\Messenger\ChatDraft;
 use App\Messenger\Messenger;
 use App\Models\ChatMessage;
+use App\Models\Position;
 use App\Models\WorkCase;
-use App\Workplace\CompanySoftwareCatalog;
 
 class CaseMessenger
 {
     public function __construct(
         private readonly CaseCatalog $catalog,
         private readonly CaseStateLoader $states,
-        private readonly CompanySoftwareCatalog $software,
         private readonly Messenger $messenger,
     ) {}
 
@@ -34,15 +33,24 @@ class CaseMessenger
 
         foreach ($definition->messages ?? [] as $message) {
             if ($message->trigger === $trigger && ! $sentSlugs->contains($message->slug) && $message->isDueIn($state)) {
-                $this->messenger->deliver($workCase->employment, $this->draft($workCase, $message));
+                $this->sendFromColleague($workCase, $message);
             }
         }
     }
 
-    private function draft(WorkCase $workCase, CaseMessage $message): ChatDraft
+    private function sendFromColleague(WorkCase $workCase, CaseMessage $message): void
+    {
+        $sender = $workCase->employment->branch()->positions()->where('slug', $message->sender)->firstOrFail();
+
+        if (! $sender->isHeldByPlayer()) {
+            $this->messenger->deliver($workCase->employment, $this->draft($workCase, $message, $sender));
+        }
+    }
+
+    private function draft(WorkCase $workCase, CaseMessage $message, Position $sender): ChatDraft
     {
         return new ChatDraft(
-            contactName: $this->software->colleagueName($workCase->employment->company, $message->sender),
+            contactName: $sender->npc_name,
             body: $message->body,
             replies: $message->replies,
             delaySeconds: $message->delaySeconds,

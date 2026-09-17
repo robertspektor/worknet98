@@ -13,7 +13,7 @@ export type JobOpening = {
     company: Company;
 };
 
-export type JobApplicationStatus = 'pending' | 'accepted';
+export type JobApplicationStatus = 'pending' | 'accepted' | 'rejected';
 
 export type JobApplication = {
     id: number;

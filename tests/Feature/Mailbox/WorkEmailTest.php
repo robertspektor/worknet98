@@ -2,15 +2,17 @@
 
 use App\Mailbox\EmailAction;
 use App\Mailbox\EmailFolder;
+use App\Models\Branch;
 use App\Models\Company;
 use App\Models\Customer;
 use App\Models\Email;
 use App\Models\Shift;
 
 beforeEach(function () {
-    $this->company = Company::factory()->create(['name' => 'Flowright Plumbing & Heating', 'office_address' => 'office@flowright.wn']);
-    $this->customer = Customer::factory()->for($this->company)->create(['name' => 'Margaret Hollis', 'email_address' => 'm.hollis@mail.wn']);
-    $this->player = playerOnDutyAt($this->company);
+    $company = Company::factory()->create(['name' => 'Flowright Plumbing & Heating']);
+    $branch = Branch::factory()->for($company)->create(['office_address' => 'office@flowright.wn']);
+    $this->customer = Customer::factory()->for($branch)->create(['name' => 'Margaret Hollis', 'email_address' => 'm.hollis@mail.wn']);
+    $this->player = playerOnDutyAt($branch);
 });
 
 it('sends a work mail to a customer with the chosen action', function () {

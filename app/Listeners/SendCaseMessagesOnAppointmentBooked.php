@@ -12,6 +12,10 @@ class SendCaseMessagesOnAppointmentBooked
 
     public function handle(AppointmentBooked $event): void
     {
-        $this->messenger->sendForOpenCases($event->appointment->employment_id, MessageTrigger::AppointmentBooked);
+        $bookedBy = $event->appointment->booked_by_employment_id;
+
+        if ($bookedBy !== null) {
+            $this->messenger->sendForOpenCases($bookedBy, MessageTrigger::AppointmentBooked);
+        }
     }
 }

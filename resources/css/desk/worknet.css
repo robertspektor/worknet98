@@ -121,6 +121,12 @@
     border-color: #004000;
 }
 
+.job-status.is-rejected {
+    color: #fff;
+    background: #800000;
+    border-color: #400000;
+}
+
 .job-company {
     margin-bottom: 2px;
 }

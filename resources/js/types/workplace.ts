@@ -2,7 +2,8 @@ export type SoftwareType = 'records' | 'scheduler';
 
 export type CompanySoftware = {
     company: string;
-    office_address: string | null;
+    branch: string;
+    office_address: string;
     app_names: Partial<Record<SoftwareType, string>>;
 };
 
@@ -29,6 +30,8 @@ export type Appointment = {
     slot: string;
     technician_id: number;
     customer: { id: number; name: string };
+    is_own: boolean;
+    booked_by: string | null;
 };
 
 export type Schedule = {

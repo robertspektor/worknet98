@@ -15,19 +15,26 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  * @property int $user_id
  * @property int $company_id
  * @property int $job_opening_id
+ * @property int $position_id
  * @property int $daily_salary
  * @property CarbonImmutable $hired_at
  * @property CarbonImmutable|null $created_at
  * @property CarbonImmutable|null $updated_at
  * @property-read Company $company
  * @property-read JobOpening $jobOpening
+ * @property-read Position $position
  * @property-read User $user
  */
-#[Fillable(['user_id', 'company_id', 'job_opening_id', 'daily_salary', 'hired_at'])]
+#[Fillable(['user_id', 'company_id', 'job_opening_id', 'position_id', 'daily_salary', 'hired_at'])]
 class Employment extends Model
 {
     /** @use HasFactory<EmploymentFactory> */
     use HasFactory;
+
+    public function branch(): Branch
+    {
+        return $this->position->branch;
+    }
 
     /**
      * @return BelongsTo<User, $this>
@@ -40,9 +47,9 @@ class Employment extends Model
     /**
      * @return HasMany<Appointment, $this>
      */
-    public function appointments(): HasMany
+    public function bookedAppointments(): HasMany
     {
-        return $this->hasMany(Appointment::class);
+        return $this->hasMany(Appointment::class, 'booked_by_employment_id');
     }
 
     /**
@@ -59,6 +66,14 @@ class Employment extends Model
     public function company(): BelongsTo
     {
         return $this->belongsTo(Company::class);
+    }
+
+    /**
+     * @return BelongsTo<Position, $this>
+     */
+    public function position(): BelongsTo
+    {
+        return $this->belongsTo(Position::class);
     }
 
     /**

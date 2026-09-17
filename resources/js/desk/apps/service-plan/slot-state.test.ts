@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vite-plus/test';
 import type { Schedule } from '@/types';
-import { slotState } from './slot-state';
+import { isForeign, slotState } from './slot-state';
 
 const schedule: Schedule = {
     days: ['2026-09-21', '2026-09-22'],
@@ -20,6 +20,17 @@ const schedule: Schedule = {
             slot: '10:00',
             technician_id: 1,
             customer: { id: 4, name: 'Margaret Hollis' },
+            is_own: true,
+            booked_by: 'Office Assistant (Scheduling)',
+        },
+        {
+            id: 10,
+            date: '2026-09-22',
+            slot: '08:00',
+            technician_id: 1,
+            customer: { id: 5, name: 'Walter Beck' },
+            is_own: false,
+            booked_by: 'Office Assistant (Scheduling)',
         },
     ],
 };
@@ -41,5 +52,17 @@ describe('slotState', () => {
         expect(slotState(schedule, 1, '2026-09-21', '10:00')).toEqual({
             kind: 'free',
         });
+    });
+
+    it('marks appointments booked by colleagues as foreign', () => {
+        expect(isForeign(slotState(schedule, 1, '2026-09-22', '08:00'))).toBe(
+            true,
+        );
+        expect(isForeign(slotState(schedule, 1, '2026-09-22', '10:00'))).toBe(
+            false,
+        );
+        expect(isForeign(slotState(schedule, 1, '2026-09-21', '10:00'))).toBe(
+            false,
+        );
     });
 });

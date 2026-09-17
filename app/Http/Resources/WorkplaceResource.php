@@ -18,7 +18,7 @@ class WorkplaceResource extends JsonResource
     {
         return [
             'company' => $this->company->name,
-            'jobTitle' => $this->jobOpening->title,
+            'jobTitle' => $this->position->title,
         ];
     }
 }

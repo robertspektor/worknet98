@@ -1,7 +1,7 @@
 <?php
 
 use App\Http\Controllers\Auth\LoginController;
-use App\Http\Controllers\Auth\LoginLinkController;
+use App\Http\Controllers\Auth\SignInController;
 use App\Http\Controllers\ComputerController;
 use App\Http\Controllers\LocaleController;
 use App\Http\Controllers\OfficeController;
@@ -17,9 +17,9 @@ Route::get('office', [OfficeController::class, 'show'])
 Route::put('locale', [LocaleController::class, 'update'])->name('locale.update');
 
 Route::middleware('guest')->group(function (): void {
-    Route::post('login-link', [LoginLinkController::class, 'store'])
-        ->middleware('throttle:login-links')
-        ->name('login-link.store');
+    Route::post('sign-in', [SignInController::class, 'store'])
+        ->middleware('throttle:sign-in')
+        ->name('sign-in.store');
 
     Route::get('login/{token}', [LoginController::class, 'show'])->name('login.show');
     Route::post('login/{token}', [LoginController::class, 'store'])

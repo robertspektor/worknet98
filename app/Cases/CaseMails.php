@@ -3,8 +3,9 @@
 namespace App\Cases;
 
 use App\Mailbox\EmailDraft;
-use App\Models\Company;
 use App\Models\Customer;
+use App\Models\Employment;
+use LogicException;
 
 class CaseMails
 {
@@ -21,23 +22,25 @@ class CaseMails
     /**
      * @param  list<string>  $feedback
      */
-    public function feedback(CaseDefinition $definition, Company $company, array $feedback): EmailDraft
+    public function feedback(CaseDefinition $definition, Employment $employment, array $feedback): EmailDraft
     {
         $mail = $definition->feedbackMail;
 
-        return $this->fromManager($company, $mail['subject'], implode("\n\n", [$mail['intro'], ...$feedback, $mail['outro']]));
+        return $this->fromSuperior($employment, $mail['subject'], implode("\n\n", [$mail['intro'], ...$feedback, $mail['outro']]));
     }
 
-    public function reminder(CaseDefinition $definition, Company $company): EmailDraft
+    public function reminder(CaseDefinition $definition, Employment $employment): EmailDraft
     {
-        return $this->fromManager($company, $definition->reminderMail['subject'], $definition->reminderMail['body']);
+        return $this->fromSuperior($employment, $definition->reminderMail['subject'], $definition->reminderMail['body']);
     }
 
-    private function fromManager(Company $company, string $subject, string $body): EmailDraft
+    private function fromSuperior(Employment $employment, string $subject, string $body): EmailDraft
     {
+        $superior = $employment->position->reportsTo ?? throw new LogicException("Position [{$employment->position->slug}] reports to nobody.");
+
         return new EmailDraft(
-            senderName: (string) $company->manager_name,
-            senderAddress: (string) $company->manager_address,
+            senderName: $superior->npc_name,
+            senderAddress: $superior->npc_address,
             subject: $subject,
             body: $body,
         );

@@ -49,21 +49,31 @@ export function BookingPanel({
     };
 
     if (state.kind === 'booked') {
+        const { appointment } = state;
+
         return (
             <div className="booking-panel">
                 <p>
-                    <b>{state.appointment.customer.name}</b> &middot; {when}
+                    <b>{appointment.customer.name}</b> &middot; {when}
                 </p>
-                <button
-                    type="button"
-                    className="button"
-                    disabled={isBusy}
-                    onClick={() =>
-                        void run(() => onCancel(state.appointment.id))
-                    }
-                >
-                    {t('service_plan.cancel')}
-                </button>
+                {appointment.is_own ? (
+                    <button
+                        type="button"
+                        className="button"
+                        disabled={isBusy}
+                        onClick={() => void run(() => onCancel(appointment.id))}
+                    >
+                        {t('service_plan.cancel')}
+                    </button>
+                ) : (
+                    <p className="muted">
+                        {appointment.booked_by
+                            ? t('service_plan.booked_by', {
+                                  position: appointment.booked_by,
+                              })
+                            : t('service_plan.booked_by_office')}
+                    </p>
+                )}
             </div>
         );
     }
