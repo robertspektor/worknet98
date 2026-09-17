@@ -21,5 +21,6 @@ readonly class CaseTemplate
         public array $outcomeFeedback,
         public array $feedbackMail,
         public array $reminderMail,
+        public ?SparePart $part = null,
     ) {}
 }

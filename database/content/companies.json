@@ -4,6 +4,7 @@
         "locale": "en",
         "name": "Flowright Plumbing & Heating",
         "industry": "Plumbing",
+        "services": ["plumbing"],
         "tagline": "Your problem is our pipeline.",
         "description": "Family business in the third generation. The first generation still comes in every morning to check that nobody touched his stapler.",
         "hr_contact_name": "Dolores Flowright",
@@ -24,6 +25,7 @@
         "locale": "en",
         "name": "TransGlobal Logistics",
         "industry": "Logistics",
+        "services": ["freight"],
         "tagline": "We move things. Mostly.",
         "description": "Parcels, pallets and the occasional misrouted piano. Our motto: every shipment arrives somewhere.",
         "hr_contact_name": "Brenda Kowalczyk",
@@ -35,7 +37,7 @@
                 "title": "Junior Dispatch Coordinator",
                 "description": "Assign drivers to routes, update delivery lists and explain to customers why their parcel visited three countries. Map reading skills welcome, optimism required.",
                 "daily_salary": 120,
-                "is_open": false
+                "is_open": true
             }
         ]
     },
@@ -44,6 +46,7 @@
         "locale": "en",
         "name": "Macrodyne Systems",
         "industry": "Business software",
+        "services": [],
         "tagline": "Solutions for problems you did not know you had.",
         "description": "Leading provider of enterprise software that nobody fully understands, including us. Voted \"Most Synergistic Workplace\" by our own internal survey.",
         "hr_contact_name": "Kevin Pratt",
@@ -64,6 +67,7 @@
         "locale": "en",
         "name": "Happy Consumer Products",
         "industry": "Household goods",
+        "services": [],
         "tagline": "Happiness, now in a family pack.",
         "description": "We make kitchen gadgets, cleaning supplies and a self-stirring pot that has been recalled twice. Customer satisfaction is our number one priority, right after margins.",
         "hr_contact_name": "Pam Whitlock",
@@ -84,6 +88,7 @@
         "locale": "de",
         "name": "Rohr & Sohn Gebäudetechnik",
         "industry": "Sanitär",
+        "services": ["plumbing"],
         "tagline": "Seit drei Generationen dicht.",
         "description": "Familienbetrieb in dritter Generation. Der Senior kommt immer noch jeden Morgen vorbei und prüft, ob jemand seinen Tacker angefasst hat. Der Sohn heißt übrigens auch Rohr.",
         "hr_contact_name": "Renate Rohr",
@@ -104,6 +109,7 @@
         "locale": "de",
         "name": "Nordwerk Logistik AG",
         "industry": "Logistik",
+        "services": ["freight"],
         "tagline": "Wir bewegen was. Meistens.",
         "description": "Pakete, Paletten und gelegentlich ein falsch zugestelltes Klavier. Unser Leitsatz: Jede Sendung kommt irgendwo an.",
         "hr_contact_name": "Birgit Kowalski",
@@ -115,7 +121,7 @@
                 "title": "Junior-Disponent (m/w/d)",
                 "description": "Sie teilen Fahrer auf Touren ein, pflegen Lieferlisten und erklären Kunden, warum ihr Paket drei Länder besucht hat. Kartenlesen erwünscht, Optimismus Pflicht.",
                 "daily_salary": 120,
-                "is_open": false
+                "is_open": true
             }
         ]
     },
@@ -124,6 +130,7 @@
         "locale": "de",
         "name": "Datenfabrik Kessler KG",
         "industry": "Unternehmenssoftware",
+        "services": [],
         "tagline": "Lösungen für Probleme, von denen Sie nichts wussten.",
         "description": "Führender Anbieter von Unternehmenssoftware, die niemand vollständig versteht, wir eingeschlossen. Laut interner Umfrage der \"synergetischste Arbeitsplatz\" der Firma.",
         "hr_contact_name": "Jens Pohlmann",
@@ -144,6 +151,7 @@
         "locale": "de",
         "name": "Frohsinn Haushaltswaren GmbH",
         "industry": "Haushaltswaren",
+        "services": [],
         "tagline": "Glück, jetzt in der Familienpackung.",
         "description": "Wir stellen Küchenhelfer, Putzmittel und einen selbstrührenden Topf her, der schon zweimal zurückgerufen wurde. Kundenzufriedenheit hat für uns oberste Priorität, direkt nach der Marge.",
         "hr_contact_name": "Petra Wittlich",
@@ -158,5 +166,31 @@
                 "is_open": false
             }
         ]
+    },
+    {
+        "slug": "bergmann-sanitaergrosshandel",
+        "locale": "de",
+        "name": "Bergmann Sanitärgroßhandel KG",
+        "industry": "Großhandel",
+        "services": ["plumbing-parts"],
+        "tagline": "Wir haben das Teil. Irgendwo.",
+        "description": "Großhandel für Sanitär- und Heizungsbedarf. 14.000 Artikel im Lager, 13.998 davon auffindbar.",
+        "hr_contact_name": "Heribert Bergmann",
+        "hr_contact_address": "heribert.bergmann@bergmann-sanitaer.wn",
+        "hiring_note": "Derzeit keine offenen Stellen. Das Lager sucht sich seine Leute selbst aus.",
+        "job_openings": []
+    },
+    {
+        "slug": "keystone-plumbing-supply",
+        "locale": "en",
+        "name": "Keystone Plumbing Supply Co.",
+        "industry": "Wholesale",
+        "services": ["plumbing-parts"],
+        "tagline": "We have the part. Somewhere.",
+        "description": "Wholesale plumbing and heating supplies. 14,000 items in stock, 13,998 of them findable.",
+        "hr_contact_name": "Dale Keystone",
+        "hr_contact_address": "dale.keystone@keystonesupply.wn",
+        "hiring_note": "No openings right now. The warehouse picks its own people.",
+        "job_openings": []
     }
 ]

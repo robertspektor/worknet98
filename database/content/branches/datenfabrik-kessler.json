@@ -1,36 +1,37 @@
 [
     {
         "slug": "neuwiesen",
+        "city": "lindenstadt",
         "name": "Neuwiesen",
         "office_address": "support@datenfabrik.wn",
         "positions": [
             {
                 "slug": "branch-manager",
                 "title": "Standortleitung",
-                "npc_name": "Christian Wendt",
-                "npc_address": "christian.wendt@datenfabrik.wn"
+                "person": "christian-wendt",
+                "work_address": "christian.wendt@datenfabrik.wn"
             },
             {
                 "slug": "team-lead",
                 "title": "Teamleitung Support",
                 "reports_to": "branch-manager",
-                "npc_name": "Nadine Petzold",
-                "npc_address": "nadine.petzold@datenfabrik.wn"
+                "person": "nadine-petzold",
+                "work_address": "nadine.petzold@datenfabrik.wn"
             },
             {
                 "slug": "office-coordinator",
                 "title": "Büroorganisation",
                 "reports_to": "branch-manager",
-                "npc_name": "Sabine Tannert",
-                "npc_address": "sabine.tannert@datenfabrik.wn"
+                "person": "sabine-tannert",
+                "work_address": "sabine.tannert@datenfabrik.wn"
             },
             {
                 "slug": "helpdesk-associate-1",
                 "title": "Helpdesk 1st Level",
                 "reports_to": "team-lead",
                 "job_opening": "helpdesk-1st-level",
-                "npc_name": "Björn Lindemann",
-                "npc_address": "bjoern.lindemann@datenfabrik.wn",
+                "person": "bjoern-lindemann",
+                "work_address": "bjoern.lindemann@datenfabrik.wn",
                 "responsibilities": ["helpdesk"]
             },
             {
@@ -38,8 +39,8 @@
                 "title": "Helpdesk 1st Level",
                 "reports_to": "team-lead",
                 "job_opening": "helpdesk-1st-level",
-                "npc_name": "Melanie Dörr",
-                "npc_address": "melanie.doerr@datenfabrik.wn",
+                "person": "melanie-doerr",
+                "work_address": "melanie.doerr@datenfabrik.wn",
                 "responsibilities": ["helpdesk"]
             },
             {
@@ -47,8 +48,8 @@
                 "title": "Helpdesk 1st Level",
                 "reports_to": "team-lead",
                 "job_opening": "helpdesk-1st-level",
-                "npc_name": "Torsten Bach",
-                "npc_address": "torsten.bach@datenfabrik.wn",
+                "person": "torsten-bach",
+                "work_address": "torsten.bach@datenfabrik.wn",
                 "responsibilities": ["helpdesk"]
             }
         ]

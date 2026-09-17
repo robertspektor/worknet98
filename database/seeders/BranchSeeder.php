@@ -3,7 +3,9 @@
 namespace Database\Seeders;
 
 use App\Models\Branch;
+use App\Models\City;
 use App\Models\Company;
+use App\Models\Person;
 use App\Models\Position;
 use App\Organization\BranchCatalog;
 use Illuminate\Database\Seeder;
@@ -27,14 +29,15 @@ class BranchSeeder extends Seeder
      */
     private function seedBranch(Company $company, array $content): void
     {
-        $branch = $company->branches()->updateOrCreate(
-            ['slug' => $content['slug']],
-            Arr::only($content, ['name', 'office_address']),
-        );
+        $branch = $company->branches()->updateOrCreate(['slug' => $content['slug']], [
+            ...Arr::only($content, ['name', 'office_address']),
+            'city_id' => City::query()->where('slug', $content['city'])->firstOrFail()->id,
+        ]);
 
         $this->seedPositions($branch, $content);
         $this->seedRecords($branch, 'technicians', $content);
         $this->seedRecords($branch, 'customers', $content);
+        $this->seedRecords($branch, 'drivers', $content);
     }
 
     /**
@@ -47,7 +50,8 @@ class BranchSeeder extends Seeder
 
         foreach ($positions as $position) {
             $branch->positions()->updateOrCreate(['slug' => $position['slug']], [
-                ...Arr::only($position, ['title', 'npc_name', 'npc_address']),
+                ...Arr::only($position, ['title', 'work_address']),
+                'person_id' => $this->personId($branch, $position['person']),
                 'responsibilities' => $position['responsibilities'] ?? [],
                 'job_opening_id' => $this->jobOpeningId($branch, $position['job_opening'] ?? null),
                 'daily_salary' => $position['daily_salary'] ?? null,
@@ -72,6 +76,11 @@ class BranchSeeder extends Seeder
         return array_map(fn (string $slug): int => (int) $this->positionId($branch, $slug), $slugs);
     }
 
+    private function personId(Branch $branch, string $slug): int
+    {
+        return Person::query()->where('city_id', $branch->city_id)->where('slug', $slug)->firstOrFail()->id;
+    }
+
     private function jobOpeningId(Branch $branch, ?string $slug): ?int
     {
         return $slug === null ? null : $branch->company->jobOpenings()->where('slug', $slug)->firstOrFail()->id;
@@ -83,7 +92,7 @@ class BranchSeeder extends Seeder
     }
 
     /**
-     * @param  'technicians'|'customers'  $relation
+     * @param  'technicians'|'customers'|'drivers'  $relation
      * @param  array<string, mixed>  $content
      */
     private function seedRecords(Branch $branch, string $relation, array $content): void
@@ -92,7 +101,10 @@ class BranchSeeder extends Seeder
         $records = $content[$relation] ?? [];
 
         foreach ($records as $record) {
-            $branch->{$relation}()->updateOrCreate(['slug' => $record['slug']], Arr::except($record, ['slug']));
+            $branch->{$relation}()->updateOrCreate(
+                ['person_id' => $this->personId($branch, $record['person'])],
+                Arr::except($record, ['person']),
+            );
         }
     }
 }

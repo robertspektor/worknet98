@@ -111,6 +111,14 @@
         "reminder_mail": {
             "subject": ":customer - still flooding?",
             "body": "Hey,\n\n:customer still has water where water should not be. This is the emergency desk. Emergency means now, not eventually.\n\nGary"
+        },
+        "part": {
+            "contents": "shut-off valve 3/4\"",
+            "size": "parcel",
+            "missing_mail": {
+                "subject": ":customer: valve missing",
+                "body": "Hey,\n\nthe technician made it to :customer. The valve did not. The part never reached us in time.\n\nBook a new appointment once the part is here. And tell :customer before the water does.\n\nGary"
+            }
         }
     },
     {
@@ -149,6 +157,14 @@
         "reminder_mail": {
             "subject": ":customer is freezing",
             "body": "Hey,\n\n:customer is still sitting in a cold house. Emergency desk, remember? Book someone.\n\nGary"
+        },
+        "part": {
+            "contents": "burner assembly type B",
+            "size": "pallet",
+            "missing_mail": {
+                "subject": ":customer: burner missing",
+                "body": "Hey,\n\nthe technician stood in the boiler room at :customer. Without a burner. It did not arrive in time.\n\nBook a new appointment once the part is here. :customer keeps freezing until then. :customer will remember that.\n\nGary"
+            }
         }
     },
     {

@@ -9,10 +9,7 @@ it('seeds companies with job openings for every supported language', function ()
     $this->seed(CompanySeeder::class);
 
     foreach (app(SupportedLocales::class)->codes() as $locale) {
-        $companies = Company::query()->where('locale', $locale)->withCount('jobOpenings')->get();
-
-        expect($companies)->not->toBeEmpty()
-            ->and($companies->every(fn (Company $company): bool => $company->job_openings_count > 0))->toBeTrue();
+        expect(Company::query()->where('locale', $locale)->has('jobOpenings')->exists())->toBeTrue();
     }
 });
 
@@ -21,7 +18,7 @@ it('opens positions only at playable companies', function () {
 
     $openCompanies = Company::query()->whereHas('jobOpenings', fn ($query) => $query->where('is_open', true))->pluck('slug')->sort()->values()->all();
 
-    expect($openCompanies)->toBe(['flowright-plumbing', 'rohr-und-sohn']);
+    expect($openCompanies)->toBe(['flowright-plumbing', 'nordwerk-logistik', 'rohr-und-sohn', 'transglobal-logistics']);
 });
 
 it('can seed the companies repeatedly without duplicates', function () {

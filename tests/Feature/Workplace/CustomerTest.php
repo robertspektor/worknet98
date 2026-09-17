@@ -2,11 +2,12 @@
 
 use App\Models\Branch;
 use App\Models\Customer;
+use App\Models\Person;
 
 it('lists the customers of the own branch', function () {
     $branch = Branch::factory()->create();
-    Customer::factory()->for($branch)->create(['name' => 'Margaret Hollis', 'notes' => 'Has a loud dog.']);
-    Customer::factory()->for(Branch::factory()->for($branch->company))->create(['name' => 'Someone In Another Branch']);
+    Customer::factory()->for($branch)->for(Person::factory()->named('Margaret Hollis'))->create(['notes' => 'Has a loud dog.']);
+    Customer::factory()->for(Branch::factory()->for($branch->company))->for(Person::factory()->named('Someone In Another Branch'))->create();
 
     $this->actingAs(playerOnDutyAt($branch))
         ->getJson(route('api.v1.customers.index'))

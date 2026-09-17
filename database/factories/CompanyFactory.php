@@ -28,6 +28,7 @@ class CompanyFactory extends Factory
             'hr_contact_name' => 'Brenda Kowalczyk',
             'hr_contact_address' => 'brenda.kowalczyk@company.wn',
             'hiring_note' => 'Please bring your own chair.',
+            'services' => [],
         ];
     }
 

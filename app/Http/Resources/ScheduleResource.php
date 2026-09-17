@@ -24,7 +24,7 @@ class ScheduleResource extends JsonResource
             'slots' => ServiceSlots::ALL,
             'technicians' => $this->resource->technicians->map(fn (Technician $technician): array => [
                 'id' => $technician->id,
-                'name' => $technician->name,
+                'name' => $technician->person->name,
                 'skills' => $technician->skills,
                 'busy' => $this->busySlotsOf($technician),
             ])->all(),

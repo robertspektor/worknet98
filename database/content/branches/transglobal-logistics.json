@@ -1,36 +1,37 @@
 [
     {
         "slug": "port-hadley",
+        "city": "millbrook",
         "name": "Port Hadley",
         "office_address": "dispatch@transglobal.wn",
         "positions": [
             {
                 "slug": "branch-manager",
                 "title": "Branch Manager",
-                "npc_name": "Roy Delgado",
-                "npc_address": "roy.delgado@transglobal.wn"
+                "person": "roy-delgado",
+                "work_address": "roy.delgado@transglobal.wn"
             },
             {
                 "slug": "team-lead",
                 "title": "Dispatch Supervisor",
                 "reports_to": "branch-manager",
-                "npc_name": "Tammy Briggs",
-                "npc_address": "tammy.briggs@transglobal.wn"
+                "person": "tammy-briggs",
+                "work_address": "tammy.briggs@transglobal.wn"
             },
             {
                 "slug": "office-coordinator",
                 "title": "Office Coordinator",
                 "reports_to": "branch-manager",
-                "npc_name": "Lorna Fitch",
-                "npc_address": "lorna.fitch@transglobal.wn"
+                "person": "martin-hollister",
+                "work_address": "martin.hollister@transglobal.wn"
             },
             {
                 "slug": "dispatch-coordinator-1",
                 "title": "Junior Dispatch Coordinator",
                 "reports_to": "team-lead",
                 "job_opening": "junior-dispatch-coordinator",
-                "npc_name": "Hank Mulligan",
-                "npc_address": "hank.mulligan@transglobal.wn",
+                "person": "hank-mulligan",
+                "work_address": "hank.mulligan@transglobal.wn",
                 "responsibilities": ["dispatch"]
             },
             {
@@ -38,8 +39,8 @@
                 "title": "Junior Dispatch Coordinator",
                 "reports_to": "team-lead",
                 "job_opening": "junior-dispatch-coordinator",
-                "npc_name": "Keisha Monroe",
-                "npc_address": "keisha.monroe@transglobal.wn",
+                "person": "keisha-monroe",
+                "work_address": "keisha.monroe@transglobal.wn",
                 "responsibilities": ["dispatch"]
             },
             {
@@ -47,9 +48,53 @@
                 "title": "Junior Dispatch Coordinator",
                 "reports_to": "team-lead",
                 "job_opening": "junior-dispatch-coordinator",
-                "npc_name": "Otis Pennington",
-                "npc_address": "otis.pennington@transglobal.wn",
+                "person": "otis-pennington",
+                "work_address": "otis.pennington@transglobal.wn",
                 "responsibilities": ["dispatch"]
+            }
+        ],
+        "drivers": [
+            {
+                "person": "rusty-calhoun",
+                "vehicle": "van",
+                "busy_tours": [
+                    {
+                        "weekday": 1,
+                        "tour": "morning"
+                    },
+                    {
+                        "weekday": 3,
+                        "tour": "afternoon"
+                    }
+                ]
+            },
+            {
+                "person": "marisol-vega",
+                "vehicle": "van",
+                "busy_tours": [
+                    {
+                        "weekday": 2,
+                        "tour": "morning"
+                    },
+                    {
+                        "weekday": 5,
+                        "tour": "afternoon"
+                    }
+                ]
+            },
+            {
+                "person": "ed-tanner",
+                "vehicle": "truck",
+                "busy_tours": [
+                    {
+                        "weekday": 1,
+                        "tour": "afternoon"
+                    },
+                    {
+                        "weekday": 4,
+                        "tour": "morning"
+                    }
+                ]
             }
         ]
     }

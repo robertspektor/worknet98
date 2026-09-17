@@ -55,7 +55,7 @@ export function ScheduleGrid({
                                 <td key={slot}>
                                     <button
                                         type="button"
-                                        className={`schedule-cell is-${state.kind} ${isForeign(state) ? 'is-foreign' : ''} ${isSelected ? 'is-selected' : ''}`}
+                                        className={`schedule-cell is-${state.kind} ${isForeign(state) ? 'is-foreign' : ''} ${state.kind === 'booked' && state.appointment.failed ? 'is-failed' : ''} ${isSelected ? 'is-selected' : ''}`}
                                         disabled={state.kind === 'busy'}
                                         onClick={() =>
                                             onSelect({

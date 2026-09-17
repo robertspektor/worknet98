@@ -4,6 +4,8 @@ namespace App\Workplace;
 
 use App\Cases\CaseResolver;
 use App\Game\GameClock;
+use App\Logistics\MissingPartHandler;
+use App\Logistics\PartAvailability;
 use App\Models\Appointment;
 use App\Models\WorkCase;
 use Illuminate\Database\Eloquent\Builder;
@@ -16,6 +18,8 @@ class AppointmentExecutor
     public function __construct(
         private readonly GameClock $clock,
         private readonly CaseResolver $resolver,
+        private readonly PartAvailability $parts,
+        private readonly MissingPartHandler $missingPart,
     ) {}
 
     public function executeDue(): int
@@ -66,9 +70,14 @@ class AppointmentExecutor
     private function resolveCaseOf(Appointment $appointment): void
     {
         $workCase = WorkCase::query()->where('customer_id', $appointment->customer_id)->open()->oldest('id')->first();
+        $shipment = $workCase?->partShipment;
 
-        if ($workCase !== null) {
-            $this->resolver->resolve($workCase);
+        if ($workCase === null) {
+            return;
         }
+
+        $shipment !== null && $this->parts->isMissingFor($workCase, $appointment)
+            ? $this->missingPart->handle($workCase, $appointment, $shipment)
+            : $this->resolver->resolve($workCase);
     }
 }

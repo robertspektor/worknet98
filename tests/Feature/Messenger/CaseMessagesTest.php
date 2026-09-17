@@ -4,14 +4,15 @@ use App\Models\ChatMessage;
 use App\Models\Customer;
 use App\Models\User;
 use Database\Seeders\BranchSeeder;
+use Database\Seeders\CitySeeder;
 use Database\Seeders\CompanySeeder;
 
 beforeEach(function () {
     $this->travelTo('2026-09-21 09:00:00');
-    $this->seed([CompanySeeder::class, BranchSeeder::class]);
+    $this->seed([CompanySeeder::class, CitySeeder::class, BranchSeeder::class]);
     $employment = employAtSeededPosition('flowright-plumbing');
     $this->player = User::findOrFail($employment->user_id);
-    $this->hollis = Customer::query()->where('slug', 'margaret-hollis')->sole();
+    $this->hollis = Customer::query()->ofPerson('margaret-hollis')->sole();
 });
 
 function bookForHollis(User $player, Customer $hollis, string $technician): void

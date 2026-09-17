@@ -3,9 +3,9 @@
 namespace Database\Factories;
 
 use App\Models\Branch;
+use App\Models\Person;
 use App\Models\Technician;
 use Illuminate\Database\Eloquent\Factories\Factory;
-use Illuminate\Support\Str;
 
 /**
  * @extends Factory<Technician>
@@ -17,12 +17,9 @@ class TechnicianFactory extends Factory
      */
     public function definition(): array
     {
-        $name = fake()->unique()->name();
-
         return [
             'branch_id' => Branch::factory(),
-            'slug' => Str::slug($name),
-            'name' => $name,
+            'person_id' => Person::factory(),
             'skills' => ['plumbing'],
             'busy_slots' => [],
         ];

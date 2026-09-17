@@ -221,6 +221,72 @@
     min-width: 220px;
 }
 
+.schedule-cell.is-booked.is-failed {
+    color: #fff;
+    background: #a02020;
+    text-decoration: line-through;
+}
+
+.part-line {
+    width: 100%;
+    font-size: 11px;
+}
+
+.part-line.is-ordered,
+.part-line.is-failed {
+    color: #a02020;
+}
+
+.part-line.is-delivered {
+    color: #006000;
+}
+
+/* Route planner */
+
+.tour-panel {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.tour-panel p {
+    margin: 0;
+}
+
+.tour-stops {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.tour-stop .is-late {
+    color: #a02020;
+}
+
+.tour-stop {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+}
+
+/* Shipment log */
+
+.shipments-body {
+    grid-template-columns: 250px 1fr;
+}
+
+.shipment-row.is-delivered:not(.is-selected) {
+    color: #707070;
+}
+
+.shipment-row.is-open:not(.is-selected) {
+    font-weight: bold;
+}
+
 .schedule-hint {
     margin: 0;
     font-size: 11px;

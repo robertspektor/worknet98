@@ -4,11 +4,12 @@ use App\Cases\WorkCaseStatus;
 use App\Models\Email;
 use App\Models\WorkCase;
 use Database\Seeders\BranchSeeder;
+use Database\Seeders\CitySeeder;
 use Database\Seeders\CompanySeeder;
 
 beforeEach(function () {
     $this->travelTo('2026-09-21 09:00:00');
-    $this->seed([CompanySeeder::class, BranchSeeder::class]);
+    $this->seed([CompanySeeder::class, CitySeeder::class, BranchSeeder::class]);
 });
 
 function openCase(string $template, string $customer): WorkCase

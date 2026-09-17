@@ -3,6 +3,7 @@
 namespace App\Cases\Templates;
 
 use App\Content\CompanyContentFile;
+use App\Logistics\ShipmentSize;
 use App\Models\Company;
 
 class CaseTemplateCatalog
@@ -51,6 +52,17 @@ class CaseTemplateCatalog
             outcomeFeedback: $outcomeFeedback,
             feedbackMail: $feedbackMail,
             reminderMail: $reminderMail,
+            part: $this->part($data['part'] ?? null),
         );
+    }
+
+    private function part(mixed $data): ?SparePart
+    {
+        if (! is_array($data)) {
+            return null;
+        }
+
+        /** @var array{contents: string, size: string, missing_mail: array{subject: string, body: string}} $data */
+        return new SparePart($data['contents'], ShipmentSize::from($data['size']), $data['missing_mail']);
     }
 }

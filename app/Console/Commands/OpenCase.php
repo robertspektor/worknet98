@@ -11,7 +11,7 @@ use Illuminate\Console\Attributes\Description;
 use Illuminate\Console\Attributes\Signature;
 use Illuminate\Console\Command;
 
-#[Signature('cases:open {company : Company slug} {branch : Branch slug} {template : Case template slug} {--customer= : Customer slug, defaults to the next customer without an open case}')]
+#[Signature('cases:open {company : Company slug} {branch : Branch slug} {template : Case template slug} {--customer= : Person slug of the customer, defaults to the next customer without an open case}')]
 #[Description('Open a case from a template in a branch and route it to the responsible position')]
 class OpenCase extends Command
 {
@@ -31,7 +31,7 @@ class OpenCase extends Command
         }
 
         $workCase = $opener->open($branch, $template, $customer);
-        $this->info("Opened [{$template->slug}] for {$customer->name}, assigned to {$workCase->position->npc_name} ({$workCase->position->slug}).");
+        $this->info("Opened [{$template->slug}] for {$customer->person->name}, assigned to {$workCase->position->person->name} ({$workCase->position->slug}).");
 
         return self::SUCCESS;
     }
@@ -42,6 +42,6 @@ class OpenCase extends Command
 
         return $slug === null
             ? $customers->nextWithoutOpenCase($branch)
-            : $branch->customers()->where('slug', $slug)->first();
+            : $branch->customers()->ofPerson($slug)->first();
     }
 }

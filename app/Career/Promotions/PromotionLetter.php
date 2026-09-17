@@ -16,13 +16,13 @@ class PromotionLetter
         $replacements = [
             'position' => $position->title,
             'salary' => $employment->daily_salary,
-            'predecessor' => $position->npc_name,
-            'manager' => $superior->npc_name,
+            'predecessor' => $position->person->name,
+            'manager' => $superior->person->name,
         ];
 
         return new EmailDraft(
-            senderName: $superior->npc_name,
-            senderAddress: $superior->npc_address,
+            senderName: $superior->person->name,
+            senderAddress: $superior->work_address,
             subject: __('game_mail.promotion.subject', $replacements, $locale),
             body: __('game_mail.promotion.body', $replacements, $locale),
         );

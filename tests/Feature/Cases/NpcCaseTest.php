@@ -7,11 +7,12 @@ use App\Models\Branch;
 use App\Models\Email;
 use App\Models\WorkCase;
 use Database\Seeders\BranchSeeder;
+use Database\Seeders\CitySeeder;
 use Database\Seeders\CompanySeeder;
 
 beforeEach(function () {
     $this->travelTo('2026-09-21 09:00:00');
-    $this->seed([CompanySeeder::class, BranchSeeder::class]);
+    $this->seed([CompanySeeder::class, CitySeeder::class, BranchSeeder::class]);
     config(['game.npc_case_delay_seconds' => 120]);
     $this->branch = Branch::query()->where('slug', 'maple-falls')->sole();
 });
@@ -44,8 +45,8 @@ it('books the earliest free slot with a skilled technician when the customer is 
     expect($workCase->fresh()?->status)->toBe(WorkCaseStatus::Open)
         ->and($appointment->booked_by_employment_id)->toBeNull()
         ->and($appointment->booked_by_position_id)->toBe($workCase->position_id)
-        ->and($appointment->customer->slug)->toBe('priya-raman')
-        ->and($appointment->technician->slug)->toBe('stan-kowalski')
+        ->and($appointment->customer->person->slug)->toBe('priya-raman')
+        ->and($appointment->technician->person->slug)->toBe('stan-kowalski')
         ->and($appointment->date->toDateString())->toBe('2026-09-22')
         ->and($appointment->slot)->toBe('13:00');
 });
@@ -53,7 +54,7 @@ it('books the earliest free slot with a skilled technician when the customer is 
 it('skips slots that are already booked', function () {
     Appointment::factory()->create([
         'branch_id' => $this->branch->id,
-        'customer_id' => $this->branch->customers()->where('slug', 'walter-beck')->sole()->id,
+        'customer_id' => $this->branch->customers()->ofPerson('walter-beck')->sole()->id,
         'technician_id' => technician('stan-kowalski')->id,
         'date' => '2026-09-22',
         'slot' => '13:00',
@@ -63,8 +64,8 @@ it('skips slots that are already booked', function () {
 
     app(NpcCaseWorker::class)->workDue();
 
-    $appointment = Appointment::query()->where('customer_id', $this->branch->customers()->where('slug', 'priya-raman')->sole()->id)->sole();
-    expect($appointment->technician->slug)->toBe('stan-kowalski')
+    $appointment = Appointment::query()->where('customer_id', $this->branch->customers()->ofPerson('priya-raman')->sole()->id)->sole();
+    expect($appointment->technician->person->slug)->toBe('stan-kowalski')
         ->and($appointment->slot)->toBe('15:00');
 });
 

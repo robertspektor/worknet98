@@ -1,36 +1,37 @@
 [
     {
         "slug": "lakeside-park",
+        "city": "millbrook",
         "name": "Lakeside Park",
         "office_address": "support@macrodyne.wn",
         "positions": [
             {
                 "slug": "branch-manager",
                 "title": "Branch Manager",
-                "npc_name": "Chad Whitaker",
-                "npc_address": "chad.whitaker@macrodyne.wn"
+                "person": "chad-whitaker",
+                "work_address": "chad.whitaker@macrodyne.wn"
             },
             {
                 "slug": "team-lead",
                 "title": "Support Team Lead",
                 "reports_to": "branch-manager",
-                "npc_name": "Nadia Petrova",
-                "npc_address": "nadia.petrova@macrodyne.wn"
+                "person": "nadia-petrova",
+                "work_address": "nadia.petrova@macrodyne.wn"
             },
             {
                 "slug": "office-coordinator",
                 "title": "Office Coordinator",
                 "reports_to": "branch-manager",
-                "npc_name": "Sheryl Tanner",
-                "npc_address": "sheryl.tanner@macrodyne.wn"
+                "person": "sheryl-tanner",
+                "work_address": "sheryl.tanner@macrodyne.wn"
             },
             {
                 "slug": "helpdesk-associate-1",
                 "title": "Helpdesk Associate (1st Level)",
                 "reports_to": "team-lead",
                 "job_opening": "helpdesk-associate",
-                "npc_name": "Brian Liu",
-                "npc_address": "brian.liu@macrodyne.wn",
+                "person": "brian-liu",
+                "work_address": "brian.liu@macrodyne.wn",
                 "responsibilities": ["helpdesk"]
             },
             {
@@ -38,8 +39,8 @@
                 "title": "Helpdesk Associate (1st Level)",
                 "reports_to": "team-lead",
                 "job_opening": "helpdesk-associate",
-                "npc_name": "Megan Doyle",
-                "npc_address": "megan.doyle@macrodyne.wn",
+                "person": "megan-doyle",
+                "work_address": "megan.doyle@macrodyne.wn",
                 "responsibilities": ["helpdesk"]
             },
             {
@@ -47,8 +48,8 @@
                 "title": "Helpdesk Associate (1st Level)",
                 "reports_to": "team-lead",
                 "job_opening": "helpdesk-associate",
-                "npc_name": "Trevor Banks",
-                "npc_address": "trevor.banks@macrodyne.wn",
+                "person": "trevor-banks",
+                "work_address": "trevor.banks@macrodyne.wn",
                 "responsibilities": ["helpdesk"]
             }
         ]

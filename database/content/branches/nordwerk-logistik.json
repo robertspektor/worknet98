@@ -1,36 +1,37 @@
 [
     {
         "slug": "hafenstedt",
+        "city": "lindenstadt",
         "name": "Hafenstedt",
         "office_address": "disposition@nordwerk.wn",
         "positions": [
             {
                 "slug": "branch-manager",
                 "title": "Niederlassungsleitung",
-                "npc_name": "Rolf Dietrich",
-                "npc_address": "rolf.dietrich@nordwerk.wn"
+                "person": "rolf-dietrich",
+                "work_address": "rolf.dietrich@nordwerk.wn"
             },
             {
                 "slug": "team-lead",
                 "title": "Leitung Disposition",
                 "reports_to": "branch-manager",
-                "npc_name": "Tanja Brückner",
-                "npc_address": "tanja.brueckner@nordwerk.wn"
+                "person": "tanja-brueckner",
+                "work_address": "tanja.brueckner@nordwerk.wn"
             },
             {
                 "slug": "office-coordinator",
                 "title": "Büroorganisation",
                 "reports_to": "branch-manager",
-                "npc_name": "Lore Fischbach",
-                "npc_address": "lore.fischbach@nordwerk.wn"
+                "person": "martin-hollmeier",
+                "work_address": "martin.hollmeier@nordwerk.wn"
             },
             {
                 "slug": "dispatch-coordinator-1",
                 "title": "Junior-Disponent",
                 "reports_to": "team-lead",
                 "job_opening": "junior-disponent",
-                "npc_name": "Holger Mahler",
-                "npc_address": "holger.mahler@nordwerk.wn",
+                "person": "holger-mahler",
+                "work_address": "holger.mahler@nordwerk.wn",
                 "responsibilities": ["dispatch"]
             },
             {
@@ -38,8 +39,8 @@
                 "title": "Junior-Disponentin",
                 "reports_to": "team-lead",
                 "job_opening": "junior-disponent",
-                "npc_name": "Kerstin Mohr",
-                "npc_address": "kerstin.mohr@nordwerk.wn",
+                "person": "kerstin-mohr",
+                "work_address": "kerstin.mohr@nordwerk.wn",
                 "responsibilities": ["dispatch"]
             },
             {
@@ -47,9 +48,53 @@
                 "title": "Junior-Disponent",
                 "reports_to": "team-lead",
                 "job_opening": "junior-disponent",
-                "npc_name": "Otto Pfennig",
-                "npc_address": "otto.pfennig@nordwerk.wn",
+                "person": "otto-pfennig",
+                "work_address": "otto.pfennig@nordwerk.wn",
                 "responsibilities": ["dispatch"]
+            }
+        ],
+        "drivers": [
+            {
+                "person": "kalle-brinkmann",
+                "vehicle": "van",
+                "busy_tours": [
+                    {
+                        "weekday": 1,
+                        "tour": "morning"
+                    },
+                    {
+                        "weekday": 3,
+                        "tour": "afternoon"
+                    }
+                ]
+            },
+            {
+                "person": "sevgi-aydin",
+                "vehicle": "van",
+                "busy_tours": [
+                    {
+                        "weekday": 2,
+                        "tour": "morning"
+                    },
+                    {
+                        "weekday": 5,
+                        "tour": "afternoon"
+                    }
+                ]
+            },
+            {
+                "person": "horst-luebke",
+                "vehicle": "truck",
+                "busy_tours": [
+                    {
+                        "weekday": 1,
+                        "tour": "afternoon"
+                    },
+                    {
+                        "weekday": 4,
+                        "tour": "morning"
+                    }
+                ]
             }
         ]
     }

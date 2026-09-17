@@ -16,7 +16,7 @@ class AppointmentController extends ApiController
     {
         $appointment = $booker->book($this->player($request), $request->appointment());
 
-        return (new AppointmentResource($appointment->load('customer')))->response()->setStatusCode(201);
+        return (new AppointmentResource($appointment->load(['customer.person', 'customer.workCases.partShipment'])))->response()->setStatusCode(201);
     }
 
     public function destroy(Request $request, Appointment $appointment, AppointmentBooker $booker): Response

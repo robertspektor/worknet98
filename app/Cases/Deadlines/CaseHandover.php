@@ -6,6 +6,7 @@ use App\Cases\Routing\CaseRouter;
 use App\Cases\Templates\CaseTemplateCatalog;
 use App\Cases\WorkCaseKind;
 use App\Cases\WorkCaseStatus;
+use App\Logistics\Templates\ShipmentTemplateCatalog;
 use App\Models\Position;
 use App\Models\WorkCase;
 
@@ -14,6 +15,7 @@ class CaseHandover
     public function __construct(
         private readonly CaseTemplateCatalog $templates,
         private readonly CaseRouter $router,
+        private readonly ShipmentTemplateCatalog $shipmentTemplates,
     ) {}
 
     public function handOverToNpc(WorkCase $workCase): ?Position
@@ -27,11 +29,13 @@ class CaseHandover
 
     private function colleagueFor(WorkCase $workCase): ?Position
     {
-        $template = $workCase->kind === WorkCaseKind::Template
-            ? $this->templates->find($workCase->branch->company, $workCase->case_slug)
-            : null;
+        $responsibility = match ($workCase->kind) {
+            WorkCaseKind::Template => $this->templates->find($workCase->branch->company, $workCase->case_slug)?->responsibility,
+            WorkCaseKind::Shipment => $this->shipmentTemplates->find($workCase->branch->company, $workCase->case_slug)?->responsibility,
+            WorkCaseKind::Scripted => null,
+        };
 
-        return $template === null ? null : $this->router->npcAssigneeFor($workCase->branch, $template->responsibility);
+        return $responsibility === null ? null : $this->router->npcAssigneeFor($workCase->branch, $responsibility);
     }
 
     private function assign(WorkCase $workCase, Position $colleague): void

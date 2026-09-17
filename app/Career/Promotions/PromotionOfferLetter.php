@@ -16,14 +16,14 @@ class PromotionOfferLetter
         $superior = $employment->position->reportsTo ?? throw new LogicException("Position [{$employment->position->slug}] reports to nobody.");
         $locale = $employment->company->locale;
         $replacements = [
-            'manager' => $superior->npc_name,
+            'manager' => $superior->person->name,
             'salary' => $employment->daily_salary,
             'month' => CarbonImmutable::parse("{$offer->performanceReview->period}-01")->addMonth()->settings(['locale' => $locale])->translatedFormat('F Y'),
         ];
 
         return new EmailDraft(
-            senderName: $superior->npc_name,
-            senderAddress: $superior->npc_address,
+            senderName: $superior->person->name,
+            senderAddress: $superior->work_address,
             subject: __('game_mail.promotion_offer.subject', $replacements, $locale),
             body: implode("\n\n", [
                 __('game_mail.promotion_offer.intro', $replacements, $locale),

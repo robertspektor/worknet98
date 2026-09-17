@@ -23,6 +23,8 @@ const schedule: Schedule = {
             is_own: true,
             booked_by: 'Office Assistant (Scheduling)',
             booked_by_npc: null,
+            failed: false,
+            part: null,
         },
         {
             id: 10,
@@ -33,6 +35,8 @@ const schedule: Schedule = {
             is_own: false,
             booked_by: 'Office Assistant (Scheduling)',
             booked_by_npc: null,
+            failed: false,
+            part: null,
         },
     ],
 };

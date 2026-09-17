@@ -1,6 +1,10 @@
 export type EmailFolder = 'inbox' | 'sent';
 
-export type EmailAction = 'confirm_appointment' | 'request_details' | 'other';
+export type EmailAction =
+    | 'confirm_appointment'
+    | 'confirm_shipment'
+    | 'request_details'
+    | 'other';
 
 export type MailboxScope = 'private' | 'work';
 

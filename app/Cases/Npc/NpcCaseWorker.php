@@ -3,7 +3,9 @@
 namespace App\Cases\Npc;
 
 use App\Cases\Templates\CaseTemplateCatalog;
+use App\Cases\WorkCaseKind;
 use App\Game\ActionRefused;
+use App\Logistics\PartLeadTime;
 use App\Models\WorkCase;
 use App\Workplace\AppointmentBooker;
 use App\Workplace\FreeSlotFinder;
@@ -15,6 +17,7 @@ class NpcCaseWorker
         private readonly CaseTemplateCatalog $templates,
         private readonly FreeSlotFinder $slots,
         private readonly AppointmentBooker $booker,
+        private readonly PartLeadTime $leadTime,
     ) {}
 
     public function workDue(): int
@@ -23,6 +26,7 @@ class NpcCaseWorker
 
         WorkCase::query()
             ->dueForNpc()
+            ->where('kind', WorkCaseKind::Template)
             ->with(['branch.company', 'customer.branch', 'position'])
             ->lazyById()
             ->each(function (WorkCase $workCase) use (&$worked): void {
@@ -37,7 +41,11 @@ class NpcCaseWorker
     private function work(WorkCase $workCase): bool
     {
         $template = $this->templates->find($workCase->branch->company, $workCase->case_slug);
-        $request = $template === null ? null : $this->slots->earliestFor($workCase->customer, $template->skill);
+        $request = $template === null ? null : $this->slots->earliestFor(
+            $workCase->customer,
+            $template->skill,
+            $this->leadTime->earliestRepairStart($workCase, $template),
+        );
 
         if ($request === null) {
             return false;

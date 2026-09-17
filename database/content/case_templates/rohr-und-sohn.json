@@ -111,6 +111,14 @@
         "reminder_mail": {
             "subject": ":customer - immer noch Land unter?",
             "body": "Moin,\n\nbei :customer steht immer noch Wasser, wo keins hingehört. Das hier ist der Notdienst. Notdienst heißt jetzt, nicht irgendwann.\n\nBernd"
+        },
+        "part": {
+            "contents": "Absperrventil DN 20",
+            "size": "parcel",
+            "missing_mail": {
+                "subject": ":customer: Ventil fehlt",
+                "body": "Moin,\n\nder Monteur war bei :customer. Das Ventil nicht. Das Teil ist nicht rechtzeitig bei uns angekommen.\n\nNeuer Termin, sobald das Teil da ist. Und :customer bitte informieren, bevor das Wasser es tut.\n\nBernd"
+            }
         }
     },
     {
@@ -149,6 +157,14 @@
         "reminder_mail": {
             "subject": ":customer friert",
             "body": "Moin,\n\n:customer sitzt immer noch im kalten Haus. Notdienst, schon vergessen? Bitte jemanden einplanen.\n\nBernd"
+        },
+        "part": {
+            "contents": "Brennereinheit Typ B",
+            "size": "pallet",
+            "missing_mail": {
+                "subject": ":customer: Brenner fehlt",
+                "body": "Moin,\n\nder Monteur stand bei :customer im Heizungskeller. Ohne Brenner. Der ist nicht rechtzeitig angekommen.\n\nNeuer Termin, sobald das Teil da ist. :customer friert solange weiter. Das merkt sich :customer.\n\nBernd"
+            }
         }
     },
     {

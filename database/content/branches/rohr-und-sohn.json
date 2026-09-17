@@ -1,28 +1,29 @@
 [
     {
         "slug": "ahornfelde",
+        "city": "lindenstadt",
         "name": "Ahornfelde",
         "office_address": "buero@rohrundsohn.wn",
         "positions": [
             {
                 "slug": "branch-manager",
                 "title": "Filialleitung",
-                "npc_name": "Bernd Rohr",
-                "npc_address": "bernd.rohr@rohrundsohn.wn"
+                "person": "bernd-rohr",
+                "work_address": "bernd.rohr@rohrundsohn.wn"
             },
             {
                 "slug": "office-coordinator",
                 "title": "Büroorganisation",
                 "reports_to": "branch-manager",
-                "npc_name": "Bettina Mertens",
-                "npc_address": "bettina.mertens@rohrundsohn.wn"
+                "person": "bettina-mertens",
+                "work_address": "bettina.mertens@rohrundsohn.wn"
             },
             {
                 "slug": "emergency-dispatcher",
                 "title": "Notdienst-Disposition",
                 "reports_to": "branch-manager",
-                "npc_name": "Kerstin Albers",
-                "npc_address": "kerstin.albers@rohrundsohn.wn",
+                "person": "kerstin-albers",
+                "work_address": "kerstin.albers@rohrundsohn.wn",
                 "responsibilities": ["emergency-scheduling"],
                 "daily_salary": 130
             },
@@ -30,8 +31,8 @@
                 "slug": "service-contract-planner",
                 "title": "Wartungsplanung",
                 "reports_to": "branch-manager",
-                "npc_name": "Günter Hoppe",
-                "npc_address": "guenter.hoppe@rohrundsohn.wn",
+                "person": "guenter-hoppe",
+                "work_address": "guenter.hoppe@rohrundsohn.wn",
                 "responsibilities": ["maintenance-scheduling"],
                 "daily_salary": 120
             },
@@ -40,8 +41,8 @@
                 "title": "Bürokraft Terminplanung",
                 "reports_to": "branch-manager",
                 "job_opening": "buerokraft-terminplanung",
-                "npc_name": "Uwe Brandt",
-                "npc_address": "uwe.brandt@rohrundsohn.wn",
+                "person": "uwe-brandt",
+                "work_address": "uwe.brandt@rohrundsohn.wn",
                 "responsibilities": ["scheduling"],
                 "daily_salary": 95,
                 "promotion": {
@@ -55,8 +56,8 @@
                 "title": "Bürokraft Terminplanung",
                 "reports_to": "branch-manager",
                 "job_opening": "buerokraft-terminplanung",
-                "npc_name": "Sabine Kröger",
-                "npc_address": "sabine.kroeger@rohrundsohn.wn",
+                "person": "sabine-kroeger",
+                "work_address": "sabine.kroeger@rohrundsohn.wn",
                 "responsibilities": ["scheduling"],
                 "daily_salary": 95,
                 "promotion": {
@@ -70,8 +71,8 @@
                 "title": "Bürokraft Terminplanung",
                 "reports_to": "branch-manager",
                 "job_opening": "buerokraft-terminplanung",
-                "npc_name": "Jens Obermeier",
-                "npc_address": "jens.obermeier@rohrundsohn.wn",
+                "person": "jens-obermeier",
+                "work_address": "jens.obermeier@rohrundsohn.wn",
                 "responsibilities": ["scheduling"],
                 "daily_salary": 95,
                 "promotion": {
@@ -83,8 +84,7 @@
         ],
         "technicians": [
             {
-                "slug": "heinz-kowalczyk",
-                "name": "Heinz Kowalczyk",
+                "person": "heinz-kowalczyk",
                 "skills": ["plumbing"],
                 "busy_slots": [
                     {
@@ -122,8 +122,7 @@
                 ]
             },
             {
-                "slug": "rita-vogt",
-                "name": "Rita Vogt",
+                "person": "rita-vogt",
                 "skills": ["plumbing", "heating"],
                 "busy_slots": [
                     {
@@ -169,8 +168,7 @@
                 ]
             },
             {
-                "slug": "dieter-pruss",
-                "name": "Dieter Pruß",
+                "person": "dieter-pruss",
                 "skills": ["heating"],
                 "busy_slots": [
                     {
@@ -218,102 +216,52 @@
         ],
         "customers": [
             {
-                "slug": "margarete-hollmann",
-                "name": "Margarete Hollmann",
-                "street": "Birkenweg 14",
-                "city": "Ahornfelde",
-                "phone": "0555 0142",
-                "email_address": "m.hollmann@post.wn",
+                "person": "margarete-hollmann",
                 "notes": "Hat einen sehr lauten Dackel namens Bruno. Bruno ist freundlich. Bruno ist auch sehr laut.",
                 "availability": "morning"
             },
             {
-                "slug": "martin-hollmeier",
-                "name": "Martin Hollmeier",
-                "street": "Hafenstraße 88",
-                "city": "Ahornfelde",
-                "phone": "0555 0188",
-                "email_address": "hollmeier@hafennetz.wn",
+                "person": "martin-hollmeier",
                 "notes": "Fragt immer nach Rabatt. Hat nie einen bekommen. Fragt trotzdem weiter.",
                 "availability": "any"
             },
             {
-                "slug": "priya-raman",
-                "name": "Priya Raman",
-                "street": "Obstgartenhof 3",
-                "city": "Grünau",
-                "phone": "0555 0103",
-                "email_address": "priya.raman@post.wn",
+                "person": "priya-raman",
                 "notes": "Neuer Heizkessel seit letztem Frühjahr. Sehr zufrieden. Schickt zu Weihnachten Plätzchen.",
                 "availability": "afternoon"
             },
             {
-                "slug": "walter-beck",
-                "name": "Walter Beck",
-                "street": "Mühlenstraße 51",
-                "city": "Ahornfelde",
-                "phone": "0555 0151",
-                "email_address": "w.beck@altpost.wn",
+                "person": "walter-beck",
                 "notes": "Rentner. Ruft jede Woche wegen seines Heizkörpers an. Der Heizkörper ist in Ordnung. Freundlich bleiben.",
                 "availability": "any"
             },
             {
-                "slug": "denise-okafor",
-                "name": "Denise Okafor",
-                "street": "Bahnhofsallee 220, Whg. 4B",
-                "city": "Grünau",
-                "phone": "0555 0220",
-                "email_address": "d.okafor@post.wn",
+                "person": "denise-okafor",
                 "notes": "Vermieter geht nicht ans Telefon. Bitte sie anrufen, nicht den Vermieter.",
                 "availability": "afternoon"
             },
             {
-                "slug": "gisela-mertens",
-                "name": "Gisela Mertens",
-                "street": "Weidenweg 7",
-                "city": "Ahornfelde",
-                "phone": "0555 0107",
-                "email_address": "gisela.mertens@post.wn",
+                "person": "gisela-mertens",
                 "notes": "Betreibt eine Tagespflege zu Hause. Bitte nicht während des Mittagsschlafs klingeln. Mittagsschlaf ist immer.",
                 "availability": "afternoon"
             },
             {
-                "slug": "franz-deluca",
-                "name": "Franz DeLuca",
-                "street": "Steinbruchweg 112",
-                "city": "Grünau",
-                "phone": "0555 0112",
-                "email_address": "franz@baeckerei-deluca.wn",
+                "person": "franz-deluca",
                 "notes": "Hat die Bäckerei. Bezahlt in Brot, wenn man ihn lässt. Nicht lassen.",
                 "availability": "morning"
             },
             {
-                "slug": "harald-hecht",
-                "name": "Harald Hecht",
-                "street": "Kapellenstraße 9",
-                "city": "Ahornfelde",
-                "phone": "0555 0109",
-                "email_address": "h.hecht@altpost.wn",
+                "person": "harald-hecht",
                 "notes": "Monteure müssen die Schuhe ausziehen. Hausschuhe liegen bereit. In vielen Größen.",
                 "availability": "any"
             },
             {
-                "slug": "tina-brandes",
-                "name": "Tina Brandes",
-                "street": "Seeblick 48",
-                "city": "Grünau",
-                "phone": "0555 0148",
-                "email_address": "tina.brandes@post.wn",
+                "person": "tina-brandes",
                 "notes": "Arbeitet nachts. Schläft bis mittags. Sehr deutlich in dieser Frage.",
                 "availability": "afternoon"
             },
             {
-                "slug": "oskar-lindqvist",
-                "name": "Oskar Lindqvist",
-                "street": "Kiefernsenke 301",
-                "city": "Ahornfelde",
-                "phone": "0555 0301",
-                "email_address": "oskar.l@post.wn",
+                "person": "oskar-lindqvist",
                 "notes": "Hat sich selbst eine Sauna gebaut. Sie ist der Grund für die meisten Anrufe.",
                 "availability": "any"
             }

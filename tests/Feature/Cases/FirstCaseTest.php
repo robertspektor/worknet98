@@ -8,15 +8,16 @@ use App\Models\Email;
 use App\Models\User;
 use App\Models\WorkCase;
 use Database\Seeders\BranchSeeder;
+use Database\Seeders\CitySeeder;
 use Database\Seeders\CompanySeeder;
 
 beforeEach(function () {
     $this->travelTo('2026-09-21 09:00:00');
-    $this->seed([CompanySeeder::class, BranchSeeder::class]);
+    $this->seed([CompanySeeder::class, CitySeeder::class, BranchSeeder::class]);
     $employment = employAtSeededPosition('flowright-plumbing');
     $this->employment = $employment;
     $this->player = User::findOrFail($employment->user_id);
-    $this->hollis = Customer::query()->where('slug', 'margaret-hollis')->sole();
+    $this->hollis = Customer::query()->ofPerson('margaret-hollis')->sole();
 });
 
 function handleHollisCase(User $player, Customer $hollis, string $technician, string $date, string $slot): void

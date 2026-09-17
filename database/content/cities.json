@@ -1,0 +1,28 @@
+[
+    {
+        "slug": "lindenstadt",
+        "name": "Lindenstadt",
+        "locale": "de",
+        "population": 2000,
+        "districts": [
+            "Ahornfelde",
+            "Grünau",
+            "Hafenstedt",
+            "Kleinbüttel",
+            "Neuwiesen"
+        ]
+    },
+    {
+        "slug": "millbrook",
+        "name": "Millbrook",
+        "locale": "en",
+        "population": 2000,
+        "districts": [
+            "Brookhaven",
+            "Greenvale",
+            "Lakeside Park",
+            "Maple Falls",
+            "Port Hadley"
+        ]
+    }
+]

@@ -3,7 +3,7 @@ import { useTranslation } from '@/i18n/use-translation';
 import { APPS } from '../apps/app-registry';
 import type { AppId } from '../apps/app-registry';
 import { useAppTitle } from '../apps/use-app-title';
-import { useEdition } from '../computer/edition-context';
+import { useAvailableApps } from '../apps/use-available-apps';
 import type { IconName } from '../ui/pixel-art';
 import { PixelIcon } from '../ui/pixel-icon';
 
@@ -43,7 +43,7 @@ export function StartMenu({
 }) {
     const { t } = useTranslation();
     const appTitle = useAppTitle();
-    const { apps } = useEdition();
+    const apps = useAvailableApps();
     const menuRef = useRef<HTMLElement>(null);
 
     useEffect(() => {

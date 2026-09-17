@@ -3,6 +3,7 @@ import { useTranslation } from '@/i18n/use-translation';
 import type { Customer, Schedule } from '@/types';
 import { formatDay } from '../../ui/format';
 import { bookedByText } from './booked-by';
+import { PartLine } from './part-line';
 import type { SelectedSlot } from './schedule-grid';
 import { slotState } from './slot-state';
 
@@ -57,7 +58,8 @@ export function BookingPanel({
                 <p>
                     <b>{appointment.customer.name}</b> &middot; {when}
                 </p>
-                {appointment.is_own ? (
+                <PartLine appointment={appointment} />
+                {appointment.failed ? null : appointment.is_own ? (
                     <button
                         type="button"
                         className="button"

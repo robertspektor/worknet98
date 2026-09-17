@@ -21,11 +21,12 @@ class CaseStateLoader
 
         return new CaseState(
             openedOn: $this->clock->fromReal($workCase->seen_at ?? $workCase->opened_at),
-            appointments: $employment->bookedAppointments()->with('technician')->get(),
+            appointments: $employment->bookedAppointments()->with('technician.person')->get(),
             sentEmails: $employment->emails()->where('folder', EmailFolder::Sent)->get(),
             calendarEntries: CalendarEntry::query()->where('user_id', $employment->user_id)->get(),
-            customers: $workCase->branch->customers()->get()->keyBy('slug'),
+            customers: $workCase->branch->customers()->with('person')->get()->keyBy('person.slug'),
             window: $this->window,
+            shipment: $workCase->shipment?->load('driver'),
         );
     }
 }

@@ -32,7 +32,7 @@ class CaseOpener
     {
         $definition = $scripted->definition;
         $employment = $shift->employment;
-        $customer = $employment->branch()->customers()->where('slug', $definition->requestMail['customer'])->firstOrFail();
+        $customer = $employment->branch()->customers()->ofPerson($definition->requestMail['customer'])->firstOrFail();
 
         $workCase = WorkCase::create([
             'branch_id' => $employment->position->branch_id,

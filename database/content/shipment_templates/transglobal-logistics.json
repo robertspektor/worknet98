@@ -1,0 +1,38 @@
+[
+    {
+        "slug": "spare-part-delivery",
+        "responsibility": "dispatch",
+        "due_format": "dddd, MMMM D, HH:mm",
+        "size_labels": {
+            "parcel": "one parcel",
+            "pallet": "one pallet"
+        },
+        "request_mail": {
+            "subject": "Pickup: :contents for :recipient",
+            "body": "Hello,\n\nplease pick up at our yard: :contents, :size.\n\nDeliver to: :recipient, :district\nNeeded by: :due\n\nOtherwise the technician stands in front of a hole in the wall and looks at it. He is good at that, but it does not fix anything.\n\nPlease confirm the route with a short mail.\n\nRegards,\n:contact\n:sender"
+        },
+        "outcome_feedback": {
+            "vehicle": {
+                "met": "And the right vehicle. Accounting nods.",
+                "missed": "You sent the truck for one parcel. The parcel had plenty of room. Accounting has less patience."
+            },
+            "punctuality": {
+                "met": "At :recipient in time. The technician could get to work.",
+                "missed": "Late at :recipient. The technician stood at the customer without the part. We will hear about this."
+            }
+        },
+        "feedback_mail": {
+            "subject": "Re: :contents for :recipient",
+            "intro": "Hey,\n\nabout the :contents for :recipient.",
+            "outro": "Every shipment arrives somewhere. Ideally on time.\n\nTammy"
+        },
+        "reminder_mail": {
+            "subject": ":contents for :recipient?",
+            "body": "Hey,\n\nthe shipment for :recipient is still not on any route. Plan the route, confirm to the sender. The usual.\n\nTammy"
+        },
+        "complaint_mail": {
+            "subject": "Complaint: :contents",
+            "body": "Hello,\n\nour technician stood at a customer today without the :contents. The part was due with us by :due. It was not with us.\n\nWe now have a second appointment and a customer who no longer waves at our van.\n\nAnnoyed regards,\n:recipient"
+        }
+    }
+]

@@ -1,0 +1,466 @@
+[
+    {
+        "district": "Neuwiesen",
+        "street": "Birkenweg 38",
+        "phone": "0555 9769",
+        "members": [
+            {
+                "slug": "christian-wendt",
+                "name": "Christian Wendt"
+            }
+        ]
+    },
+    {
+        "district": "Neuwiesen",
+        "street": "Birkenweg 34",
+        "phone": "0555 2772",
+        "members": [
+            {
+                "slug": "nadine-petzold",
+                "name": "Nadine Petzold"
+            }
+        ]
+    },
+    {
+        "district": "Neuwiesen",
+        "street": "Kirchgasse 63",
+        "phone": "0555 6401",
+        "members": [
+            {
+                "slug": "sabine-tannert",
+                "name": "Sabine Tannert"
+            }
+        ]
+    },
+    {
+        "district": "Neuwiesen",
+        "street": "Mühlenstraße 60",
+        "phone": "0555 4588",
+        "members": [
+            {
+                "slug": "bjoern-lindemann",
+                "name": "Björn Lindemann"
+            }
+        ]
+    },
+    {
+        "district": "Neuwiesen",
+        "street": "Uferstraße 81",
+        "phone": "0555 2991",
+        "members": [
+            {
+                "slug": "melanie-doerr",
+                "name": "Melanie Dörr"
+            }
+        ]
+    },
+    {
+        "district": "Neuwiesen",
+        "street": "Brunnengasse 104",
+        "phone": "0555 5686",
+        "members": [
+            {
+                "slug": "torsten-bach",
+                "name": "Torsten Bach"
+            }
+        ]
+    },
+    {
+        "district": "Kleinbüttel",
+        "street": "Hafenstraße 56",
+        "phone": "0555 0272",
+        "members": [
+            {
+                "slug": "gerd-hummel",
+                "name": "Gerd Hummel"
+            }
+        ]
+    },
+    {
+        "district": "Kleinbüttel",
+        "street": "Seestraße 6",
+        "phone": "0555 7718",
+        "members": [
+            {
+                "slug": "waltraud-seidel",
+                "name": "Waltraud Seidel"
+            }
+        ]
+    },
+    {
+        "district": "Kleinbüttel",
+        "street": "Hochstraße 86",
+        "phone": "0555 0407",
+        "members": [
+            {
+                "slug": "doris-keller",
+                "name": "Doris Keller"
+            }
+        ]
+    },
+    {
+        "district": "Kleinbüttel",
+        "street": "Fliederweg 119",
+        "phone": "0555 5998",
+        "members": [
+            {
+                "slug": "philipp-garbe",
+                "name": "Philipp Garbe"
+            }
+        ]
+    },
+    {
+        "district": "Kleinbüttel",
+        "street": "Am Mühlbach 173",
+        "phone": "0555 7905",
+        "members": [
+            {
+                "slug": "rosi-jahnke",
+                "name": "Rosi Jahnke"
+            }
+        ]
+    },
+    {
+        "district": "Kleinbüttel",
+        "street": "Friedhofstraße 81",
+        "phone": "0555 6011",
+        "members": [
+            {
+                "slug": "stefan-weber",
+                "name": "Stefan Weber"
+            }
+        ]
+    },
+    {
+        "district": "Ahornfelde",
+        "street": "Birkenweg 14",
+        "phone": "0555 0142",
+        "members": [
+            {
+                "slug": "margarete-hollmann",
+                "name": "Margarete Hollmann",
+                "email_address": "m.hollmann@post.wn"
+            }
+        ]
+    },
+    {
+        "district": "Ahornfelde",
+        "street": "Hafenstraße 88",
+        "phone": "0555 0188",
+        "members": [
+            {
+                "slug": "martin-hollmeier",
+                "name": "Martin Hollmeier",
+                "email_address": "hollmeier@hafennetz.wn"
+            }
+        ]
+    },
+    {
+        "district": "Grünau",
+        "street": "Obstgartenhof 3",
+        "phone": "0555 0103",
+        "members": [
+            {
+                "slug": "priya-raman",
+                "name": "Priya Raman",
+                "email_address": "priya.raman@post.wn"
+            }
+        ]
+    },
+    {
+        "district": "Ahornfelde",
+        "street": "Mühlenstraße 51",
+        "phone": "0555 0151",
+        "members": [
+            {
+                "slug": "walter-beck",
+                "name": "Walter Beck",
+                "email_address": "w.beck@altpost.wn"
+            }
+        ]
+    },
+    {
+        "district": "Grünau",
+        "street": "Bahnhofsallee 220, Whg. 4B",
+        "phone": "0555 0220",
+        "members": [
+            {
+                "slug": "denise-okafor",
+                "name": "Denise Okafor",
+                "email_address": "d.okafor@post.wn"
+            }
+        ]
+    },
+    {
+        "district": "Ahornfelde",
+        "street": "Weidenweg 7",
+        "phone": "0555 0107",
+        "members": [
+            {
+                "slug": "gisela-mertens",
+                "name": "Gisela Mertens",
+                "email_address": "gisela.mertens@post.wn"
+            },
+            {
+                "slug": "bettina-mertens",
+                "name": "Bettina Mertens"
+            }
+        ]
+    },
+    {
+        "district": "Grünau",
+        "street": "Steinbruchweg 112",
+        "phone": "0555 0112",
+        "members": [
+            {
+                "slug": "franz-deluca",
+                "name": "Franz DeLuca",
+                "email_address": "franz@baeckerei-deluca.wn"
+            }
+        ]
+    },
+    {
+        "district": "Ahornfelde",
+        "street": "Kapellenstraße 9",
+        "phone": "0555 0109",
+        "members": [
+            {
+                "slug": "harald-hecht",
+                "name": "Harald Hecht",
+                "email_address": "h.hecht@altpost.wn"
+            }
+        ]
+    },
+    {
+        "district": "Grünau",
+        "street": "Seeblick 48",
+        "phone": "0555 0148",
+        "members": [
+            {
+                "slug": "tina-brandes",
+                "name": "Tina Brandes",
+                "email_address": "tina.brandes@post.wn"
+            }
+        ]
+    },
+    {
+        "district": "Ahornfelde",
+        "street": "Kiefernsenke 301",
+        "phone": "0555 0301",
+        "members": [
+            {
+                "slug": "oskar-lindqvist",
+                "name": "Oskar Lindqvist",
+                "email_address": "oskar.l@post.wn"
+            }
+        ]
+    },
+    {
+        "district": "Ahornfelde",
+        "street": "Tannenweg 72",
+        "phone": "0555 8257",
+        "members": [
+            {
+                "slug": "heinz-kowalczyk",
+                "name": "Heinz Kowalczyk"
+            }
+        ]
+    },
+    {
+        "district": "Ahornfelde",
+        "street": "Marktplatz 86",
+        "phone": "0555 3756",
+        "members": [
+            {
+                "slug": "rita-vogt",
+                "name": "Rita Vogt"
+            }
+        ]
+    },
+    {
+        "district": "Ahornfelde",
+        "street": "Birkenweg 134",
+        "phone": "0555 4100",
+        "members": [
+            {
+                "slug": "dieter-pruss",
+                "name": "Dieter Pruß"
+            }
+        ]
+    },
+    {
+        "district": "Ahornfelde",
+        "street": "Bahnhofstraße 90",
+        "phone": "0555 0978",
+        "members": [
+            {
+                "slug": "bernd-rohr",
+                "name": "Bernd Rohr"
+            }
+        ]
+    },
+    {
+        "district": "Ahornfelde",
+        "street": "Ahornweg 42",
+        "phone": "0555 8082",
+        "members": [
+            {
+                "slug": "kerstin-albers",
+                "name": "Kerstin Albers"
+            }
+        ]
+    },
+    {
+        "district": "Ahornfelde",
+        "street": "Waldstraße 33",
+        "phone": "0555 9946",
+        "members": [
+            {
+                "slug": "guenter-hoppe",
+                "name": "Günter Hoppe"
+            }
+        ]
+    },
+    {
+        "district": "Ahornfelde",
+        "street": "Am Anger 111",
+        "phone": "0555 0944",
+        "members": [
+            {
+                "slug": "uwe-brandt",
+                "name": "Uwe Brandt"
+            }
+        ]
+    },
+    {
+        "district": "Ahornfelde",
+        "street": "Sonnenhang 92",
+        "phone": "0555 3040",
+        "members": [
+            {
+                "slug": "sabine-kroeger",
+                "name": "Sabine Kröger"
+            }
+        ]
+    },
+    {
+        "district": "Ahornfelde",
+        "street": "Feldweg 97",
+        "phone": "0555 8492",
+        "members": [
+            {
+                "slug": "jens-obermeier",
+                "name": "Jens Obermeier"
+            }
+        ]
+    },
+    {
+        "district": "Hafenstedt",
+        "street": "Hafenstraße 161",
+        "phone": "0555 8506",
+        "members": [
+            {
+                "slug": "rolf-dietrich",
+                "name": "Rolf Dietrich"
+            }
+        ]
+    },
+    {
+        "district": "Hafenstedt",
+        "street": "Uferstraße 9",
+        "phone": "0555 8826",
+        "members": [
+            {
+                "slug": "tanja-brueckner",
+                "name": "Tanja Brückner"
+            }
+        ]
+    },
+    {
+        "district": "Hafenstedt",
+        "street": "Sonnenhang 177",
+        "phone": "0555 5374",
+        "members": [
+            {
+                "slug": "holger-mahler",
+                "name": "Holger Mahler"
+            }
+        ]
+    },
+    {
+        "district": "Hafenstedt",
+        "street": "Poststraße 117",
+        "phone": "0555 9941",
+        "members": [
+            {
+                "slug": "kerstin-mohr",
+                "name": "Kerstin Mohr"
+            }
+        ]
+    },
+    {
+        "district": "Hafenstedt",
+        "street": "Am Anger 104",
+        "phone": "0555 4444",
+        "members": [
+            {
+                "slug": "otto-pfennig",
+                "name": "Otto Pfennig"
+            }
+        ]
+    },
+    {
+        "district": "Hafenstedt",
+        "street": "Kaistraße 12",
+        "phone": "0555 4812",
+        "members": [
+            {
+                "slug": "heribert-bergmann",
+                "name": "Heribert Bergmann"
+            }
+        ]
+    },
+    {
+        "district": "Neuwiesen",
+        "street": "Am Anger 3",
+        "phone": "0555 3303",
+        "members": [
+            {
+                "slug": "monika-zander",
+                "name": "Monika Zander"
+            }
+        ]
+    },
+    {
+        "district": "Hafenstedt",
+        "street": "Speicherweg 41",
+        "phone": "0555 4141",
+        "members": [
+            {
+                "slug": "kalle-brinkmann",
+                "name": "Kalle Brinkmann"
+            }
+        ]
+    },
+    {
+        "district": "Kleinbüttel",
+        "street": "Lindenstraße 77",
+        "phone": "0555 7707",
+        "members": [
+            {
+                "slug": "sevgi-aydin",
+                "name": "Sevgi Aydın"
+            }
+        ]
+    },
+    {
+        "district": "Hafenstedt",
+        "street": "Uferstraße 23",
+        "members": [
+            {
+                "slug": "horst-luebke",
+                "name": "Horst Lübke"
+            }
+        ]
+    }
+]

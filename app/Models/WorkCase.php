@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Attributes\Fillable;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use LogicException;
 
 /**
@@ -19,7 +20,8 @@ use LogicException;
  * @property int $customer_id
  * @property WorkCaseKind $kind
  * @property string $case_slug
- * @property string|null $demand_key
+ * @property int|null $world_event_id
+ * @property int|null $shipment_id
  * @property WorkCaseStatus $status
  * @property CarbonImmutable $opened_at
  * @property CarbonImmutable|null $npc_due_at
@@ -32,8 +34,11 @@ use LogicException;
  * @property-read Position $position
  * @property-read Employment|null $employment
  * @property-read Customer $customer
+ * @property-read WorldEvent|null $worldEvent
+ * @property-read Shipment|null $shipment
+ * @property-read Shipment|null $partShipment
  */
-#[Fillable(['branch_id', 'position_id', 'employment_id', 'customer_id', 'kind', 'case_slug', 'demand_key', 'status', 'opened_at', 'npc_due_at', 'seen_at', 'reminded_at', 'resolved_at'])]
+#[Fillable(['branch_id', 'position_id', 'employment_id', 'customer_id', 'kind', 'case_slug', 'world_event_id', 'shipment_id', 'status', 'opened_at', 'npc_due_at', 'seen_at', 'reminded_at', 'resolved_at'])]
 class WorkCase extends Model
 {
     public function playerEmployment(): Employment
@@ -71,6 +76,30 @@ class WorkCase extends Model
     public function customer(): BelongsTo
     {
         return $this->belongsTo(Customer::class);
+    }
+
+    /**
+     * @return BelongsTo<Shipment, $this>
+     */
+    public function shipment(): BelongsTo
+    {
+        return $this->belongsTo(Shipment::class);
+    }
+
+    /**
+     * @return HasOne<Shipment, $this>
+     */
+    public function partShipment(): HasOne
+    {
+        return $this->hasOne(Shipment::class, 'repair_case_id');
+    }
+
+    /**
+     * @return BelongsTo<WorldEvent, $this>
+     */
+    public function worldEvent(): BelongsTo
+    {
+        return $this->belongsTo(WorldEvent::class);
     }
 
     /**

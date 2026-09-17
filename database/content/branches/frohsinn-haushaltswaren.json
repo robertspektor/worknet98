@@ -1,36 +1,37 @@
 [
     {
         "slug": "kleinbuettel",
+        "city": "lindenstadt",
         "name": "Kleinbüttel",
         "office_address": "kundendienst@frohsinn.wn",
         "positions": [
             {
                 "slug": "branch-manager",
                 "title": "Niederlassungsleitung",
-                "npc_name": "Gerd Hummel",
-                "npc_address": "gerd.hummel@frohsinn.wn"
+                "person": "gerd-hummel",
+                "work_address": "gerd.hummel@frohsinn.wn"
             },
             {
                 "slug": "team-lead",
                 "title": "Leitung Kundendienst",
                 "reports_to": "branch-manager",
-                "npc_name": "Waltraud Seidel",
-                "npc_address": "waltraud.seidel@frohsinn.wn"
+                "person": "waltraud-seidel",
+                "work_address": "waltraud.seidel@frohsinn.wn"
             },
             {
                 "slug": "office-coordinator",
                 "title": "Büroorganisation",
                 "reports_to": "branch-manager",
-                "npc_name": "Doris Keller",
-                "npc_address": "doris.keller@frohsinn.wn"
+                "person": "doris-keller",
+                "work_address": "doris.keller@frohsinn.wn"
             },
             {
                 "slug": "complaints-clerk-1",
                 "title": "Reklamationssachbearbeitung",
                 "reports_to": "team-lead",
                 "job_opening": "reklamationssachbearbeitung",
-                "npc_name": "Philipp Garbe",
-                "npc_address": "philipp.garbe@frohsinn.wn",
+                "person": "philipp-garbe",
+                "work_address": "philipp.garbe@frohsinn.wn",
                 "responsibilities": ["complaints"]
             },
             {
@@ -38,8 +39,8 @@
                 "title": "Reklamationssachbearbeitung",
                 "reports_to": "team-lead",
                 "job_opening": "reklamationssachbearbeitung",
-                "npc_name": "Rosi Jahnke",
-                "npc_address": "rosi.jahnke@frohsinn.wn",
+                "person": "rosi-jahnke",
+                "work_address": "rosi.jahnke@frohsinn.wn",
                 "responsibilities": ["complaints"]
             },
             {
@@ -47,8 +48,8 @@
                 "title": "Reklamationssachbearbeitung",
                 "reports_to": "team-lead",
                 "job_opening": "reklamationssachbearbeitung",
-                "npc_name": "Stefan Weber",
-                "npc_address": "stefan.weber@frohsinn.wn",
+                "person": "stefan-weber",
+                "work_address": "stefan.weber@frohsinn.wn",
                 "responsibilities": ["complaints"]
             }
         ]

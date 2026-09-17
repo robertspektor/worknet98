@@ -14,7 +14,7 @@ readonly class TemplateTexts
     public function fill(string $text): string
     {
         return strtr($text, [
-            ':customer' => $this->customer->name,
+            ':customer' => $this->customer->person->name,
             ':availability' => $this->template->availabilityNotes[$this->customer->availability->value],
         ]);
     }

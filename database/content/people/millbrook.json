@@ -1,0 +1,473 @@
+[
+    {
+        "district": "Maple Falls",
+        "street": "14 Birch Lane",
+        "phone": "555-0142",
+        "members": [
+            {
+                "slug": "margaret-hollis",
+                "name": "Margaret Hollis",
+                "email_address": "m.hollis@mail.wn"
+            }
+        ]
+    },
+    {
+        "district": "Maple Falls",
+        "street": "88 Harbor Road",
+        "phone": "555-0188",
+        "members": [
+            {
+                "slug": "martin-hollister",
+                "name": "Martin Hollister",
+                "email_address": "hollister@harbornet.wn"
+            }
+        ]
+    },
+    {
+        "district": "Greenvale",
+        "street": "3 Orchard Court",
+        "phone": "555-0103",
+        "members": [
+            {
+                "slug": "priya-raman",
+                "name": "Priya Raman",
+                "email_address": "priya.raman@mail.wn"
+            }
+        ]
+    },
+    {
+        "district": "Maple Falls",
+        "street": "51 Mill Street",
+        "phone": "555-0151",
+        "members": [
+            {
+                "slug": "walter-beck",
+                "name": "Walter Beck",
+                "email_address": "w.beck@oldmail.wn"
+            }
+        ]
+    },
+    {
+        "district": "Greenvale",
+        "street": "220 Station Avenue, Apt 4B",
+        "phone": "555-0220",
+        "members": [
+            {
+                "slug": "denise-okafor",
+                "name": "Denise Okafor",
+                "email_address": "d.okafor@mail.wn"
+            }
+        ]
+    },
+    {
+        "district": "Maple Falls",
+        "street": "7 Willow Drive",
+        "phone": "555-0107",
+        "members": [
+            {
+                "slug": "gloria-mendez",
+                "name": "Gloria Mendez",
+                "email_address": "gloria.mendez@mail.wn"
+            }
+        ]
+    },
+    {
+        "district": "Greenvale",
+        "street": "112 Quarry Road",
+        "phone": "555-0112",
+        "members": [
+            {
+                "slug": "frank-deluca",
+                "name": "Frank DeLuca",
+                "email_address": "frank@delucabakery.wn"
+            }
+        ]
+    },
+    {
+        "district": "Maple Falls",
+        "street": "9 Chapel Street",
+        "phone": "555-0109",
+        "members": [
+            {
+                "slug": "harold-pike",
+                "name": "Harold Pike",
+                "email_address": "h.pike@oldmail.wn"
+            }
+        ]
+    },
+    {
+        "district": "Greenvale",
+        "street": "48 Lakeview Terrace",
+        "phone": "555-0148",
+        "members": [
+            {
+                "slug": "tina-brooks",
+                "name": "Tina Brooks",
+                "email_address": "tina.brooks@mail.wn"
+            }
+        ]
+    },
+    {
+        "district": "Maple Falls",
+        "street": "301 Pine Hollow",
+        "phone": "555-0301",
+        "members": [
+            {
+                "slug": "oscar-lindqvist",
+                "name": "Oscar Lindqvist",
+                "email_address": "oscar.l@mail.wn"
+            }
+        ]
+    },
+    {
+        "district": "Maple Falls",
+        "street": "74 Church Street",
+        "phone": "555-8658",
+        "members": [
+            {
+                "slug": "stan-kowalski",
+                "name": "Stan Kowalski"
+            }
+        ]
+    },
+    {
+        "district": "Maple Falls",
+        "street": "112 Fairview Avenue",
+        "phone": "555-3393",
+        "members": [
+            {
+                "slug": "rita-vance",
+                "name": "Rita Vance"
+            }
+        ]
+    },
+    {
+        "district": "Maple Falls",
+        "street": "137 Spring Street",
+        "phone": "555-6965",
+        "members": [
+            {
+                "slug": "doug-pruitt",
+                "name": "Doug Pruitt"
+            }
+        ]
+    },
+    {
+        "district": "Maple Falls",
+        "street": "104 Garden Terrace",
+        "phone": "555-7859",
+        "members": [
+            {
+                "slug": "gary-flowright",
+                "name": "Gary Flowright"
+            }
+        ]
+    },
+    {
+        "district": "Maple Falls",
+        "street": "32 Elm Street",
+        "phone": "555-3591",
+        "members": [
+            {
+                "slug": "bev-mercer",
+                "name": "Bev Mercer"
+            }
+        ]
+    },
+    {
+        "district": "Maple Falls",
+        "street": "47 Church Street",
+        "phone": "555-3546",
+        "members": [
+            {
+                "slug": "tony-russo",
+                "name": "Tony Russo"
+            }
+        ]
+    },
+    {
+        "district": "Maple Falls",
+        "street": "99 Lake Street",
+        "phone": "555-9478",
+        "members": [
+            {
+                "slug": "linda-hargrove",
+                "name": "Linda Hargrove"
+            }
+        ]
+    },
+    {
+        "district": "Maple Falls",
+        "street": "169 Clover Road",
+        "phone": "555-3473",
+        "members": [
+            {
+                "slug": "carl-denton",
+                "name": "Carl Denton"
+            }
+        ]
+    },
+    {
+        "district": "Maple Falls",
+        "street": "82 Canal Street",
+        "phone": "555-5498",
+        "members": [
+            {
+                "slug": "judy-pham",
+                "name": "Judy Pham"
+            }
+        ]
+    },
+    {
+        "district": "Maple Falls",
+        "street": "38 Cedar Court",
+        "phone": "555-7864",
+        "members": [
+            {
+                "slug": "marcus-webb",
+                "name": "Marcus Webb"
+            }
+        ]
+    },
+    {
+        "district": "Brookhaven",
+        "street": "179 Hickory Lane",
+        "phone": "555-9898",
+        "members": [
+            {
+                "slug": "gerald-humphries",
+                "name": "Gerald Humphries"
+            }
+        ]
+    },
+    {
+        "district": "Brookhaven",
+        "street": "158 Pine Street",
+        "phone": "555-2932",
+        "members": [
+            {
+                "slug": "wanda-hargrove",
+                "name": "Wanda Hargrove"
+            }
+        ]
+    },
+    {
+        "district": "Brookhaven",
+        "street": "128 Meadow Lane",
+        "phone": "555-3031",
+        "members": [
+            {
+                "slug": "donna-keller",
+                "name": "Donna Keller"
+            }
+        ]
+    },
+    {
+        "district": "Brookhaven",
+        "street": "115 Clover Road",
+        "phone": "555-1016",
+        "members": [
+            {
+                "slug": "phil-garrity",
+                "name": "Phil Garrity"
+            }
+        ]
+    },
+    {
+        "district": "Brookhaven",
+        "street": "161 Maple Avenue",
+        "phone": "555-8302",
+        "members": [
+            {
+                "slug": "rosa-jimenez",
+                "name": "Rosa Jimenez"
+            }
+        ]
+    },
+    {
+        "district": "Brookhaven",
+        "street": "140 Sunset Drive",
+        "phone": "555-8814",
+        "members": [
+            {
+                "slug": "stuart-webb",
+                "name": "Stuart Webb"
+            }
+        ]
+    },
+    {
+        "district": "Lakeside Park",
+        "street": "4 Hickory Lane",
+        "phone": "555-8543",
+        "members": [
+            {
+                "slug": "chad-whitaker",
+                "name": "Chad Whitaker"
+            }
+        ]
+    },
+    {
+        "district": "Lakeside Park",
+        "street": "22 Laurel Court",
+        "phone": "555-1736",
+        "members": [
+            {
+                "slug": "nadia-petrova",
+                "name": "Nadia Petrova"
+            }
+        ]
+    },
+    {
+        "district": "Lakeside Park",
+        "street": "30 Bay Road",
+        "phone": "555-1743",
+        "members": [
+            {
+                "slug": "sheryl-tanner",
+                "name": "Sheryl Tanner"
+            }
+        ]
+    },
+    {
+        "district": "Lakeside Park",
+        "street": "130 Clover Road",
+        "phone": "555-2997",
+        "members": [
+            {
+                "slug": "brian-liu",
+                "name": "Brian Liu"
+            }
+        ]
+    },
+    {
+        "district": "Lakeside Park",
+        "street": "73 Laurel Court",
+        "phone": "555-9959",
+        "members": [
+            {
+                "slug": "megan-doyle",
+                "name": "Megan Doyle"
+            }
+        ]
+    },
+    {
+        "district": "Lakeside Park",
+        "street": "149 Clover Road",
+        "phone": "555-9749",
+        "members": [
+            {
+                "slug": "trevor-banks",
+                "name": "Trevor Banks"
+            }
+        ]
+    },
+    {
+        "district": "Port Hadley",
+        "street": "57 Ridge Road",
+        "phone": "555-2129",
+        "members": [
+            {
+                "slug": "roy-delgado",
+                "name": "Roy Delgado"
+            }
+        ]
+    },
+    {
+        "district": "Port Hadley",
+        "street": "107 Hillside Drive",
+        "phone": "555-4342",
+        "members": [
+            {
+                "slug": "tammy-briggs",
+                "name": "Tammy Briggs"
+            }
+        ]
+    },
+    {
+        "district": "Port Hadley",
+        "street": "64 Church Street",
+        "phone": "555-2577",
+        "members": [
+            {
+                "slug": "hank-mulligan",
+                "name": "Hank Mulligan"
+            }
+        ]
+    },
+    {
+        "district": "Port Hadley",
+        "street": "146 Main Street",
+        "phone": "555-9078",
+        "members": [
+            {
+                "slug": "keisha-monroe",
+                "name": "Keisha Monroe"
+            }
+        ]
+    },
+    {
+        "district": "Port Hadley",
+        "street": "122 Grove Street",
+        "phone": "555-1823",
+        "members": [
+            {
+                "slug": "otis-pennington",
+                "name": "Otis Pennington"
+            }
+        ]
+    },
+    {
+        "district": "Port Hadley",
+        "street": "12 Wharf Street",
+        "phone": "555-4812",
+        "members": [
+            {
+                "slug": "dale-keystone",
+                "name": "Dale Keystone"
+            }
+        ]
+    },
+    {
+        "district": "Lakeside Park",
+        "street": "3 Meadow Lane",
+        "phone": "555-3303",
+        "members": [
+            {
+                "slug": "rhonda-mayfield",
+                "name": "Rhonda Mayfield"
+            }
+        ]
+    },
+    {
+        "district": "Port Hadley",
+        "street": "41 Warehouse Row",
+        "phone": "555-4141",
+        "members": [
+            {
+                "slug": "rusty-calhoun",
+                "name": "Rusty Calhoun"
+            }
+        ]
+    },
+    {
+        "district": "Brookhaven",
+        "street": "77 Elm Street",
+        "phone": "555-7707",
+        "members": [
+            {
+                "slug": "marisol-vega",
+                "name": "Marisol Vega"
+            }
+        ]
+    },
+    {
+        "district": "Port Hadley",
+        "street": "9 River Road",
+        "members": [
+            {
+                "slug": "ed-tanner",
+                "name": "Ed Tanner"
+            }
+        ]
+    }
+]

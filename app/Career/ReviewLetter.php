@@ -17,14 +17,14 @@ class ReviewLetter
         $replacements = [
             'month' => CarbonImmutable::parse("{$review->period}-01")->settings(['locale' => $locale])->translatedFormat('F Y'),
             'bonus' => $review->bonus,
-            'manager' => $superior->npc_name,
+            'manager' => $superior->person->name,
             'warnings' => $warnings,
             'limit' => $warningLimit,
         ];
 
         return new EmailDraft(
-            senderName: $superior->npc_name,
-            senderAddress: $superior->npc_address,
+            senderName: $superior->person->name,
+            senderAddress: $superior->work_address,
             subject: __('game_mail.review.subject', $replacements, $locale),
             body: implode("\n\n", array_filter([
                 __("game_mail.review.{$review->rating->value}", $replacements, $locale),

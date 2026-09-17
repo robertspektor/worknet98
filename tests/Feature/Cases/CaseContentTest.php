@@ -6,10 +6,11 @@ use App\Models\Branch;
 use App\Models\Technician;
 use App\Workplace\Availability;
 use Database\Seeders\BranchSeeder;
+use Database\Seeders\CitySeeder;
 use Database\Seeders\CompanySeeder;
 use Illuminate\Support\Facades\File;
 
-beforeEach(fn () => $this->seed([CompanySeeder::class, BranchSeeder::class]));
+beforeEach(fn () => $this->seed([CompanySeeder::class, CitySeeder::class, BranchSeeder::class]));
 
 it('only references known customers, colleagues and technicians in case content', function () {
     foreach (Branch::with('company')->get() as $branch) {
@@ -17,7 +18,7 @@ it('only references known customers, colleagues and technicians in case content'
 
         foreach ($definitions as $scripted) {
             $definition = $scripted->definition;
-            expect($branch->customers()->where('slug', $definition->requestMail['customer'])->exists())->toBeTrue();
+            expect($branch->customers()->ofPerson($definition->requestMail['customer'])->exists())->toBeTrue();
 
             foreach ($definition->messages as $message) {
                 expect($branch->positions()->where('slug', $message->sender)->exists())->toBeTrue();
@@ -28,7 +29,7 @@ it('only references known customers, colleagues and technicians in case content'
         preg_match_all('/"technician": "([a-z-]+)"/', File::exists($path) ? File::get($path) : '', $technicians);
 
         foreach ($technicians[1] as $slug) {
-            expect($branch->technicians()->where('slug', $slug)->exists())->toBeTrue();
+            expect($branch->technicians()->ofPerson($slug)->exists())->toBeTrue();
         }
     }
 });

@@ -3,14 +3,10 @@ import { useTranslation } from '@/i18n/use-translation';
 import { index as customersIndex } from '@/routes/api/v1/customers';
 import type { Customer, Email, EmailAction } from '@/types';
 import { useApiResource } from '../../api/use-api-resource';
+import { useCompanySoftware } from '../../company-software/company-software-provider';
 import type { OutgoingEmail } from '../../mailbox/mailbox-provider';
 import { AppLoading } from '../../ui/app-loading';
-
-const ACTIONS: EmailAction[] = [
-    'confirm_appointment',
-    'request_details',
-    'other',
-];
+import { actionsFor } from './compose-actions';
 
 function replySubject(subject: string): string {
     return subject.startsWith('Re: ') ? subject : `Re: ${subject}`;
@@ -40,7 +36,8 @@ function ComposeFields({
         replyTo ? replySubject(replyTo.subject) : '',
     );
     const [body, setBody] = useState('');
-    const [action, setAction] = useState<EmailAction>('confirm_appointment');
+    const actions = actionsFor(useCompanySoftware());
+    const [action, setAction] = useState<EmailAction>(actions[0]);
     const [isSending, setSending] = useState(false);
     const isComplete =
         customerId !== '' && subject.trim() !== '' && body.trim() !== '';
@@ -103,7 +100,7 @@ function ComposeFields({
                         setAction(event.target.value as EmailAction)
                     }
                 >
-                    {ACTIONS.map((option) => (
+                    {actions.map((option) => (
                         <option key={option} value={option}>
                             {t(`inbox.actions.${option}`)}
                         </option>

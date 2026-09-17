@@ -50,7 +50,7 @@ class CaseMessenger
     private function draft(WorkCase $workCase, CaseMessage $message, Position $sender): ChatDraft
     {
         return new ChatDraft(
-            contactName: $sender->npc_name,
+            contactName: $sender->person->name,
             body: $message->body,
             replies: $message->replies,
             delaySeconds: $message->delaySeconds,

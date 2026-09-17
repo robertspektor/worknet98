@@ -38,7 +38,7 @@ it('books an appointment for a customer with a technician', function () {
         ->assertCreated()
         ->assertJsonPath('data.date', '2026-09-21')
         ->assertJsonPath('data.slot', '10:00')
-        ->assertJsonPath('data.customer.name', $this->customer->name);
+        ->assertJsonPath('data.customer.name', $this->customer->person->name);
 
     $appointment = Appointment::sole();
     expect($appointment->booked_by_employment_id)->toBe($this->player->employment?->id)
@@ -100,4 +100,18 @@ it('does not cancel appointments of colleagues', function () {
     $this->actingAs($this->player)
         ->deleteJson(route('api.v1.appointments.destroy', $appointment))
         ->assertForbidden();
+});
+
+it('does not cancel a visit that already failed', function () {
+    $appointment = Appointment::factory()->for($this->branch)->create([
+        'booked_by_employment_id' => $this->player->employment?->id,
+        'executed_at' => now(),
+        'failed_at' => now(),
+    ]);
+
+    $this->actingAs($this->player)
+        ->deleteJson(route('api.v1.appointments.destroy', $appointment))
+        ->assertForbidden();
+
+    expect(Appointment::count())->toBe(1);
 });

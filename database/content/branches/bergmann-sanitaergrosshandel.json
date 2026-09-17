@@ -1,0 +1,24 @@
+[
+    {
+        "slug": "gewerbehof-hafenstedt",
+        "city": "lindenstadt",
+        "name": "Gewerbehof Hafenstedt",
+        "office_address": "auftrag@bergmann-sanitaer.wn",
+        "positions": [
+            {
+                "slug": "branch-manager",
+                "title": "Geschäftsführung",
+                "person": "heribert-bergmann",
+                "work_address": "heribert.bergmann@bergmann-sanitaer.wn"
+            },
+            {
+                "slug": "order-desk",
+                "title": "Auftragsannahme",
+                "reports_to": "branch-manager",
+                "person": "monika-zander",
+                "work_address": "monika.zander@bergmann-sanitaer.wn",
+                "responsibilities": ["sales"]
+            }
+        ]
+    }
+]

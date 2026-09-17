@@ -6,12 +6,15 @@ use App\Models\Branch;
 use App\Models\Company;
 use App\Models\Customer;
 use App\Models\Email;
+use App\Models\Person;
 use App\Models\Shift;
 
 beforeEach(function () {
     $company = Company::factory()->create(['name' => 'Flowright Plumbing & Heating']);
     $branch = Branch::factory()->for($company)->create(['office_address' => 'office@flowright.wn']);
-    $this->customer = Customer::factory()->for($branch)->create(['name' => 'Margaret Hollis', 'email_address' => 'm.hollis@mail.wn']);
+    $this->customer = Customer::factory()->for($branch)
+        ->for(Person::factory()->named('Margaret Hollis')->state(['email_address' => 'm.hollis@mail.wn']))
+        ->create();
     $this->player = playerOnDutyAt($branch);
 });
 

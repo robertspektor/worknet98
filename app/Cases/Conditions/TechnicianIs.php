@@ -13,6 +13,6 @@ readonly class TechnicianIs implements Condition
 
     public function isMetBy(CaseState $state): bool
     {
-        return $state->appointmentFor($this->customer)?->technician->slug === $this->technician;
+        return $state->appointmentFor($this->customer)?->technician->person->slug === $this->technician;
     }
 }

@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use App\Models\Branch;
+use App\Models\City;
 use App\Models\Company;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
@@ -21,6 +22,7 @@ class BranchFactory extends Factory
 
         return [
             'company_id' => Company::factory(),
+            'city_id' => City::factory(),
             'slug' => Str::slug($name),
             'name' => $name,
             'office_address' => 'office@'.Str::slug($name).'.wn',

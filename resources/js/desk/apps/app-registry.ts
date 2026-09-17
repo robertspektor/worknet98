@@ -15,7 +15,9 @@ import { MyComputerApp } from './my-computer-app';
 import { NotepadApp } from './notepad/notepad-app';
 import { RecycleBinApp } from './recycle-bin-app';
 import { ServicePlanApp } from './service-plan/service-plan-app';
+import { ShipmentLogApp } from './shipment-log/shipment-log-app';
 import { TimeClockApp } from './time-clock/time-clock-app';
+import { TourPlannerApp } from './tour-planner/tour-planner-app';
 import { WorkNetApp } from './worknet/worknet-app';
 
 export type AppDefinition = {
@@ -76,6 +78,20 @@ export const APPS = {
         size: { width: 660, height: 332 },
         component: ServicePlanApp,
         softwareType: 'scheduler',
+    },
+    shipments: {
+        titleKey: 'desktop.shipments',
+        icon: 'shipments',
+        size: { width: 580, height: 380 },
+        component: ShipmentLogApp,
+        softwareType: 'shipments',
+    },
+    tours: {
+        titleKey: 'desktop.tours',
+        icon: 'tours',
+        size: { width: 660, height: 360 },
+        component: TourPlannerApp,
+        softwareType: 'tours',
     },
     calendar: {
         titleKey: 'desktop.calendar',

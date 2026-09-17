@@ -26,8 +26,11 @@ use App\Http\Controllers\Api\V1\PromotionOfferAcceptanceController;
 use App\Http\Controllers\Api\V1\PromotionOfferDeclineController;
 use App\Http\Controllers\Api\V1\ScheduleController;
 use App\Http\Controllers\Api\V1\ShiftController;
+use App\Http\Controllers\Api\V1\ShipmentController;
+use App\Http\Controllers\Api\V1\ShipmentPlanController;
 use App\Http\Controllers\Api\V1\ShopController;
 use App\Http\Controllers\Api\V1\ThermalPasteController;
+use App\Http\Controllers\Api\V1\TourPlanController;
 use Illuminate\Support\Facades\Route;
 
 Route::prefix('v1')->middleware('auth:sanctum')->name('api.v1.')->group(function (): void {
@@ -76,6 +79,15 @@ Route::prefix('v1')->middleware('auth:sanctum')->name('api.v1.')->group(function
     Route::delete('appointments/{appointment}', [AppointmentController::class, 'destroy'])
         ->middleware('can:delete,appointment')
         ->name('appointments.destroy');
+
+    Route::get('shipments', [ShipmentController::class, 'index'])->name('shipments.index');
+    Route::get('tour-plan', [TourPlanController::class, 'show'])->name('tour-plan.show');
+    Route::put('shipments/{shipment}/plan', [ShipmentPlanController::class, 'update'])
+        ->middleware('can:plan,shipment')
+        ->name('shipments.plan.update');
+    Route::delete('shipments/{shipment}/plan', [ShipmentPlanController::class, 'destroy'])
+        ->middleware('can:plan,shipment')
+        ->name('shipments.plan.destroy');
 
     Route::get('calendar-entries', [CalendarEntryController::class, 'index'])->name('calendar-entries.index');
     Route::post('calendar-entries', [CalendarEntryController::class, 'store'])->name('calendar-entries.store');

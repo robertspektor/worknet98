@@ -9,11 +9,12 @@ use App\Models\LedgerEntry;
 use App\Models\PerformanceReview;
 use App\Work\LedgerReason;
 use Database\Seeders\BranchSeeder;
+use Database\Seeders\CitySeeder;
 use Database\Seeders\CompanySeeder;
 
 beforeEach(function () {
     $this->travelTo('2026-09-21 09:00:00');
-    $this->seed([CompanySeeder::class, BranchSeeder::class]);
+    $this->seed([CompanySeeder::class, CitySeeder::class, BranchSeeder::class]);
     $this->employment = employAtSeededPosition('flowright-plumbing');
 });
 

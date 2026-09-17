@@ -12,11 +12,12 @@ use App\Models\Position;
 use App\Models\User;
 use App\Models\WorkCase;
 use Database\Seeders\BranchSeeder;
+use Database\Seeders\CitySeeder;
 use Database\Seeders\CompanySeeder;
 
 beforeEach(function () {
     $this->travelTo('2026-07-06 09:00:00');
-    $this->seed([CompanySeeder::class, BranchSeeder::class]);
+    $this->seed([CompanySeeder::class, CitySeeder::class, BranchSeeder::class]);
     $this->employment = employAtSeededPosition('flowright-plumbing');
     $this->player = User::findOrFail($this->employment->user_id);
 });

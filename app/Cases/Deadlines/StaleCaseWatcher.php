@@ -19,7 +19,7 @@ class StaleCaseWatcher
             ->open()
             ->whereNotNull('employment_id')
             ->where('opened_at', '<=', now()->subHours((int) config('game.case_takeover_after_hours')))
-            ->with(['branch.company', 'customer', 'employment.position.reportsTo', 'employment.company', 'employment.user'])
+            ->with(['branch.company', 'customer.person', 'employment.position.reportsTo.person', 'employment.company', 'employment.user'])
             ->lazyById()
             ->each(function (WorkCase $workCase) use (&$takenOver): void {
                 if (! $this->booking->isBookedByAssignee($workCase)) {

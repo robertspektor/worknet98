@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use App\Models\Branch;
+use App\Models\Person;
 use App\Models\Position;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
@@ -23,10 +24,10 @@ class PositionFactory extends Factory
             'branch_id' => Branch::factory(),
             'job_opening_id' => null,
             'reports_to_position_id' => null,
+            'person_id' => Person::factory()->named($name),
             'slug' => Str::slug($name),
             'title' => 'Office Assistant',
-            'npc_name' => $name,
-            'npc_address' => Str::slug($name, '.').'@company.wn',
+            'work_address' => Str::slug($name, '.').'@company.wn',
         ];
     }
 }

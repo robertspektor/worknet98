@@ -1,0 +1,38 @@
+[
+    {
+        "slug": "spare-part-delivery",
+        "responsibility": "dispatch",
+        "due_format": "dddd, DD.MM., HH:mm [Uhr]",
+        "size_labels": {
+            "parcel": "ein Paket",
+            "pallet": "eine Palette"
+        },
+        "request_mail": {
+            "subject": "Abholung: :contents für :recipient",
+            "body": "Guten Tag,\n\nbitte holen Sie bei uns ab: :contents, :size.\n\nEmpfänger: :recipient, :district\nSpätestens da: :due\n\nDer Monteur steht sonst vor einem Loch in der Wand und schaut es an. Das kann er gut, bringt aber nichts.\n\nBitte bestätigen Sie die Tour kurz per Mail.\n\nMit freundlichen Grüßen\n:contact\n:sender"
+        },
+        "outcome_feedback": {
+            "vehicle": {
+                "met": "Und das passende Fahrzeug. Die Buchhaltung nickt.",
+                "missed": "Du hast den Lkw für ein Paket losgeschickt. Das Paket hatte viel Platz. Die Buchhaltung weniger Geduld."
+            },
+            "punctuality": {
+                "met": "Rechtzeitig bei :recipient. Der Monteur konnte loslegen.",
+                "missed": "Zu spät bei :recipient. Der Monteur stand ohne Teil beim Kunden. Das hören wir noch."
+            }
+        },
+        "feedback_mail": {
+            "subject": "AW: :contents für :recipient",
+            "intro": "Moin,\n\nzur Sendung :contents für :recipient.",
+            "outro": "Jede Sendung kommt irgendwo an. Idealerweise rechtzeitig.\n\nTanja"
+        },
+        "reminder_mail": {
+            "subject": ":contents für :recipient?",
+            "body": "Moin,\n\ndie Sendung für :recipient liegt noch auf keiner Tour. Tour planen, Absender bestätigen. Das Übliche.\n\nTanja"
+        },
+        "complaint_mail": {
+            "subject": "Reklamation: :contents",
+            "body": "Guten Tag,\n\nunser Monteur stand heute ohne :contents beim Kunden. Das Teil sollte bis :due bei uns sein. Es war nicht bei uns.\n\nWir haben jetzt einen zweiten Termin und einen Kunden, der uns nicht mehr grüßt.\n\nMit verärgerten Grüßen\n:recipient"
+        }
+    }
+]

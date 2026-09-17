@@ -3,6 +3,7 @@
 use App\Models\Appointment;
 use App\Models\Branch;
 use App\Models\Company;
+use App\Models\Person;
 use App\Models\Position;
 use App\Models\Technician;
 use App\Models\User;
@@ -11,8 +12,7 @@ beforeEach(fn () => $this->travelTo('2026-09-18 09:00:00'));
 
 it('shows the next five working days with technicians and their busy slots', function () {
     $branch = Branch::factory()->create();
-    Technician::factory()->for($branch)->create([
-        'name' => 'Rita Vance',
+    Technician::factory()->for($branch)->for(Person::factory()->named('Rita Vance'))->create([
         'skills' => ['plumbing', 'heating'],
         'busy_slots' => [['weekday' => 1, 'slot' => '08:00']],
     ]);
@@ -35,7 +35,7 @@ it('shows the appointments of the whole branch and who booked them', function ()
     $colleague->employment?->position->update(['title' => 'Office Assistant (Scheduling)']);
     Appointment::factory()->for($branch)->create(['booked_by_employment_id' => $player->employment?->id, 'date' => '2026-09-22', 'slot' => '10:00']);
     Appointment::factory()->for($branch)->create(['booked_by_employment_id' => $colleague->employment?->id, 'date' => '2026-09-22', 'slot' => '13:00']);
-    $npcPosition = Position::factory()->for($branch)->create(['npc_name' => 'Judy Pham']);
+    $npcPosition = Position::factory()->for($branch)->for(Person::factory()->named('Judy Pham'))->create();
     Appointment::factory()->for($branch)->create(['booked_by_position_id' => $npcPosition->id, 'date' => '2026-09-22', 'slot' => '15:00']);
     Appointment::factory()->create(['date' => '2026-09-22']);
 

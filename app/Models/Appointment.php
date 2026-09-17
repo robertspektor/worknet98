@@ -5,6 +5,7 @@ namespace App\Models;
 use Carbon\CarbonImmutable;
 use Database\Factories\AppointmentFactory;
 use Illuminate\Database\Eloquent\Attributes\Fillable;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -19,6 +20,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property CarbonImmutable $date
  * @property string $slot
  * @property CarbonImmutable|null $executed_at
+ * @property CarbonImmutable|null $failed_at
  * @property CarbonImmutable|null $created_at
  * @property CarbonImmutable|null $updated_at
  * @property-read Branch $branch
@@ -27,11 +29,24 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property-read Customer $customer
  * @property-read Technician $technician
  */
-#[Fillable(['branch_id', 'booked_by_employment_id', 'booked_by_position_id', 'customer_id', 'technician_id', 'date', 'slot', 'executed_at'])]
+#[Fillable(['branch_id', 'booked_by_employment_id', 'booked_by_position_id', 'customer_id', 'technician_id', 'date', 'slot', 'executed_at', 'failed_at'])]
 class Appointment extends Model
 {
     /** @use HasFactory<AppointmentFactory> */
     use HasFactory;
+
+    public function startsAt(): CarbonImmutable
+    {
+        return $this->date->setTimeFromTimeString($this->slot);
+    }
+
+    /**
+     * @param  Builder<Appointment>  $query
+     */
+    public function scopeNotFailed(Builder $query): void
+    {
+        $query->whereNull('failed_at');
+    }
 
     /**
      * @return BelongsTo<Branch, $this>
@@ -81,6 +96,7 @@ class Appointment extends Model
         return [
             'date' => 'immutable_date',
             'executed_at' => 'datetime',
+            'failed_at' => 'datetime',
         ];
     }
 }

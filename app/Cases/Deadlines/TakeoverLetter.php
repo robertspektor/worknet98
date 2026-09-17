@@ -12,7 +12,7 @@ class TakeoverLetter
 {
     public function handedOver(WorkCase $workCase, Employment $employment, Position $colleague): EmailDraft
     {
-        return $this->compose('handed_over', $workCase, $employment, ['colleague' => $colleague->npc_name]);
+        return $this->compose('handed_over', $workCase, $employment, ['colleague' => $colleague->person->name]);
     }
 
     public function lost(WorkCase $workCase, Employment $employment): EmailDraft
@@ -26,12 +26,12 @@ class TakeoverLetter
     private function compose(string $kind, WorkCase $workCase, Employment $employment, array $replacements): EmailDraft
     {
         $superior = $employment->position->reportsTo ?? throw new LogicException("Position [{$employment->position->slug}] reports to nobody.");
-        $replacements = [...$replacements, 'customer' => $workCase->customer->name, 'manager' => $superior->npc_name];
+        $replacements = [...$replacements, 'customer' => $workCase->customer->person->name, 'manager' => $superior->person->name];
         $locale = $employment->company->locale;
 
         return new EmailDraft(
-            senderName: $superior->npc_name,
-            senderAddress: $superior->npc_address,
+            senderName: $superior->person->name,
+            senderAddress: $superior->work_address,
             subject: __("game_mail.case_{$kind}.subject", $replacements, $locale),
             body: __("game_mail.case_{$kind}.body", $replacements, $locale),
         );

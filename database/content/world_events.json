@@ -1,0 +1,44 @@
+[
+    {
+        "type": "dripping_pipe",
+        "daily_rate": 1.5,
+        "service": "plumbing",
+        "case_template": "leaking-pipe",
+        "follow_ups": [{ "type": "burst_pipe", "when": "repair_late" }]
+    },
+    {
+        "type": "cold_radiator",
+        "daily_rate": 1.0,
+        "service": "plumbing",
+        "case_template": "cold-radiator"
+    },
+    {
+        "type": "burst_pipe",
+        "daily_rate": 0.5,
+        "service": "plumbing",
+        "case_template": "burst-pipe",
+        "follow_ups": [{ "type": "water_damage", "when": "repair_late" }]
+    },
+    {
+        "type": "heating_breakdown",
+        "daily_rate": 0.5,
+        "service": "plumbing",
+        "case_template": "heating-breakdown"
+    },
+    {
+        "type": "boiler_service_due",
+        "daily_rate": 0.7,
+        "service": "plumbing",
+        "case_template": "annual-boiler-service"
+    },
+    {
+        "type": "blocked_drain",
+        "daily_rate": 0.5,
+        "service": "plumbing",
+        "case_template": "drain-inspection"
+    },
+    {
+        "type": "water_damage",
+        "daily_rate": 0
+    }
+]

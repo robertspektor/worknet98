@@ -1,4 +1,4 @@
-export type SoftwareType = 'records' | 'scheduler';
+export type SoftwareType = 'records' | 'scheduler' | 'shipments' | 'tours';
 
 export type CompanySoftware = {
     company: string;
@@ -33,6 +33,58 @@ export type Appointment = {
     is_own: boolean;
     booked_by: string | null;
     booked_by_npc: string | null;
+    failed: boolean;
+    part: PartStatus | null;
+};
+
+export type PartStatus = {
+    contents: string;
+    status: 'ordered' | 'planned' | 'delivered';
+    arrival: string | null;
+};
+
+export type ShipmentSize = 'parcel' | 'pallet';
+
+export type Vehicle = 'van' | 'truck';
+
+export type TourId = 'morning' | 'afternoon';
+
+export type ShipmentPlan = {
+    driver_id: number;
+    driver: string;
+    date: string;
+    tour: TourId;
+    is_own: boolean;
+    planned_by: string | null;
+    planned_by_npc: string | null;
+};
+
+export type Shipment = {
+    id: number;
+    contents: string;
+    size: ShipmentSize;
+    sender: string;
+    contact: string | null;
+    recipient: string;
+    district: string;
+    due_date: string;
+    due_slot: string;
+    plan: ShipmentPlan | null;
+    delivered_at: string | null;
+};
+
+export type Driver = {
+    id: number;
+    name: string;
+    vehicle: Vehicle;
+    capacity: number;
+    busy: string[];
+};
+
+export type TourPlan = {
+    days: string[];
+    tours: { id: TourId; starts: string; ends: string }[];
+    drivers: Driver[];
 };
 
 export type Schedule = {

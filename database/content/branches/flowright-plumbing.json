@@ -1,28 +1,29 @@
 [
     {
         "slug": "maple-falls",
+        "city": "millbrook",
         "name": "Maple Falls",
         "office_address": "office@flowright.wn",
         "positions": [
             {
                 "slug": "branch-manager",
                 "title": "Branch Manager",
-                "npc_name": "Gary Flowright",
-                "npc_address": "gary@flowright.wn"
+                "person": "gary-flowright",
+                "work_address": "gary@flowright.wn"
             },
             {
                 "slug": "office-coordinator",
                 "title": "Office Coordinator",
                 "reports_to": "branch-manager",
-                "npc_name": "Bev Mercer",
-                "npc_address": "bev.mercer@flowright.wn"
+                "person": "bev-mercer",
+                "work_address": "bev.mercer@flowright.wn"
             },
             {
                 "slug": "emergency-dispatcher",
                 "title": "Emergency Dispatcher",
                 "reports_to": "branch-manager",
-                "npc_name": "Tony Russo",
-                "npc_address": "tony.russo@flowright.wn",
+                "person": "tony-russo",
+                "work_address": "tony.russo@flowright.wn",
                 "responsibilities": ["emergency-scheduling"],
                 "daily_salary": 130
             },
@@ -30,8 +31,8 @@
                 "slug": "service-contract-planner",
                 "title": "Service Contract Planner",
                 "reports_to": "branch-manager",
-                "npc_name": "Linda Hargrove",
-                "npc_address": "linda.hargrove@flowright.wn",
+                "person": "linda-hargrove",
+                "work_address": "linda.hargrove@flowright.wn",
                 "responsibilities": ["maintenance-scheduling"],
                 "daily_salary": 120
             },
@@ -40,8 +41,8 @@
                 "title": "Office Assistant (Scheduling)",
                 "reports_to": "branch-manager",
                 "job_opening": "office-assistant-scheduling",
-                "npc_name": "Carl Denton",
-                "npc_address": "carl.denton@flowright.wn",
+                "person": "carl-denton",
+                "work_address": "carl.denton@flowright.wn",
                 "responsibilities": ["scheduling"],
                 "daily_salary": 95,
                 "promotion": {
@@ -55,8 +56,8 @@
                 "title": "Office Assistant (Scheduling)",
                 "reports_to": "branch-manager",
                 "job_opening": "office-assistant-scheduling",
-                "npc_name": "Judy Pham",
-                "npc_address": "judy.pham@flowright.wn",
+                "person": "judy-pham",
+                "work_address": "judy.pham@flowright.wn",
                 "responsibilities": ["scheduling"],
                 "daily_salary": 95,
                 "promotion": {
@@ -70,8 +71,8 @@
                 "title": "Office Assistant (Scheduling)",
                 "reports_to": "branch-manager",
                 "job_opening": "office-assistant-scheduling",
-                "npc_name": "Marcus Webb",
-                "npc_address": "marcus.webb@flowright.wn",
+                "person": "marcus-webb",
+                "work_address": "marcus.webb@flowright.wn",
                 "responsibilities": ["scheduling"],
                 "daily_salary": 95,
                 "promotion": {
@@ -83,8 +84,7 @@
         ],
         "technicians": [
             {
-                "slug": "stan-kowalski",
-                "name": "Stan Kowalski",
+                "person": "stan-kowalski",
                 "skills": ["plumbing"],
                 "busy_slots": [
                     {
@@ -122,8 +122,7 @@
                 ]
             },
             {
-                "slug": "rita-vance",
-                "name": "Rita Vance",
+                "person": "rita-vance",
                 "skills": ["plumbing", "heating"],
                 "busy_slots": [
                     {
@@ -169,8 +168,7 @@
                 ]
             },
             {
-                "slug": "doug-pruitt",
-                "name": "Doug Pruitt",
+                "person": "doug-pruitt",
                 "skills": ["heating"],
                 "busy_slots": [
                     {
@@ -218,102 +216,52 @@
         ],
         "customers": [
             {
-                "slug": "margaret-hollis",
-                "name": "Margaret Hollis",
-                "street": "14 Birch Lane",
-                "city": "Maple Falls",
-                "phone": "555-0142",
-                "email_address": "m.hollis@mail.wn",
+                "person": "margaret-hollis",
                 "notes": "Has a very loud dog named Duke. Duke is friendly. Duke is also very loud.",
                 "availability": "morning"
             },
             {
-                "slug": "martin-hollister",
-                "name": "Martin Hollister",
-                "street": "88 Harbor Road",
-                "city": "Maple Falls",
-                "phone": "555-0188",
-                "email_address": "hollister@harbornet.wn",
+                "person": "martin-hollister",
                 "notes": "Always asks for a discount. Has never received one. Keeps asking.",
                 "availability": "any"
             },
             {
-                "slug": "priya-raman",
-                "name": "Priya Raman",
-                "street": "3 Orchard Court",
-                "city": "Greenvale",
-                "phone": "555-0103",
-                "email_address": "priya.raman@mail.wn",
+                "person": "priya-raman",
                 "notes": "New boiler installed last spring. Very happy. Sends cookies at Christmas.",
                 "availability": "afternoon"
             },
             {
-                "slug": "walter-beck",
-                "name": "Walter Beck",
-                "street": "51 Mill Street",
-                "city": "Maple Falls",
-                "phone": "555-0151",
-                "email_address": "w.beck@oldmail.wn",
+                "person": "walter-beck",
                 "notes": "Retired. Calls every week about his radiator. The radiator is fine. Be kind.",
                 "availability": "any"
             },
             {
-                "slug": "denise-okafor",
-                "name": "Denise Okafor",
-                "street": "220 Station Avenue, Apt 4B",
-                "city": "Greenvale",
-                "phone": "555-0220",
-                "email_address": "d.okafor@mail.wn",
+                "person": "denise-okafor",
                 "notes": "Landlord does not answer the phone. Please call her, not the landlord.",
                 "availability": "afternoon"
             },
             {
-                "slug": "gloria-mendez",
-                "name": "Gloria Mendez",
-                "street": "7 Willow Drive",
-                "city": "Maple Falls",
-                "phone": "555-0107",
-                "email_address": "gloria.mendez@mail.wn",
+                "person": "gloria-mendez",
                 "notes": "Runs a daycare from home. Please do not ring the bell during nap time. Nap time is always.",
                 "availability": "afternoon"
             },
             {
-                "slug": "frank-deluca",
-                "name": "Frank DeLuca",
-                "street": "112 Quarry Road",
-                "city": "Greenvale",
-                "phone": "555-0112",
-                "email_address": "frank@delucabakery.wn",
+                "person": "frank-deluca",
                 "notes": "Owns the bakery. Pays in bread if you let him. Do not let him.",
                 "availability": "morning"
             },
             {
-                "slug": "harold-pike",
-                "name": "Harold Pike",
-                "street": "9 Chapel Street",
-                "city": "Maple Falls",
-                "phone": "555-0109",
-                "email_address": "h.pike@oldmail.wn",
+                "person": "harold-pike",
                 "notes": "Wants the technician to take their shoes off. Has slippers ready. Many sizes.",
                 "availability": "any"
             },
             {
-                "slug": "tina-brooks",
-                "name": "Tina Brooks",
-                "street": "48 Lakeview Terrace",
-                "city": "Greenvale",
-                "phone": "555-0148",
-                "email_address": "tina.brooks@mail.wn",
+                "person": "tina-brooks",
                 "notes": "Works night shifts. Sleeps until noon. Very clear about that.",
                 "availability": "afternoon"
             },
             {
-                "slug": "oscar-lindqvist",
-                "name": "Oscar Lindqvist",
-                "street": "301 Pine Hollow",
-                "city": "Maple Falls",
-                "phone": "555-0301",
-                "email_address": "oscar.l@mail.wn",
+                "person": "oscar-lindqvist",
                 "notes": "Built his own sauna. It is the reason for most of his calls.",
                 "availability": "any"
             }

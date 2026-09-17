@@ -9,16 +9,17 @@ use App\Models\Email;
 use App\Models\User;
 use App\Models\WorkCase;
 use Database\Seeders\BranchSeeder;
+use Database\Seeders\CitySeeder;
 use Database\Seeders\CompanySeeder;
 
 beforeEach(function () {
     $this->travelTo('2026-09-21 09:00:00');
-    $this->seed([CompanySeeder::class, BranchSeeder::class]);
+    $this->seed([CompanySeeder::class, CitySeeder::class, BranchSeeder::class]);
     $this->employment = employAtSeededPosition('flowright-plumbing');
     $this->player = User::findOrFail($this->employment->user_id);
     $this->artisan('cases:open', ['company' => 'flowright-plumbing', 'branch' => 'maple-falls', 'template' => 'leaking-pipe', '--customer' => 'priya-raman'])->assertSuccessful();
     workAs($this->player, 'POST', 'api.v1.shift.clock-in');
-    $this->priya = $this->employment->branch()->customers()->where('slug', 'priya-raman')->sole();
+    $this->priya = $this->employment->branch()->customers()->ofPerson('priya-raman')->sole();
 });
 
 function handleTemplateCase(User $player, Customer $customer, string $technician, string $date, string $slot): void

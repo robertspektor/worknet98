@@ -46,7 +46,7 @@ function workAs(User $player, string $method, string $route, array $data = []): 
 
 function technician(string $slug): Technician
 {
-    return Technician::query()->where('slug', $slug)->sole();
+    return Technician::query()->ofPerson($slug)->sole();
 }
 
 function carryOutAppointmentsAt(string $time): void

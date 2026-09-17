@@ -12,8 +12,8 @@ class CaseMails
     public function request(CaseDefinition $definition, Customer $customer): EmailDraft
     {
         return new EmailDraft(
-            senderName: $customer->name,
-            senderAddress: $customer->email_address,
+            senderName: $customer->person->name,
+            senderAddress: $customer->emailAddress() ?? throw new LogicException("Customer [{$customer->id}] has no e-mail address."),
             subject: $definition->requestMail['subject'],
             body: $definition->requestMail['body'],
         );
@@ -42,13 +42,13 @@ class CaseMails
         return $this->fromSuperior($employment, $definition->reminderMail['subject'], $definition->reminderMail['body']);
     }
 
-    private function fromSuperior(Employment $employment, string $subject, string $body): EmailDraft
+    public function fromSuperior(Employment $employment, string $subject, string $body): EmailDraft
     {
         $superior = $employment->position->reportsTo ?? throw new LogicException("Position [{$employment->position->slug}] reports to nobody.");
 
         return new EmailDraft(
-            senderName: $superior->npc_name,
-            senderAddress: $superior->npc_address,
+            senderName: $superior->person->name,
+            senderAddress: $superior->work_address,
             subject: $subject,
             body: $body,
         );

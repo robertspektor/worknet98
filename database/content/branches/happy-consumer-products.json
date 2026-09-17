@@ -1,36 +1,37 @@
 [
     {
         "slug": "brookhaven",
+        "city": "millbrook",
         "name": "Brookhaven",
         "office_address": "service@happyconsumer.wn",
         "positions": [
             {
                 "slug": "branch-manager",
                 "title": "Branch Manager",
-                "npc_name": "Gerald Humphries",
-                "npc_address": "gerald.humphries@happyconsumer.wn"
+                "person": "gerald-humphries",
+                "work_address": "gerald.humphries@happyconsumer.wn"
             },
             {
                 "slug": "team-lead",
                 "title": "Customer Care Lead",
                 "reports_to": "branch-manager",
-                "npc_name": "Wanda Hargrove",
-                "npc_address": "wanda.hargrove@happyconsumer.wn"
+                "person": "wanda-hargrove",
+                "work_address": "wanda.hargrove@happyconsumer.wn"
             },
             {
                 "slug": "office-coordinator",
                 "title": "Office Coordinator",
                 "reports_to": "branch-manager",
-                "npc_name": "Donna Keller",
-                "npc_address": "donna.keller@happyconsumer.wn"
+                "person": "donna-keller",
+                "work_address": "donna.keller@happyconsumer.wn"
             },
             {
                 "slug": "complaints-clerk-1",
                 "title": "Complaints Department Clerk",
                 "reports_to": "team-lead",
                 "job_opening": "complaints-clerk",
-                "npc_name": "Phil Garrity",
-                "npc_address": "phil.garrity@happyconsumer.wn",
+                "person": "phil-garrity",
+                "work_address": "phil.garrity@happyconsumer.wn",
                 "responsibilities": ["complaints"]
             },
             {
@@ -38,8 +39,8 @@
                 "title": "Complaints Department Clerk",
                 "reports_to": "team-lead",
                 "job_opening": "complaints-clerk",
-                "npc_name": "Rosa Jimenez",
-                "npc_address": "rosa.jimenez@happyconsumer.wn",
+                "person": "rosa-jimenez",
+                "work_address": "rosa.jimenez@happyconsumer.wn",
                 "responsibilities": ["complaints"]
             },
             {
@@ -47,8 +48,8 @@
                 "title": "Complaints Department Clerk",
                 "reports_to": "team-lead",
                 "job_opening": "complaints-clerk",
-                "npc_name": "Stuart Webb",
-                "npc_address": "stuart.webb@happyconsumer.wn",
+                "person": "stuart-webb",
+                "work_address": "stuart.webb@happyconsumer.wn",
                 "responsibilities": ["complaints"]
             }
         ]

@@ -20,10 +20,11 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  * @property string $hr_contact_name
  * @property string $hr_contact_address
  * @property string $hiring_note
+ * @property list<string> $services
  * @property CarbonImmutable|null $created_at
  * @property CarbonImmutable|null $updated_at
  */
-#[Fillable(['slug', 'locale', 'name', 'industry', 'tagline', 'description', 'hr_contact_name', 'hr_contact_address', 'hiring_note'])]
+#[Fillable(['slug', 'locale', 'name', 'industry', 'tagline', 'description', 'hr_contact_name', 'hr_contact_address', 'hiring_note', 'services'])]
 class Company extends Model
 {
     /** @use HasFactory<CompanyFactory> */
@@ -43,5 +44,20 @@ class Company extends Model
     public function branches(): HasMany
     {
         return $this->hasMany(Branch::class);
+    }
+
+    public function offers(string $service): bool
+    {
+        return in_array($service, $this->services, true);
+    }
+
+    /**
+     * @return array<string, string>
+     */
+    protected function casts(): array
+    {
+        return [
+            'services' => 'array',
+        ];
     }
 }

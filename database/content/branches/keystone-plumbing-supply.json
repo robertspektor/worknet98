@@ -1,0 +1,24 @@
+[
+    {
+        "slug": "port-hadley-yard",
+        "city": "millbrook",
+        "name": "Port Hadley Yard",
+        "office_address": "orders@keystonesupply.wn",
+        "positions": [
+            {
+                "slug": "branch-manager",
+                "title": "General Manager",
+                "person": "dale-keystone",
+                "work_address": "dale.keystone@keystonesupply.wn"
+            },
+            {
+                "slug": "order-desk",
+                "title": "Order Desk",
+                "reports_to": "branch-manager",
+                "person": "rhonda-mayfield",
+                "work_address": "rhonda.mayfield@keystonesupply.wn",
+                "responsibilities": ["sales"]
+            }
+        ]
+    }
+]

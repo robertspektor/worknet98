@@ -11,12 +11,16 @@ class FreeSlotFinder
 {
     public function __construct(private readonly BookingWindow $window) {}
 
-    public function earliestFor(Customer $customer, string $skill): ?AppointmentRequest
+    public function earliestFor(Customer $customer, string $skill, ?CarbonImmutable $notBefore = null): ?AppointmentRequest
     {
         $technicians = $this->techniciansWith($customer, $skill);
 
         foreach ($this->window->days() as $date) {
             foreach ($this->slotsFor($customer) as $slot) {
+                if ($notBefore !== null && $date->setTimeFromTimeString($slot)->lt($notBefore)) {
+                    continue;
+                }
+
                 $technician = $technicians->first(fn (Technician $technician): bool => $this->isFree($technician, $date, $slot));
 
                 if ($technician !== null) {
