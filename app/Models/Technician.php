@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Attributes\Fillable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 /**
  * @property int $id
@@ -38,12 +39,25 @@ class Technician extends Model
         );
     }
 
+    public function isBookedAt(CarbonImmutable $date, string $slot): bool
+    {
+        return $this->appointments()->whereDate('date', $date->toDateString())->where('slot', $slot)->exists();
+    }
+
     /**
      * @return BelongsTo<Branch, $this>
      */
     public function branch(): BelongsTo
     {
         return $this->belongsTo(Branch::class);
+    }
+
+    /**
+     * @return HasMany<Appointment, $this>
+     */
+    public function appointments(): HasMany
+    {
+        return $this->hasMany(Appointment::class);
     }
 
     /**

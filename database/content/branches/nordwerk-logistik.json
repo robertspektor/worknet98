@@ -30,7 +30,8 @@
                 "reports_to": "team-lead",
                 "job_opening": "junior-disponent",
                 "npc_name": "Holger Mahler",
-                "npc_address": "holger.mahler@nordwerk.wn"
+                "npc_address": "holger.mahler@nordwerk.wn",
+                "responsibilities": ["dispatch"]
             },
             {
                 "slug": "dispatch-coordinator-2",
@@ -38,7 +39,8 @@
                 "reports_to": "team-lead",
                 "job_opening": "junior-disponent",
                 "npc_name": "Kerstin Mohr",
-                "npc_address": "kerstin.mohr@nordwerk.wn"
+                "npc_address": "kerstin.mohr@nordwerk.wn",
+                "responsibilities": ["dispatch"]
             },
             {
                 "slug": "dispatch-coordinator-3",
@@ -46,7 +48,8 @@
                 "reports_to": "team-lead",
                 "job_opening": "junior-disponent",
                 "npc_name": "Otto Pfennig",
-                "npc_address": "otto.pfennig@nordwerk.wn"
+                "npc_address": "otto.pfennig@nordwerk.wn",
+                "responsibilities": ["dispatch"]
             }
         ]
     }

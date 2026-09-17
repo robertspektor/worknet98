@@ -11,7 +11,7 @@ use App\Models\WorkCase;
 class CaseMessenger
 {
     public function __construct(
-        private readonly CaseCatalog $catalog,
+        private readonly CaseDefinitions $definitions,
         private readonly CaseStateLoader $states,
         private readonly Messenger $messenger,
     ) {}
@@ -27,7 +27,7 @@ class CaseMessenger
 
     public function send(WorkCase $workCase, MessageTrigger $trigger): void
     {
-        $definition = $this->catalog->find($workCase->employment->company, $workCase->case_slug);
+        $definition = $this->definitions->for($workCase);
         $sentSlugs = ChatMessage::query()->where('work_case_id', $workCase->id)->pluck('message_slug');
         $state = $this->states->for($workCase);
 
@@ -40,10 +40,10 @@ class CaseMessenger
 
     private function sendFromColleague(WorkCase $workCase, CaseMessage $message): void
     {
-        $sender = $workCase->employment->branch()->positions()->where('slug', $message->sender)->firstOrFail();
+        $sender = $workCase->branch->positions()->where('slug', $message->sender)->firstOrFail();
 
         if (! $sender->isHeldByPlayer()) {
-            $this->messenger->deliver($workCase->employment, $this->draft($workCase, $message, $sender));
+            $this->messenger->deliver($workCase->playerEmployment(), $this->draft($workCase, $message, $sender));
         }
     }
 

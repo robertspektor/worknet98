@@ -30,7 +30,8 @@
                 "reports_to": "team-lead",
                 "job_opening": "complaints-clerk",
                 "npc_name": "Phil Garrity",
-                "npc_address": "phil.garrity@happyconsumer.wn"
+                "npc_address": "phil.garrity@happyconsumer.wn",
+                "responsibilities": ["complaints"]
             },
             {
                 "slug": "complaints-clerk-2",
@@ -38,7 +39,8 @@
                 "reports_to": "team-lead",
                 "job_opening": "complaints-clerk",
                 "npc_name": "Rosa Jimenez",
-                "npc_address": "rosa.jimenez@happyconsumer.wn"
+                "npc_address": "rosa.jimenez@happyconsumer.wn",
+                "responsibilities": ["complaints"]
             },
             {
                 "slug": "complaints-clerk-3",
@@ -46,7 +48,8 @@
                 "reports_to": "team-lead",
                 "job_opening": "complaints-clerk",
                 "npc_name": "Stuart Webb",
-                "npc_address": "stuart.webb@happyconsumer.wn"
+                "npc_address": "stuart.webb@happyconsumer.wn",
+                "responsibilities": ["complaints"]
             }
         ]
     }

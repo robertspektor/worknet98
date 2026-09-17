@@ -30,7 +30,8 @@
                 "reports_to": "team-lead",
                 "job_opening": "helpdesk-1st-level",
                 "npc_name": "Björn Lindemann",
-                "npc_address": "bjoern.lindemann@datenfabrik.wn"
+                "npc_address": "bjoern.lindemann@datenfabrik.wn",
+                "responsibilities": ["helpdesk"]
             },
             {
                 "slug": "helpdesk-associate-2",
@@ -38,7 +39,8 @@
                 "reports_to": "team-lead",
                 "job_opening": "helpdesk-1st-level",
                 "npc_name": "Melanie Dörr",
-                "npc_address": "melanie.doerr@datenfabrik.wn"
+                "npc_address": "melanie.doerr@datenfabrik.wn",
+                "responsibilities": ["helpdesk"]
             },
             {
                 "slug": "helpdesk-associate-3",
@@ -46,7 +48,8 @@
                 "reports_to": "team-lead",
                 "job_opening": "helpdesk-1st-level",
                 "npc_name": "Torsten Bach",
-                "npc_address": "torsten.bach@datenfabrik.wn"
+                "npc_address": "torsten.bach@datenfabrik.wn",
+                "responsibilities": ["helpdesk"]
             }
         ]
     }

@@ -23,7 +23,8 @@
                 "reports_to": "branch-manager",
                 "job_opening": "office-assistant-scheduling",
                 "npc_name": "Carl Denton",
-                "npc_address": "carl.denton@flowright.wn"
+                "npc_address": "carl.denton@flowright.wn",
+                "responsibilities": ["scheduling"]
             },
             {
                 "slug": "office-assistant-2",
@@ -31,7 +32,8 @@
                 "reports_to": "branch-manager",
                 "job_opening": "office-assistant-scheduling",
                 "npc_name": "Judy Pham",
-                "npc_address": "judy.pham@flowright.wn"
+                "npc_address": "judy.pham@flowright.wn",
+                "responsibilities": ["scheduling"]
             },
             {
                 "slug": "office-assistant-3",
@@ -39,7 +41,8 @@
                 "reports_to": "branch-manager",
                 "job_opening": "office-assistant-scheduling",
                 "npc_name": "Marcus Webb",
-                "npc_address": "marcus.webb@flowright.wn"
+                "npc_address": "marcus.webb@flowright.wn",
+                "responsibilities": ["scheduling"]
             }
         ],
         "technicians": [
@@ -185,7 +188,8 @@
                 "city": "Maple Falls",
                 "phone": "555-0142",
                 "email_address": "m.hollis@mail.wn",
-                "notes": "Has a very loud dog named Duke. Duke is friendly. Duke is also very loud."
+                "notes": "Has a very loud dog named Duke. Duke is friendly. Duke is also very loud.",
+                "availability": "morning"
             },
             {
                 "slug": "martin-hollister",
@@ -194,7 +198,8 @@
                 "city": "Maple Falls",
                 "phone": "555-0188",
                 "email_address": "hollister@harbornet.wn",
-                "notes": "Always asks for a discount. Has never received one. Keeps asking."
+                "notes": "Always asks for a discount. Has never received one. Keeps asking.",
+                "availability": "any"
             },
             {
                 "slug": "priya-raman",
@@ -203,7 +208,8 @@
                 "city": "Greenvale",
                 "phone": "555-0103",
                 "email_address": "priya.raman@mail.wn",
-                "notes": "New boiler installed last spring. Very happy. Sends cookies at Christmas."
+                "notes": "New boiler installed last spring. Very happy. Sends cookies at Christmas.",
+                "availability": "afternoon"
             },
             {
                 "slug": "walter-beck",
@@ -212,7 +218,8 @@
                 "city": "Maple Falls",
                 "phone": "555-0151",
                 "email_address": "w.beck@oldmail.wn",
-                "notes": "Retired. Calls every week about his radiator. The radiator is fine. Be kind."
+                "notes": "Retired. Calls every week about his radiator. The radiator is fine. Be kind.",
+                "availability": "any"
             },
             {
                 "slug": "denise-okafor",
@@ -221,7 +228,8 @@
                 "city": "Greenvale",
                 "phone": "555-0220",
                 "email_address": "d.okafor@mail.wn",
-                "notes": "Landlord does not answer the phone. Please call her, not the landlord."
+                "notes": "Landlord does not answer the phone. Please call her, not the landlord.",
+                "availability": "afternoon"
             }
         ]
     }

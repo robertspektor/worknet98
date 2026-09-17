@@ -19,11 +19,11 @@ class CaseOpener
     {
         $employment = $shift->employment;
         $shiftNumber = Shift::query()->where('employment_id', $employment->id)->count();
-        $opened = WorkCase::query()->where('employment_id', $employment->id)->pluck('case_slug');
+        $opened = WorkCase::query()->where('employment_id', $employment->id)->whereNull('customer_id')->pluck('case_slug');
 
-        foreach ($this->catalog->forCompany($employment->company) as $definition) {
-            if ($definition->shift <= $shiftNumber && ! $opened->contains($definition->slug)) {
-                $this->open($shift, $definition);
+        foreach ($this->catalog->forCompany($employment->company) as $scripted) {
+            if ($scripted->shift <= $shiftNumber && ! $opened->contains($scripted->definition->slug)) {
+                $this->open($shift, $scripted->definition);
             }
         }
     }
@@ -34,6 +34,8 @@ class CaseOpener
         $customer = $employment->branch()->customers()->where('slug', $definition->requestMail['customer'])->firstOrFail();
 
         $workCase = WorkCase::create([
+            'branch_id' => $employment->position->branch_id,
+            'position_id' => $employment->position_id,
             'employment_id' => $employment->id,
             'case_slug' => $definition->slug,
             'status' => WorkCaseStatus::Open,

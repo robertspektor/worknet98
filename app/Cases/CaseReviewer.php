@@ -10,7 +10,7 @@ use App\Models\WorkCase;
 class CaseReviewer
 {
     public function __construct(
-        private readonly CaseCatalog $catalog,
+        private readonly CaseDefinitions $definitions,
         private readonly CaseStateLoader $states,
         private readonly MetricBook $metrics,
         private readonly CaseMails $mails,
@@ -28,8 +28,7 @@ class CaseReviewer
 
     private function review(Shift $shift, WorkCase $workCase): void
     {
-        $company = $shift->employment->company;
-        $definition = $this->catalog->find($company, $workCase->case_slug);
+        $definition = $this->definitions->for($workCase);
 
         if ($definition === null) {
             return;

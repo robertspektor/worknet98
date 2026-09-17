@@ -16,7 +16,6 @@ readonly class CaseDefinition
      */
     public function __construct(
         public string $slug,
-        public int $shift,
         public array $requestMail,
         public array $goals,
         public array $messages,

@@ -23,7 +23,8 @@
                 "reports_to": "branch-manager",
                 "job_opening": "buerokraft-terminplanung",
                 "npc_name": "Uwe Brandt",
-                "npc_address": "uwe.brandt@rohrundsohn.wn"
+                "npc_address": "uwe.brandt@rohrundsohn.wn",
+                "responsibilities": ["scheduling"]
             },
             {
                 "slug": "office-assistant-2",
@@ -31,7 +32,8 @@
                 "reports_to": "branch-manager",
                 "job_opening": "buerokraft-terminplanung",
                 "npc_name": "Sabine Kröger",
-                "npc_address": "sabine.kroeger@rohrundsohn.wn"
+                "npc_address": "sabine.kroeger@rohrundsohn.wn",
+                "responsibilities": ["scheduling"]
             },
             {
                 "slug": "office-assistant-3",
@@ -39,7 +41,8 @@
                 "reports_to": "branch-manager",
                 "job_opening": "buerokraft-terminplanung",
                 "npc_name": "Jens Obermeier",
-                "npc_address": "jens.obermeier@rohrundsohn.wn"
+                "npc_address": "jens.obermeier@rohrundsohn.wn",
+                "responsibilities": ["scheduling"]
             }
         ],
         "technicians": [
@@ -185,7 +188,8 @@
                 "city": "Ahornfelde",
                 "phone": "0555 0142",
                 "email_address": "m.hollmann@post.wn",
-                "notes": "Hat einen sehr lauten Dackel namens Bruno. Bruno ist freundlich. Bruno ist auch sehr laut."
+                "notes": "Hat einen sehr lauten Dackel namens Bruno. Bruno ist freundlich. Bruno ist auch sehr laut.",
+                "availability": "morning"
             },
             {
                 "slug": "martin-hollmeier",
@@ -194,7 +198,8 @@
                 "city": "Ahornfelde",
                 "phone": "0555 0188",
                 "email_address": "hollmeier@hafennetz.wn",
-                "notes": "Fragt immer nach Rabatt. Hat nie einen bekommen. Fragt trotzdem weiter."
+                "notes": "Fragt immer nach Rabatt. Hat nie einen bekommen. Fragt trotzdem weiter.",
+                "availability": "any"
             },
             {
                 "slug": "priya-raman",
@@ -203,7 +208,8 @@
                 "city": "Grünau",
                 "phone": "0555 0103",
                 "email_address": "priya.raman@post.wn",
-                "notes": "Neuer Heizkessel seit letztem Frühjahr. Sehr zufrieden. Schickt zu Weihnachten Plätzchen."
+                "notes": "Neuer Heizkessel seit letztem Frühjahr. Sehr zufrieden. Schickt zu Weihnachten Plätzchen.",
+                "availability": "afternoon"
             },
             {
                 "slug": "walter-beck",
@@ -212,7 +218,8 @@
                 "city": "Ahornfelde",
                 "phone": "0555 0151",
                 "email_address": "w.beck@altpost.wn",
-                "notes": "Rentner. Ruft jede Woche wegen seines Heizkörpers an. Der Heizkörper ist in Ordnung. Freundlich bleiben."
+                "notes": "Rentner. Ruft jede Woche wegen seines Heizkörpers an. Der Heizkörper ist in Ordnung. Freundlich bleiben.",
+                "availability": "any"
             },
             {
                 "slug": "denise-okafor",
@@ -221,7 +228,8 @@
                 "city": "Grünau",
                 "phone": "0555 0220",
                 "email_address": "d.okafor@post.wn",
-                "notes": "Vermieter geht nicht ans Telefon. Bitte sie anrufen, nicht den Vermieter."
+                "notes": "Vermieter geht nicht ans Telefon. Bitte sie anrufen, nicht den Vermieter.",
+                "availability": "afternoon"
             }
         ]
     }

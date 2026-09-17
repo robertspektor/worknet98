@@ -235,7 +235,8 @@
         sans-serif;
     text-align: center;
     text-transform: uppercase;
-    overflow-wrap: anywhere;
+    hyphens: auto;
+    overflow-wrap: break-word;
     color: #2f5d8a;
 }
 

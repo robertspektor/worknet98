@@ -10,6 +10,13 @@ return [
     'job_application_response_delay_seconds' => (int) env('GAME_JOB_APPLICATION_RESPONSE_DELAY_SECONDS', 60),
 
     /*
+    | Seconds an NPC takes to work on a case routed to their position. Due
+    | cases are worked by the scheduled cases:work-npc-cases command.
+    */
+
+    'npc_case_delay_seconds' => (int) env('GAME_NPC_CASE_DELAY_SECONDS', 120),
+
+    /*
     | Seconds until an ordered floppy disk arrives as a parcel. Leave empty
     | to deliver on the next game day. Parcels are delivered by the
     | scheduled shop:deliver-parcels command.

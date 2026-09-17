@@ -30,7 +30,8 @@
                 "reports_to": "team-lead",
                 "job_opening": "junior-dispatch-coordinator",
                 "npc_name": "Hank Mulligan",
-                "npc_address": "hank.mulligan@transglobal.wn"
+                "npc_address": "hank.mulligan@transglobal.wn",
+                "responsibilities": ["dispatch"]
             },
             {
                 "slug": "dispatch-coordinator-2",
@@ -38,7 +39,8 @@
                 "reports_to": "team-lead",
                 "job_opening": "junior-dispatch-coordinator",
                 "npc_name": "Keisha Monroe",
-                "npc_address": "keisha.monroe@transglobal.wn"
+                "npc_address": "keisha.monroe@transglobal.wn",
+                "responsibilities": ["dispatch"]
             },
             {
                 "slug": "dispatch-coordinator-3",
@@ -46,7 +48,8 @@
                 "reports_to": "team-lead",
                 "job_opening": "junior-dispatch-coordinator",
                 "npc_name": "Otis Pennington",
-                "npc_address": "otis.pennington@transglobal.wn"
+                "npc_address": "otis.pennington@transglobal.wn",
+                "responsibilities": ["dispatch"]
             }
         ]
     }

@@ -14,7 +14,7 @@ class CaseCatalog
     public function __construct(private readonly ConditionFactory $conditions) {}
 
     /**
-     * @return list<CaseDefinition>
+     * @return list<ScriptedCase>
      */
     public function forCompany(Company $company): array
     {
@@ -27,12 +27,22 @@ class CaseCatalog
         /** @var list<array<string, mixed>> $definitions */
         $definitions = File::json($path, JSON_THROW_ON_ERROR);
 
-        return array_map($this->definition(...), $definitions);
+        return array_map($this->scriptedCase(...), $definitions);
     }
 
     public function find(Company $company, string $slug): ?CaseDefinition
     {
-        return collect($this->forCompany($company))->first(fn (CaseDefinition $definition): bool => $definition->slug === $slug);
+        return collect($this->forCompany($company))
+            ->map(fn (ScriptedCase $scripted): CaseDefinition => $scripted->definition)
+            ->first(fn (CaseDefinition $definition): bool => $definition->slug === $slug);
+    }
+
+    /**
+     * @param  array<string, mixed>  $data
+     */
+    private function scriptedCase(array $data): ScriptedCase
+    {
+        return new ScriptedCase(shift: (int) $data['shift'], definition: $this->definition($data));
     }
 
     /**
@@ -55,7 +65,6 @@ class CaseCatalog
 
         return new CaseDefinition(
             slug: (string) $data['slug'],
-            shift: (int) $data['shift'],
             requestMail: $requestMail,
             goals: array_map($this->conditions->make(...), $goals),
             messages: array_map($this->message(...), $messages),

@@ -30,7 +30,8 @@
                 "reports_to": "team-lead",
                 "job_opening": "reklamationssachbearbeitung",
                 "npc_name": "Philipp Garbe",
-                "npc_address": "philipp.garbe@frohsinn.wn"
+                "npc_address": "philipp.garbe@frohsinn.wn",
+                "responsibilities": ["complaints"]
             },
             {
                 "slug": "complaints-clerk-2",
@@ -38,7 +39,8 @@
                 "reports_to": "team-lead",
                 "job_opening": "reklamationssachbearbeitung",
                 "npc_name": "Rosi Jahnke",
-                "npc_address": "rosi.jahnke@frohsinn.wn"
+                "npc_address": "rosi.jahnke@frohsinn.wn",
+                "responsibilities": ["complaints"]
             },
             {
                 "slug": "complaints-clerk-3",
@@ -46,7 +48,8 @@
                 "reports_to": "team-lead",
                 "job_opening": "reklamationssachbearbeitung",
                 "npc_name": "Stefan Weber",
-                "npc_address": "stefan.weber@frohsinn.wn"
+                "npc_address": "stefan.weber@frohsinn.wn",
+                "responsibilities": ["complaints"]
             }
         ]
     }

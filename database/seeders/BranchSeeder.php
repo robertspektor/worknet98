@@ -42,12 +42,13 @@ class BranchSeeder extends Seeder
      */
     private function seedPositions(Branch $branch, array $content): void
     {
-        /** @var list<array<string, string>> $positions */
+        /** @var list<array<string, mixed>> $positions */
         $positions = $content['positions'];
 
         foreach ($positions as $position) {
             $branch->positions()->updateOrCreate(['slug' => $position['slug']], [
                 ...Arr::only($position, ['title', 'npc_name', 'npc_address']),
+                'responsibilities' => $position['responsibilities'] ?? [],
                 'job_opening_id' => $this->jobOpeningId($branch, $position['job_opening'] ?? null),
             ]);
         }

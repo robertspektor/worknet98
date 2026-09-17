@@ -1,0 +1,78 @@
+[
+    {
+        "slug": "leaking-pipe",
+        "responsibility": "scheduling",
+        "skill": "plumbing",
+        "urgent_within_work_days": 2,
+        "request_mail": {
+            "subject": "Rohr tropft",
+            "body": "Guten Tag,\n\ndas Rohr unter meinem Waschbecken tropft. Ich habe ein Handtuch daruntergelegt. Dann ein zweites. Mir gehen die Handtücher aus.\n\nKönnen Sie jemanden vorbeischicken? :availability\n\nVielen Dank\n:customer"
+        },
+        "availability_notes": {
+            "morning": "Ich bin nur vormittags zu Hause.",
+            "afternoon": "Ich bin nur nachmittags zu Hause, vormittags arbeite ich.",
+            "any": "Ich bin den ganzen Tag zu Hause, jede Uhrzeit passt."
+        },
+        "outcome_feedback": {
+            "availability": {
+                "met": ":customer sagt, die Uhrzeit hat perfekt gepasst.",
+                "missed": "Der Monteur hat bei :customer geklingelt. Niemand war da. Man hatte uns gesagt, wann jemand da ist. Schriftlich."
+            },
+            "skill": {
+                "met": "Und der richtige Monteur fürs Rohr.",
+                "missed": "Du hast einen Heizungsbauer zu einem tropfenden Rohr geschickt. Er hat es respektvoll betrachtet und einen Installateur gerufen. Zwei Anfahrten."
+            },
+            "urgency": {
+                "met": "Und schnell. Die Handtücher danken es dir.",
+                "missed": "Ein tropfendes Rohr wartet nicht so lange. Bis dahin braucht :customer ein Boot."
+            }
+        },
+        "feedback_mail": {
+            "subject": "AW: :customer",
+            "intro": "Moin,\n\nkurz zum Rohr bei :customer.",
+            "outro": "Weiter so. Oder zumindest nicht schlechter.\n\nBernd"
+        },
+        "reminder_mail": {
+            "subject": ":customer?",
+            "body": "Moin,\n\n:customer wartet immer noch auf jemanden fürs Rohr. Termin, Bestätigungsmail, Kalender. Das Übliche.\n\nBernd"
+        }
+    },
+    {
+        "slug": "cold-radiator",
+        "responsibility": "scheduling",
+        "skill": "heating",
+        "urgent_within_work_days": 3,
+        "request_mail": {
+            "subject": "Heizkörper bleibt kalt",
+            "body": "Guten Tag,\n\nder Heizkörper im Wohnzimmer bleibt kalt, egal was ich mache. Ich habe am Knopf gedreht. Ich habe mit ihm geredet. Nichts.\n\nKann sich das jemand ansehen? :availability\n\nViele Grüße\n:customer"
+        },
+        "availability_notes": {
+            "morning": "Vormittags passt am besten, nachmittags bin ich unterwegs.",
+            "afternoon": "Bitte nachmittags, vormittags bin ich bei der Arbeit.",
+            "any": "Ich bin den ganzen Tag da."
+        },
+        "outcome_feedback": {
+            "availability": {
+                "met": ":customer war zu Hause und hatte Kaffee gekocht. Für den Monteur. Nicht für uns.",
+                "missed": "Bei :customer war niemand zu Hause. Der Monteur hat einen Zettel hinterlassen. Der Zettel war auch kalt."
+            },
+            "skill": {
+                "met": "Gute Entscheidung, einen Heizungsbauer zu schicken.",
+                "missed": "Du hast einen Installateur zu einem Heizkörper geschickt. Er hat ihn entlüftet, mit den Schultern gezuckt und das Zucken abgerechnet."
+            },
+            "urgency": {
+                "met": "Und schnell genug, dass niemand drinnen Schal tragen musste.",
+                "missed": "Es hat so lange gedauert, dass :customer einen Heizlüfter gekauft hat. Bei der Konkurrenz."
+            }
+        },
+        "feedback_mail": {
+            "subject": "AW: :customer",
+            "intro": "Moin,\n\nkurz zum Heizkörper bei :customer.",
+            "outro": "Meine Tür steht immer offen. Immer noch wegen des Scharniers.\n\nBernd"
+        },
+        "reminder_mail": {
+            "subject": "Heizkörper bei :customer",
+            "body": "Moin,\n\n:customer hat wieder wegen des kalten Heizkörpers angerufen. Schick bitte jemanden hin und sag Bescheid, wann.\n\nBernd"
+        }
+    }
+]

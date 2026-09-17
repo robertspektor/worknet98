@@ -30,7 +30,8 @@
                 "reports_to": "team-lead",
                 "job_opening": "helpdesk-associate",
                 "npc_name": "Brian Liu",
-                "npc_address": "brian.liu@macrodyne.wn"
+                "npc_address": "brian.liu@macrodyne.wn",
+                "responsibilities": ["helpdesk"]
             },
             {
                 "slug": "helpdesk-associate-2",
@@ -38,7 +39,8 @@
                 "reports_to": "team-lead",
                 "job_opening": "helpdesk-associate",
                 "npc_name": "Megan Doyle",
-                "npc_address": "megan.doyle@macrodyne.wn"
+                "npc_address": "megan.doyle@macrodyne.wn",
+                "responsibilities": ["helpdesk"]
             },
             {
                 "slug": "helpdesk-associate-3",
@@ -46,7 +48,8 @@
                 "reports_to": "team-lead",
                 "job_opening": "helpdesk-associate",
                 "npc_name": "Trevor Banks",
-                "npc_address": "trevor.banks@macrodyne.wn"
+                "npc_address": "trevor.banks@macrodyne.wn",
+                "responsibilities": ["helpdesk"]
             }
         ]
     }

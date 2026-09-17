@@ -1,0 +1,78 @@
+[
+    {
+        "slug": "leaking-pipe",
+        "responsibility": "scheduling",
+        "skill": "plumbing",
+        "urgent_within_work_days": 2,
+        "request_mail": {
+            "subject": "Pipe is leaking",
+            "body": "Hello,\n\nthe pipe under my bathroom sink is dripping. I put a towel under it. Then a second towel. I am running out of towels.\n\nCould you send someone? :availability\n\nThank you,\n:customer"
+        },
+        "availability_notes": {
+            "morning": "I am only home in the mornings.",
+            "afternoon": "I am only home in the afternoons, I work mornings.",
+            "any": "I am home all day, so any time works."
+        },
+        "outcome_feedback": {
+            "availability": {
+                "met": ":customer says the time was perfect.",
+                "missed": "The technician rang the bell at :customer's place. Nobody was home. They told us when they are home. In writing."
+            },
+            "skill": {
+                "met": "Right technician for a pipe, too.",
+                "missed": "You sent a heating specialist to a leaking pipe. He looked at it with great respect and called a plumber. Two trips."
+            },
+            "urgency": {
+                "met": "And quick. The towels thank you.",
+                "missed": "A dripping pipe does not wait that long. By then :customer will need a boat."
+            }
+        },
+        "feedback_mail": {
+            "subject": "Re: :customer",
+            "intro": "Hey champ,\n\nabout the leak at :customer's.",
+            "outro": "Keep it up. Or at least keep it level.\n\nGary"
+        },
+        "reminder_mail": {
+            "subject": ":customer?",
+            "body": "Hey,\n\n:customer is still waiting for someone to look at that pipe. Appointment, confirmation mail, calendar. The usual.\n\nGary"
+        }
+    },
+    {
+        "slug": "cold-radiator",
+        "responsibility": "scheduling",
+        "skill": "heating",
+        "urgent_within_work_days": 3,
+        "request_mail": {
+            "subject": "Radiator stays cold",
+            "body": "Hello,\n\nmy living room radiator stays cold no matter what I do. I turned the knob. I talked to it. Nothing.\n\nCan someone have a look? :availability\n\nBest,\n:customer"
+        },
+        "availability_notes": {
+            "morning": "Mornings are best, I am out in the afternoons.",
+            "afternoon": "Please come in the afternoon, I am at work in the mornings.",
+            "any": "I am around all day."
+        },
+        "outcome_feedback": {
+            "availability": {
+                "met": ":customer was home and had coffee ready. For the technician. Not for us.",
+                "missed": "Nobody was home at :customer's. The technician wrote a note. The note was also cold."
+            },
+            "skill": {
+                "met": "Good call sending a heating specialist.",
+                "missed": "You sent a plumber to a radiator. He bled it, shrugged, and billed us for the shrug."
+            },
+            "urgency": {
+                "met": "And soon enough that nobody had to wear a scarf indoors.",
+                "missed": "It took so long that :customer bought a space heater. From a competitor."
+            }
+        },
+        "feedback_mail": {
+            "subject": "Re: :customer",
+            "intro": "Hey,\n\nquick one about the radiator at :customer's.",
+            "outro": "My door is always open. Still the hinge.\n\nGary"
+        },
+        "reminder_mail": {
+            "subject": "Radiator at :customer's",
+            "body": "Hey,\n\n:customer called again about the cold radiator. Please get someone out there and let them know when.\n\nGary"
+        }
+    }
+]
