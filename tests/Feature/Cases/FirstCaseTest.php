@@ -39,8 +39,9 @@ it('delivers the customer request when the first shift starts', function () {
 it('resolves the case with praise when it was planned well', function () {
     workAs($this->player, 'POST', 'api.v1.shift.clock-in');
     handleHollisCase($this->player, $this->hollis, 'rita-vance', '2026-09-22', '10:00');
-
     workAs($this->player, 'POST', 'api.v1.shift.clock-out');
+
+    carryOutAppointmentsAt('2026-09-22 12:00:00');
 
     $metrics = app(MetricBook::class);
     expect(WorkCase::sole()->status)->toBe(WorkCaseStatus::Resolved)
@@ -60,8 +61,9 @@ it('lowers the company metrics when it was planned badly', function () {
     workAs($this->player, 'POST', 'api.v1.appointments.store', ['customer_id' => $this->hollis->id, 'technician_id' => technician('rita-vance')->id, 'date' => '2026-09-25', 'slot' => '13:00']);
     workAs($this->player, 'POST', 'api.v1.emails.store', ['customer_id' => $this->hollis->id, 'subject' => 'Appointment', 'body' => 'See you.', 'action' => 'confirm_appointment']);
     workAs($this->player, 'POST', 'api.v1.calendar-entries.store', ['date' => '2026-09-25', 'time' => '13:00', 'title' => 'Hollis']);
-
     workAs($this->player, 'POST', 'api.v1.shift.clock-out');
+
+    carryOutAppointmentsAt('2026-09-25 15:00:00');
 
     $metrics = app(MetricBook::class);
     expect(WorkCase::sole()->status)->toBe(WorkCaseStatus::Resolved)
@@ -73,8 +75,9 @@ it('lowers the company metrics when it was planned badly', function () {
 it('charges extra cost when the wrong technician is sent', function () {
     workAs($this->player, 'POST', 'api.v1.shift.clock-in');
     handleHollisCase($this->player, $this->hollis, 'doug-pruitt', '2026-09-22', '08:00');
-
     workAs($this->player, 'POST', 'api.v1.shift.clock-out');
+
+    carryOutAppointmentsAt('2026-09-22 10:00:00');
 
     expect(app(MetricBook::class)->valueOf($this->employment, Metric::Cost))->toBe(-2)
         ->and(Email::query()->where('subject', 'Re: Mrs. Hollis')->sole()->body)->toContain('You sent a heating guy');
@@ -83,8 +86,9 @@ it('charges extra cost when the wrong technician is sent', function () {
 it('upsets the customer when Stan is sent despite the warning', function () {
     workAs($this->player, 'POST', 'api.v1.shift.clock-in');
     handleHollisCase($this->player, $this->hollis, 'stan-kowalski', '2026-09-24', '08:00');
-
     workAs($this->player, 'POST', 'api.v1.shift.clock-out');
+
+    carryOutAppointmentsAt('2026-09-24 10:00:00');
 
     expect(app(MetricBook::class)->valueOf($this->employment, Metric::CustomerSatisfaction))->toBe(0)
         ->and(Email::query()->where('subject', 'Re: Mrs. Hollis')->sole()->body)->toContain('Duke chased Stan');
@@ -111,6 +115,18 @@ it('keeps the case open and sends a reminder when a step is missing', function (
 
     expect(WorkCase::sole()->status)->toBe(WorkCaseStatus::Open)
         ->and(Email::query()->where('subject', 'Mrs. Hollis?')->exists())->toBeTrue()
+        ->and(Email::query()->where('subject', 'Re: Mrs. Hollis')->exists())->toBeFalse();
+});
+
+it('waits for the technician visit before giving feedback', function () {
+    workAs($this->player, 'POST', 'api.v1.shift.clock-in');
+    handleHollisCase($this->player, $this->hollis, 'rita-vance', '2026-09-22', '10:00');
+    workAs($this->player, 'POST', 'api.v1.shift.clock-out');
+
+    carryOutAppointmentsAt('2026-09-22 11:59:00');
+
+    expect(WorkCase::sole()->status)->toBe(WorkCaseStatus::Open)
+        ->and(Email::query()->where('subject', 'Mrs. Hollis?')->exists())->toBeFalse()
         ->and(Email::query()->where('subject', 'Re: Mrs. Hollis')->exists())->toBeFalse();
 });
 

@@ -5,6 +5,7 @@ namespace App\Workplace;
 use App\Game\ActionRefused;
 use App\Models\Appointment;
 use App\Models\Employment;
+use App\Models\Position;
 use App\Models\Technician;
 use App\Models\User;
 use App\Work\DutyCheck;
@@ -21,12 +22,14 @@ class AppointmentBooker
 
     public function book(User $player, AppointmentRequest $request): Appointment
     {
-        return $this->record($request, $this->dutyCheck->employmentOnDuty($player));
+        $employment = $this->dutyCheck->employmentOnDuty($player);
+
+        return $this->record($request, $employment->position, $employment);
     }
 
-    public function bookForOffice(AppointmentRequest $request): Appointment
+    public function bookForNpc(AppointmentRequest $request, Position $position): Appointment
     {
-        return $this->record($request, null);
+        return $this->record($request, $position, null);
     }
 
     public function cancel(User $player, Appointment $appointment): void
@@ -37,15 +40,16 @@ class AppointmentBooker
         AppointmentCancelled::dispatch($appointment);
     }
 
-    private function record(AppointmentRequest $request, ?Employment $bookedBy): Appointment
+    private function record(AppointmentRequest $request, Position $position, ?Employment $employment): Appointment
     {
-        $appointment = DB::transaction(function () use ($request, $bookedBy): Appointment {
+        $appointment = DB::transaction(function () use ($request, $position, $employment): Appointment {
             Technician::query()->whereKey($request->technician->id)->lockForUpdate()->first();
             $this->ensureBookable($request);
 
             return Appointment::create([
                 'branch_id' => $request->technician->branch_id,
-                'booked_by_employment_id' => $bookedBy?->id,
+                'booked_by_employment_id' => $employment?->id,
+                'booked_by_position_id' => $position->id,
                 'customer_id' => $request->customer->id,
                 'technician_id' => $request->technician->id,
                 'date' => $request->date->toDateString(),

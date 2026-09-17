@@ -2,7 +2,9 @@
 
 namespace App\Http\Resources;
 
+use App\Game\GameClock;
 use App\Work\ShiftStatus;
+use Carbon\CarbonImmutable;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
@@ -19,8 +21,13 @@ class ShiftStatusResource extends JsonResource
         return [
             'status' => $this->resource->state(),
             'daily_salary' => $this->resource->employment->daily_salary,
-            'clocked_in_at' => $this->resource->shift?->clocked_in_at->toIso8601String(),
-            'clocked_out_at' => $this->resource->shift?->clocked_out_at?->toIso8601String(),
+            'clocked_in_at' => $this->displayOf($this->resource->shift?->clocked_in_at),
+            'clocked_out_at' => $this->displayOf($this->resource->shift?->clocked_out_at),
         ];
+    }
+
+    private function displayOf(?CarbonImmutable $time): ?string
+    {
+        return $time === null ? null : app(GameClock::class)->display($time);
     }
 }

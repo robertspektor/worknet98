@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useTranslation } from '@/i18n/use-translation';
 import type { Customer, Schedule } from '@/types';
 import { formatDay } from '../../ui/format';
+import { bookedByText } from './booked-by';
 import type { SelectedSlot } from './schedule-grid';
 import { slotState } from './slot-state';
 
@@ -66,13 +67,7 @@ export function BookingPanel({
                         {t('service_plan.cancel')}
                     </button>
                 ) : (
-                    <p className="muted">
-                        {appointment.booked_by
-                            ? t('service_plan.booked_by', {
-                                  position: appointment.booked_by,
-                              })
-                            : t('service_plan.booked_by_office')}
-                    </p>
+                    <p className="muted">{bookedByText(appointment, t)}</p>
                 )}
             </div>
         );

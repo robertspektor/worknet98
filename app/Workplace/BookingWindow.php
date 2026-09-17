@@ -2,10 +2,13 @@
 
 namespace App\Workplace;
 
+use App\Game\GameClock;
 use Carbon\CarbonImmutable;
 
 class BookingWindow
 {
+    public function __construct(private readonly GameClock $clock) {}
+
     private const WORK_DAYS = 5;
 
     /**
@@ -14,7 +17,7 @@ class BookingWindow
     public function days(): array
     {
         $days = [];
-        $day = CarbonImmutable::today();
+        $day = $this->clock->today();
 
         while (count($days) < self::WORK_DAYS) {
             $day = $day->addDay();

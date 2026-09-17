@@ -18,7 +18,7 @@ class CaseDefinitions
     {
         $company = $workCase->branch->company;
 
-        if ($workCase->customer === null) {
+        if ($workCase->kind === WorkCaseKind::Scripted) {
             return $this->scripted->find($company, $workCase->case_slug);
         }
 

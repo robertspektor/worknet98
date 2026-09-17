@@ -22,6 +22,7 @@ const schedule: Schedule = {
             customer: { id: 4, name: 'Margaret Hollis' },
             is_own: true,
             booked_by: 'Office Assistant (Scheduling)',
+            booked_by_npc: null,
         },
         {
             id: 10,
@@ -31,6 +32,7 @@ const schedule: Schedule = {
             customer: { id: 5, name: 'Walter Beck' },
             is_own: false,
             booked_by: 'Office Assistant (Scheduling)',
+            booked_by_npc: null,
         },
     ],
 };

@@ -1,5 +1,7 @@
 import { useState } from 'react';
 import { useTranslation } from '@/i18n/use-translation';
+import { gameToday } from '../../clock/game-clock';
+import { useGameClock } from '../../clock/use-game-clock';
 import { formatDay } from '../../ui/format';
 import { timeOptions, upcomingDates } from './calendar-options';
 
@@ -13,7 +15,10 @@ export function CalendarEntryForm({
     onAdd: (entry: NewCalendarEntry) => Promise<boolean>;
 }) {
     const { t, locale } = useTranslation();
-    const [dates] = useState(() => upcomingDates(new Date(), DATE_COUNT));
+    const settings = useGameClock();
+    const [dates] = useState(() =>
+        upcomingDates(gameToday(settings, Date.now()), DATE_COUNT),
+    );
     const [date, setDate] = useState(dates[0]);
     const [time, setTime] = useState('10:00');
     const [title, setTitle] = useState('');

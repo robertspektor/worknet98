@@ -2,6 +2,7 @@
 
 use App\Cases\Metric;
 use App\Cases\MetricBook;
+use App\Cases\WorkCaseKind;
 use App\Cases\WorkCaseStatus;
 use App\Models\Customer;
 use App\Models\Email;
@@ -29,11 +30,12 @@ function handleTemplateCase(User $player, Customer $customer, string $technician
 
 it('resolves a case built from a template with feedback derived from the customer', function () {
     handleTemplateCase($this->player, $this->priya, 'stan-kowalski', '2026-09-22', '13:00');
-
     workAs($this->player, 'POST', 'api.v1.shift.clock-out');
 
+    carryOutAppointmentsAt('2026-09-22 15:00:00');
+
     $metrics = app(MetricBook::class);
-    expect(WorkCase::query()->whereNotNull('customer_id')->sole()->status)->toBe(WorkCaseStatus::Resolved)
+    expect(WorkCase::query()->where('kind', WorkCaseKind::Template)->sole()->status)->toBe(WorkCaseStatus::Resolved)
         ->and($metrics->valueOf($this->employment, Metric::CustomerSatisfaction))->toBe(2)
         ->and($metrics->valueOf($this->employment, Metric::Cost))->toBe(0)
         ->and($metrics->valueOf($this->employment, Metric::Punctuality))->toBe(1);
@@ -47,8 +49,9 @@ it('resolves a case built from a template with feedback derived from the custome
 
 it('lowers the metrics when the customer is not home and the technician lacks the skill', function () {
     handleTemplateCase($this->player, $this->priya, 'doug-pruitt', '2026-09-24', '08:00');
-
     workAs($this->player, 'POST', 'api.v1.shift.clock-out');
+
+    carryOutAppointmentsAt('2026-09-24 10:00:00');
 
     $metrics = app(MetricBook::class);
     expect($metrics->valueOf($this->employment, Metric::CustomerSatisfaction))->toBe(-2)
@@ -60,6 +63,6 @@ it('lowers the metrics when the customer is not home and the technician lacks th
 it('reminds the player when the case is not handled', function () {
     workAs($this->player, 'POST', 'api.v1.shift.clock-out');
 
-    expect(WorkCase::query()->whereNotNull('customer_id')->sole()->status)->toBe(WorkCaseStatus::Open)
+    expect(WorkCase::query()->where('kind', WorkCaseKind::Template)->sole()->status)->toBe(WorkCaseStatus::Open)
         ->and(Email::query()->where('subject', 'Priya Raman?')->sole()->body)->toContain('Priya Raman is still waiting');
 });

@@ -7,7 +7,6 @@ use App\Models\Appointment;
 use App\Models\CalendarEntry;
 use App\Models\Customer;
 use App\Models\Email;
-use App\Models\WorkCase;
 use App\Workplace\BookingWindow;
 use Carbon\CarbonImmutable;
 use Illuminate\Support\Collection;
@@ -21,7 +20,7 @@ readonly class CaseState
      * @param  Collection<string, Customer>  $customers
      */
     public function __construct(
-        private WorkCase $workCase,
+        private CarbonImmutable $openedOn,
         private Collection $appointments,
         private Collection $sentEmails,
         private Collection $calendarEntries,
@@ -57,6 +56,6 @@ readonly class CaseState
 
     public function workDaysSinceOpening(CarbonImmutable $date): int
     {
-        return $this->window->workDaysBetween($this->workCase->opened_at, $date);
+        return $this->window->workDaysBetween($this->openedOn, $date);
     }
 }

@@ -153,6 +153,7 @@
     "service_plan.book": "Buchen",
     "service_plan.cancel": "Termin stornieren",
     "service_plan.booked_by": "Gebucht von einer Kollegin oder einem Kollegen: :position",
+    "service_plan.booked_by_npc": "Gebucht von :name",
     "service_plan.booked_by_office": "Vom Büro gebucht",
     "service_plan.hint": "Termine werden automatisch ausgeführt. Die Planung ist dein Job. Die Schuld auch.",
     "calendar.date": "Datum",

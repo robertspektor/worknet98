@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources;
 
+use App\Game\GameClock;
 use App\Models\Email;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
@@ -22,7 +23,7 @@ class EmailResource extends JsonResource
             'sender_address' => $this->sender_address,
             'subject' => $this->subject,
             'body' => $this->body,
-            'received_at' => $this->received_at->toIso8601String(),
+            'received_at' => app(GameClock::class)->display($this->received_at),
             'is_read' => $this->read_at !== null,
             'folder' => $this->folder->value,
             'recipient_name' => $this->recipient_name,

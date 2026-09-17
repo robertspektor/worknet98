@@ -3,6 +3,18 @@
 return [
 
     /*
+    | The game clock runs faster than real time. Game time starts at the
+    | game epoch when real time is at the real epoch. With a scale of 7,
+    | one real day is one game week.
+    */
+
+    'clock' => [
+        'scale' => (int) env('GAME_CLOCK_SCALE', 7),
+        'real_epoch' => env('GAME_CLOCK_REAL_EPOCH', '2026-09-14 00:00:00'),
+        'game_epoch' => env('GAME_CLOCK_GAME_EPOCH', '1998-01-05 00:00:00'),
+    ],
+
+    /*
     | Seconds a company takes to answer a job application. Answers are
     | delivered by the scheduled careers:review-applications command.
     */

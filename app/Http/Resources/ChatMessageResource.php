@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources;
 
+use App\Game\GameClock;
 use App\Messenger\CannedReply;
 use App\Models\ChatMessage;
 use Illuminate\Http\Request;
@@ -22,7 +23,7 @@ class ChatMessageResource extends JsonResource
             'contact_name' => $this->contact_name,
             'is_from_player' => $this->is_from_player,
             'body' => $this->body,
-            'sent_at' => $this->sent_at->toIso8601String(),
+            'sent_at' => app(GameClock::class)->display($this->sent_at),
             'is_read' => $this->read_at !== null,
             'replies' => $this->awaitsReply()
                 ? array_map(fn (CannedReply $reply): array => ['slug' => $reply->slug, 'text' => $reply->text], $this->cannedReplies())

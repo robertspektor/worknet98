@@ -1,3 +1,4 @@
+import type { GameClockSettings } from '@/types/game-clock';
 import type { Player, SessionStatus } from '@/types/player';
 
 declare module '@inertiajs/core' {
@@ -9,6 +10,7 @@ declare module '@inertiajs/core' {
             locales: Record<string, string>;
             translations: Record<string, string>;
             status: SessionStatus;
+            gameClock: GameClockSettings;
             [key: string]: unknown;
         };
     }

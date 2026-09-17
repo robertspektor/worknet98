@@ -153,6 +153,7 @@
     "service_plan.book": "Book",
     "service_plan.cancel": "Cancel appointment",
     "service_plan.booked_by": "Booked by a colleague: :position",
+    "service_plan.booked_by_npc": "Booked by :name",
     "service_plan.booked_by_office": "Booked by the office",
     "service_plan.hint": "Appointments are carried out automatically. Planning is your job. So is the blame.",
     "calendar.date": "Date",

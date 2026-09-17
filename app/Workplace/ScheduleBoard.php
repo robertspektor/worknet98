@@ -16,7 +16,7 @@ class ScheduleBoard
             days: $days,
             technicians: $branch->technicians()->orderBy('name')->get(),
             appointments: $branch->appointments()
-                ->with(['customer', 'bookedBy.position'])
+                ->with(['customer', 'bookedBy.position', 'bookedByPosition'])
                 ->whereBetween('date', [$days[0]->toDateString(), $days[count($days) - 1]->toDateString()])
                 ->orderBy('date')
                 ->orderBy('slot')

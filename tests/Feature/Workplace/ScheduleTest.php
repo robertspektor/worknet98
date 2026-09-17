@@ -3,6 +3,7 @@
 use App\Models\Appointment;
 use App\Models\Branch;
 use App\Models\Company;
+use App\Models\Position;
 use App\Models\Technician;
 use App\Models\User;
 
@@ -34,14 +35,18 @@ it('shows the appointments of the whole branch and who booked them', function ()
     $colleague->employment?->position->update(['title' => 'Office Assistant (Scheduling)']);
     Appointment::factory()->for($branch)->create(['booked_by_employment_id' => $player->employment?->id, 'date' => '2026-09-22', 'slot' => '10:00']);
     Appointment::factory()->for($branch)->create(['booked_by_employment_id' => $colleague->employment?->id, 'date' => '2026-09-22', 'slot' => '13:00']);
+    $npcPosition = Position::factory()->for($branch)->create(['npc_name' => 'Judy Pham']);
+    Appointment::factory()->for($branch)->create(['booked_by_position_id' => $npcPosition->id, 'date' => '2026-09-22', 'slot' => '15:00']);
     Appointment::factory()->create(['date' => '2026-09-22']);
 
     $this->actingAs($player)
         ->getJson(route('api.v1.schedule.show'))
-        ->assertJsonCount(2, 'data.appointments')
-        ->assertJsonPath('data.appointments.*.slot', ['10:00', '13:00'])
-        ->assertJsonPath('data.appointments.*.is_own', [true, false])
-        ->assertJsonPath('data.appointments.1.booked_by', 'Office Assistant (Scheduling)');
+        ->assertJsonCount(3, 'data.appointments')
+        ->assertJsonPath('data.appointments.*.slot', ['10:00', '13:00', '15:00'])
+        ->assertJsonPath('data.appointments.*.is_own', [true, false, false])
+        ->assertJsonPath('data.appointments.1.booked_by', 'Office Assistant (Scheduling)')
+        ->assertJsonPath('data.appointments.2.booked_by', null)
+        ->assertJsonPath('data.appointments.2.booked_by_npc', 'Judy Pham');
 });
 
 it('requires an employment for company software', function () {

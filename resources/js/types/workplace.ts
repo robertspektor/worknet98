@@ -32,6 +32,7 @@ export type Appointment = {
     customer: { id: number; name: string };
     is_own: boolean;
     booked_by: string | null;
+    booked_by_npc: string | null;
 };
 
 export type Schedule = {

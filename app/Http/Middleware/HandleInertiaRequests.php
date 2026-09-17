@@ -2,6 +2,7 @@
 
 namespace App\Http\Middleware;
 
+use App\Game\GameClock;
 use App\Http\Resources\PlayerResource;
 use App\Localization\SupportedLocales;
 use App\Localization\Translations;
@@ -18,6 +19,7 @@ class HandleInertiaRequests extends Middleware
     public function __construct(
         private readonly SupportedLocales $locales,
         private readonly Translations $translations,
+        private readonly GameClock $clock,
     ) {}
 
     /**
@@ -35,6 +37,7 @@ class HandleInertiaRequests extends Middleware
             'locales' => $this->locales->all(),
             'translations' => $this->translations->for(app()->getLocale()),
             'status' => $request->session()->get('status'),
+            'gameClock' => $this->clock->settings(),
         ];
     }
 }

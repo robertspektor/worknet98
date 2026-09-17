@@ -230,6 +230,56 @@
                 "email_address": "d.okafor@mail.wn",
                 "notes": "Landlord does not answer the phone. Please call her, not the landlord.",
                 "availability": "afternoon"
+            },
+            {
+                "slug": "gloria-mendez",
+                "name": "Gloria Mendez",
+                "street": "7 Willow Drive",
+                "city": "Maple Falls",
+                "phone": "555-0107",
+                "email_address": "gloria.mendez@mail.wn",
+                "notes": "Runs a daycare from home. Please do not ring the bell during nap time. Nap time is always.",
+                "availability": "afternoon"
+            },
+            {
+                "slug": "frank-deluca",
+                "name": "Frank DeLuca",
+                "street": "112 Quarry Road",
+                "city": "Greenvale",
+                "phone": "555-0112",
+                "email_address": "frank@delucabakery.wn",
+                "notes": "Owns the bakery. Pays in bread if you let him. Do not let him.",
+                "availability": "morning"
+            },
+            {
+                "slug": "harold-pike",
+                "name": "Harold Pike",
+                "street": "9 Chapel Street",
+                "city": "Maple Falls",
+                "phone": "555-0109",
+                "email_address": "h.pike@oldmail.wn",
+                "notes": "Wants the technician to take their shoes off. Has slippers ready. Many sizes.",
+                "availability": "any"
+            },
+            {
+                "slug": "tina-brooks",
+                "name": "Tina Brooks",
+                "street": "48 Lakeview Terrace",
+                "city": "Greenvale",
+                "phone": "555-0148",
+                "email_address": "tina.brooks@mail.wn",
+                "notes": "Works night shifts. Sleeps until noon. Very clear about that.",
+                "availability": "afternoon"
+            },
+            {
+                "slug": "oscar-lindqvist",
+                "name": "Oscar Lindqvist",
+                "street": "301 Pine Hollow",
+                "city": "Maple Falls",
+                "phone": "555-0301",
+                "email_address": "oscar.l@mail.wn",
+                "notes": "Built his own sauna. It is the reason for most of his calls.",
+                "availability": "any"
             }
         ]
     }

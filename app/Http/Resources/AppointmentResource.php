@@ -25,6 +25,7 @@ class AppointmentResource extends JsonResource
             'customer' => ['id' => $this->customer->id, 'name' => $this->customer->name],
             'is_own' => $this->isBookedBy($request->user()),
             'booked_by' => $this->bookedBy?->position->title,
+            'booked_by_npc' => $this->booked_by_employment_id === null ? $this->bookedByPosition?->npc_name : null,
         ];
     }
 

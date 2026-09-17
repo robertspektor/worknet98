@@ -13,18 +13,21 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property int $id
  * @property int $branch_id
  * @property int|null $booked_by_employment_id
+ * @property int|null $booked_by_position_id
  * @property int $customer_id
  * @property int $technician_id
  * @property CarbonImmutable $date
  * @property string $slot
+ * @property CarbonImmutable|null $executed_at
  * @property CarbonImmutable|null $created_at
  * @property CarbonImmutable|null $updated_at
  * @property-read Branch $branch
  * @property-read Employment|null $bookedBy
+ * @property-read Position|null $bookedByPosition
  * @property-read Customer $customer
  * @property-read Technician $technician
  */
-#[Fillable(['branch_id', 'booked_by_employment_id', 'customer_id', 'technician_id', 'date', 'slot'])]
+#[Fillable(['branch_id', 'booked_by_employment_id', 'booked_by_position_id', 'customer_id', 'technician_id', 'date', 'slot', 'executed_at'])]
 class Appointment extends Model
 {
     /** @use HasFactory<AppointmentFactory> */
@@ -44,6 +47,14 @@ class Appointment extends Model
     public function bookedBy(): BelongsTo
     {
         return $this->belongsTo(Employment::class, 'booked_by_employment_id');
+    }
+
+    /**
+     * @return BelongsTo<Position, $this>
+     */
+    public function bookedByPosition(): BelongsTo
+    {
+        return $this->belongsTo(Position::class, 'booked_by_position_id');
     }
 
     /**
@@ -69,6 +80,7 @@ class Appointment extends Model
     {
         return [
             'date' => 'immutable_date',
+            'executed_at' => 'datetime',
         ];
     }
 }

@@ -3,7 +3,6 @@
 namespace App\Cases\Npc;
 
 use App\Cases\Templates\CaseTemplateCatalog;
-use App\Cases\WorkCaseStatus;
 use App\Game\ActionRefused;
 use App\Models\WorkCase;
 use App\Workplace\AppointmentBooker;
@@ -24,7 +23,7 @@ class NpcCaseWorker
 
         WorkCase::query()
             ->dueForNpc()
-            ->with(['branch.company', 'customer.branch'])
+            ->with(['branch.company', 'customer.branch', 'position'])
             ->lazyById()
             ->each(function (WorkCase $workCase) use (&$worked): void {
                 if ($this->work($workCase)) {
@@ -38,7 +37,7 @@ class NpcCaseWorker
     private function work(WorkCase $workCase): bool
     {
         $template = $this->templates->find($workCase->branch->company, $workCase->case_slug);
-        $request = $template && $workCase->customer ? $this->slots->earliestFor($workCase->customer, $template->skill) : null;
+        $request = $template === null ? null : $this->slots->earliestFor($workCase->customer, $template->skill);
 
         if ($request === null) {
             return false;
@@ -46,8 +45,8 @@ class NpcCaseWorker
 
         try {
             DB::transaction(function () use ($workCase, $request): void {
-                $this->booker->bookForOffice($request);
-                $workCase->update(['status' => WorkCaseStatus::Resolved, 'resolved_at' => now()]);
+                $this->booker->bookForNpc($request, $workCase->position);
+                $workCase->update(['npc_due_at' => null]);
             });
         } catch (ActionRefused) {
             return false;

@@ -8,6 +8,7 @@ use App\Models\Position;
 use App\Models\Shift;
 use App\Models\Technician;
 use App\Models\User;
+use App\Workplace\AppointmentExecutor;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
@@ -44,4 +45,10 @@ function workAs(User $player, string $method, string $route, array $data = []): 
 function technician(string $slug): Technician
 {
     return Technician::query()->where('slug', $slug)->sole();
+}
+
+function carryOutAppointmentsAt(string $time): void
+{
+    test()->travelTo($time);
+    app(AppointmentExecutor::class)->executeDue();
 }

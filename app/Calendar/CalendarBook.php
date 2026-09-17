@@ -2,6 +2,7 @@
 
 namespace App\Calendar;
 
+use App\Game\GameClock;
 use App\Models\CalendarEntry;
 use App\Models\User;
 use Carbon\CarbonImmutable;
@@ -9,6 +10,8 @@ use Illuminate\Database\Eloquent\Collection;
 
 class CalendarBook
 {
+    public function __construct(private readonly GameClock $clock) {}
+
     /**
      * @return Collection<int, CalendarEntry>
      */
@@ -16,7 +19,7 @@ class CalendarBook
     {
         return CalendarEntry::query()
             ->where('user_id', $player->id)
-            ->whereDate('date', '>=', CarbonImmutable::today()->toDateString())
+            ->whereDate('date', '>=', $this->clock->today()->toDateString())
             ->orderBy('date')
             ->orderBy('time')
             ->get();

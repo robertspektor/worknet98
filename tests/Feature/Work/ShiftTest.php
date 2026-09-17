@@ -27,7 +27,7 @@ it('starts a shift when the player clocks in', function () {
         ->assertOk()
         ->assertJsonPath('data.status', 'on_duty')
         ->assertJsonPath('data.daily_salary', 95)
-        ->assertJsonPath('data.clocked_in_at', now()->toIso8601String());
+        ->assertJsonPath('data.clocked_in_at', now()->format('Y-m-d\TH:i:s'));
 
     $shift = Shift::sole();
     expect($shift->user_id)->toBe($player->id)

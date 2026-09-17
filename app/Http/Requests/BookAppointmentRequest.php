@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Game\GameClock;
 use App\Models\Customer;
 use App\Models\Technician;
 use App\Models\User;
@@ -34,7 +35,7 @@ class BookAppointmentRequest extends FormRequest
         return new AppointmentRequest(
             customer: Customer::query()->findOrFail($this->integer('customer_id')),
             technician: Technician::query()->findOrFail($this->integer('technician_id')),
-            date: CarbonImmutable::createFromFormat('Y-m-d', $this->string('date')->toString())?->startOfDay() ?? CarbonImmutable::today(),
+            date: CarbonImmutable::createFromFormat('Y-m-d', $this->string('date')->toString())?->startOfDay() ?? app(GameClock::class)->today(),
             slot: $this->string('slot')->toString(),
         );
     }
