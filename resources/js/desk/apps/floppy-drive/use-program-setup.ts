@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useTranslation } from '@/i18n/use-translation';
-import type { FloppyDisk } from '@/types';
+import type { DiskFile } from '@/types';
 import { useDialogs } from '../../dialogs/dialog-provider';
 import { useFloppyDrive } from '../../floppy/floppy-drive-provider';
 import { installedApps } from '../../floppy/installed-apps';
@@ -17,13 +17,13 @@ export function useProgramSetup() {
     const floppyDrive = useFloppyDrive();
     const [isInstalling, setInstalling] = useState(false);
 
-    const copyFiles = async (disk: FloppyDisk) => {
+    const copyFiles = async (setupFile: DiskFile) => {
         setInstalling(true);
         sound.floppySeek();
 
         try {
             await Promise.all([
-                floppyDrive.install(disk),
+                floppyDrive.install(setupFile),
                 wait(SETUP_DURATION_MS),
             ]);
         } finally {
@@ -31,8 +31,8 @@ export function useProgramSetup() {
         }
     };
 
-    const install = async (disk: FloppyDisk) => {
-        const [app] = installedApps([disk.program ?? '']);
+    const install = async (setupFile: DiskFile) => {
+        const [app] = installedApps([setupFile.program ?? '']);
 
         if (!app) {
             return;
@@ -63,7 +63,7 @@ export function useProgramSetup() {
         }
 
         try {
-            await copyFiles(disk);
+            await copyFiles(setupFile);
             await dialogs.alert({
                 title: t('program_setup.title'),
                 message: t('program_setup.done', { program }),

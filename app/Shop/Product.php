@@ -9,4 +9,6 @@ interface Product
     public function salePrice(): ?int;
 
     public function labelKey(): string;
+
+    public function canBeOrderedRepeatedly(): bool;
 }

@@ -50,14 +50,26 @@ class BranchSeeder extends Seeder
                 ...Arr::only($position, ['title', 'npc_name', 'npc_address']),
                 'responsibilities' => $position['responsibilities'] ?? [],
                 'job_opening_id' => $this->jobOpeningId($branch, $position['job_opening'] ?? null),
+                'daily_salary' => $position['daily_salary'] ?? null,
+                'promotion_excellent_reviews' => $position['promotion']['excellent_reviews'] ?? null,
+                'promotion_clean_months' => $position['promotion']['clean_months'] ?? null,
             ]);
         }
 
         foreach ($positions as $position) {
-            $branch->positions()->where('slug', $position['slug'])->update([
-                'reports_to_position_id' => $this->positionId($branch, $position['reports_to'] ?? null),
-            ]);
+            $record = Position::query()->whereBelongsTo($branch)->where('slug', $position['slug'])->sole();
+            $record->update(['reports_to_position_id' => $this->positionId($branch, $position['reports_to'] ?? null)]);
+            $record->promotionTargets()->sync($this->promotionTargetIds($branch, $position['promotion']['to'] ?? []));
         }
+    }
+
+    /**
+     * @param  list<string>  $slugs
+     * @return list<int>
+     */
+    private function promotionTargetIds(Branch $branch, array $slugs): array
+    {
+        return array_map(fn (string $slug): int => (int) $this->positionId($branch, $slug), $slugs);
     }
 
     private function jobOpeningId(Branch $branch, ?string $slug): ?int

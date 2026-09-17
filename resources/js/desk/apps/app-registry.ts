@@ -92,7 +92,7 @@ export const APPS = {
     'floppy-drive': {
         titleKey: 'desktop.floppy_drive',
         icon: 'floppy',
-        size: { width: 360, height: 264 },
+        size: { width: 380, height: 300 },
         component: FloppyDriveApp,
     },
     minefield: {

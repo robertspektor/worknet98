@@ -11,10 +11,11 @@ enum ShopItemStatus: string
     case Delivered = 'delivered';
     case Owned = 'owned';
 
-    public static function of(?Order $order): self
+    public static function of(?Order $order, bool $canBeOrderedRepeatedly): self
     {
         return match (true) {
             $order === null => self::Available,
+            $canBeOrderedRepeatedly && $order->isUnpacked() => self::Available,
             $order->isUnpacked() => self::Owned,
             $order->isDelivered() => self::Delivered,
             default => self::Ordered,

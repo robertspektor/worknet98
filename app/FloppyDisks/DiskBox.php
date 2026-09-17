@@ -2,28 +2,25 @@
 
 namespace App\FloppyDisks;
 
-use App\Models\FloppyDisk;
+use App\Models\PlayerFloppyDisk;
 use App\Models\User;
-use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 
 class DiskBox
 {
+    public function __construct(private readonly StarterDisks $starterDisks) {}
+
     /**
-     * @return Collection<int, FloppyDisk>
+     * @return Collection<int, PlayerFloppyDisk>
      */
     public function disksFor(User $player): Collection
     {
-        return FloppyDisk::query()
-            ->where(fn (Builder $query) => $query
-                ->where('is_starter', true)
-                ->orWhereHas('orders', fn (Builder $orders) => $orders->unpacked()->where('user_id', $player->id)))
+        $this->starterDisks->handOutTo($player);
+
+        return PlayerFloppyDisk::query()
+            ->where('user_id', $player->id)
+            ->with('floppyDisk')
             ->orderBy('id')
             ->get();
-    }
-
-    public function contains(User $player, FloppyDisk $disk): bool
-    {
-        return $this->disksFor($player)->contains($disk);
     }
 }

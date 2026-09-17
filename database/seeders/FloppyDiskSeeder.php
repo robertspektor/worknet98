@@ -14,7 +14,7 @@ class FloppyDiskSeeder extends Seeder
     public function run(): void
     {
         foreach ($this->floppyDisks() as $data) {
-            FloppyDisk::updateOrCreate(['slug' => $data['slug']], Arr::except($data, ['slug']));
+            FloppyDisk::updateOrCreate(['slug' => $data['slug']], ['pack_size' => 1, ...Arr::except($data, ['slug'])]);
         }
     }
 

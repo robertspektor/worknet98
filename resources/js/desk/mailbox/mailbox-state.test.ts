@@ -15,6 +15,7 @@ function email(id: number, isRead = false): Email {
         recipient_name: null,
         recipient_address: null,
         action: null,
+        promotion_offer: null,
     };
 }
 

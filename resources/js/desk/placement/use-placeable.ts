@@ -7,7 +7,7 @@ import type {
 import { useLayoutEffect, useRef, useState } from 'react';
 import { usePlacements } from './placement-provider';
 import type { Box } from './snap';
-import { snapToSurface } from './snap';
+import { snapToSurface, stickWhereDropped } from './snap';
 import { boxOf, surfacesIn } from './surfaces';
 
 const DRAG_THRESHOLD_PX = 5;
@@ -23,6 +23,8 @@ type Drag = {
 };
 
 type Offset = { left: number; top: number };
+
+export type Landing = 'surface' | 'anywhere';
 
 function offsetInRoom(element: Element, room: HTMLElement): Offset {
     const box = boxOf(element);
@@ -51,7 +53,10 @@ function droppedBox(drag: Drag): Box {
     };
 }
 
-export function usePlaceable<T extends HTMLElement>(item: string) {
+export function usePlaceable<T extends HTMLElement>(
+    item: string,
+    landing: Landing = 'surface',
+) {
     const { room, roomSize, revision, placementOf, place } = usePlacements();
     const ref = useRef<T>(null);
     const suppressClick = useRef(false);
@@ -103,11 +108,13 @@ export function usePlaceable<T extends HTMLElement>(item: string) {
             if (finished.moved) {
                 place(
                     item,
-                    snapToSurface(
-                        droppedBox(finished),
-                        surfacesIn(room, element),
-                        boxOf(room),
-                    ),
+                    landing === 'anywhere'
+                        ? stickWhereDropped(droppedBox(finished), boxOf(room))
+                        : snapToSurface(
+                              droppedBox(finished),
+                              surfacesIn(room, element),
+                              boxOf(room),
+                          ),
                 );
             }
         };

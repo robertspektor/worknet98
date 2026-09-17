@@ -1,6 +1,7 @@
 import type { ReactNode } from 'react';
-import { createContext, use, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import type { HomeComputer } from '@/types';
+import { createDeskContext } from '../state/create-desk-context';
 import { fetchHomeComputer } from './home-computer-api';
 
 type HomeComputerState = {
@@ -9,7 +10,8 @@ type HomeComputerState = {
     replace: (homeComputer: HomeComputer) => void;
 };
 
-const HomeComputerContext = createContext<HomeComputerState | null>(null);
+const { Context, useRequired } =
+    createDeskContext<HomeComputerState>('HomeComputer');
 
 export function HomeComputerProvider({
     isSignedIn,
@@ -32,22 +34,10 @@ export function HomeComputerProvider({
     }, [isSignedIn]);
 
     return (
-        <HomeComputerContext
-            value={{ homeComputer, refresh, replace: setHomeComputer }}
-        >
+        <Context value={{ homeComputer, refresh, replace: setHomeComputer }}>
             {children}
-        </HomeComputerContext>
+        </Context>
     );
 }
 
-export function useHomeComputer(): HomeComputerState {
-    const state = use(HomeComputerContext);
-
-    if (!state) {
-        throw new Error(
-            'useHomeComputer must be used inside HomeComputerProvider.',
-        );
-    }
-
-    return state;
-}
+export const useHomeComputer = useRequired;

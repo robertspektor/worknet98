@@ -3,13 +3,13 @@
 namespace App\Cases;
 
 use App\Cases\Conditions\ConditionFactory;
+use App\Content\CompanyContentFile;
 use App\Messenger\CannedReply;
 use App\Models\Company;
-use Illuminate\Support\Facades\File;
 
 class CaseCatalog
 {
-    private const CONTENT_DIRECTORY = 'content/cases';
+    private const CONTENT_DIRECTORY = 'cases';
 
     public function __construct(private readonly ConditionFactory $conditions) {}
 
@@ -18,16 +18,10 @@ class CaseCatalog
      */
     public function forCompany(Company $company): array
     {
-        $path = database_path(self::CONTENT_DIRECTORY."/{$company->slug}.json");
-
-        if (! File::exists($path)) {
-            return [];
-        }
-
-        /** @var list<array<string, mixed>> $definitions */
-        $definitions = File::json($path, JSON_THROW_ON_ERROR);
-
-        return array_map($this->scriptedCase(...), $definitions);
+        return array_map(
+            $this->scriptedCase(...),
+            CompanyContentFile::entries($company, self::CONTENT_DIRECTORY),
+        );
     }
 
     public function find(Company $company, string $slug): ?CaseDefinition
@@ -42,7 +36,10 @@ class CaseCatalog
      */
     private function scriptedCase(array $data): ScriptedCase
     {
-        return new ScriptedCase(shift: (int) $data['shift'], definition: $this->definition($data));
+        /** @var array{subject: string, body: string}|null $briefingMail */
+        $briefingMail = $data['briefing_mail'] ?? null;
+
+        return new ScriptedCase(shift: (int) $data['shift'], definition: $this->definition($data), briefingMail: $briefingMail);
     }
 
     /**

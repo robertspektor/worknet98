@@ -1,5 +1,4 @@
 import type { ReactNode } from 'react';
-import { createContext, use, useEffect, useState } from 'react';
 import {
     index as emailsIndex,
     store as emailsStore,
@@ -9,6 +8,8 @@ import type { Email, EmailAction, MailboxScope } from '@/types';
 import { getJson, postJson } from '../api/game-api';
 import { useEdition } from '../computer/edition-context';
 import { sound } from '../sound/sound';
+import { createDeskContext } from '../state/create-desk-context';
+import { usePolledResource } from '../state/use-polled-resource';
 import { hasNewUnread, markRead, unreadCount } from './mailbox-state';
 
 const POLL_INTERVAL_MS = 15_000;
@@ -28,7 +29,9 @@ type Mailbox = {
     send: (email: OutgoingEmail) => Promise<Email>;
 };
 
-const MailboxContext = createContext<Mailbox | null>(null);
+const { Context, useRequired } = createDeskContext<Mailbox>('Mailbox');
+
+export const useMailbox = useRequired;
 
 function fetchEmails(scope: MailboxScope): Promise<Email[]> {
     return getJson<{ data: Email[] }>(
@@ -38,27 +41,18 @@ function fetchEmails(scope: MailboxScope): Promise<Email[]> {
 
 export function MailboxProvider({ children }: { children: ReactNode }) {
     const { mailbox: scope } = useEdition();
-    const [emails, setEmails] = useState<Email[] | null>(null);
-
-    useEffect(() => {
-        let previous: Email[] | null = null;
-
-        const refresh = () =>
-            fetchEmails(scope)
-                .then((next) => {
-                    if (previous && hasNewUnread(previous, next)) {
-                        sound.mail();
-                    }
-                    previous = next;
-                    setEmails(next);
-                })
-                .catch(() => undefined);
-
-        void refresh();
-        const timer = setInterval(() => void refresh(), POLL_INTERVAL_MS);
-
-        return () => clearInterval(timer);
-    }, [scope]);
+    const { value: emails, setValue: setEmails } = usePolledResource(
+        () => fetchEmails(scope),
+        POLL_INTERVAL_MS,
+        {
+            restartKey: scope,
+            onArrival: (next, previous) => {
+                if (hasNewUnread(previous, next)) {
+                    sound.mail();
+                }
+            },
+        },
+    );
 
     const read = (id: number) => {
         setEmails((current) => current && markRead(current, id));
@@ -76,7 +70,7 @@ export function MailboxProvider({ children }: { children: ReactNode }) {
     };
 
     return (
-        <MailboxContext
+        <Context
             value={{
                 scope,
                 emails,
@@ -86,16 +80,6 @@ export function MailboxProvider({ children }: { children: ReactNode }) {
             }}
         >
             {children}
-        </MailboxContext>
+        </Context>
     );
-}
-
-export function useMailbox(): Mailbox {
-    const mailbox = use(MailboxContext);
-
-    if (!mailbox) {
-        throw new Error('useMailbox must be used inside MailboxProvider.');
-    }
-
-    return mailbox;
 }

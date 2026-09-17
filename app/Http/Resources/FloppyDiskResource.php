@@ -21,7 +21,7 @@ class FloppyDiskResource extends JsonResource
             'slug' => $this->slug,
             'kind' => $this->kind->value,
             'color' => $this->color,
-            'program' => $this->program,
+            'pack_size' => $this->pack_size,
         ];
     }
 }

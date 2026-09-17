@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\FloppyDisks\CatalogFile;
 use App\FloppyDisks\FloppyDiskKind;
 use App\Shop\Product;
 use App\Shop\Storefront;
@@ -18,13 +19,14 @@ use Illuminate\Database\Eloquent\Relations\MorphMany;
  * @property string $slug
  * @property FloppyDiskKind $kind
  * @property string $color
- * @property string|null $program
  * @property bool $is_starter
  * @property int|null $price
+ * @property int $pack_size
+ * @property list<array{name: string, kind: string, content_key?: string, program?: string, size_bytes?: int}>|null $files
  * @property CarbonImmutable|null $created_at
  * @property CarbonImmutable|null $updated_at
  */
-#[Fillable(['slug', 'kind', 'color', 'program', 'is_starter', 'price'])]
+#[Fillable(['slug', 'kind', 'color', 'is_starter', 'price', 'pack_size', 'files'])]
 class FloppyDisk extends Model implements Product
 {
     /** @use HasFactory<FloppyDiskFactory> */
@@ -53,9 +55,17 @@ class FloppyDisk extends Model implements Product
         return "floppy_disk.{$this->slug}.label";
     }
 
-    public function isInstallable(): bool
+    public function canBeOrderedRepeatedly(): bool
     {
-        return $this->program !== null;
+        return $this->kind === FloppyDiskKind::Blank;
+    }
+
+    /**
+     * @return list<CatalogFile>
+     */
+    public function catalogFiles(): array
+    {
+        return array_map(CatalogFile::fromArray(...), $this->files ?? []);
     }
 
     /**
@@ -87,6 +97,7 @@ class FloppyDisk extends Model implements Product
         return [
             'kind' => FloppyDiskKind::class,
             'is_starter' => 'boolean',
+            'files' => 'array',
         ];
     }
 }

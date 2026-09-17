@@ -11,6 +11,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 /**
  * @property int $id
  * @property int $employment_id
+ * @property int $position_id
  * @property string $period
  * @property array<string, int> $metric_totals
  * @property array<string, int> $metric_changes
@@ -21,7 +22,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property CarbonImmutable|null $updated_at
  * @property-read Employment $employment
  */
-#[Fillable(['employment_id', 'period', 'metric_totals', 'metric_changes', 'score', 'rating', 'bonus'])]
+#[Fillable(['employment_id', 'position_id', 'period', 'metric_totals', 'metric_changes', 'score', 'rating', 'bonus'])]
 class PerformanceReview extends Model
 {
     /**

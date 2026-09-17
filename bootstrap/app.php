@@ -19,7 +19,7 @@ return Application::configure(basePath: dirname(__DIR__))
         $middleware->statefulApi();
 
         $middleware->trimStrings(except: [
-            fn (Request $request): bool => $request->is('api/v1/note'),
+            fn (Request $request): bool => $request->is('api/v1/note', 'api/v1/floppy-disks/*/files'),
         ]);
 
         $middleware->api(append: [

@@ -74,5 +74,157 @@
             "subject": "Heizkörper bei :customer",
             "body": "Moin,\n\n:customer hat wieder wegen des kalten Heizkörpers angerufen. Schick bitte jemanden hin und sag Bescheid, wann.\n\nBernd"
         }
+    },
+    {
+        "slug": "burst-pipe",
+        "responsibility": "emergency-scheduling",
+        "skill": "plumbing",
+        "urgent_within_work_days": 1,
+        "request_mail": {
+            "subject": "NOTFALL: Rohrbruch",
+            "body": "Hallo?!\n\nim Keller ist gerade ein Rohr geplatzt. Jetzt haben wir einen Springbrunnen. Ich habe keinen Springbrunnen bestellt.\n\nIch habe etwas zugedreht, das wie der Haupthahn aussah. Es könnte auch die Waschmaschine gewesen sein. Bitte schicken Sie so schnell wie menschenmöglich jemanden. :availability\n\n:customer"
+        },
+        "availability_notes": {
+            "morning": "Mittags muss ich zur Arbeit, Wasser hin oder her, also nur vormittags.",
+            "afternoon": "Ich sitze bis mittags im Büro fest, bitte nachmittags.",
+            "any": "Ich gehe nirgendwohin. Ich bewache den Springbrunnen."
+        },
+        "outcome_feedback": {
+            "availability": {
+                "met": ":customer hat in Gummistiefeln aufgemacht. Pünktlich.",
+                "missed": "Bei :customer hat niemand aufgemacht. Das Wasser konnte der Monteur trotzdem hören."
+            },
+            "skill": {
+                "met": "Und ein Installateur für den Rohrbruch. Wie aus dem Lehrbuch.",
+                "missed": "Du hast einen Heizungsbauer in einen gefluteten Keller geschickt. Er meinte, nicht seine Abteilung, und ist trocken wieder gefahren."
+            },
+            "urgency": {
+                "met": "Am nächsten Tag. Der Keller ist wieder ein Keller.",
+                "missed": "Bis wir da waren, hat :customer den Keller als Hallenbad vermietet."
+            }
+        },
+        "feedback_mail": {
+            "subject": "AW: :customer (Notdienst)",
+            "intro": "Moin,\n\nzum Rohrbruch bei :customer. Im Notdienst verdienen wir uns unseren Ruf. Oder verspielen ihn.",
+            "outro": "Notfälle warten nicht. Mein Blutdruck auch nicht.\n\nBernd"
+        },
+        "reminder_mail": {
+            "subject": ":customer - immer noch Land unter?",
+            "body": "Moin,\n\nbei :customer steht immer noch Wasser, wo keins hingehört. Das hier ist der Notdienst. Notdienst heißt jetzt, nicht irgendwann.\n\nBernd"
+        }
+    },
+    {
+        "slug": "heating-breakdown",
+        "responsibility": "emergency-scheduling",
+        "skill": "heating",
+        "urgent_within_work_days": 1,
+        "request_mail": {
+            "subject": "Heizung ausgefallen, es ist eiskalt",
+            "body": "Guten Tag,\n\nunsere Therme hat ein Geräusch wie eine traurige Posaune gemacht und ist ausgegangen. Im Haus sind es 12 Grad, Tendenz fallend. Die Katze ist in die Backofenschublade gezogen. Der Ofen ist aus, keine Sorge.\n\nBitte schicken Sie dringend jemanden. :availability\n\n:customer"
+        },
+        "availability_notes": {
+            "morning": "Vormittags ist jemand zu Hause.",
+            "afternoon": "Wir sind nur nachmittags zu Hause.",
+            "any": "Wir sind den ganzen Tag da. In allen Jacken, die wir haben."
+        },
+        "outcome_feedback": {
+            "availability": {
+                "met": ":customer hat den Monteur reingelassen und ihm eine Decke angeboten.",
+                "missed": "Bei :customer war niemand zu Hause. Vermutlich irgendwo, wo es warm ist."
+            },
+            "skill": {
+                "met": "Ein Heizungsbauer für eine tote Therme. Gut.",
+                "missed": "Du hast einen Installateur zu einer toten Therme geschickt. Er hat aus Solidarität ein Rohr nachgezogen."
+            },
+            "urgency": {
+                "met": "Am nächsten Tag wieder warm. Die Katze hat die Backofenschublade verlassen.",
+                "missed": "Es hat so lange gedauert, dass die Familie von :customer jetzt fließend Zähneklappern spricht."
+            }
+        },
+        "feedback_mail": {
+            "subject": "AW: :customer (Notdienst)",
+            "intro": "Moin,\n\nzur Therme bei :customer.",
+            "outro": "Warme Häuser, zufriedene Kunden. Kalte Häuser, böse Bewertungen.\n\nBernd"
+        },
+        "reminder_mail": {
+            "subject": ":customer friert",
+            "body": "Moin,\n\n:customer sitzt immer noch im kalten Haus. Notdienst, schon vergessen? Bitte jemanden einplanen.\n\nBernd"
+        }
+    },
+    {
+        "slug": "annual-boiler-service",
+        "responsibility": "maintenance-scheduling",
+        "skill": "heating",
+        "urgent_within_work_days": 5,
+        "request_mail": {
+            "subject": "Jährliche Thermenwartung",
+            "body": "Sehr geehrtes Team von Rohr & Sohn,\n\nlaut unserem Wartungsvertrag ist die jährliche Prüfung unserer Therme fällig. Sie läuft einwandfrei. Sie lief immer einwandfrei. Das soll vertraglich so bleiben.\n\n:availability\n\nMit freundlichen Grüßen\n:customer"
+        },
+        "availability_notes": {
+            "morning": "Vormittags passt es uns am besten.",
+            "afternoon": "Bitte legen Sie den Termin auf einen Nachmittag.",
+            "any": "Jeder Termin in der nächsten Woche ist in Ordnung."
+        },
+        "outcome_feedback": {
+            "availability": {
+                "met": "Der Wartungstermin hat perfekt in den Kalender von :customer gepasst. Vertragskunden merken so etwas.",
+                "missed": "Zur Wartung war bei :customer niemand zu Hause. Vertragskunden verlängern Verträge. Oder eben nicht."
+            },
+            "skill": {
+                "met": "Ein Heizungsbauer für die Thermenwartung, wie es im Vertrag steht.",
+                "missed": "Du hast einen Installateur zur Thermenwartung geschickt. Er hat die Bedienungsanleitung laut vorgelesen. Die Kundschaft war nicht beeindruckt."
+            },
+            "urgency": {
+                "met": "Und im Wartungszeitraum. Saubere Unterlagen.",
+                "missed": "Wir haben den Wartungszeitraum verpasst. Die Rechtsabteilung möchte dich sprechen. Die Rechtsabteilung möchte immer jemanden sprechen."
+            }
+        },
+        "feedback_mail": {
+            "subject": "AW: :customer (Wartungsvertrag)",
+            "intro": "Moin,\n\nzur Wartung bei :customer.",
+            "outro": "Verträge sind wiederkehrender Umsatz. Wiederkehrender Umsatz ist meine Lieblingssorte Umsatz.\n\nBernd"
+        },
+        "reminder_mail": {
+            "subject": "Wartung bei :customer",
+            "body": "Moin,\n\ndie Jahreswartung bei :customer ist immer noch nicht eingeplant. Die zahlen uns jedes Jahr dafür, dass wir daran denken. Bitte denk daran.\n\nBernd"
+        }
+    },
+    {
+        "slug": "drain-inspection",
+        "responsibility": "maintenance-scheduling",
+        "skill": "plumbing",
+        "urgent_within_work_days": 5,
+        "request_mail": {
+            "subject": "Vereinbarte Abflussprüfung",
+            "body": "Guten Tag,\n\nunser Vertrag beinhaltet eine jährliche Prüfung der Abflüsse. Verstopft ist nichts. Mein Schwager sagt, genau dann sollte man nachsehen. Mein Schwager sagt viel.\n\n:availability\n\nViele Grüße\n:customer"
+        },
+        "availability_notes": {
+            "morning": "Vormittags passt es bei uns.",
+            "afternoon": "Bitte nur nachmittags.",
+            "any": "Wir sind flexibel."
+        },
+        "outcome_feedback": {
+            "availability": {
+                "met": ":customer war zu Hause und hatte den Weg zum Keller freigeräumt. Sehr professionell.",
+                "missed": "Der Monteur stand bei :customer vor verschlossener Tür. Die Abflüsse bleiben ungeprüft. Und beleidigt."
+            },
+            "skill": {
+                "met": "Ein Installateur für die Abflüsse. So gehört sich das.",
+                "missed": "Du hast einen Heizungsbauer zur Abflussprüfung geschickt. Er hat stattdessen den Heizkörper geprüft. Aus Gewohnheit."
+            },
+            "urgency": {
+                "met": "Deutlich im Vertragszeitraum.",
+                "missed": "Außerhalb des Vertragszeitraums. Der Schwager wird davon erfahren."
+            }
+        },
+        "feedback_mail": {
+            "subject": "AW: :customer (Wartungsvertrag)",
+            "intro": "Moin,\n\nkurz zur Abflussprüfung bei :customer.",
+            "outro": "Halte die Verträge bei Laune.\n\nBernd"
+        },
+        "reminder_mail": {
+            "subject": "Abflussprüfung :customer",
+            "body": "Moin,\n\ndie Abflussprüfung bei :customer ist immer noch offen. Im Vertrag steht jährlich. Nicht irgendwann.\n\nBernd"
+        }
     }
 ]

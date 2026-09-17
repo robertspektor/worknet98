@@ -1,31 +1,39 @@
 import type { ReactNode } from 'react';
-import { createContext, use, useEffect, useReducer, useState } from 'react';
-import type { FloppyDisk } from '@/types';
+import { useEffect, useReducer, useState } from 'react';
+import type { DiskFile, PlayerFloppyDisk } from '@/types';
 import type { AppId } from '../apps/app-registry';
 import { sound } from '../sound/sound';
+import { createDeskContext } from '../state/create-desk-context';
 import type { DriveState } from './drive-state';
 import { driveReducer, emptyDrive, loadedDiskId } from './drive-state';
 import {
     fetchFloppyDisks,
     fetchInstalledPrograms,
     installProgramFrom,
+    labelFloppyDisk,
 } from './floppy-disk-api';
 import { installedApps } from './installed-apps';
+import { useLoadedDiskFiles } from './use-loaded-disk-files';
 
 export const DISK_SLIDE_MS = 700;
 
 type FloppyDrive = {
-    disks: FloppyDisk[];
+    disks: PlayerFloppyDisk[];
     drive: DriveState;
-    loadedDisk: FloppyDisk | null;
+    loadedDisk: PlayerFloppyDisk | null;
+    loadedFiles: DiskFile[] | null;
     installedPrograms: AppId[];
-    insert: (disk: FloppyDisk) => void;
+    insert: (disk: PlayerFloppyDisk) => void;
     eject: () => void;
-    install: (disk: FloppyDisk) => Promise<void>;
+    install: (setupFile: DiskFile) => Promise<void>;
+    saveFile: (name: string, body: string) => Promise<void>;
+    eraseFile: (file: DiskFile) => Promise<void>;
+    label: (disk: PlayerFloppyDisk, label: string) => Promise<void>;
     refreshDisks: () => void;
 };
 
-const FloppyDriveContext = createContext<FloppyDrive | null>(null);
+const { Context, useOptional, useRequired } =
+    createDeskContext<FloppyDrive>('FloppyDrive');
 
 function useDriveMechanics() {
     const [drive, dispatch] = useReducer(driveReducer, emptyDrive);
@@ -43,7 +51,7 @@ function useDriveMechanics() {
         return () => clearTimeout(timer);
     }, [drive.phase]);
 
-    const insert = (disk: FloppyDisk) => {
+    const insert = (disk: PlayerFloppyDisk) => {
         if (drive.phase === 'empty') {
             sound.floppySeek();
             dispatch({ type: 'insert', diskId: disk.id });
@@ -61,7 +69,7 @@ function useDriveMechanics() {
 }
 
 function useDiskBoxContents(isSignedIn: boolean) {
-    const [disks, setDisks] = useState<FloppyDisk[]>([]);
+    const [disks, setDisks] = useState<PlayerFloppyDisk[]>([]);
     const [programs, setPrograms] = useState<string[]>([]);
 
     const refreshDisks = () =>
@@ -80,10 +88,19 @@ function useDiskBoxContents(isSignedIn: boolean) {
             .catch(() => undefined);
     }, [isSignedIn]);
 
-    const install = async (disk: FloppyDisk) => {
-        const program = await installProgramFrom(disk);
+    const install = async (setupFile: DiskFile) => {
+        const program = await installProgramFrom(setupFile);
         setPrograms((current) =>
             current.includes(program) ? current : [...current, program],
+        );
+    };
+
+    const label = async (disk: PlayerFloppyDisk, text: string) => {
+        const labeled = await labelFloppyDisk(disk, text);
+        setDisks((current) =>
+            current.map((candidate) =>
+                candidate.id === labeled.id ? labeled : candidate,
+            ),
         );
     };
 
@@ -92,6 +109,7 @@ function useDiskBoxContents(isSignedIn: boolean) {
         refreshDisks,
         installedPrograms: installedApps(programs),
         install,
+        label,
     };
 }
 
@@ -103,40 +121,33 @@ export function FloppyDriveProvider({
     children: ReactNode;
 }) {
     const { drive, insert, eject } = useDriveMechanics();
-    const { disks, refreshDisks, installedPrograms, install } =
+    const { disks, refreshDisks, installedPrograms, install, label } =
         useDiskBoxContents(isSignedIn);
     const loadedId = loadedDiskId(drive);
+    const loadedDisk = disks.find((disk) => disk.id === loadedId) ?? null;
+    const { files, saveFile, eraseFile } = useLoadedDiskFiles(loadedDisk);
 
     return (
-        <FloppyDriveContext
+        <Context
             value={{
                 disks,
                 drive,
-                loadedDisk: disks.find((disk) => disk.id === loadedId) ?? null,
+                loadedDisk,
+                loadedFiles: files,
                 installedPrograms,
                 insert,
                 eject,
                 install,
+                saveFile,
+                eraseFile,
+                label,
                 refreshDisks,
             }}
         >
             {children}
-        </FloppyDriveContext>
+        </Context>
     );
 }
 
-export function useOptionalFloppyDrive(): FloppyDrive | null {
-    return use(FloppyDriveContext);
-}
-
-export function useFloppyDrive(): FloppyDrive {
-    const floppyDrive = useOptionalFloppyDrive();
-
-    if (!floppyDrive) {
-        throw new Error(
-            'useFloppyDrive must be used inside FloppyDriveProvider.',
-        );
-    }
-
-    return floppyDrive;
-}
+export const useOptionalFloppyDrive = useOptional;
+export const useFloppyDrive = useRequired;

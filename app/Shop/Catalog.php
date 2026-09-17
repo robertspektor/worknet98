@@ -17,6 +17,7 @@ class Catalog
         $orders = Order::query()
             ->where('user_id', $player->id)
             ->where('product_type', $products->getModel()->getMorphClass())
+            ->orderBy('id')
             ->get()
             ->keyBy('product_id');
 

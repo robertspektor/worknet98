@@ -8,6 +8,7 @@ use App\Models\Order;
 use App\Models\User;
 use App\Work\LedgerReason;
 use App\Work\WalletCharge;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
 
@@ -25,6 +26,7 @@ class OrderPlacer
         $price = $product->salePrice() ?? throw new ActionRefused(ShopRefusal::NotForSale);
 
         return DB::transaction(function () use ($player, $product, $price): Order {
+            User::query()->whereKey($player->id)->lockForUpdate()->first();
             $this->refuseRepeatedOrder($player, $product);
             $this->walletCharge->charge($player, $price, LedgerReason::Purchase);
 
@@ -46,6 +48,7 @@ class OrderPlacer
         $isOrdered = Order::query()
             ->where('user_id', $player->id)
             ->whereMorphedTo('product', $product)
+            ->when($product->canBeOrderedRepeatedly(), fn (Builder $orders) => $orders->whereNull('unpacked_at'))
             ->exists();
 
         if ($isOrdered) {

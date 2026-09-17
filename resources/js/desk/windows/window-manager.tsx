@@ -1,7 +1,8 @@
 import type { ReactNode } from 'react';
-import { createContext, use, useReducer } from 'react';
+import { useReducer } from 'react';
 import { APPS } from '../apps/app-registry';
 import type { AppId } from '../apps/app-registry';
+import { createDeskContext } from '../state/create-desk-context';
 import { DESKTOP_BOUNDS } from '../screen/viewport';
 import { useAppLauncher } from './use-app-launcher';
 import type { Position, WindowState } from './window-state';
@@ -22,7 +23,8 @@ type WindowManager = {
     move: (id: string, position: Position) => void;
 };
 
-const WindowManagerContext = createContext<WindowManager | null>(null);
+const { Context, useRequired } =
+    createDeskContext<WindowManager>('WindowManager');
 
 export function WindowManagerProvider({ children }: { children: ReactNode }) {
     const [state, dispatch] = useReducer(windowReducer, initialWindowState);
@@ -50,7 +52,7 @@ export function WindowManagerProvider({ children }: { children: ReactNode }) {
     };
 
     return (
-        <WindowManagerContext value={manager}>
+        <Context value={manager}>
             <div
                 className={
                     launcher.isLaunching ? 'os-pointer is-busy' : 'os-pointer'
@@ -58,18 +60,8 @@ export function WindowManagerProvider({ children }: { children: ReactNode }) {
             >
                 {children}
             </div>
-        </WindowManagerContext>
+        </Context>
     );
 }
 
-export function useWindowManager(): WindowManager {
-    const manager = use(WindowManagerContext);
-
-    if (!manager) {
-        throw new Error(
-            'useWindowManager must be used inside WindowManagerProvider.',
-        );
-    }
-
-    return manager;
-}
+export const useWindowManager = useRequired;

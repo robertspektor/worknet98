@@ -3,8 +3,10 @@ import { usePlaceable } from '../placement/use-placeable';
 
 export function StickyNote() {
     const { t } = useTranslation();
-    const { className, ...placeable } =
-        usePlaceable<HTMLDivElement>('sticky-note');
+    const { className, ...placeable } = usePlaceable<HTMLDivElement>(
+        'sticky-note',
+        'anywhere',
+    );
 
     return (
         <div className={`sticky-note ${className}`} {...placeable}>

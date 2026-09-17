@@ -23,13 +23,14 @@ class CaseOpener
 
         foreach ($this->catalog->forCompany($employment->company) as $scripted) {
             if ($scripted->shift <= $shiftNumber && ! $opened->contains($scripted->definition->slug)) {
-                $this->open($shift, $scripted->definition);
+                $this->open($shift, $scripted);
             }
         }
     }
 
-    private function open(Shift $shift, CaseDefinition $definition): void
+    private function open(Shift $shift, ScriptedCase $scripted): void
     {
+        $definition = $scripted->definition;
         $employment = $shift->employment;
         $customer = $employment->branch()->customers()->where('slug', $definition->requestMail['customer'])->firstOrFail();
 
@@ -44,6 +45,10 @@ class CaseOpener
             'opened_at' => now(),
             'seen_at' => now(),
         ]);
+
+        if ($scripted->briefingMail !== null) {
+            $this->mailbox->deliver($shift->user, $this->mails->briefing($scripted->briefingMail, $employment), $employment);
+        }
 
         $this->mailbox->deliver($shift->user, $this->mails->request($definition, $customer), $employment);
 

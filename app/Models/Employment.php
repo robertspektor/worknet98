@@ -19,6 +19,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  * @property int $position_id
  * @property int $daily_salary
  * @property CarbonImmutable $hired_at
+ * @property CarbonImmutable $position_started_at
  * @property CarbonImmutable|null $ended_at
  * @property CarbonImmutable|null $created_at
  * @property CarbonImmutable|null $updated_at
@@ -27,7 +28,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  * @property-read Position $position
  * @property-read User $user
  */
-#[Fillable(['user_id', 'company_id', 'job_opening_id', 'position_id', 'daily_salary', 'hired_at', 'ended_at'])]
+#[Fillable(['user_id', 'company_id', 'job_opening_id', 'position_id', 'daily_salary', 'hired_at', 'position_started_at', 'ended_at'])]
 class Employment extends Model
 {
     /** @use HasFactory<EmploymentFactory> */
@@ -79,6 +80,14 @@ class Employment extends Model
     }
 
     /**
+     * @return HasMany<PromotionOffer, $this>
+     */
+    public function promotionOffers(): HasMany
+    {
+        return $this->hasMany(PromotionOffer::class);
+    }
+
+    /**
      * @return BelongsTo<Company, $this>
      */
     public function company(): BelongsTo
@@ -109,6 +118,7 @@ class Employment extends Model
     {
         return [
             'hired_at' => 'datetime',
+            'position_started_at' => 'datetime',
             'ended_at' => 'datetime',
         ];
     }

@@ -2,28 +2,22 @@
 
 namespace App\Cases\Templates;
 
+use App\Content\CompanyContentFile;
 use App\Models\Company;
-use Illuminate\Support\Facades\File;
 
 class CaseTemplateCatalog
 {
-    private const CONTENT_DIRECTORY = 'content/case_templates';
+    private const CONTENT_DIRECTORY = 'case_templates';
 
     /**
      * @return list<CaseTemplate>
      */
     public function forCompany(Company $company): array
     {
-        $path = database_path(self::CONTENT_DIRECTORY."/{$company->slug}.json");
-
-        if (! File::exists($path)) {
-            return [];
-        }
-
-        /** @var list<array<string, mixed>> $templates */
-        $templates = File::json($path, JSON_THROW_ON_ERROR);
-
-        return array_map($this->template(...), $templates);
+        return array_map(
+            $this->template(...),
+            CompanyContentFile::entries($company, self::CONTENT_DIRECTORY),
+        );
     }
 
     public function find(Company $company, string $slug): ?CaseTemplate

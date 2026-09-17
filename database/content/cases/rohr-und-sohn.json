@@ -2,6 +2,10 @@
     {
         "slug": "hollmann-tropfender-siphon",
         "shift": 1,
+        "briefing_mail": {
+            "subject": "Willkommen an Bord",
+            "body": "Moin,\n\nwillkommen bei Rohr & Sohn. Dein Platz ist der mit dem Computer. Der Stuhl wackelt, das ist Tradition.\n\nSo läuft das hier: Ein Kunde schreibt, du suchst im Einsatzplaner einen freien Monteur, der das auch kann, und buchst den Termin. Dann eine Bestätigungsmail an den Kunden, Aktion \"Termin bestätigen\". Und zum Schluss trägst du den Termin in deinen Kalender ein, sonst weiß es morgen keiner mehr. Du auch nicht.\n\nDrei Schritte. Jedes Mal. Deine erste Kundin tippt schon.\n\nBernd"
+        },
         "request_mail": {
             "customer": "margarete-hollmann",
             "subject": "Wasser unter der Spüle!!",

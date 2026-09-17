@@ -1,7 +1,9 @@
 <?php
 
+use App\FloppyDisks\DiskSource;
 use App\Models\FloppyDisk;
 use App\Models\Order;
+use App\Models\PlayerFloppyDisk;
 use App\Models\User;
 use Illuminate\Testing\TestResponse;
 
@@ -29,15 +31,31 @@ it('lists the parcels waiting on the desk', function () {
 
 it('moves the disk of an unpacked parcel into the disk box', function () {
     $this->freezeSecond();
-    $order = Order::factory()->delivered()->create();
-    $starter = FloppyDisk::factory()->starter()->create();
+    $disk = FloppyDisk::factory()->program('calculator')->create(['slug' => 'calculator']);
+    $order = Order::factory()->of($disk)->delivered()->create();
+    FloppyDisk::factory()->starter()->create(['slug' => 'welcome']);
 
     unpackParcel($order->user, $order)->assertNoContent();
 
     expect($order->fresh()?->unpacked_at?->equalTo(now()))->toBeTrue();
     $this->actingAs($order->user)
         ->getJson(route('api.v1.floppy-disks.index'))
-        ->assertJsonPath('data.*.id', [$order->product_id, $starter->id]);
+        ->assertJsonPath('data.*.slug', ['calculator', 'welcome']);
+    $bought = PlayerFloppyDisk::query()->where('source', DiskSource::Shop)->sole();
+    expect($bought->order_id)->toBe($order->id)
+        ->and($bought->is_write_protected)->toBeTrue()
+        ->and($bought->files()->orderBy('name')->pluck('name')->all())->toBe(['README.TXT', 'SETUP.EXE']);
+});
+
+it('puts every disk of an unpacked blank disk pack into the disk box, exactly once', function () {
+    $order = Order::factory()->of(FloppyDisk::factory()->forSale(8)->blankPack(3)->create())->delivered()->create();
+
+    unpackParcel($order->user, $order)->assertNoContent();
+    unpackParcel($order->user, $order)->assertNoContent();
+
+    $disks = PlayerFloppyDisk::query()->where('source', DiskSource::Shop)->get();
+    expect($disks)->toHaveCount(3)
+        ->and($disks->every(fn (PlayerFloppyDisk $disk): bool => $disk->user_id === $order->user_id && ! $disk->is_write_protected))->toBeTrue();
 });
 
 it('does not put ordered disks into other players boxes', function () {

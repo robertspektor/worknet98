@@ -1,5 +1,6 @@
 import { useTranslation } from '@/i18n/use-translation';
 import type { Email } from '@/types';
+import { PromotionOfferPanel } from './promotion-offer-panel';
 
 export function EmailReader({ email }: { email: Email | null }) {
     const { t } = useTranslation();
@@ -15,7 +16,7 @@ export function EmailReader({ email }: { email: Email | null }) {
     const isSent = email.folder === 'sent';
 
     return (
-        <article className="email-reader sunken">
+        <article key={email.id} className="email-reader sunken">
             <dl className="email-meta">
                 <dt>{t('inbox.from')}:</dt>
                 <dd>
@@ -40,6 +41,9 @@ export function EmailReader({ email }: { email: Email | null }) {
                 )}
             </dl>
             <div className="email-body">{email.body}</div>
+            {email.promotion_offer && (
+                <PromotionOfferPanel offer={email.promotion_offer} />
+            )}
         </article>
     );
 }

@@ -1,7 +1,13 @@
 import type { ReactNode } from 'react';
-import { createContext, use, useState } from 'react';
+import { useState } from 'react';
+import { createDeskContext } from '../state/create-desk-context';
 import type { IconName } from '../ui/pixel-art';
 import { DialogWindow } from './dialog-window';
+
+export type DialogInput = {
+    value: string;
+    maxLength: number;
+};
 
 export type DialogRequest = {
     title: string;
@@ -9,58 +15,67 @@ export type DialogRequest = {
     icon?: IconName;
     confirmLabel?: string;
     cancelLabel?: string;
+    input?: DialogInput;
+};
+
+export type DialogAnswer = {
+    confirmed: boolean;
+    value: string;
 };
 
 type OpenDialog = DialogRequest & {
     id: number;
-    resolve: (confirmed: boolean) => void;
+    resolve: (answer: DialogAnswer) => void;
 };
 
 type Dialogs = {
     confirm: (request: DialogRequest) => Promise<boolean>;
     alert: (request: Omit<DialogRequest, 'cancelLabel'>) => Promise<boolean>;
+    prompt: (
+        request: DialogRequest & { input: DialogInput },
+    ) => Promise<string | null>;
 };
 
-const DialogContext = createContext<Dialogs | null>(null);
+const { Context, useRequired } = createDeskContext<Dialogs>('Dialogs');
 
 export function DialogProvider({ children }: { children: ReactNode }) {
     const [dialogs, setDialogs] = useState<OpenDialog[]>([]);
 
     const show = (request: DialogRequest) =>
-        new Promise<boolean>((resolve) =>
+        new Promise<DialogAnswer>((resolve) =>
             setDialogs((current) => [
                 ...current,
                 { ...request, id: Date.now() + current.length, resolve },
             ]),
         );
 
-    const answer = (dialog: OpenDialog, confirmed: boolean) => {
+    const confirm = (request: DialogRequest) =>
+        show(request).then(({ confirmed }) => confirmed);
+
+    const prompt = (request: DialogRequest) =>
+        show(request).then(({ confirmed, value }) =>
+            confirmed ? value : null,
+        );
+
+    const answer = (dialog: OpenDialog, result: DialogAnswer) => {
         setDialogs((current) =>
             current.filter((open) => open.id !== dialog.id),
         );
-        dialog.resolve(confirmed);
+        dialog.resolve(result);
     };
 
     return (
-        <DialogContext value={{ confirm: show, alert: show }}>
+        <Context value={{ confirm, alert: confirm, prompt }}>
             {children}
             {dialogs.map((dialog) => (
                 <DialogWindow
                     key={dialog.id}
                     request={dialog}
-                    onAnswer={(confirmed) => answer(dialog, confirmed)}
+                    onAnswer={(result) => answer(dialog, result)}
                 />
             ))}
-        </DialogContext>
+        </Context>
     );
 }
 
-export function useDialogs(): Dialogs {
-    const dialogs = use(DialogContext);
-
-    if (!dialogs) {
-        throw new Error('useDialogs must be used inside DialogProvider.');
-    }
-
-    return dialogs;
-}
+export const useDialogs = useRequired;

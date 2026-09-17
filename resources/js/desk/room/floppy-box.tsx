@@ -1,7 +1,7 @@
 import type { CSSProperties, RefObject } from 'react';
 import { useEffect, useState } from 'react';
 import { useTranslation } from '@/i18n/use-translation';
-import type { FloppyDisk } from '@/types';
+import type { PlayerFloppyDisk } from '@/types';
 import { useFloppyDrive } from '../floppy/floppy-drive-provider';
 import { usePlaceable } from '../placement/use-placeable';
 import { useKeepInView } from '../ui/use-keep-in-view';
@@ -28,7 +28,7 @@ function useCloseOnOutsidePointer(
     }, [ref, isOpen, close]);
 }
 
-function DiskPicker({ onPick }: { onPick: (disk: FloppyDisk) => void }) {
+function DiskPicker({ onPick }: { onPick: (disk: PlayerFloppyDisk) => void }) {
     const { t } = useTranslation();
     const { disks, drive } = useFloppyDrive();
     const isDriveFree = drive.phase === 'empty';
@@ -73,7 +73,7 @@ export function FloppyBox() {
     useCloseOnOutsidePointer(placeable.ref, isOpen, () => setOpen(false));
     const stored = disks.filter((disk) => disk.id !== drive.diskId);
 
-    const pick = (disk: FloppyDisk) => {
+    const pick = (disk: PlayerFloppyDisk) => {
         setOpen(false);
         insert(disk);
     };

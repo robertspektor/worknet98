@@ -71,6 +71,7 @@ class Hiring
             'position_id' => $position->id,
             'daily_salary' => $application->jobOpening->daily_salary,
             'hired_at' => now(),
+            'position_started_at' => now(),
         ]);
     }
 }

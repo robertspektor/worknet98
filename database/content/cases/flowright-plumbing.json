@@ -2,6 +2,10 @@
     {
         "slug": "hollis-leaking-sink",
         "shift": 1,
+        "briefing_mail": {
+            "subject": "Welcome aboard",
+            "body": "Hey,\n\nwelcome to Flowright. Your desk is the one with the computer. The chair wobbles, that is tradition.\n\nHere is how it works: a customer writes, you find a free technician in ServicePlan who can actually do the job, and book the slot. Then a confirmation mail to the customer, action \"Confirm appointment\". And finally the appointment goes into your calendar, otherwise nobody remembers it tomorrow. Including you.\n\nThree steps. Every time. Your first customer is already typing.\n\nGary"
+        },
         "request_mail": {
             "customer": "margaret-hollis",
             "subject": "Water under my kitchen sink!!",

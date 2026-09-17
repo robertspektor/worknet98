@@ -130,3 +130,35 @@
 .tray-mail {
     height: 16px;
 }
+
+.promotion-offer {
+    margin: 12px 0 2px;
+}
+
+.promotion-offer-options {
+    display: grid;
+    gap: 4px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.promotion-offer-options li {
+    display: grid;
+    grid-template-columns: 1fr max-content 80px;
+    column-gap: 10px;
+    align-items: center;
+}
+
+.promotion-offer-title {
+    font-weight: bold;
+}
+
+.promotion-offer .app-actions {
+    justify-content: flex-end;
+    margin-top: 8px;
+}
+
+.promotion-offer-outcome {
+    margin: 0;
+}

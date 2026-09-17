@@ -14,6 +14,6 @@ readonly class ShopItem
 
     public function status(): ShopItemStatus
     {
-        return ShopItemStatus::of($this->order);
+        return ShopItemStatus::of($this->order, $this->product->canBeOrderedRepeatedly());
     }
 }

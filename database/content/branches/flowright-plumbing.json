@@ -18,13 +18,37 @@
                 "npc_address": "bev.mercer@flowright.wn"
             },
             {
+                "slug": "emergency-dispatcher",
+                "title": "Emergency Dispatcher",
+                "reports_to": "branch-manager",
+                "npc_name": "Tony Russo",
+                "npc_address": "tony.russo@flowright.wn",
+                "responsibilities": ["emergency-scheduling"],
+                "daily_salary": 130
+            },
+            {
+                "slug": "service-contract-planner",
+                "title": "Service Contract Planner",
+                "reports_to": "branch-manager",
+                "npc_name": "Linda Hargrove",
+                "npc_address": "linda.hargrove@flowright.wn",
+                "responsibilities": ["maintenance-scheduling"],
+                "daily_salary": 120
+            },
+            {
                 "slug": "office-assistant-1",
                 "title": "Office Assistant (Scheduling)",
                 "reports_to": "branch-manager",
                 "job_opening": "office-assistant-scheduling",
                 "npc_name": "Carl Denton",
                 "npc_address": "carl.denton@flowright.wn",
-                "responsibilities": ["scheduling"]
+                "responsibilities": ["scheduling"],
+                "daily_salary": 95,
+                "promotion": {
+                    "to": ["emergency-dispatcher", "service-contract-planner"],
+                    "excellent_reviews": 3,
+                    "clean_months": 2
+                }
             },
             {
                 "slug": "office-assistant-2",
@@ -33,7 +57,13 @@
                 "job_opening": "office-assistant-scheduling",
                 "npc_name": "Judy Pham",
                 "npc_address": "judy.pham@flowright.wn",
-                "responsibilities": ["scheduling"]
+                "responsibilities": ["scheduling"],
+                "daily_salary": 95,
+                "promotion": {
+                    "to": ["emergency-dispatcher", "service-contract-planner"],
+                    "excellent_reviews": 3,
+                    "clean_months": 2
+                }
             },
             {
                 "slug": "office-assistant-3",
@@ -42,7 +72,13 @@
                 "job_opening": "office-assistant-scheduling",
                 "npc_name": "Marcus Webb",
                 "npc_address": "marcus.webb@flowright.wn",
-                "responsibilities": ["scheduling"]
+                "responsibilities": ["scheduling"],
+                "daily_salary": 95,
+                "promotion": {
+                    "to": ["emergency-dispatcher", "service-contract-planner"],
+                    "excellent_reviews": 3,
+                    "clean_months": 2
+                }
             }
         ],
         "technicians": [

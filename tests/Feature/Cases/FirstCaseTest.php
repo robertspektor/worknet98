@@ -29,11 +29,32 @@ function handleHollisCase(User $player, Customer $hollis, string $technician, st
 it('delivers the customer request when the first shift starts', function () {
     workAs($this->player, 'POST', 'api.v1.shift.clock-in');
 
-    $request = Email::sole();
+    $request = Email::query()->where('sender_name', 'Margaret Hollis')->sole();
     expect($request->employment_id)->toBe($this->employment->id)
         ->and($request->sender_name)->toBe('Margaret Hollis')
         ->and($request->subject)->toBe('Water under my kitchen sink!!')
         ->and(WorkCase::sole()->status)->toBe(WorkCaseStatus::Open);
+});
+
+it('briefs the new hire on every step of the first case before the request arrives', function () {
+    workAs($this->player, 'POST', 'api.v1.shift.clock-in');
+
+    $briefing = Email::query()->where('subject', 'Welcome aboard')->sole();
+    expect($briefing->sender_name)->toBe('Gary Flowright')
+        ->and($briefing->employment_id)->toBe($this->employment->id)
+        ->and($briefing->id)->toBeLessThan(Email::query()->where('sender_name', 'Margaret Hollis')->sole()->id)
+        ->and($briefing->body)->toContain('ServicePlan')
+        ->and($briefing->body)->toContain('confirmation mail')
+        ->and($briefing->body)->toContain('calendar');
+});
+
+it('briefs the new hire only once', function () {
+    workAs($this->player, 'POST', 'api.v1.shift.clock-in');
+    workAs($this->player, 'POST', 'api.v1.shift.clock-out');
+    $this->travelTo('2026-09-22 09:00:00');
+    workAs($this->player, 'POST', 'api.v1.shift.clock-in');
+
+    expect(Email::query()->where('subject', 'Welcome aboard')->count())->toBe(1);
 });
 
 it('resolves the case with praise when it was planned well', function () {

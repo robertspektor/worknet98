@@ -20,9 +20,10 @@ class FloppyDiskFactory extends Factory
             'slug' => fake()->unique()->slug(2),
             'kind' => FloppyDiskKind::Data,
             'color' => 'black',
-            'program' => null,
             'is_starter' => false,
             'price' => null,
+            'pack_size' => 1,
+            'files' => [],
         ];
     }
 
@@ -36,8 +37,19 @@ class FloppyDiskFactory extends Factory
         return $this->state(fn (): array => ['is_starter' => true]);
     }
 
+    public function blankPack(int $packSize): static
+    {
+        return $this->state(fn (): array => ['kind' => FloppyDiskKind::Blank, 'pack_size' => $packSize]);
+    }
+
     public function program(string $program): static
     {
-        return $this->state(fn (): array => ['kind' => FloppyDiskKind::Game, 'program' => $program]);
+        return $this->state(fn (array $attributes): array => [
+            'kind' => FloppyDiskKind::Game,
+            'files' => [
+                ['name' => 'README.TXT', 'kind' => 'text', 'content_key' => "floppy_disk.{$attributes['slug']}.readme"],
+                ['name' => 'SETUP.EXE', 'kind' => 'setup', 'program' => $program, 'size_bytes' => 300_000],
+            ],
+        ]);
     }
 }

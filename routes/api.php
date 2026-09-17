@@ -9,9 +9,11 @@ use App\Http\Controllers\Api\V1\CompanySoftwareController;
 use App\Http\Controllers\Api\V1\CustomerController;
 use App\Http\Controllers\Api\V1\DeskPartInstallationController;
 use App\Http\Controllers\Api\V1\DeskPlacementController;
+use App\Http\Controllers\Api\V1\DiskFileController;
 use App\Http\Controllers\Api\V1\EmailController;
 use App\Http\Controllers\Api\V1\EmailReadController;
 use App\Http\Controllers\Api\V1\FloppyDiskController;
+use App\Http\Controllers\Api\V1\FloppyDiskLabelController;
 use App\Http\Controllers\Api\V1\HardwareShopController;
 use App\Http\Controllers\Api\V1\HomeComputerController;
 use App\Http\Controllers\Api\V1\InstalledProgramController;
@@ -20,6 +22,8 @@ use App\Http\Controllers\Api\V1\JobOpeningController;
 use App\Http\Controllers\Api\V1\NoteController;
 use App\Http\Controllers\Api\V1\ParcelController;
 use App\Http\Controllers\Api\V1\PlayerController;
+use App\Http\Controllers\Api\V1\PromotionOfferAcceptanceController;
+use App\Http\Controllers\Api\V1\PromotionOfferDeclineController;
 use App\Http\Controllers\Api\V1\ScheduleController;
 use App\Http\Controllers\Api\V1\ShiftController;
 use App\Http\Controllers\Api\V1\ShopController;
@@ -47,6 +51,13 @@ Route::prefix('v1')->middleware('auth:sanctum')->name('api.v1.')->group(function
         ->middleware('can:update,email')
         ->name('emails.read.store');
 
+    Route::post('promotion-offers/{promotionOffer}/acceptance', [PromotionOfferAcceptanceController::class, 'store'])
+        ->middleware('can:respond,promotionOffer')
+        ->name('promotion-offers.acceptance.store');
+    Route::post('promotion-offers/{promotionOffer}/decline', [PromotionOfferDeclineController::class, 'store'])
+        ->middleware('can:respond,promotionOffer')
+        ->name('promotion-offers.decline.store');
+
     Route::get('chat-messages', [ChatMessageController::class, 'index'])->name('chat-messages.index');
     Route::post('chat-messages/read', [ChatReadController::class, 'store'])->name('chat-messages.read.store');
     Route::post('chat-messages/{chatMessage}/replies', [ChatReplyController::class, 'store'])
@@ -71,10 +82,22 @@ Route::prefix('v1')->middleware('auth:sanctum')->name('api.v1.')->group(function
         ->middleware('can:delete,calendarEntry')
         ->name('calendar-entries.destroy');
     Route::get('floppy-disks', [FloppyDiskController::class, 'index'])->name('floppy-disks.index');
+    Route::put('floppy-disks/{disk}/label', [FloppyDiskLabelController::class, 'update'])
+        ->middleware('can:label,disk')
+        ->name('floppy-disks.label.update');
+    Route::get('floppy-disks/{disk}/files', [DiskFileController::class, 'index'])
+        ->middleware('can:view,disk')
+        ->name('floppy-disks.files.index');
+    Route::post('floppy-disks/{disk}/files', [DiskFileController::class, 'store'])
+        ->middleware('can:write,disk')
+        ->name('floppy-disks.files.store');
+    Route::delete('disk-files/{diskFile}', [DiskFileController::class, 'destroy'])
+        ->middleware('can:delete,diskFile')
+        ->name('disk-files.destroy');
     Route::get('installed-programs', [InstalledProgramController::class, 'index'])->name('installed-programs.index');
-    Route::post('floppy-disks/{floppyDisk}/installation', [InstalledProgramController::class, 'store'])
-        ->middleware('can:install,floppyDisk')
-        ->name('floppy-disks.installation.store');
+    Route::post('disk-files/{diskFile}/installation', [InstalledProgramController::class, 'store'])
+        ->middleware('can:install,diskFile')
+        ->name('disk-files.installation.store');
 
     Route::get('shop/floppy-disks', [ShopController::class, 'index'])->name('shop.floppy-disks.index');
     Route::post('shop/floppy-disks/{floppyDisk}/orders', [ShopController::class, 'store'])->name('shop.floppy-disks.orders.store');

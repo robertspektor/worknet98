@@ -29,6 +29,7 @@ class EmploymentFactory extends Factory
             ])->id,
             'daily_salary' => 100,
             'hired_at' => now(),
+            'position_started_at' => fn (array $attributes) => $attributes['hired_at'],
         ];
     }
 

@@ -74,5 +74,157 @@
             "subject": "Radiator at :customer's",
             "body": "Hey,\n\n:customer called again about the cold radiator. Please get someone out there and let them know when.\n\nGary"
         }
+    },
+    {
+        "slug": "burst-pipe",
+        "responsibility": "emergency-scheduling",
+        "skill": "plumbing",
+        "urgent_within_work_days": 1,
+        "request_mail": {
+            "subject": "EMERGENCY: burst pipe",
+            "body": "Hello?!\n\na pipe in my basement just burst. There is a fountain now. I did not order a fountain.\n\nI turned off something that looked like the main valve. It might have been the washing machine. Please send someone as fast as humanly possible. :availability\n\n:customer"
+        },
+        "availability_notes": {
+            "morning": "I have to leave for work at noon, water or no water, so mornings only.",
+            "afternoon": "I am stuck at work until lunch, so afternoons please.",
+            "any": "I am not going anywhere. I am guarding the fountain."
+        },
+        "outcome_feedback": {
+            "availability": {
+                "met": ":customer opened the door in rubber boots. Right on time.",
+                "missed": "Nobody opened the door at :customer's. The technician could hear the water, though."
+            },
+            "skill": {
+                "met": "And a plumber for a burst pipe. Textbook.",
+                "missed": "You sent a heating specialist to a flooded basement. He said it was not his department and left dry."
+            },
+            "urgency": {
+                "met": "Next day. The basement is a basement again.",
+                "missed": "By the time we showed up, :customer was renting the basement out as an indoor pool."
+            }
+        },
+        "feedback_mail": {
+            "subject": "Re: :customer (emergency)",
+            "intro": "Hey,\n\nabout the burst pipe at :customer's. Emergencies are where we earn our reputation. Or lose it.",
+            "outro": "Emergencies do not wait. Neither does my blood pressure.\n\nGary"
+        },
+        "reminder_mail": {
+            "subject": ":customer - still flooding?",
+            "body": "Hey,\n\n:customer still has water where water should not be. This is the emergency desk. Emergency means now, not eventually.\n\nGary"
+        }
+    },
+    {
+        "slug": "heating-breakdown",
+        "responsibility": "emergency-scheduling",
+        "skill": "heating",
+        "urgent_within_work_days": 1,
+        "request_mail": {
+            "subject": "Heating is dead, it is freezing",
+            "body": "Hello,\n\nour boiler made a sound like a sad trombone and stopped. The house is at 54 degrees and dropping. The cat has moved into the oven drawer. The oven is off, do not worry.\n\nPlease send someone urgently. :availability\n\n:customer"
+        },
+        "availability_notes": {
+            "morning": "Someone is home in the mornings.",
+            "afternoon": "We are only home in the afternoons.",
+            "any": "We are home all day. Wearing all our coats."
+        },
+        "outcome_feedback": {
+            "availability": {
+                "met": ":customer let the technician in and offered him a blanket.",
+                "missed": "Nobody was home at :customer's. Probably went somewhere warm."
+            },
+            "skill": {
+                "met": "A heating specialist for a dead boiler. Good.",
+                "missed": "You sent a plumber to a dead boiler. He tightened a pipe for moral support."
+            },
+            "urgency": {
+                "met": "Warm again by the next day. The cat has left the oven drawer.",
+                "missed": "It took so long that :customer's family now speaks fluent shivering."
+            }
+        },
+        "feedback_mail": {
+            "subject": "Re: :customer (emergency)",
+            "intro": "Hey,\n\nabout the boiler at :customer's.",
+            "outro": "Warm houses, happy customers. Cold houses, angry reviews.\n\nGary"
+        },
+        "reminder_mail": {
+            "subject": ":customer is freezing",
+            "body": "Hey,\n\n:customer is still sitting in a cold house. Emergency desk, remember? Book someone.\n\nGary"
+        }
+    },
+    {
+        "slug": "annual-boiler-service",
+        "responsibility": "maintenance-scheduling",
+        "skill": "heating",
+        "urgent_within_work_days": 5,
+        "request_mail": {
+            "subject": "Annual boiler service",
+            "body": "Dear Flowright team,\n\nper our service contract, our boiler is due for its annual check. It works fine. It has always worked fine. I would like to keep it that way, contractually.\n\n:availability\n\nKind regards,\n:customer"
+        },
+        "availability_notes": {
+            "morning": "Mornings suit us best.",
+            "afternoon": "Please schedule it for an afternoon.",
+            "any": "Any time within the next week is fine."
+        },
+        "outcome_feedback": {
+            "availability": {
+                "met": "The service visit fit :customer's schedule perfectly. Contract customers notice that.",
+                "missed": "Nobody was home at :customer's for the service visit. Contract customers renew contracts. Or they do not."
+            },
+            "skill": {
+                "met": "A heating specialist for a boiler service, as the contract says.",
+                "missed": "You sent a plumber to service a boiler. He read the manual out loud. The customer was not impressed."
+            },
+            "urgency": {
+                "met": "And within the service window. Clean paperwork.",
+                "missed": "We missed the service window. Legal wants a word. Legal always wants a word."
+            }
+        },
+        "feedback_mail": {
+            "subject": "Re: :customer (service contract)",
+            "intro": "Hi,\n\nabout the service visit at :customer's.",
+            "outro": "Contracts are recurring revenue. Recurring revenue is my favorite kind of revenue.\n\nGary"
+        },
+        "reminder_mail": {
+            "subject": "Service visit at :customer's",
+            "body": "Hi,\n\nthe annual service at :customer's is still not scheduled. They pay us every year to remember this. Please remember this.\n\nGary"
+        }
+    },
+    {
+        "slug": "drain-inspection",
+        "responsibility": "maintenance-scheduling",
+        "skill": "plumbing",
+        "urgent_within_work_days": 5,
+        "request_mail": {
+            "subject": "Scheduled drain inspection",
+            "body": "Hello,\n\nour contract includes a yearly drain inspection. Nothing is blocked. My brother-in-law says that is exactly when you should check. He says a lot of things.\n\n:availability\n\nBest regards,\n:customer"
+        },
+        "availability_notes": {
+            "morning": "Mornings work for us.",
+            "afternoon": "Afternoons only, please.",
+            "any": "We are flexible."
+        },
+        "outcome_feedback": {
+            "availability": {
+                "met": ":customer was home and had cleared a path to the basement. Very professional.",
+                "missed": "The technician stood in front of a locked door at :customer's. The drains remain uninspected. And offended."
+            },
+            "skill": {
+                "met": "A plumber for the drains. As it should be.",
+                "missed": "You sent a heating specialist to inspect drains. He inspected the radiator instead. Out of habit."
+            },
+            "urgency": {
+                "met": "Well within the contract window.",
+                "missed": "Outside the contract window. The brother-in-law will hear about this."
+            }
+        },
+        "feedback_mail": {
+            "subject": "Re: :customer (service contract)",
+            "intro": "Hi,\n\nquick note on the drain inspection at :customer's.",
+            "outro": "Keep the contracts happy.\n\nGary"
+        },
+        "reminder_mail": {
+            "subject": "Drain inspection for :customer",
+            "body": "Hi,\n\nthe drain inspection for :customer is still open. The contract says yearly. Not whenever.\n\nGary"
+        }
     }
 ]

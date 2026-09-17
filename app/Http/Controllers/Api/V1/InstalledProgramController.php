@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Api\V1;
 
 use App\FloppyDisks\ProgramInstaller;
-use App\Models\FloppyDisk;
+use App\Models\DiskFile;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
@@ -16,9 +16,9 @@ class InstalledProgramController extends ApiController
         ]);
     }
 
-    public function store(Request $request, FloppyDisk $floppyDisk, ProgramInstaller $installer): JsonResponse
+    public function store(Request $request, DiskFile $diskFile, ProgramInstaller $installer): JsonResponse
     {
-        $installed = $installer->install($this->player($request), $floppyDisk);
+        $installed = $installer->install($this->player($request), $diskFile);
 
         return response()->json(['data' => $installed->program], $installed->wasRecentlyCreated ? 201 : 200);
     }

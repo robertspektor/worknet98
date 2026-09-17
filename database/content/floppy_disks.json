@@ -3,40 +3,91 @@
         "slug": "retrotron-welcome",
         "kind": "story",
         "color": "black",
-        "program": null,
         "is_starter": true,
-        "price": null
+        "price": null,
+        "files": [
+            {
+                "name": "README.TXT",
+                "kind": "text",
+                "content_key": "floppy_disk.retrotron-welcome.readme"
+            }
+        ]
     },
     {
         "slug": "minefield",
         "kind": "game",
         "color": "blue",
-        "program": "minefield",
         "is_starter": true,
-        "price": null
+        "price": null,
+        "files": [
+            {
+                "name": "README.TXT",
+                "kind": "text",
+                "content_key": "floppy_disk.minefield.readme"
+            },
+            {
+                "name": "SETUP.EXE",
+                "kind": "setup",
+                "program": "minefield",
+                "size_bytes": 318464
+            }
+        ]
     },
     {
         "slug": "backup",
         "kind": "data",
         "color": "red",
-        "program": null,
         "is_starter": true,
-        "price": null
+        "price": null,
+        "files": []
+    },
+    {
+        "slug": "blank-disks",
+        "kind": "blank",
+        "color": "black",
+        "is_starter": false,
+        "price": 8,
+        "pack_size": 3,
+        "files": []
     },
     {
         "slug": "calculator",
         "kind": "program",
         "color": "green",
-        "program": "calculator",
         "is_starter": false,
-        "price": 40
+        "price": 40,
+        "files": [
+            {
+                "name": "README.TXT",
+                "kind": "text",
+                "content_key": "floppy_disk.calculator.readme"
+            },
+            {
+                "name": "SETUP.EXE",
+                "kind": "setup",
+                "program": "calculator",
+                "size_bytes": 97152
+            }
+        ]
     },
     {
         "slug": "notepad",
         "kind": "program",
         "color": "yellow",
-        "program": "notepad",
         "is_starter": false,
-        "price": 60
+        "price": 60,
+        "files": [
+            {
+                "name": "README.TXT",
+                "kind": "text",
+                "content_key": "floppy_disk.notepad.readme"
+            },
+            {
+                "name": "SETUP.EXE",
+                "kind": "setup",
+                "program": "notepad",
+                "size_bytes": 146880
+            }
+        ]
     }
 ]

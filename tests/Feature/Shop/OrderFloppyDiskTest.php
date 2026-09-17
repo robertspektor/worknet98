@@ -74,6 +74,20 @@ it('refuses a second order of the same disk without charging again', function ()
         ->and(app(Wallet::class)->balanceOf($player))->toBe(60);
 });
 
+it('sells blank disks again once the previous pack is unpacked', function () {
+    $player = playerWithCredits(100);
+    $blankDisks = FloppyDisk::factory()->forSale(8)->blankPack(3)->create();
+    orderDisk($player, $blankDisks)->assertCreated();
+
+    orderDisk($player, $blankDisks)->assertUnprocessable()->assertJsonPath('refusal', 'already_ordered');
+
+    Order::sole()->update(['delivered_at' => now(), 'unpacked_at' => now()]);
+
+    orderDisk($player, $blankDisks)->assertCreated();
+    expect(Order::count())->toBe(2)
+        ->and(app(Wallet::class)->balanceOf($player))->toBe(84);
+});
+
 it('requires a signed-in player to order', function () {
     $this->postJson(route('api.v1.shop.floppy-disks.orders.store', FloppyDisk::factory()->forSale()->create()))->assertUnauthorized();
 });

@@ -1,48 +1,59 @@
 <?php
 
-use App\Models\FloppyDisk;
+use App\Models\DiskFile;
 use App\Models\InstalledProgram;
+use App\Models\PlayerFloppyDisk;
 use App\Models\User;
 use Illuminate\Testing\TestResponse;
 
-function installFrom(User $player, FloppyDisk $disk): TestResponse
+function installFrom(User $player, DiskFile $file): TestResponse
 {
-    return test()->actingAs($player)->postJson(route('api.v1.floppy-disks.installation.store', $disk));
+    return test()->actingAs($player)->postJson(route('api.v1.disk-files.installation.store', $file));
 }
 
-it('installs the program from a disk in the disk box', function () {
+function setupFileOf(User $player, string $program = 'minefield'): DiskFile
+{
+    return DiskFile::factory()->setup($program)->create([
+        'player_floppy_disk_id' => PlayerFloppyDisk::factory()->create(['user_id' => $player->id]),
+    ]);
+}
+
+it('installs the program from the setup file on a disk of the player', function () {
     $this->freezeSecond();
     $player = User::factory()->create();
-    $disk = FloppyDisk::factory()->starter()->program('minefield')->create();
+    $setup = setupFileOf($player);
 
-    installFrom($player, $disk)
+    installFrom($player, $setup)
         ->assertCreated()
         ->assertExactJson(['data' => 'minefield']);
 
     $installed = InstalledProgram::sole();
     expect($installed->user_id)->toBe($player->id)
-        ->and($installed->floppy_disk_id)->toBe($disk->id)
+        ->and($installed->floppy_disk_id)->toBe($setup->disk->floppy_disk_id)
         ->and($installed->installed_at->equalTo(now()))->toBeTrue();
 });
 
 it('keeps a program installed only once', function () {
     $player = User::factory()->create();
-    $disk = FloppyDisk::factory()->starter()->program('minefield')->create();
-    installFrom($player, $disk)->assertCreated();
+    $setup = setupFileOf($player);
+    installFrom($player, $setup)->assertCreated();
 
-    installFrom($player, $disk)->assertOk()->assertExactJson(['data' => 'minefield']);
+    installFrom($player, $setup)->assertOk()->assertExactJson(['data' => 'minefield']);
 
     expect(InstalledProgram::count())->toBe(1);
 });
 
-it('refuses to install from a disk without a program', function () {
-    installFrom(User::factory()->create(), FloppyDisk::factory()->starter()->create())->assertForbidden();
+it('refuses to install from a text file', function () {
+    $player = User::factory()->create();
+    $text = DiskFile::factory()->create(['player_floppy_disk_id' => PlayerFloppyDisk::factory()->create(['user_id' => $player->id])]);
+
+    installFrom($player, $text)->assertForbidden();
 
     expect(InstalledProgram::count())->toBe(0);
 });
 
-it('refuses to install from a disk that is not in the disk box', function () {
-    installFrom(User::factory()->create(), FloppyDisk::factory()->program('minefield')->create())->assertForbidden();
+it('refuses to install from a disk of another player', function () {
+    installFrom(User::factory()->create(), setupFileOf(User::factory()->create()))->assertForbidden();
 
     expect(InstalledProgram::count())->toBe(0);
 });
@@ -60,6 +71,6 @@ it('lists the installed programs of the player in installation order', function 
 });
 
 it('requires a signed-in player to install programs', function () {
-    $this->postJson(route('api.v1.floppy-disks.installation.store', FloppyDisk::factory()->starter()->program('minefield')->create()))
+    $this->postJson(route('api.v1.disk-files.installation.store', setupFileOf(User::factory()->create())))
         ->assertUnauthorized();
 });

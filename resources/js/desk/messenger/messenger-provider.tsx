@@ -1,5 +1,5 @@
 import type { ReactNode } from 'react';
-import { createContext, use, useEffect, useRef, useState } from 'react';
+import { useState } from 'react';
 import { index as chatMessagesIndex } from '@/routes/api/v1/chat-messages';
 import { store as markReadStore } from '@/routes/api/v1/chat-messages/read';
 import { store as repliesStore } from '@/routes/api/v1/chat-messages/replies';
@@ -7,6 +7,8 @@ import type { ChatMessage } from '@/types';
 import { getJson, postJson } from '../api/game-api';
 import { useEdition } from '../computer/edition-context';
 import { sound } from '../sound/sound';
+import { createDeskContext } from '../state/create-desk-context';
+import { usePolledResource } from '../state/use-polled-resource';
 import {
     markAllRead,
     newIncoming,
@@ -27,7 +29,9 @@ type Messenger = {
     reply: (message: ChatMessage, replySlug: string) => Promise<void>;
 };
 
-const MessengerContext = createContext<Messenger | null>(null);
+const { Context, useRequired } = createDeskContext<Messenger>('Messenger');
+
+export const useMessenger = useRequired;
 
 function fetchMessages(): Promise<ChatMessage[]> {
     return getJson<{ data: ChatMessage[] }>(chatMessagesIndex.url()).then(
@@ -35,45 +39,25 @@ function fetchMessages(): Promise<ChatMessage[]> {
     );
 }
 
-function usePolledMessages(isEnabled: boolean) {
-    const [messages, setMessages] = useState<ChatMessage[] | null>(null);
-    const [arrival, setArrival] = useState<ChatMessage | null>(null);
-    const previous = useRef<ChatMessage[] | null>(null);
-
-    const refresh = () =>
-        fetchMessages()
-            .then((next) => {
-                const arrived =
-                    previous.current && newIncoming(previous.current, next);
-
-                if (arrived) {
-                    sound.chat();
-                    setArrival(arrived);
-                }
-                previous.current = next;
-                setMessages(next);
-            })
-            .catch(() => undefined);
-
-    useEffect(() => {
-        if (!isEnabled) {
-            return;
-        }
-
-        void refresh();
-        const timer = setInterval(() => void refresh(), POLL_INTERVAL_MS);
-
-        return () => clearInterval(timer);
-    }, [isEnabled]);
-
-    return { messages, setMessages, arrival, setArrival, refresh };
-}
-
 export function MessengerProvider({ children }: { children: ReactNode }) {
     const edition = useEdition();
-    const { messages, setMessages, arrival, setArrival, refresh } =
-        usePolledMessages(edition.apps.includes('messenger'));
+    const [arrival, setArrival] = useState<ChatMessage | null>(null);
     const [typingContact, setTypingContact] = useState<string | null>(null);
+    const {
+        value: messages,
+        setValue: setMessages,
+        refresh,
+    } = usePolledResource(fetchMessages, POLL_INTERVAL_MS, {
+        isEnabled: edition.apps.includes('messenger'),
+        onArrival: (next, previous) => {
+            const arrived = newIncoming(previous, next);
+
+            if (arrived) {
+                sound.chat();
+                setArrival(arrived);
+            }
+        },
+    });
 
     const readAll = () => {
         if (messages && unreadCount(messages) > 0) {
@@ -99,7 +83,7 @@ export function MessengerProvider({ children }: { children: ReactNode }) {
     };
 
     return (
-        <MessengerContext
+        <Context
             value={{
                 messages,
                 unreadCount: unreadCount(messages ?? []),
@@ -111,16 +95,6 @@ export function MessengerProvider({ children }: { children: ReactNode }) {
             }}
         >
             {children}
-        </MessengerContext>
+        </Context>
     );
-}
-
-export function useMessenger(): Messenger {
-    const messenger = use(MessengerContext);
-
-    if (!messenger) {
-        throw new Error('useMessenger must be used inside MessengerProvider.');
-    }
-
-    return messenger;
 }

@@ -29,6 +29,14 @@ class CaseMails
         return $this->fromSuperior($employment, $mail['subject'], implode("\n\n", [$mail['intro'], ...$feedback, $mail['outro']]));
     }
 
+    /**
+     * @param  array{subject: string, body: string}  $briefingMail
+     */
+    public function briefing(array $briefingMail, Employment $employment): EmailDraft
+    {
+        return $this->fromSuperior($employment, $briefingMail['subject'], $briefingMail['body']);
+    }
+
     public function reminder(CaseDefinition $definition, Employment $employment): EmailDraft
     {
         return $this->fromSuperior($employment, $definition->reminderMail['subject'], $definition->reminderMail['body']);

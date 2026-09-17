@@ -29,6 +29,7 @@ class EmailResource extends JsonResource
             'recipient_name' => $this->recipient_name,
             'recipient_address' => $this->recipient_address,
             'action' => $this->action?->value,
+            'promotion_offer' => $this->promotionOffer === null ? null : new PromotionOfferResource($this->promotionOffer),
         ];
     }
 }

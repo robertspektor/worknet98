@@ -2,21 +2,19 @@
 
 namespace App\Workplace;
 
+use App\Content\CompanyContentFile;
 use App\Models\Company;
-use Illuminate\Support\Facades\File;
 
 class CompanySoftwareCatalog
 {
-    private const CONTENT_DIRECTORY = 'content/company_software';
+    private const CONTENT_DIRECTORY = 'company_software';
 
     /**
      * @return array<string, string>
      */
     public function appNamesFor(Company $company): array
     {
-        $path = database_path(self::CONTENT_DIRECTORY."/{$company->slug}.json");
-
         /** @var array<string, string> */
-        return File::exists($path) ? File::json($path, JSON_THROW_ON_ERROR)['app_names'] : [];
+        return CompanyContentFile::data($company, self::CONTENT_DIRECTORY)['app_names'] ?? [];
     }
 }

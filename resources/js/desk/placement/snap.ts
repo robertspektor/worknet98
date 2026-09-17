@@ -52,3 +52,21 @@ export function snapToSurface(
         y: clamp((restingY(target, bottom) - room.top) / room.height, 0, 1),
     };
 }
+
+export function stickWhereDropped(item: Box, room: Box): Placement {
+    const centerX = clamp(
+        item.left + item.width / 2,
+        room.left + item.width / 2,
+        room.left + room.width - item.width / 2,
+    );
+    const bottom = clamp(
+        item.top + item.height,
+        room.top + item.height,
+        room.top + room.height,
+    );
+
+    return {
+        x: (centerX - room.left) / room.width,
+        y: (bottom - room.top) / room.height,
+    };
+}

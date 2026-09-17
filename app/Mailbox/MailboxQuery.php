@@ -25,6 +25,7 @@ class MailboxQuery
                 fn ($query) => $query->where('employment_id', $employment?->id),
                 fn ($query) => $query->whereNull('employment_id'),
             )
+            ->with('promotionOffer.options.position')
             ->latest('received_at')
             ->latest('id')
             ->get();

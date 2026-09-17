@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\Attributes\Fillable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 /**
  * @property int $id
@@ -28,6 +29,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property CarbonImmutable|null $created_at
  * @property CarbonImmutable|null $updated_at
  * @property-read User $user
+ * @property-read PromotionOffer|null $promotionOffer
  */
 #[Fillable(['user_id', 'sender_name', 'sender_address', 'subject', 'body', 'received_at', 'read_at', 'employment_id', 'folder', 'recipient_name', 'recipient_address', 'action'])]
 class Email extends Model
@@ -41,6 +43,14 @@ class Email extends Model
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
+    }
+
+    /**
+     * @return HasOne<PromotionOffer, $this>
+     */
+    public function promotionOffer(): HasOne
+    {
+        return $this->hasOne(PromotionOffer::class);
     }
 
     /**

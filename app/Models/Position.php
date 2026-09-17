@@ -6,9 +6,11 @@ use Carbon\CarbonImmutable;
 use Database\Factories\PositionFactory;
 use Illuminate\Database\Eloquent\Attributes\Fillable;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 
@@ -22,14 +24,18 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
  * @property string $npc_name
  * @property string $npc_address
  * @property list<string> $responsibilities
+ * @property int|null $daily_salary
+ * @property int|null $promotion_excellent_reviews
+ * @property int|null $promotion_clean_months
  * @property CarbonImmutable|null $created_at
  * @property CarbonImmutable|null $updated_at
  * @property-read Branch $branch
  * @property-read JobOpening|null $jobOpening
  * @property-read Position|null $reportsTo
  * @property-read Employment|null $holder
+ * @property-read Collection<int, Position> $promotionTargets
  */
-#[Fillable(['branch_id', 'job_opening_id', 'reports_to_position_id', 'slug', 'title', 'npc_name', 'npc_address', 'responsibilities'])]
+#[Fillable(['branch_id', 'job_opening_id', 'reports_to_position_id', 'slug', 'title', 'npc_name', 'npc_address', 'responsibilities', 'daily_salary', 'promotion_excellent_reviews', 'promotion_clean_months'])]
 class Position extends Model
 {
     /** @use HasFactory<PositionFactory> */
@@ -70,6 +76,14 @@ class Position extends Model
     public function holder(): HasOne
     {
         return $this->hasOne(Employment::class)->whereNull('ended_at');
+    }
+
+    /**
+     * @return BelongsToMany<Position, $this>
+     */
+    public function promotionTargets(): BelongsToMany
+    {
+        return $this->belongsToMany(Position::class, 'position_promotions', 'position_id', 'target_position_id')->withTimestamps();
     }
 
     /**

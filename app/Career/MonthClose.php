@@ -2,6 +2,7 @@
 
 namespace App\Career;
 
+use App\Career\Promotions\PromotionOfferer;
 use App\Cases\MetricBook;
 use App\Game\GameClock;
 use App\Mailbox\Mailbox;
@@ -24,6 +25,7 @@ class MonthClose
         private readonly ReviewLetter $letter,
         private readonly Mailbox $mailbox,
         private readonly Dismissal $dismissal,
+        private readonly PromotionOfferer $promotions,
     ) {}
 
     public function closeDue(): int
@@ -53,6 +55,7 @@ class MonthClose
 
             $review = PerformanceReview::create([
                 'employment_id' => $employment->id,
+                'position_id' => $employment->position_id,
                 'period' => $period->format('Y-m'),
                 'metric_totals' => $performance->totals,
                 'metric_changes' => $performance->changes,
@@ -67,7 +70,11 @@ class MonthClose
 
             if ($warnings >= self::WARNINGS_UNTIL_DISMISSAL) {
                 $this->dismissal->dismiss($employment);
+
+                return;
             }
+
+            $this->promotions->offerIfEligible($review);
         });
     }
 
@@ -80,6 +87,6 @@ class MonthClose
 
     private function warningsOf(Employment $employment): int
     {
-        return $employment->performanceReviews()->where('rating', ReviewRating::Poor)->count();
+        return $employment->performanceReviews()->where('position_id', $employment->position_id)->where('rating', ReviewRating::Poor)->count();
     }
 }

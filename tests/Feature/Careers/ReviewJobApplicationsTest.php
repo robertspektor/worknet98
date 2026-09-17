@@ -56,6 +56,8 @@ it('sends the job offer by mail in the company language', function () {
         ->and($email->body)->toContain('willkommen bei Nordwerk Logistik AG')
         ->and($email->body)->toContain('120 Credits pro Tag')
         ->and($email->body)->toContain('Gerd hat ein Banner gebastelt.')
+        ->and($email->body)->toContain('Ihr Firmenausweis liegt auf Ihrem Schreibtisch')
+        ->and($email->body)->not->toContain('folgen in Kürze')
         ->and($email->read_at)->toBeNull();
 });
 

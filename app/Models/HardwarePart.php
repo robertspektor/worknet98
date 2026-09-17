@@ -52,6 +52,11 @@ class HardwarePart extends Model implements Product
         return "hardware_part.{$this->slug}.label";
     }
 
+    public function canBeOrderedRepeatedly(): bool
+    {
+        return false;
+    }
+
     /**
      * @param  Builder<HardwarePart>  $query
      */

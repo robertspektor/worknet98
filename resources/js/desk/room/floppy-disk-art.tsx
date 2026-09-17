@@ -1,7 +1,13 @@
 import { useTranslation } from '@/i18n/use-translation';
-import type { FloppyDisk } from '@/types';
+import type { FloppyDiskKind } from '@/types';
+import { diskLabel } from '../floppy/disk-label';
 
-type DiskFace = Pick<FloppyDisk, 'slug' | 'kind' | 'color'>;
+type DiskFace = {
+    slug: string;
+    kind: FloppyDiskKind;
+    color: string;
+    label?: string | null;
+};
 
 export function FloppyDiskArt({ disk }: { disk: DiskFace }) {
     const { t } = useTranslation();
@@ -13,9 +19,7 @@ export function FloppyDiskArt({ disk }: { disk: DiskFace }) {
                 <span className="floppy-label-brand" aria-hidden="true">
                     RETROTRON HD
                 </span>
-                <span className="floppy-label-title">
-                    {t(`floppy_disk.${disk.slug}.label`)}
-                </span>
+                <span className="floppy-label-title">{diskLabel(disk, t)}</span>
             </span>
         </span>
     );
