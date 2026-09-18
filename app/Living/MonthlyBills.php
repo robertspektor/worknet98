@@ -43,7 +43,7 @@ class MonthlyBills
     {
         $costs = $this->catalog->forLocale($player->locale);
 
-        if ($costs === []) {
+        if ($costs === [] || ! $this->wasSeenIn($player, $period)) {
             return false;
         }
 
@@ -65,6 +65,11 @@ class MonthlyBills
         }
 
         return true;
+    }
+
+    private function wasSeenIn(User $player, CarbonImmutable $period): bool
+    {
+        return $player->last_seen_at !== null && $player->last_seen_at->gte($this->clock->toReal($period));
     }
 
     private function bill(LivingCost $cost, CarbonImmutable $period, string $locale): EmailDraft

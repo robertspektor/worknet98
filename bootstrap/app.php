@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Middleware\HandleInertiaRequests;
+use App\Http\Middleware\RecordLastSeen;
 use App\Http\Middleware\SetLocale;
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
@@ -24,10 +25,12 @@ return Application::configure(basePath: dirname(__DIR__))
 
         $middleware->api(append: [
             SetLocale::class,
+            RecordLastSeen::class,
         ]);
 
         $middleware->web(append: [
             SetLocale::class,
+            RecordLastSeen::class,
             HandleInertiaRequests::class,
             AddLinkHeadersForPreloadedAssets::class,
         ]);

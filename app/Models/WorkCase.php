@@ -17,6 +17,7 @@ use LogicException;
  * @property int $branch_id
  * @property int $position_id
  * @property int|null $employment_id
+ * @property int|null $taken_over_from_employment_id
  * @property int $customer_id
  * @property WorkCaseKind $kind
  * @property string $case_slug
@@ -27,6 +28,7 @@ use LogicException;
  * @property CarbonImmutable $opened_at
  * @property CarbonImmutable|null $npc_due_at
  * @property CarbonImmutable|null $seen_at
+ * @property CarbonImmutable|null $taken_over_at
  * @property CarbonImmutable|null $reminded_at
  * @property CarbonImmutable|null $resolved_at
  * @property CarbonImmutable|null $created_at
@@ -40,7 +42,7 @@ use LogicException;
  * @property-read Shipment|null $partShipment
  * @property-read CivilApplication|null $civilApplication
  */
-#[Fillable(['branch_id', 'position_id', 'employment_id', 'customer_id', 'kind', 'case_slug', 'world_event_id', 'shipment_id', 'civil_application_id', 'status', 'opened_at', 'npc_due_at', 'seen_at', 'reminded_at', 'resolved_at'])]
+#[Fillable(['branch_id', 'position_id', 'employment_id', 'taken_over_from_employment_id', 'taken_over_at', 'customer_id', 'kind', 'case_slug', 'world_event_id', 'shipment_id', 'civil_application_id', 'status', 'opened_at', 'npc_due_at', 'seen_at', 'reminded_at', 'resolved_at'])]
 class WorkCase extends Model
 {
     public function playerEmployment(): Employment

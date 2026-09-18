@@ -21,6 +21,7 @@ class UserFactory extends Factory
             'email_verified_at' => now(),
             'locale' => 'en',
             'age_confirmed_at' => now(),
+            'last_seen_at' => now(),
             'remember_token' => Str::random(10),
         ];
     }

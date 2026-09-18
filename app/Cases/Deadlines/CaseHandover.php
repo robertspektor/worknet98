@@ -46,6 +46,8 @@ class CaseHandover
         $workCase->update([
             'position_id' => $colleague->id,
             'employment_id' => null,
+            'taken_over_from_employment_id' => $workCase->employment_id,
+            'taken_over_at' => now(),
             'npc_due_at' => now()->addSeconds((int) config('game.npc_case_delay_seconds')),
         ]);
     }

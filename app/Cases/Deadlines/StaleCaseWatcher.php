@@ -3,12 +3,15 @@
 namespace App\Cases\Deadlines;
 
 use App\Models\WorkCase;
+use App\Work\Presence;
 
 class StaleCaseWatcher
 {
     public function __construct(
         private readonly CaseBooking $booking,
         private readonly CaseTakeover $takeover,
+        private readonly CaseHandover $handover,
+        private readonly Presence $presence,
     ) {}
 
     public function takeOverStale(): int
@@ -22,10 +25,15 @@ class StaleCaseWatcher
             ->with(['branch.company', 'customer.person', 'employment.position.reportsTo.person', 'employment.company', 'employment.user'])
             ->lazyById()
             ->each(function (WorkCase $workCase) use (&$takenOver): void {
-                if (! $this->booking->isBookedByAssignee($workCase)) {
-                    $this->takeover->takeOver($workCase);
-                    $takenOver++;
+                if ($this->booking->isBookedByAssignee($workCase)) {
+                    return;
                 }
+
+                $this->presence->isAway($workCase->playerEmployment())
+                    ? $this->handover->handOverToNpc($workCase)
+                    : $this->takeover->takeOver($workCase);
+
+                $takenOver++;
             });
 
         return $takenOver;

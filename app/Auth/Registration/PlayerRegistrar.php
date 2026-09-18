@@ -12,6 +12,7 @@ class PlayerRegistrar
         $player = User::createOrFirst(['email' => Str::lower($email)], [
             'locale' => $locale,
             'age_confirmed_at' => now(),
+            'last_seen_at' => now(),
         ]);
 
         return $player->wasRecentlyCreated ? $player : null;

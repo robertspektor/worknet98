@@ -50,6 +50,14 @@ return [
     'case_takeover_after_hours' => (int) env('GAME_CASE_TAKEOVER_AFTER_HOURS', 48),
 
     /*
+    | Hours without any activity after which a player counts as away. Cases
+    | of an away player are handed over quietly, without a reliability hit,
+    | and coming back brings the welcome back digest.
+    */
+
+    'absence_after_hours' => (int) env('GAME_ABSENCE_AFTER_HOURS', 20),
+
+    /*
     | Seconds until an ordered floppy disk arrives as a parcel. Leave empty
     | to deliver on the next game day. Parcels are delivered by the
     | scheduled shop:deliver-parcels command.
