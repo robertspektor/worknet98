@@ -1,6 +1,6 @@
 .DEFAULT_GOAL := help
 
-.PHONY: help setup dev build format lint phpstan test test-php test-js all migrate fresh
+.PHONY: help setup dev build format lint phpstan test test-php test-js all migrate fresh metrics
 
 help: ## Show available targets
 	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | awk 'BEGIN {FS = ":.*?## "}; {printf "  \033[36m%-10s\033[0m %s\n", $$1, $$2}'
@@ -44,3 +44,6 @@ migrate: ## Run pending migrations
 
 fresh: ## Drop and rebuild the local database with seed data
 	php artisan migrate:fresh --seed
+
+metrics: ## Print the alpha retention numbers
+	php artisan metrics:report

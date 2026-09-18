@@ -5,6 +5,7 @@ import { CompanySoftwareProvider } from '../company-software/company-software-pr
 import { DialogProvider, useDialogs } from '../dialogs/dialog-provider';
 import { MailboxProvider } from '../mailbox/mailbox-provider';
 import { MessengerProvider } from '../messenger/messenger-provider';
+import { useDesktopReached } from '../metrics/use-desktop-reached';
 import { WindowLayer } from '../windows/window-layer';
 import { WindowManagerProvider } from '../windows/window-manager';
 import { DesktopIcons } from './desktop-icons';
@@ -15,6 +16,8 @@ import { Taskbar } from './taskbar';
 function DesktopSurface({ onShutDown }: { onShutDown: () => void }) {
     const { t } = useTranslation();
     const dialogs = useDialogs();
+
+    useDesktopReached();
 
     const logOff = async () => {
         const confirmed = await dialogs.confirm({

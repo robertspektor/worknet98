@@ -12,6 +12,7 @@ use App\Http\Controllers\Api\V1\CompanySoftwareController;
 use App\Http\Controllers\Api\V1\CustomerController;
 use App\Http\Controllers\Api\V1\DeskPartInstallationController;
 use App\Http\Controllers\Api\V1\DeskPlacementController;
+use App\Http\Controllers\Api\V1\DesktopReachedController;
 use App\Http\Controllers\Api\V1\DiskFileController;
 use App\Http\Controllers\Api\V1\EmailController;
 use App\Http\Controllers\Api\V1\EmailReadController;
@@ -50,6 +51,7 @@ Route::prefix('v1')->middleware('auth:sanctum')->name('api.v1.')->group(function
     Route::post('home-computer/thermal-paste', [ThermalPasteController::class, 'store'])->name('home-computer.thermal-paste.store');
 
     Route::get('milestones', [MilestoneController::class, 'index'])->name('milestones.index');
+    Route::post('metrics/desktop-reached', [DesktopReachedController::class, 'store'])->name('metrics.desktop-reached.store');
 
     Route::get('desk-placements', [DeskPlacementController::class, 'index'])->name('desk-placements.index');
     Route::post('desk-placements', [DeskPlacementController::class, 'store'])->name('desk-placements.store');
