@@ -24,6 +24,7 @@ use App\Http\Controllers\Api\V1\HomeComputerController;
 use App\Http\Controllers\Api\V1\InstalledProgramController;
 use App\Http\Controllers\Api\V1\JobApplicationController;
 use App\Http\Controllers\Api\V1\JobOpeningController;
+use App\Http\Controllers\Api\V1\MilestoneController;
 use App\Http\Controllers\Api\V1\NoteController;
 use App\Http\Controllers\Api\V1\ParcelController;
 use App\Http\Controllers\Api\V1\PlayerController;
@@ -47,6 +48,8 @@ Route::prefix('v1')->middleware('auth:sanctum')->name('api.v1.')->group(function
         ->middleware('can:install,deskPart')
         ->name('home-computer.desk-parts.installation.store');
     Route::post('home-computer/thermal-paste', [ThermalPasteController::class, 'store'])->name('home-computer.thermal-paste.store');
+
+    Route::get('milestones', [MilestoneController::class, 'index'])->name('milestones.index');
 
     Route::get('desk-placements', [DeskPlacementController::class, 'index'])->name('desk-placements.index');
     Route::post('desk-placements', [DeskPlacementController::class, 'store'])->name('desk-placements.store');

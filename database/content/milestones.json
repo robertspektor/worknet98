@@ -1,0 +1,94 @@
+{
+    "senders": {
+        "de": {
+            "bank": {
+                "name": "Sparkasse Lindenstadt",
+                "address": "kundenservice@sparkasse-lindenstadt.wn"
+            },
+            "worknet": {
+                "name": "WorkNet 98",
+                "address": "laufbahn@worknet98.wn"
+            }
+        },
+        "en": {
+            "bank": {
+                "name": "Millbrook Savings Bank",
+                "address": "customerservice@millbrook-savings.wn"
+            },
+            "worknet": {
+                "name": "WorkNet 98",
+                "address": "career@worknet98.wn"
+            }
+        }
+    },
+    "milestones": [
+        {
+            "key": "first_job",
+            "sender": "worknet",
+            "condition": { "type": "employments", "count": 1 }
+        },
+        {
+            "key": "first_shift",
+            "condition": { "type": "shifts", "count": 1 }
+        },
+        {
+            "key": "first_case",
+            "condition": { "type": "cases_resolved", "count": 1 }
+        },
+        {
+            "key": "first_weekly_goal",
+            "condition": { "type": "weekly_goals", "count": 1 }
+        },
+        {
+            "key": "ten_cases",
+            "condition": { "type": "cases_resolved", "count": 10 }
+        },
+        {
+            "key": "first_parcel",
+            "condition": { "type": "orders_unpacked", "count": 1 }
+        },
+        {
+            "key": "savings_500",
+            "sender": "bank",
+            "condition": { "type": "balance", "amount": 500 }
+        },
+        {
+            "key": "first_excellent_review",
+            "sender": "worknet",
+            "condition": { "type": "excellent_reviews", "count": 1 }
+        },
+        {
+            "key": "own_processor",
+            "condition": { "type": "own_hardware_installed" }
+        },
+        {
+            "key": "savings_2000",
+            "sender": "bank",
+            "condition": { "type": "balance", "amount": 2000 }
+        },
+        {
+            "key": "first_promotion",
+            "sender": "worknet",
+            "condition": { "type": "promotions", "count": 1 }
+        },
+        {
+            "key": "fifty_cases",
+            "condition": { "type": "cases_resolved", "count": 50 }
+        },
+        {
+            "key": "employee_of_the_month",
+            "sender": "worknet",
+            "condition": { "type": "employee_awards", "count": 1 }
+        },
+        {
+            "key": "savings_10000",
+            "sender": "bank",
+            "condition": { "type": "balance", "amount": 10000 }
+        },
+        {
+            "key": "savings_50000",
+            "sender": "bank",
+            "condition": { "type": "balance", "amount": 50000 }
+        }
+    ]
+}

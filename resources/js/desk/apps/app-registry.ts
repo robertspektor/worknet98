@@ -14,6 +14,7 @@ import { MessengerApp } from './messenger/messenger-app';
 import { MinefieldApp } from './minefield/minefield-app';
 import { MyComputerApp } from './my-computer-app';
 import { NotepadApp } from './notepad/notepad-app';
+import { PersonalRecordApp } from './personal-record/personal-record-app';
 import { RecycleBinApp } from './recycle-bin-app';
 import { RegistryApp } from './registry/registry-app';
 import { ServicePlanApp } from './service-plan/service-plan-app';
@@ -149,6 +150,12 @@ export const APPS = {
         icon: 'notepad',
         size: { width: 420, height: 320 },
         component: NotepadApp,
+    },
+    'personal-record': {
+        titleKey: 'desktop.personal_record',
+        icon: 'record',
+        size: { width: 400, height: 420 },
+        component: PersonalRecordApp,
     },
 } satisfies Record<string, AppDefinition>;
 

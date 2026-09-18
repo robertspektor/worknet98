@@ -1,9 +1,12 @@
 <?php
 
+use App\Cases\WorkCaseKind;
+use App\Cases\WorkCaseStatus;
 use App\Logistics\TourExecutor;
 use App\Models\Branch;
 use App\Models\CivilApplication;
 use App\Models\Company;
+use App\Models\Customer;
 use App\Models\Driver;
 use App\Models\Employment;
 use App\Models\JobOpening;
@@ -23,6 +26,23 @@ use Tests\TestCase;
 pest()->extend(TestCase::class)
     ->use(RefreshDatabase::class)
     ->in('Feature');
+
+function closeCases(Employment $employment, int $count): void
+{
+    $branch = $employment->position->branch;
+
+    Customer::query()->whereBelongsTo($branch)->take($count)->get()->each(fn (Customer $customer) => WorkCase::create([
+        'branch_id' => $branch->id,
+        'position_id' => $employment->position_id,
+        'employment_id' => $employment->id,
+        'customer_id' => $customer->id,
+        'kind' => WorkCaseKind::Template,
+        'case_slug' => 'leaking-pipe',
+        'status' => WorkCaseStatus::Resolved,
+        'opened_at' => now()->subHours(2),
+        'resolved_at' => now(),
+    ]));
+}
 
 function playerOnDutyAt(Company|Branch $workplace): User
 {

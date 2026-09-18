@@ -6,6 +6,7 @@ export type * from './game-clock';
 export type * from './hardware';
 export type * from './mailbox';
 export type * from './messenger';
+export type * from './milestones';
 export type * from './office';
 export type * from './player';
 export type * from './registry';

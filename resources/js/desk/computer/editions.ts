@@ -30,6 +30,7 @@ export const HOME_EDITION: Edition = {
         'worknet',
         'browser',
         'mail',
+        'personal-record',
         'control-panel',
         'recycle-bin',
     ],

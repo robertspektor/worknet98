@@ -197,3 +197,55 @@
     color: #006000;
     font-weight: bold;
 }
+
+.personal-record {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    box-sizing: border-box;
+    padding: 10px;
+}
+
+.personal-record-progress {
+    margin: 6px 0 8px;
+    font-variant-numeric: tabular-nums;
+}
+
+.personal-record-list {
+    flex: 1;
+    overflow-y: auto;
+    margin: 0;
+    padding: 6px;
+    list-style: none;
+    background: #fff;
+}
+
+.personal-record-entry {
+    display: flex;
+    gap: 6px;
+    padding: 4px 2px;
+}
+
+.personal-record-entry + .personal-record-entry {
+    border-top: 1px solid var(--face);
+}
+
+.personal-record-mark {
+    width: 12px;
+    text-align: center;
+    color: var(--shadow);
+}
+
+.personal-record-entry.is-achieved .personal-record-mark {
+    color: #006000;
+    font-weight: bold;
+}
+
+.personal-record-body {
+    display: flex;
+    flex-direction: column;
+}
+
+.personal-record-entry.is-achieved .personal-record-name {
+    font-weight: bold;
+}

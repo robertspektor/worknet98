@@ -1,14 +1,9 @@
 <?php
 
-use App\Cases\WorkCaseKind;
-use App\Cases\WorkCaseStatus;
-use App\Models\Customer;
 use App\Models\Email;
-use App\Models\Employment;
 use App\Models\LedgerEntry;
 use App\Models\User;
 use App\Models\WeeklyGoal;
-use App\Models\WorkCase;
 use App\Work\LedgerReason;
 use Database\Seeders\BranchSeeder;
 use Database\Seeders\CitySeeder;
@@ -21,23 +16,6 @@ beforeEach(function () {
     $this->employment = employAtSeededPosition('flowright-plumbing');
     $this->player = User::findOrFail($this->employment->user_id);
 });
-
-function closeCases(Employment $employment, int $count): void
-{
-    $branch = $employment->position->branch;
-
-    Customer::query()->whereBelongsTo($branch)->take($count)->get()->each(fn (Customer $customer) => WorkCase::create([
-        'branch_id' => $branch->id,
-        'position_id' => $employment->position_id,
-        'employment_id' => $employment->id,
-        'customer_id' => $customer->id,
-        'kind' => WorkCaseKind::Template,
-        'case_slug' => 'leaking-pipe',
-        'status' => WorkCaseStatus::Resolved,
-        'opened_at' => now()->subHours(2),
-        'resolved_at' => now(),
-    ]));
-}
 
 it('counts the cases the player closed this week towards the weekly goal', function () {
     closeCases($this->employment, 2);
