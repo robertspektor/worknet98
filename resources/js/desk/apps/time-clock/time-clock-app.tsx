@@ -9,6 +9,7 @@ import { AppLoading } from '../../ui/app-loading';
 import { PixelIcon } from '../../ui/pixel-icon';
 import { NextPeriodCountdown } from './next-period-countdown';
 import { StatusLine } from './status-line';
+import { WeeklyGoalSheet } from './weekly-goal-sheet';
 import { WorkTimeSheet } from './work-time-sheet';
 
 export function TimeClockApp() {
@@ -49,8 +50,16 @@ export function TimeClockApp() {
             </div>
             <div className="time-clock-panel sunken">
                 <StatusLine shift={shift} />
+                <WeeklyGoalSheet goal={shift.weekly_goal} />
+                <NextPeriodCountdown
+                    endsAt={shift.weekly_goal.ends_at}
+                    label="time_clock.week_ends"
+                />
                 <WorkTimeSheet shift={shift} />
-                <NextPeriodCountdown endsAt={shift.period.ends_at} />
+                <NextPeriodCountdown
+                    endsAt={shift.period.ends_at}
+                    label="time_clock.next_period"
+                />
             </div>
             <div className="app-actions app-actions-end">
                 <button

@@ -564,6 +564,8 @@
     "game_mail.welcome_back.mails": "{1} One new mail is in your mailbox.|[2,*] :count new mails are in your mailbox.",
     "game_mail.welcome_back.balance": "Your balance: :balance C.",
     "game_mail.welcome_back.outro": "Start wherever you like. The coffee is old but honest.\n\n:manager",
+    "game_mail.weekly_goal.subject": "Week done",
+    "game_mail.weekly_goal.body": "Hey,\n\n:cases cases closed this week, :target were the target. I looked twice because I expected a rounding error.\n\nThe weekly bonus of :bonus C is on your account. Spend it on something with a plug.\n\n:manager",
     "game_mail.payslip.intro": "Dear colleague,\n\nhere is your payslip for :month. Please check it and file it. We file everything.",
     "game_mail.payslip.lines": "Active time: :worked of :target minutes\nContract salary: :full C\nPaid out: :salary C\nBonus: :bonus C\nTotal: :total C",
     "game_mail.payslip.short_time": "You stayed below the contract time, so the salary is reduced accordingly. The clock does not negotiate.",
@@ -575,5 +577,12 @@
     "game_mail.bill.phone.subject": "Phone and network :month",
     "game_mail.bill.phone.body": "Dear customer,\n\nyour bill for :month comes to :amount C and has been debited.\n\nIncluded: the line, the modem tariff and the four minutes of hold music you listened to last week.\n\nKind regards,\n:sender",
     "time_clock.salary": "Salary so far",
-    "time_clock.salary_value": ":earned of :full C"
+    "time_clock.salary_value": ":earned of :full C",
+    "time_clock.week": "This week",
+    "time_clock.week_cases": "Cases closed",
+    "time_clock.week_cases_value": ":done of :target",
+    "time_clock.week_bonus": "Weekly bonus",
+    "time_clock.week_bonus_value": ":bonus C when the week is done",
+    "time_clock.week_bonus_paid": ":bonus C paid out",
+    "time_clock.week_ends": "Week ends in :countdown (real time)."
 }

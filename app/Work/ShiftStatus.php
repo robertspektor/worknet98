@@ -3,6 +3,7 @@
 namespace App\Work;
 
 use App\Models\Shift;
+use App\Work\Goals\WeeklyGoalProgress;
 
 readonly class ShiftStatus
 {
@@ -11,8 +12,9 @@ readonly class ShiftStatus
         public ContractPeriod $period,
         public int $workedSeconds,
         public int $targetSeconds,
-        public int $fullSalary = 0,
-        public int $earnedSalary = 0,
+        public int $fullSalary,
+        public int $earnedSalary,
+        public WeeklyGoalProgress $weeklyGoal,
     ) {}
 
     public function state(): string

@@ -28,6 +28,13 @@ class ShiftStatusResource extends JsonResource
             'target_seconds' => $status->targetSeconds,
             'full_salary' => $status->fullSalary,
             'earned_salary' => $status->earnedSalary,
+            'weekly_goal' => [
+                'target' => $status->weeklyGoal->target,
+                'resolved_cases' => $status->weeklyGoal->resolvedCases,
+                'bonus' => $status->weeklyGoal->bonus,
+                'achieved' => $status->weeklyGoal->isAchieved,
+                'ends_at' => $status->weeklyGoal->week->endsAt->toIso8601String(),
+            ],
             'period' => [
                 'starts_on' => $status->period->startsOn->toDateString(),
                 'ends_on' => $status->period->endsOn->toDateString(),

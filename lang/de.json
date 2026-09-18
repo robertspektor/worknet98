@@ -564,6 +564,8 @@
     "game_mail.welcome_back.mails": "{1} Eine neue Mail liegt im Postfach.|[2,*] :count neue Mails liegen im Postfach.",
     "game_mail.welcome_back.balance": "Dein Kontostand: :balance C.",
     "game_mail.welcome_back.outro": "Fang an, wo du magst. Der Kaffee ist alt, aber ehrlich.\n\n:manager",
+    "game_mail.weekly_goal.subject": "Woche geschafft",
+    "game_mail.weekly_goal.body": "Moin,\n\n:cases Fälle diese Woche abgeschlossen, :target waren das Ziel. Ich habe zweimal hingesehen, weil ich mit einem Rundungsfehler gerechnet habe.\n\nDer Wochenbonus von :bonus C ist auf deinem Konto. Gib ihn für etwas mit Stecker aus.\n\n:manager",
     "game_mail.payslip.intro": "Guten Tag,\n\nhier ist Ihre Gehaltsabrechnung für :month. Bitte prüfen und ablegen. Wir legen alles ab.",
     "game_mail.payslip.lines": "Aktive Zeit: :worked von :target Minuten\nVertragsgehalt: :full C\nAusgezahlt: :salary C\nBonus: :bonus C\nGesamt: :total C",
     "game_mail.payslip.short_time": "Sie lagen unter der vereinbarten Zeit, das Gehalt wurde entsprechend gekürzt. Die Stempeluhr verhandelt nicht.",
@@ -575,5 +577,12 @@
     "game_mail.bill.phone.subject": "Telefon und Netz :month",
     "game_mail.bill.phone.body": "Sehr geehrte Kundin, sehr geehrter Kunde,\n\nIhre Rechnung für :month beträgt :amount C und wurde abgebucht.\n\nEnthalten: der Anschluss, der Modemtarif und die vier Minuten Wartemusik von letzter Woche.\n\nMit freundlichen Grüßen\n:sender",
     "time_clock.salary": "Gehalt bisher",
-    "time_clock.salary_value": ":earned von :full C"
+    "time_clock.salary_value": ":earned von :full C",
+    "time_clock.week": "Diese Woche",
+    "time_clock.week_cases": "Fälle abgeschlossen",
+    "time_clock.week_cases_value": ":done von :target",
+    "time_clock.week_bonus": "Wochenbonus",
+    "time_clock.week_bonus_value": ":bonus C, wenn die Woche voll ist",
+    "time_clock.week_bonus_paid": ":bonus C ausgezahlt",
+    "time_clock.week_ends": "Woche endet in :countdown (Echtzeit)."
 }

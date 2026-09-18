@@ -15,7 +15,13 @@ function countdownKey({ days, hours }: Countdown): string {
         : 'time_clock.countdown.minutes';
 }
 
-export function NextPeriodCountdown({ endsAt }: { endsAt: string }) {
+export function NextPeriodCountdown({
+    endsAt,
+    label,
+}: {
+    endsAt: string;
+    label: string;
+}) {
     const { t } = useTranslation();
     const [nowMs, setNowMs] = useState(() => Date.now());
 
@@ -29,7 +35,7 @@ export function NextPeriodCountdown({ endsAt }: { endsAt: string }) {
 
     return (
         <p className="time-clock-note muted">
-            {t('time_clock.next_period', {
+            {t(label, {
                 countdown: t(countdownKey(countdown), countdown),
             })}
         </p>

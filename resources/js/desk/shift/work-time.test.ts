@@ -1,5 +1,10 @@
 import { describe, expect, it } from 'vite-plus/test';
-import { countdownUntil, formatWorkTime, summarizeWorkTime } from './work-time';
+import {
+    countdownUntil,
+    formatWorkTime,
+    goalProgress,
+    summarizeWorkTime,
+} from './work-time';
 
 describe('work time', () => {
     it('tells the remaining time below the target', () => {
@@ -37,5 +42,17 @@ describe('work time', () => {
             hours: 0,
             minutes: 0,
         });
+    });
+});
+
+describe('goalProgress', () => {
+    it('fills the bar proportionally and never beyond it', () => {
+        expect(goalProgress(0, 5)).toBe(0);
+        expect(goalProgress(2, 5)).toBe(0.4);
+        expect(goalProgress(7, 5)).toBe(1);
+    });
+
+    it('counts a goal without a target as done', () => {
+        expect(goalProgress(0, 0)).toBe(1);
     });
 });

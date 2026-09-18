@@ -192,7 +192,8 @@
     font-variant-numeric: tabular-nums;
 }
 
-.work-time-rows .is-overtime {
+.work-time-rows .is-overtime,
+.work-time-rows .is-achieved {
     color: #006000;
     font-weight: bold;
 }

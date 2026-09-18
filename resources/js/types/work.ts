@@ -6,6 +6,14 @@ export type ContractPeriod = {
     ends_at: string;
 };
 
+export type WeeklyGoal = {
+    target: number;
+    resolved_cases: number;
+    bonus: number;
+    achieved: boolean;
+    ends_at: string;
+};
+
 export type ShiftStatus = {
     status: ShiftState;
     clocked_in_at: string | null;
@@ -14,5 +22,6 @@ export type ShiftStatus = {
     target_seconds: number;
     full_salary: number;
     earned_salary: number;
+    weekly_goal: WeeklyGoal;
     period: ContractPeriod;
 };

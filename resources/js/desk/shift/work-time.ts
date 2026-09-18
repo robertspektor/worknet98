@@ -26,6 +26,10 @@ export function summarizeWorkTime(
     };
 }
 
+export function goalProgress(done: number, target: number): number {
+    return target > 0 ? Math.min(1, Math.max(0, done / target)) : 1;
+}
+
 export function formatWorkTime(seconds: number): string {
     const totalMinutes = Math.floor(seconds / 60);
     const minutes = String(totalMinutes % 60).padStart(2, '0');

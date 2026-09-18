@@ -26,6 +26,7 @@ return [
         'target_minutes' => (int) env('GAME_WORK_TARGET_MINUTES', 120),
         'heartbeat_gap_seconds' => (int) env('GAME_WORK_HEARTBEAT_GAP_SECONDS', 90),
         'idle_clock_out_minutes' => (int) env('GAME_WORK_IDLE_CLOCK_OUT_MINUTES', 15),
+        'weekly_cases' => (int) env('GAME_WORK_WEEKLY_CASES', 5),
     ],
 
     /*
