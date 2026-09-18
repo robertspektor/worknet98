@@ -5,17 +5,16 @@ namespace App\Http\Controllers\Auth;
 use App\Auth\LoginLinks\LoginLinkRedeemer;
 use App\Http\Controllers\Controller;
 use App\Localization\LocaleSwitcher;
+use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Inertia\Inertia;
-use Inertia\Response;
 
 class LoginController extends Controller
 {
-    public function show(string $token): Response
+    public function show(string $token): View
     {
-        return Inertia::render('auth/redeem-login-link', ['token' => $token]);
+        return view('public.redeem', ['token' => $token]);
     }
 
     public function store(Request $request, string $token, LoginLinkRedeemer $redeemer): RedirectResponse
@@ -23,7 +22,7 @@ class LoginController extends Controller
         $player = $redeemer->redeem($token);
 
         if ($player === null) {
-            return redirect()->route('home')->with('status', 'login-link-invalid');
+            return redirect()->route('landing')->with('status', 'login-link-invalid');
         }
 
         Auth::login($player, remember: true);
@@ -41,6 +40,6 @@ class LoginController extends Controller
         $request->session()->regenerateToken();
         $switcher->switch($request, $locale);
 
-        return redirect()->route('home');
+        return redirect()->route('landing');
     }
 }

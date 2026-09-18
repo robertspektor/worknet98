@@ -35,7 +35,6 @@ export default function Computer() {
                                                 ? 'booting'
                                                 : 'off'
                                         }
-                                        needsSetup={!player}
                                         accessory={<StickyNote />}
                                     />
                                     <PcTower />

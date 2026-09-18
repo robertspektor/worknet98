@@ -27,6 +27,6 @@ it('sends unemployed players back home', function () {
         ->assertRedirect(route('home'));
 });
 
-it('sends guests back home', function () {
-    $this->get(route('office'))->assertRedirect(route('home'));
+it('sends guests to the catalogue', function () {
+    $this->get(route('office'))->assertRedirect(route('landing'));
 });

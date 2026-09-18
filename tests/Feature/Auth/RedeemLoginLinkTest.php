@@ -2,16 +2,13 @@
 
 use App\Models\LoginLink;
 use App\Models\User;
-use Inertia\Testing\AssertableInertia;
 
 it('shows a confirmation page instead of consuming the link on GET', function () {
     LoginLink::factory()->forToken('scanner-safe-token')->create();
 
     $this->get(route('login.show', 'scanner-safe-token'))
         ->assertOk()
-        ->assertInertia(fn (AssertableInertia $page) => $page
-            ->component('auth/redeem-login-link')
-            ->where('token', 'scanner-safe-token'));
+        ->assertSee(route('login.store', 'scanner-safe-token'));
 
     expect(LoginLink::sole()->consumed_at)->toBeNull();
 });
@@ -47,7 +44,7 @@ it('refuses links that are expired, used or unknown', function (string $token) {
     LoginLink::factory()->forToken('used')->consumed()->create();
 
     $this->post(route('login.store', $token))
-        ->assertRedirect(route('home'))
+        ->assertRedirect(route('landing'))
         ->assertSessionHas('status', 'login-link-invalid');
 
     $this->assertGuest();
@@ -69,14 +66,15 @@ it('keeps the player language after logging out', function () {
         ->post(route('logout'));
 
     $this->withHeader('Accept-Language', 'de')
-        ->get(route('home'))
-        ->assertInertia(fn (AssertableInertia $page) => $page->where('locale', 'en'));
+        ->get(route('landing'))
+        ->assertOk()
+        ->assertSee('One computer. One job. One life.', false);
 });
 
 it('logs a player out', function () {
     $this->actingAs(User::factory()->create())
         ->post(route('logout'))
-        ->assertRedirect(route('home'));
+        ->assertRedirect(route('landing'));
 
     $this->assertGuest();
 });

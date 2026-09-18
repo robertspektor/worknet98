@@ -6,6 +6,13 @@ use Inertia\Testing\AssertableInertia;
 
 it('uses the browser language for guests', function () {
     $this->withHeader('Accept-Language', 'de-DE,de;q=0.9,en;q=0.8')
+        ->get(route('landing'))
+        ->assertOk()
+        ->assertSee('Ein Computer. Ein Job. Ein Leben.', false);
+});
+
+it('gives a signed in player their translations', function () {
+    $this->actingAs(User::factory()->locale('de')->create())
         ->get(route('home'))
         ->assertInertia(fn (AssertableInertia $page) => $page
             ->component('computer')
@@ -15,8 +22,9 @@ it('uses the browser language for guests', function () {
 
 it('falls back to English for unsupported browser languages', function () {
     $this->withHeader('Accept-Language', 'fr-FR')
-        ->get(route('home'))
-        ->assertInertia(fn (AssertableInertia $page) => $page->where('locale', 'en'));
+        ->get(route('landing'))
+        ->assertOk()
+        ->assertSee('One computer. One job. One life.', false);
 });
 
 it('prefers the player language over the browser language', function () {
@@ -31,8 +39,9 @@ it('prefers the player language over the browser language', function () {
 it('lets guests switch the language for their session', function () {
     $this->put(route('locale.update'), ['locale' => 'de'])->assertRedirect();
 
-    $this->get(route('home'))
-        ->assertInertia(fn (AssertableInertia $page) => $page->where('locale', 'de'));
+    $this->get(route('landing'))
+        ->assertOk()
+        ->assertSee('Ein Computer. Ein Job. Ein Leben.', false);
 });
 
 it('stores the language on the player', function () {

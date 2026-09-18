@@ -39,7 +39,7 @@ return Application::configure(basePath: dirname(__DIR__))
         ]);
 
         $middleware->redirectGuestsTo('/');
-        $middleware->redirectUsersTo('/');
+        $middleware->redirectUsersTo('/desk');
     })
     ->withExceptions(function (Exceptions $exceptions): void {
         $exceptions->shouldRenderJsonWhen(
