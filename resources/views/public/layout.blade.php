@@ -11,27 +11,15 @@
         <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 
         @fonts
-        @viteReactRefresh
-        @vite(['resources/css/landing.css', 'resources/js/landing.tsx'])
+        @vite(['resources/css/landing.css'])
     </head>
     <body class="page">
-        <header class="page-header">
-            <a class="page-brand" href="{{ route('landing') }}">
-                <span class="page-brand-name">{{ config('app.name') }}</span>
-                <span class="page-brand-tag">{{ __('landing.tagline') }}</span>
-            </a>
-        </header>
+        @include('public.partials.header')
 
         <main class="page-main">
             @yield('content')
         </main>
 
-        <footer class="page-footer">
-            <nav class="page-footer-links">
-                <a href="{{ route('imprint') }}">{{ __('legal.imprint') }}</a>
-                <a href="{{ route('privacy') }}">{{ __('legal.privacy') }}</a>
-            </nav>
-            <p class="page-footer-note">{{ __('landing.footer_note') }}</p>
-        </footer>
+        @include('public.partials.footer')
     </body>
 </html>

@@ -2,6 +2,7 @@
 @import './desk/monitor.css';
 @import './desk/os.css';
 @import './desk/apps.css';
+@import './desk/boot.css';
 
 :root {
     --page-back: #1b1924;
@@ -66,116 +67,8 @@ body {
     padding: 40px 20px 56px;
 }
 
-.hero {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 28px;
-    margin-bottom: 52px;
-    text-align: center;
-}
-
-.hero-text {
-    max-width: 660px;
-}
-
-.hero-text h1 {
-    margin: 0 0 12px;
-    font-family: 'Pixelify Sans', Tahoma, sans-serif;
-    font-size: clamp(30px, 4.4vw, 46px);
-    line-height: 1.15;
-    text-wrap: balance;
-    color: #f4f1e6;
-}
-
-.hero-lead {
-    margin: 0 0 16px;
-    font-size: 19px;
-    color: #cfc9bd;
-}
-
-.hero-hint {
-    margin: 0;
-    max-width: 46ch;
-    font-size: 15px;
-    color: #9a93a8;
-}
-
-.hero-machine {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 12px;
-    width: 100%;
-}
-
-.catalogue {
-    --monitor-width: 100%;
-    width: min(100%, 680px);
-}
-
-.catalogue .monitor {
-    margin-bottom: 0;
-}
-
-/* The game scales an 800x600 desktop into the screen. The catalogue shows a
-   single window, so it uses the real screen pixels and stays readable. */
-.catalogue .viewport {
-    width: 100%;
-    height: 100%;
-    transform: none;
-}
-
-.catalogue-os {
-    display: grid;
-    place-items: center;
-    padding: 14px;
-    text-align: left;
-}
-
-.catalogue-window {
-    position: relative;
-    width: min(100%, 420px);
-}
-
-.catalogue-body {
-    padding: 12px 14px 10px;
-    overflow: visible;
-}
-
 .catalogue-body .field,
-.catalogue-body .checkbox-field {
-    margin-bottom: 8px;
-}
-
-.catalogue-body .app-actions {
-    margin-top: 10px;
-}
-
-.catalogue-intro {
-    display: flex;
-    gap: 10px;
-    margin-bottom: 10px;
-}
-
-.catalogue-intro .app-heading {
-    margin: 0;
-}
-
 .catalogue-note,
-.catalogue-status {
-    margin: 2px 0 0;
-    font-size: 11px;
-    color: #303030;
-}
-
-.catalogue-status {
-    margin: 10px 0 0;
-    padding: 6px 8px;
-    background: #ffffe1;
-    box-shadow: var(--bevel-in);
-}
-
 .prose {
     padding: 28px 32px;
     background: var(--page-paper);
@@ -230,8 +123,163 @@ body {
     color: var(--page-muted);
 }
 
-@media (min-width: 720px) {
-    .hero-text h1 {
-        font-size: 52px;
+/* The game sizes its room to the viewport. On a scrollable page the stage
+   grows with the machine instead. */
+.landing-stage {
+    border-bottom: 3px solid #00000055;
+}
+
+.landing-stage .room {
+    --monitor-width: min(100vw - 32px, 460px);
+    height: auto;
+    padding-bottom: 96px;
+}
+
+.stage-hint {
+    margin: 0 0 32px;
+    text-align: center;
+    color: #cfc9bd;
+}
+
+.cards {
+    display: grid;
+    gap: 16px;
+    margin-bottom: 44px;
+}
+
+.card-window {
+    position: static;
+}
+
+.card-window .window {
+    position: static;
+}
+
+.card-body {
+    padding: 12px 14px;
+    overflow: visible;
+}
+
+.card-body p {
+    margin: 0;
+}
+
+@media (min-width: 640px) {
+    .cards {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
     }
+}
+
+@media (min-width: 1000px) {
+    .cards {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+}
+
+.page-header {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px 24px;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.page-brand {
+    flex-direction: row;
+    align-items: center;
+    gap: 12px;
+}
+
+.page-brand-words {
+    display: flex;
+    flex-direction: column;
+}
+
+.brand-mark {
+    image-rendering: pixelated;
+}
+
+.page-resident {
+    margin: 0;
+    font-size: 14px;
+    color: var(--page-muted);
+}
+
+.prose-lead {
+    font-size: 18px;
+}
+
+.landing-intro {
+    width: min(1040px, 100%);
+    margin: 0 auto;
+    padding: 24px 20px 14px;
+    text-align: center;
+}
+
+.landing-intro h1 {
+    margin: 0 0 10px;
+    font-family: 'Pixelify Sans', Tahoma, sans-serif;
+    font-size: clamp(30px, 4.4vw, 48px);
+    line-height: 1.15;
+    text-wrap: balance;
+    color: #f4f1e6;
+}
+
+.landing-intro p {
+    max-width: 52ch;
+    margin: 0 auto;
+    font-size: 18px;
+    color: #cfc9bd;
+}
+
+.landing-stage .room {
+    flex-direction: column;
+    gap: 18px;
+}
+
+.landing-stage .desk {
+    height: 84px;
+}
+
+.landing-stage .monitor {
+    margin-bottom: 0;
+}
+
+.power-action {
+    position: relative;
+    z-index: 2;
+    padding: 10px 26px;
+    font:
+        600 18px 'Pixelify Sans',
+        Tahoma,
+        sans-serif;
+    color: #101010;
+    background: var(--plastic);
+    border: 0;
+    box-shadow:
+        inset -2px -2px #8e856d,
+        inset 2px 2px #fff,
+        0 6px 16px #0007;
+    cursor: pointer;
+}
+
+.power-action:active {
+    box-shadow:
+        inset 2px 2px #8e856d,
+        inset -2px -2px #fff;
+}
+
+/* Off, the machine is a picture on a page. Running, it takes the stage, so the
+   setup window is rendered near the scale the game is designed for. */
+body:has(.landing-room.is-running) .landing-intro {
+    display: none;
+}
+
+.landing-room.is-running .room {
+    --monitor-width: min(100vw - 32px, 1000px, calc((96vh - 110px) * 1.12));
+    padding-bottom: 28px;
+}
+
+.landing-room.is-running .desk {
+    height: 28px;
 }

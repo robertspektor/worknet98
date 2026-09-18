@@ -15,6 +15,14 @@ import { StickyNote } from '@/desk/room/sticky-note';
 
 const PLAYER_POLL_INTERVAL_MS = 15_000;
 
+function initialState(status: string | null): 'ready' | 'booting' | 'off' {
+    if (status === 'booted') {
+        return 'ready';
+    }
+
+    return status === 'signed-in' ? 'booting' : 'off';
+}
+
 export default function Computer() {
     const { player, status } = usePage().props;
     const isSignedIn = player !== null;
@@ -30,11 +38,7 @@ export default function Computer() {
                             <PlacementProvider isSignedIn={isSignedIn}>
                                 <Room scene="home">
                                     <HomeWorkstation
-                                        initialState={
-                                            status === 'signed-in'
-                                                ? 'booting'
-                                                : 'off'
-                                        }
+                                        initialState={initialState(status)}
                                         accessory={<StickyNote />}
                                     />
                                     <PcTower />

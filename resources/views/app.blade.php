@@ -16,7 +16,7 @@
             <title>{{ config('app.name', 'DeskLife 98') }}</title>
         </x-inertia::head>
     </head>
-    <body>
+    <body class="is-game">
         <x-inertia::app />
     </body>
 </html>

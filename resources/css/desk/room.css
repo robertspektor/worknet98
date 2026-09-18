@@ -11,10 +11,17 @@
 }
 
 html,
-body,
-#app {
-    height: 100%;
+body {
     margin: 0;
+}
+
+body.is-game,
+body.is-game #app {
+    height: 100%;
+}
+
+body.is-game {
+    overflow: hidden;
 }
 
 body {
@@ -24,7 +31,6 @@ body {
         #1b1924 50%,
         var(--room-dark) 100%
     );
-    overflow: hidden;
     font-family: Tahoma, Verdana, sans-serif;
 }
 

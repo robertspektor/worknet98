@@ -49,6 +49,17 @@ it('registers a player from the order form and drops them at their desk', functi
     expect(User::query()->where('email', 'new@desklife98.test')->exists())->toBeTrue();
 });
 
+it('leaves the public page with a hard visit so the game is not framed by it', function () {
+    $this->withHeaders(['X-Inertia' => 'true', 'X-Inertia-Version' => ''])
+        ->post(route('sign-in.store'), [
+            'email' => 'hardvisit@desklife98.test',
+            'age_confirmed' => '1',
+            'locale' => 'en',
+        ])
+        ->assertStatus(409)
+        ->assertHeader('X-Inertia-Location', route('home'));
+});
+
 it('shows the order form again with an error when the age is not confirmed', function () {
     $this->from(route('landing'))
         ->post(route('sign-in.store'), ['email' => 'nobody@desklife98.test', 'locale' => 'en'])

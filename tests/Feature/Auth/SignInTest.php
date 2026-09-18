@@ -12,7 +12,7 @@ it('registers a new player and signs them in without a confirmation mail', funct
         'email' => 'Gary@Example.com',
         'age_confirmed' => '1',
         'locale' => 'de',
-    ])->assertRedirect(route('home'))->assertSessionHas('status', 'signed-in');
+    ])->assertRedirect(route('home'))->assertSessionHas('status', 'booted');
 
     $player = User::sole();
     expect($player->email)->toBe('gary@example.com')

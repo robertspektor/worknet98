@@ -7,12 +7,13 @@ use App\Auth\Registration\PlayerRegistrar;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\SignInRequest;
 use App\Localization\LocaleSwitcher;
-use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Auth;
+use Inertia\Inertia;
+use Symfony\Component\HttpFoundation\Response;
 
 class SignInController extends Controller
 {
-    public function store(SignInRequest $request, PlayerRegistrar $registrar, LoginLinkIssuer $issuer, LocaleSwitcher $switcher): RedirectResponse
+    public function store(SignInRequest $request, PlayerRegistrar $registrar, LoginLinkIssuer $issuer, LocaleSwitcher $switcher): Response
     {
         $switcher->switch($request, $request->locale());
         $player = $registrar->register($request->email(), $request->locale());
@@ -25,7 +26,8 @@ class SignInController extends Controller
 
         Auth::login($player, remember: true);
         $request->session()->regenerate();
+        $request->session()->flash('status', 'booted');
 
-        return redirect()->route('home')->with('status', 'signed-in');
+        return Inertia::location(route('home'));
     }
 }
