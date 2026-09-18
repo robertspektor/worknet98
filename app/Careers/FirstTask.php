@@ -10,6 +10,7 @@ use App\Cases\Templates\TemplateCaseOpener;
 use App\CivilRegistry\ApplicationIntake;
 use App\CivilRegistry\ApplicationKind;
 use App\Game\GameClock;
+use App\Logistics\ReachableDue;
 use App\Logistics\ShipmentDispatch;
 use App\Logistics\Supply\SupplyRoute;
 use App\Logistics\Supply\SupplyRouteCatalog;
@@ -34,6 +35,7 @@ class FirstTask
         private readonly SupplyRouteCatalog $routes,
         private readonly ServiceProviders $providers,
         private readonly ShipmentDispatch $dispatch,
+        private readonly ReachableDue $due,
         private readonly SubjectPicker $subjects,
         private readonly ApplicationIntake $applications,
     ) {}
@@ -67,7 +69,7 @@ class FirstTask
             return;
         }
 
-        $due = $this->clock->today()->addWeekday()->setTimeFromTimeString(self::DUE_TIME);
+        $due = $this->due->forCarrier($branch, $route->size, $this->clock->today()->addWeekday()->setTimeFromTimeString(self::DUE_TIME));
 
         $this->dispatch->send($city, $supplier, $recipient, ShipmentTemplateCatalog::RESTOCK_DELIVERY, [
             'order_key' => "onboarding|{$employment->id}",

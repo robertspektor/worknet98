@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\DB;
 
 class ShipmentDispatch
 {
-    private const CARRIER_SERVICE = 'freight';
+    public const CARRIER_SERVICE = 'freight';
 
     public function __construct(
         private readonly ServiceProviders $providers,

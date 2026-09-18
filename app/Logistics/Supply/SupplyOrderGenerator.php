@@ -3,6 +3,7 @@
 namespace App\Logistics\Supply;
 
 use App\Game\GameClock;
+use App\Logistics\ReachableDue;
 use App\Logistics\ShipmentDispatch;
 use App\Models\City;
 use App\Models\Shipment;
@@ -17,6 +18,7 @@ class SupplyOrderGenerator
         private readonly SupplyOrderPlanner $planner,
         private readonly ServiceProviders $providers,
         private readonly ShipmentDispatch $dispatch,
+        private readonly ReachableDue $due,
     ) {}
 
     public function generateDue(): int
@@ -44,13 +46,15 @@ class SupplyOrderGenerator
             return false;
         }
 
+        $due = $this->due->forCarrier($this->providers->branchFor($city, ShipmentDispatch::CARRIER_SERVICE), $order->route->size, $order->dueAt());
+
         try {
             return $this->dispatch->send($city, $supplier, $recipient, $order->route->templateSlug, [
                 'order_key' => $order->key,
                 'contents' => $order->route->contents,
                 'size' => $order->route->size,
-                'due_date' => $order->dueAt()->toDateString(),
-                'due_slot' => $order->dueAt()->format('H:i'),
+                'due_date' => $due->toDateString(),
+                'due_slot' => $due->format('H:i'),
             ]) !== null;
         } catch (UniqueConstraintViolationException) {
             return false;

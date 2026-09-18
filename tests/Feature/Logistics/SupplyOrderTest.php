@@ -3,6 +3,7 @@
 use App\Cases\Metric;
 use App\Cases\MetricBook;
 use App\Cases\WorkCaseKind;
+use App\Logistics\FreeTourFinder;
 use App\Logistics\ShipmentDispatch;
 use App\Logistics\Supply\SupplyRoute;
 use App\Logistics\Supply\SupplyRouteCatalog;
@@ -158,5 +159,19 @@ it('has a shipment template at every carrier for every kind of route', function 
         foreach ($slugs as $slug) {
             expect(app(ShipmentTemplateCatalog::class)->find($carrier, $slug))->not->toBeNull("Carrier [{$carrier->slug}] has no template [{$slug}].");
         }
+    }
+});
+
+it('places every supply order with a due time a free tour still reaches', function () {
+    $this->travelTo('2026-09-22 16:00:00');
+    $this->artisan('game:tick')->assertSuccessful();
+
+    $shipments = Shipment::query()->whereNotNull('order_key')->with('branch.drivers')->get();
+
+    expect($shipments)->not->toBeEmpty();
+
+    foreach ($shipments as $shipment) {
+        expect(app(FreeTourFinder::class)->bestFor($shipment)?->arrival()->lte($shipment->dueAt()))
+            ->toBeTrue("{$shipment->contents} due {$shipment->dueAt()}");
     }
 });

@@ -1,6 +1,7 @@
 <?php
 
 use App\Cases\WorkCaseKind;
+use App\Logistics\FreeTourFinder;
 use App\Models\Email;
 use App\Models\Position;
 use App\Models\Shipment;
@@ -88,4 +89,13 @@ it('offers a ladder with a new task and more money at every playable employer', 
 
         expect($steps)->toBeGreaterThanOrEqual(2, "Company [{$position->branch->company->slug}] has no ladder.");
     }
+});
+
+it('gives a new dispatcher a first shipment that a free tour still reaches in time', function () {
+    $this->travelTo('2026-09-23 09:00:00');
+    startWorking('nordwerk-logistik', 'dispatch-coordinator-2');
+
+    $shipment = Shipment::query()->sole();
+
+    expect(app(FreeTourFinder::class)->bestFor($shipment)?->arrival()->lte($shipment->dueAt()))->toBeTrue();
 });
