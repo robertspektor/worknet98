@@ -23,7 +23,7 @@ export default defineConfig({
             input: [
                 'resources/css/app.css',
                 'resources/css/landing.css',
-                'resources/js/landing.ts',
+                'resources/js/landing.tsx',
                 'resources/js/app.tsx',
             ],
             refresh: true,

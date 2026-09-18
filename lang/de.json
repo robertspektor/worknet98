@@ -657,5 +657,7 @@
     "landing.footer_note": "DeskLife 98 ist ein Spiel in einer erfundenen Welt. Alle Firmen, Marken, Personen und Preise sind frei erfunden.",
     "legal.imprint": "Impressum",
     "legal.privacy": "Datenschutz",
-    "legal.placeholder": "Dieser Text fehlt noch und muss vor dem ersten externen Tester eingesetzt werden."
+    "legal.placeholder": "Dieser Text fehlt noch und muss vor dem ersten externen Tester eingesetzt werden.",
+    "landing.order_heading": "Bestellung",
+    "landing.needs_javascript": "Für die Bestellung braucht dieser Katalog JavaScript."
 }

@@ -657,5 +657,7 @@
     "landing.footer_note": "DeskLife 98 is a game set in a fictional world. All companies, brands, people and prices are invented.",
     "legal.imprint": "Imprint",
     "legal.privacy": "Privacy policy",
-    "legal.placeholder": "This text is still missing and has to be filled in before the first external tester."
+    "legal.placeholder": "This text is still missing and has to be filled in before the first external tester.",
+    "landing.order_heading": "Order",
+    "landing.needs_javascript": "This catalogue needs JavaScript to take your order."
 }

@@ -1,29 +1,32 @@
-:root {
-    --face: #c0c0c0;
-    --face-dark: #9a9a9a;
-    --light: #ffffff;
-    --shadow: #808080;
-    --ink: #101010;
-    --title: #000080;
-    --screen: #0b3b3b;
-    --screen-ink: #b9f5d8;
-    --paper: #efece3;
-}
+@import 'tailwindcss';
+@import './desk/monitor.css';
+@import './desk/os.css';
+@import './desk/apps.css';
 
-*,
-*::before,
-*::after {
-    box-sizing: border-box;
+:root {
+    --page-back: #1b1924;
+    --page-face: #c0c0c0;
+    --page-paper: #efece3;
+    --page-ink: #1a1a1a;
+    --page-muted: #5a5a5a;
+    --page-link: #000080;
 }
 
 body {
     margin: 0;
-    padding: 0;
-    background: #2b2233;
-    color: var(--ink);
-    font-family: 'VT323', 'Courier New', monospace;
-    font-size: 20px;
-    line-height: 1.5;
+    background: radial-gradient(
+            ellipse at 50% 0%,
+            #332f43 0%,
+            #1b1924 55%,
+            #0d0c12 100%
+        )
+        fixed;
+    color: var(--page-ink);
+    font:
+        16px/1.6 Tahoma,
+        Verdana,
+        'Segoe UI',
+        sans-serif;
 }
 
 .page {
@@ -32,155 +35,161 @@ body {
     min-height: 100vh;
 }
 
-.page-header,
-.page-footer {
-    padding: 16px;
-    background: var(--face);
-    border-bottom: 2px solid var(--shadow);
-}
-
-.page-footer {
-    margin-top: auto;
-    border-bottom: 0;
-    border-top: 2px solid var(--light);
+.page-header {
+    padding: 14px 20px;
+    background: var(--page-face);
+    box-shadow: 0 2px 0 #00000040;
 }
 
 .page-brand {
     display: inline-flex;
     flex-direction: column;
     text-decoration: none;
-    color: var(--ink);
+    color: var(--page-ink);
 }
 
 .page-brand-name {
-    font-family: 'Pixelify Sans', 'VT323', monospace;
-    font-size: 28px;
+    font-family: 'Pixelify Sans', Tahoma, sans-serif;
+    font-size: 24px;
     font-weight: 600;
     letter-spacing: 1px;
 }
 
 .page-brand-tag {
-    color: #404040;
+    font-size: 14px;
+    color: var(--page-muted);
 }
 
 .page-main {
-    width: min(900px, 100%);
+    width: min(1040px, 100%);
     margin: 0 auto;
-    padding: 24px 16px 48px;
+    padding: 40px 20px 56px;
 }
 
 .hero {
-    display: grid;
-    gap: 24px;
-    margin-bottom: 32px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 28px;
+    margin-bottom: 52px;
+    text-align: center;
+}
+
+.hero-text {
+    max-width: 660px;
 }
 
 .hero-text h1 {
-    margin: 0 0 8px;
-    font-family: 'Pixelify Sans', 'VT323', monospace;
-    font-size: 40px;
-    line-height: 1.1;
-    color: var(--paper);
+    margin: 0 0 12px;
+    font-family: 'Pixelify Sans', Tahoma, sans-serif;
+    font-size: clamp(30px, 4.4vw, 46px);
+    line-height: 1.15;
+    text-wrap: balance;
+    color: #f4f1e6;
 }
 
 .hero-lead {
+    margin: 0 0 16px;
+    font-size: 19px;
+    color: #cfc9bd;
+}
+
+.hero-hint {
     margin: 0;
-    color: #d8d2c4;
-    font-size: 22px;
+    max-width: 46ch;
+    font-size: 15px;
+    color: #9a93a8;
 }
 
-.monitor {
-    padding: 18px 18px 30px;
-    background: linear-gradient(#e6e1d2, #cbc5b4);
-    border-radius: 14px;
-    border: 2px solid var(--shadow);
-    box-shadow: 0 10px 30px #0006;
-}
-
-.monitor-screen {
-    padding: 16px;
-    background: var(--screen);
-    color: var(--screen-ink);
-    border: 3px inset #6d6a5e;
-    border-radius: 6px;
-}
-
-.screen-title {
-    margin: 0;
-    font-family: 'Pixelify Sans', 'VT323', monospace;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-}
-
-.screen-note,
-.screen-status {
-    margin: 4px 0 16px;
-    color: #7fd7b4;
-}
-
-.screen-status {
-    margin: 16px 0 0;
-}
-
-.field,
-.checkbox-field {
-    display: block;
-    margin-bottom: 12px;
-}
-
-.checkbox-field {
+.hero-machine {
     display: flex;
-    gap: 8px;
-    align-items: baseline;
-}
-
-.field > span {
-    display: block;
-    margin-bottom: 2px;
-}
-
-.input {
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
     width: 100%;
-    padding: 4px 6px;
-    font: inherit;
-    color: var(--ink);
-    background: var(--light);
-    border: 2px inset var(--face);
 }
 
-.field-error {
-    display: block;
-    color: #ffb4a2;
+.catalogue {
+    --monitor-width: 100%;
+    width: min(100%, 680px);
 }
 
-.button {
-    padding: 6px 20px;
-    font: inherit;
-    color: var(--ink);
-    background: var(--face);
-    border: 2px outset var(--light);
-    cursor: pointer;
+.catalogue .monitor {
+    margin-bottom: 0;
 }
 
-.button:active {
-    border-style: inset;
+/* The game scales an 800x600 desktop into the screen. The catalogue shows a
+   single window, so it uses the real screen pixels and stays readable. */
+.catalogue .viewport {
+    width: 100%;
+    height: 100%;
+    transform: none;
 }
 
-.catalogue-hint {
-    margin: 12px 0 0;
-    color: #b8b2a4;
+.catalogue-os {
+    display: grid;
+    place-items: center;
+    padding: 14px;
+    text-align: left;
+}
+
+.catalogue-window {
+    position: relative;
+    width: min(100%, 420px);
+}
+
+.catalogue-body {
+    padding: 12px 14px 10px;
+    overflow: visible;
+}
+
+.catalogue-body .field,
+.catalogue-body .checkbox-field {
+    margin-bottom: 8px;
+}
+
+.catalogue-body .app-actions {
+    margin-top: 10px;
+}
+
+.catalogue-intro {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.catalogue-intro .app-heading {
+    margin: 0;
+}
+
+.catalogue-note,
+.catalogue-status {
+    margin: 2px 0 0;
+    font-size: 11px;
+    color: #303030;
+}
+
+.catalogue-status {
+    margin: 10px 0 0;
+    padding: 6px 8px;
+    background: #ffffe1;
+    box-shadow: var(--bevel-in);
 }
 
 .prose {
-    padding: 20px 24px;
-    background: var(--paper);
-    border: 2px solid var(--shadow);
+    padding: 28px 32px;
+    background: var(--page-paper);
+    box-shadow:
+        inset -1px -1px #00000030,
+        inset 1px 1px #ffffff,
+        0 12px 30px #0000004d;
 }
 
 .prose h1,
 .prose h2 {
-    font-family: 'Pixelify Sans', 'VT323', monospace;
-    margin: 24px 0 6px;
+    margin: 28px 0 8px;
+    font-family: 'Pixelify Sans', Tahoma, sans-serif;
+    font-size: 25px;
 }
 
 .prose h1:first-child,
@@ -189,32 +198,40 @@ body {
 }
 
 .prose p {
-    margin: 0 0 12px;
+    max-width: 68ch;
+    margin: 0 0 14px;
 }
 
 .placeholder {
-    padding: 12px;
+    padding: 12px 14px;
     background: #fff6c4;
     border: 2px dashed #a08a2a;
 }
 
+.page-footer {
+    margin-top: auto;
+    padding: 16px 20px;
+    background: var(--page-face);
+    box-shadow: 0 -2px 0 #00000040;
+}
+
 .page-footer-links {
     display: flex;
-    gap: 16px;
+    gap: 18px;
 }
 
 .page-footer-links a {
-    color: var(--title);
+    color: var(--page-link);
 }
 
 .page-footer-note {
     margin: 8px 0 0;
-    color: #404040;
+    font-size: 14px;
+    color: var(--page-muted);
 }
 
-@media (min-width: 760px) {
-    .hero {
-        grid-template-columns: 1fr 1fr;
-        align-items: center;
+@media (min-width: 720px) {
+    .hero-text h1 {
+        font-size: 52px;
     }
 }

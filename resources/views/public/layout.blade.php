@@ -11,7 +11,8 @@
         <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 
         @fonts
-        @vite(['resources/css/landing.css', 'resources/js/landing.ts'])
+        @viteReactRefresh
+        @vite(['resources/css/landing.css', 'resources/js/landing.tsx'])
     </head>
     <body class="page">
         <header class="page-header">

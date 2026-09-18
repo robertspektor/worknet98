@@ -1,4 +1,5 @@
 @import 'tailwindcss';
+@import './desk/monitor.css';
 @import './desk/room.css';
 @import './desk/desk-items.css';
 @import './desk/office.css';
