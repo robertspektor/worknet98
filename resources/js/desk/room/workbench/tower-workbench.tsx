@@ -1,7 +1,7 @@
 import { useEffect, useReducer, useRef, useState } from 'react';
 import { useTranslation } from '@/i18n/use-translation';
 import type { DeskPart, HomeComputer } from '@/types';
-import { useIsPoweredOn } from '../../computer/power-state';
+import { useIsPoweredOn } from '../../computer/computer-provider';
 import { caseLayout } from '../../hardware/case-layout';
 import type { SwapAction, SwapGoal } from '../../hardware/cpu-swap-state';
 import { cpuSwapReducer, startSwap } from '../../hardware/cpu-swap-state';

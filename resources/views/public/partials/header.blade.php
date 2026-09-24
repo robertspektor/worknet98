@@ -6,5 +6,4 @@
             <span class="page-brand-tag">{{ __('landing.tagline') }}</span>
         </span>
     </a>
-    <p class="page-resident">{{ __('landing.resident_hint') }}</p>
 </header>

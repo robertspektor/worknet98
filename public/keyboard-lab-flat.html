@@ -1,0 +1,513 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="robots" content="noindex" />
+        <title>Keyboard lab perspective</title>
+        <style>
+            :root {
+                --desk-top: #a5703f;
+                --desk-bottom: #5f3d21;
+                --ink: #e8e3d7;
+            }
+
+            * {
+                box-sizing: border-box;
+            }
+
+            body {
+                margin: 0;
+                background: #1b2130;
+                color: var(--ink);
+                font:
+                    13px/1.5 'Lucida Console',
+                    'DejaVu Sans Mono',
+                    monospace;
+            }
+
+            header {
+                display: flex;
+                flex-wrap: wrap;
+                align-items: center;
+                gap: 18px;
+                padding: 12px 20px;
+                border-bottom: 1px solid #ffffff20;
+                background: #151a26;
+            }
+
+            header strong {
+                letter-spacing: 1px;
+            }
+            header a {
+                color: #9fc6ff;
+            }
+
+            main {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(440px, 1fr));
+                gap: 2px;
+            }
+
+            section {
+                padding: 16px 20px 22px;
+            }
+
+            h2 {
+                margin: 0 0 2px;
+                font-size: 13px;
+                letter-spacing: 1px;
+            }
+
+            p.note {
+                margin: 2px 0 12px;
+                min-height: 22px;
+                color: #ffffff80;
+            }
+
+            .stage {
+                display: flex;
+                align-items: flex-end;
+                justify-content: center;
+                min-height: 190px;
+                padding: 50px 16px 30px;
+                background:
+                    repeating-linear-gradient(
+                        0deg,
+                        #00000014 0 2px,
+                        #0000 2px 11px
+                    ),
+                    linear-gradient(var(--desk-top), var(--desk-bottom));
+                box-shadow: inset 0 1px 0 #ffffff30;
+            }
+
+            body.plain .stage {
+                background: #2b3242;
+                box-shadow: none;
+            }
+
+            /* ---------- the E5 model with real key front faces ---------- */
+
+            .kb {
+                --angle: 60deg;
+                --ratio: 2.8;
+                --persp: 30em;
+                --eye: -45%;
+                --cap-height: 9px;
+                --cap-inset: 1.5px;
+                --cap-radius: 1px;
+                --cap-bg: linear-gradient(#f2ead7, #ddd2b8);
+                --cap-shade: inset -1px -1px 0 #ab9f83;
+                --cap-front: linear-gradient(#c6bb9f, #9c9074);
+                --well: #6b6250;
+                --deck-bg: linear-gradient(#e7ddc5, #bcb094);
+                --deck-radius: 2px 2px 0 0;
+                --pad-x: 3%;
+                --pad-top: 13%;
+                --pad-bottom: 13%;
+                --row-gap: 7%;
+                --key-gap: 0.9%;
+                --lip-height: 14px;
+                --lip-radius: 0 0 4px 4px;
+                --lip-bg: linear-gradient(#bcb094 30%, #8e8369);
+
+                position: relative;
+                width: var(--kb-width, 430px);
+                perspective: var(--persp);
+                perspective-origin: 50% var(--eye);
+            }
+
+            .deck {
+                position: relative;
+                z-index: 1;
+                display: flex;
+                flex-direction: column;
+                aspect-ratio: var(--ratio) / 1;
+                gap: calc(var(--row-gap) / var(--ratio));
+                padding: calc(var(--pad-top) / var(--ratio)) var(--pad-x)
+                    calc(var(--pad-bottom) / var(--ratio));
+                border-radius: var(--deck-radius);
+                background: var(--deck-bg);
+                box-shadow: inset 0 0 0 1px #00000025;
+                transform: rotateX(var(--angle));
+                transform-origin: 50% 100%;
+                transform-style: preserve-3d;
+            }
+
+            .row {
+                display: flex;
+                flex: 1;
+                gap: var(--key-gap);
+                min-height: 0;
+                transform-style: preserve-3d;
+            }
+
+            .key {
+                position: relative;
+                background: var(--well);
+                transform-style: preserve-3d;
+            }
+
+            .gap {
+                background: none;
+            }
+
+            .key::after {
+                content: '';
+                position: absolute;
+                inset: var(--cap-inset);
+                border-radius: var(--cap-radius);
+                background: var(--cap-bg);
+                box-shadow: var(--cap-shade);
+                transform: translateZ(var(--cap-height));
+            }
+
+            .faces .key::before {
+                content: '';
+                position: absolute;
+                right: var(--cap-inset);
+                bottom: calc(var(--cap-inset) - var(--cap-height));
+                left: var(--cap-inset);
+                height: var(--cap-height);
+                background: var(--cap-front);
+                transform: rotateX(90deg);
+                transform-origin: 50% 0;
+            }
+
+            .lip {
+                position: relative;
+                display: flex;
+                align-items: center;
+                height: var(--lip-height);
+                padding: 0 12px;
+                border-radius: var(--lip-radius);
+                background: var(--lip-bg);
+                box-shadow: 0 3px 8px #00000050;
+            }
+
+            .brand {
+                color: #7a6f57;
+                font:
+                    700 9px/1 'Helvetica Neue',
+                    Arial,
+                    sans-serif;
+                letter-spacing: 2px;
+                text-transform: uppercase;
+            }
+
+            /* ---------- presets ---------- */
+
+            .p1 {
+                --angle: 60deg;
+                --eye: -45%;
+                --cap-height: 9px;
+            }
+            .p2 {
+                --angle: 66deg;
+                --eye: -30%;
+                --cap-height: 8px;
+            }
+            .p3 {
+                --angle: 71deg;
+                --eye: -18%;
+                --cap-height: 7px;
+            }
+            .p4 {
+                --angle: 75deg;
+                --eye: -10%;
+                --cap-height: 6px;
+                --lip-height: 12px;
+                --cap-inset: 1px;
+            }
+            .p5 {
+                --angle: 79deg;
+                --eye: -4%;
+                --cap-height: 5px;
+                --lip-height: 11px;
+                --cap-inset: 1px;
+            }
+            .p6 {
+                --angle: 82deg;
+                --eye: 0%;
+                --cap-height: 4px;
+                --lip-height: 10px;
+                --cap-inset: 0.5px;
+            }
+
+            /* ---------- playground ---------- */
+
+            .playground {
+                display: grid;
+                grid-template-columns: 320px 1fr;
+                gap: 24px;
+                padding: 18px 20px;
+                border-bottom: 1px solid #ffffff20;
+                background: #202736;
+            }
+
+            .controls {
+                display: grid;
+                gap: 5px;
+                align-content: start;
+            }
+
+            .controls label {
+                display: grid;
+                grid-template-columns: 130px 1fr 54px;
+                align-items: center;
+                gap: 8px;
+            }
+
+            .controls input[type='range'] {
+                width: 100%;
+            }
+
+            pre {
+                margin: 10px 0 0;
+                padding: 10px 12px;
+                overflow-x: auto;
+                border: 1px solid #ffffff20;
+                background: #151a26;
+                color: #b9e4b0;
+                font-size: 12px;
+            }
+        </style>
+    </head>
+    <body>
+        <header>
+            <strong>KEYBOARD LAB: PERSPEKTIVE</strong>
+            <span>flacher Blick, Tastenvorderseiten</span>
+            <label
+                ><input id="plain" type="checkbox" /> ohne Schreibtisch</label
+            >
+            <label
+                ><input id="faces" type="checkbox" checked />
+                Vorderseiten</label
+            >
+            <a href="/keyboard-lab-brands.html">Hersteller</a>
+            <a href="/keyboard-lab-e.html">E-Varianten</a>
+        </header>
+
+        <div class="playground">
+            <div>
+                <div class="controls"></div>
+                <pre id="snippet"></pre>
+            </div>
+            <div class="stage"><div class="kb faces" id="live"></div></div>
+        </div>
+
+        <main></main>
+
+        <script>
+            const ROWS = [
+                [1, -1, 1, 1, 1, 1, -0.5, 1, 1, 1, 1, -0.5, 1, 1, 1, 1],
+                [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2],
+                [1.5, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1.5],
+                [1.75, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2.25],
+                [2.25, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2.75],
+                [1.25, 1.25, 1.25, 6.25, 1.25, 1.25, 1.25, 1.25],
+            ];
+
+            const PRESETS = [
+                {
+                    id: 'p1',
+                    title: 'P1 - 60 Grad',
+                    note: 'Der bisherige Stand. Blick von schraeg oben.',
+                },
+                {
+                    id: 'p2',
+                    title: 'P2 - 66 Grad',
+                    note: 'Auge sinkt, das Gehaeuse wird flacher.',
+                },
+                {
+                    id: 'p3',
+                    title: 'P3 - 71 Grad',
+                    note: 'Die Tastenoberseiten verkuerzen sich deutlich.',
+                },
+                {
+                    id: 'p4',
+                    title: 'P4 - 75 Grad',
+                    note: 'Vorderseiten dominieren, Silhouette wird niedrig.',
+                },
+                {
+                    id: 'p5',
+                    title: 'P5 - 79 Grad',
+                    note: 'Nah am Foto: fast auf Augenhoehe.',
+                },
+                {
+                    id: 'p6',
+                    title: 'P6 - 82 Grad',
+                    note: 'Streifender Blick, hoehere Kappen zum Ausgleich.',
+                },
+            ];
+
+            function buildKeyboard(keyboard) {
+                const deck = document.createElement('div');
+                deck.className = 'deck';
+
+                for (const row of ROWS) {
+                    const line = document.createElement('div');
+                    line.className = 'row';
+
+                    for (const unit of row) {
+                        const cell = document.createElement('span');
+                        cell.className = unit < 0 ? 'gap' : 'key';
+                        cell.style.flex = `${Math.abs(unit)} 0 0`;
+                        line.append(cell);
+                    }
+
+                    deck.append(line);
+                }
+
+                const lip = document.createElement('div');
+                lip.className = 'lip';
+                lip.innerHTML = '<span class="brand">RetroTron</span>';
+
+                keyboard.append(deck, lip);
+            }
+
+            const main = document.querySelector('main');
+
+            for (const preset of PRESETS) {
+                const section = document.createElement('section');
+                section.innerHTML = `<h2>${preset.title}</h2><p class="note">${preset.note}</p>
+        <div class="stage"><div class="kb faces ${preset.id}"></div></div>`;
+                main.append(section);
+            }
+
+            document.querySelectorAll('.kb').forEach(buildKeyboard);
+
+            const SETTINGS = [
+                {
+                    name: '--angle',
+                    label: 'Winkel',
+                    min: 50,
+                    max: 86,
+                    step: 1,
+                    value: 75,
+                    unit: 'deg',
+                },
+                {
+                    name: '--eye',
+                    label: 'Blickhoehe',
+                    min: -90,
+                    max: 30,
+                    step: 2,
+                    value: -10,
+                    unit: '%',
+                },
+                {
+                    name: '--persp',
+                    label: 'Perspektive',
+                    min: 14,
+                    max: 80,
+                    step: 2,
+                    value: 30,
+                    unit: 'em',
+                },
+                {
+                    name: '--cap-height',
+                    label: 'Kappenhoehe',
+                    min: 1,
+                    max: 20,
+                    step: 1,
+                    value: 6,
+                    unit: 'px',
+                },
+                {
+                    name: '--cap-inset',
+                    label: 'Fuge',
+                    min: 0,
+                    max: 4,
+                    step: 0.5,
+                    value: 1.5,
+                    unit: 'px',
+                },
+                {
+                    name: '--row-gap',
+                    label: 'Reihenabstand',
+                    min: 0,
+                    max: 16,
+                    step: 0.5,
+                    value: 7,
+                    unit: '%',
+                },
+                {
+                    name: '--ratio',
+                    label: 'Seitenverhaeltnis',
+                    min: 2.2,
+                    max: 3.8,
+                    step: 0.05,
+                    value: 2.8,
+                    unit: '',
+                },
+                {
+                    name: '--lip-height',
+                    label: 'Frontblende',
+                    min: 4,
+                    max: 30,
+                    step: 1,
+                    value: 14,
+                    unit: 'px',
+                },
+                {
+                    name: '--kb-width',
+                    label: 'Breite',
+                    min: 240,
+                    max: 760,
+                    step: 10,
+                    value: 430,
+                    unit: 'px',
+                },
+            ];
+
+            const live = document.getElementById('live');
+            const snippet = document.getElementById('snippet');
+            const controls = document.querySelector('.controls');
+
+            function apply() {
+                const lines = [];
+
+                for (const setting of SETTINGS) {
+                    const input = document.getElementById(setting.name);
+                    const value = `${input.value}${setting.unit}`;
+                    live.style.setProperty(setting.name, value);
+                    input.nextElementSibling.textContent = value;
+                    lines.push(`    ${setting.name}: ${value};`);
+                }
+
+                snippet.textContent = `.keyboard {\n${lines.join('\n')}\n}`;
+            }
+
+            for (const setting of SETTINGS) {
+                const label = document.createElement('label');
+                label.innerHTML = `<span>${setting.label}</span>
+        <input id="${setting.name}" type="range" min="${setting.min}" max="${setting.max}"
+               step="${setting.step}" value="${setting.value}"><output></output>`;
+                controls.append(label);
+            }
+
+            controls.addEventListener('input', apply);
+            apply();
+
+            document
+                .getElementById('plain')
+                .addEventListener('change', (event) => {
+                    document.body.classList.toggle(
+                        'plain',
+                        event.target.checked,
+                    );
+                });
+
+            document
+                .getElementById('faces')
+                .addEventListener('change', (event) => {
+                    document
+                        .querySelectorAll('.kb')
+                        .forEach((kb) =>
+                            kb.classList.toggle('faces', event.target.checked),
+                        );
+                });
+        </script>
+    </body>
+</html>

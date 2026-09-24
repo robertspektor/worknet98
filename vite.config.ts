@@ -8,6 +8,9 @@ import { bunny } from 'laravel-vite-plugin/fonts';
 import { defineConfig, lazyPlugins } from 'vite-plus';
 
 const fonts = [
+    bunny('Inter', {
+        weights: [400, 500, 700],
+    }),
     bunny('Pixelify Sans', {
         weights: [400, 600],
     }),

@@ -9,6 +9,13 @@ describe('nextComputerState', () => {
         expect(nextComputerState('shut-down', 'power')).toBe('off');
     });
 
+    it('restarts a running computer on reset and ignores it when off', () => {
+        expect(nextComputerState('ready', 'reset')).toBe('booting');
+        expect(nextComputerState('shut-down', 'reset')).toBe('booting');
+        expect(nextComputerState('thermal-fault', 'reset')).toBe('booting');
+        expect(nextComputerState('off', 'reset')).toBe('off');
+    });
+
     it('becomes ready only after booting', () => {
         expect(nextComputerState('booting', 'boot-finished')).toBe('ready');
         expect(nextComputerState('off', 'boot-finished')).toBe('off');

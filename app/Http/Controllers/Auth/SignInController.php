@@ -26,8 +26,8 @@ class SignInController extends Controller
 
         Auth::login($player, remember: true);
         $request->session()->regenerate();
-        $request->session()->flash('status', 'booted');
+        $request->session()->flash('status', 'registered');
 
-        return Inertia::location(route('home'));
+        return Inertia::location(route('terminal'));
     }
 }

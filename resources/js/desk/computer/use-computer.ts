@@ -11,6 +11,7 @@ export function useComputer(initialState: ComputerState = 'off') {
         state,
         isOn: state !== 'off',
         togglePower: () => send('power'),
+        reset: () => send('reset'),
         finishBoot: () => send('boot-finished'),
         shutDown: () => send('shut-down'),
         overheat: () => send('overheat'),

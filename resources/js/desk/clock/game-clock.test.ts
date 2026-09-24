@@ -1,5 +1,12 @@
 import { describe, expect, it } from 'vite-plus/test';
-import { formatGameTime, gameNow, gameToday } from './game-clock';
+import {
+    clockHands,
+    formatGameDate,
+    formatGameStamp,
+    formatGameTime,
+    gameNow,
+    gameToday,
+} from './game-clock';
 
 const settings = {
     scale: 7,
@@ -28,5 +35,23 @@ describe('game clock', () => {
         const now = gameNow(settings, Date.parse('2026-09-14T04:48:00Z'));
 
         expect(formatGameTime(now, 'de')).toBe('09:36');
+    });
+
+    it('names the game day the way a calendar would', () => {
+        const now = gameNow(settings, Date.parse('2026-09-15T00:00:00Z'));
+
+        expect(formatGameDate(now, 'de')).toBe('Montag, 12. Januar 1998');
+    });
+
+    it('puts the hands of a wall clock where the game time is', () => {
+        const nine = new Date(Date.UTC(1998, 0, 12, 9, 30));
+
+        expect(clockHands(nine)).toEqual({ hours: 285, minutes: 180 });
+    });
+
+    it('stamps date and time the way a terminal footer does', () => {
+        const now = gameNow(settings, Date.parse('2026-09-15T00:00:00Z'));
+
+        expect(formatGameStamp(now, 'de')).toBe('12.01.1998  00:00');
     });
 });

@@ -7,6 +7,7 @@ export type ComputerState =
 
 export type ComputerEvent =
     | 'power'
+    | 'reset'
     | 'boot-finished'
     | 'shut-down'
     | 'overheat';
@@ -17,6 +18,10 @@ export function nextComputerState(
 ): ComputerState {
     if (event === 'power') {
         return state === 'off' ? 'booting' : 'off';
+    }
+
+    if (event === 'reset') {
+        return state === 'off' ? state : 'booting';
     }
 
     if (event === 'boot-finished' && state === 'booting') {

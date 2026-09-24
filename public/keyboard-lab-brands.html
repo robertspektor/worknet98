@@ -1,0 +1,624 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="robots" content="noindex" />
+        <title>Keyboard lab brands</title>
+        <style>
+            :root {
+                --desk-top: #a5703f;
+                --desk-bottom: #5f3d21;
+                --ink: #e8e3d7;
+            }
+
+            * {
+                box-sizing: border-box;
+            }
+
+            body {
+                margin: 0;
+                background: #1b2130;
+                color: var(--ink);
+                font:
+                    13px/1.5 'Lucida Console',
+                    'DejaVu Sans Mono',
+                    monospace;
+            }
+
+            header {
+                display: flex;
+                flex-wrap: wrap;
+                align-items: center;
+                gap: 18px;
+                padding: 12px 20px;
+                border-bottom: 1px solid #ffffff20;
+                background: #151a26;
+            }
+
+            header strong {
+                letter-spacing: 1px;
+            }
+
+            header a {
+                color: #9fc6ff;
+            }
+
+            main {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(440px, 1fr));
+                gap: 2px;
+            }
+
+            section {
+                padding: 16px 20px 24px;
+            }
+
+            h2 {
+                margin: 0 0 2px;
+                font-size: 13px;
+                letter-spacing: 1px;
+            }
+
+            p.model {
+                margin: 0;
+                color: #ffc98a;
+            }
+
+            p.note {
+                margin: 4px 0 14px;
+                min-height: 40px;
+                color: #ffffff80;
+            }
+
+            .stage {
+                display: flex;
+                align-items: flex-end;
+                justify-content: center;
+                min-height: 250px;
+                padding: 46px 16px 36px;
+                background:
+                    repeating-linear-gradient(
+                        0deg,
+                        #00000014 0 2px,
+                        #0000 2px 11px
+                    ),
+                    linear-gradient(var(--desk-top), var(--desk-bottom));
+                box-shadow: inset 0 1px 0 #ffffff30;
+            }
+
+            body.plain .stage {
+                background: #2b3242;
+                box-shadow: none;
+            }
+
+            /* ---------- the E5 model, shared by every manufacturer ---------- */
+
+            .kb {
+                --angle: 79deg;
+                --ratio: 2.8;
+                --persp: 30em;
+                --eye: -4%;
+                --cap-height: 5px;
+                --cap-inset: 1px;
+                --cap-radius: 1px;
+                --cap-bg: linear-gradient(#f2ead7, #ddd2b8);
+                --cap-shade: inset -1px -1px 0 #ab9f83;
+                --cap-front: linear-gradient(#c6bb9f, #9c9074);
+                --well: #6b6250;
+                --deck-bg: linear-gradient(#e7ddc5, #bcb094);
+                --deck-radius: 2px 2px 0 0;
+                --pad-x: 3%;
+                --pad-top: 13%;
+                --pad-bottom: 13%;
+                --row-gap: 7%;
+                --key-gap: 0.9%;
+                --block-gap: 3%;
+                --lip-height: 11px;
+                --lip-radius: 0 0 4px 4px;
+                --lip-bg: linear-gradient(#bcb094 30%, #8e8369);
+                --badge-color: #6b6250;
+                --badge-font: 'Helvetica Neue', Arial, sans-serif;
+
+                position: relative;
+                width: var(--kb-width, 430px);
+                perspective: var(--persp);
+                perspective-origin: 50% var(--eye);
+            }
+
+            .deck {
+                position: relative;
+                display: flex;
+                aspect-ratio: var(--ratio) / 1;
+                gap: var(--block-gap);
+                padding: calc(var(--pad-top) / var(--ratio)) var(--pad-x)
+                    calc(var(--pad-bottom) / var(--ratio));
+                border-radius: var(--deck-radius);
+                background: var(--deck-bg);
+                box-shadow: inset 0 0 0 1px #00000025;
+                transform: rotateX(var(--angle));
+                transform-origin: 50% 100%;
+                transform-style: preserve-3d;
+                z-index: 1;
+            }
+
+            .block {
+                display: flex;
+                flex-direction: column;
+                gap: calc(var(--row-gap) / var(--ratio));
+                transform-style: preserve-3d;
+            }
+
+            .block.main {
+                flex: 15;
+            }
+            .block.pad {
+                flex: 4.5;
+            }
+
+            .row {
+                display: flex;
+                flex: 1;
+                gap: var(--key-gap);
+                min-height: 0;
+                transform-style: preserve-3d;
+            }
+
+            .key {
+                position: relative;
+                background: var(--well);
+                transform-style: preserve-3d;
+            }
+
+            .gap {
+                background: none;
+            }
+
+            .key::after {
+                content: '';
+                position: absolute;
+                inset: var(--cap-inset);
+                border-radius: var(--cap-radius);
+                background: var(--cap-bg);
+                box-shadow: var(--cap-shade);
+                transform: translateZ(var(--cap-height));
+            }
+
+            .key::before {
+                content: '';
+                position: absolute;
+                right: var(--cap-inset);
+                bottom: calc(var(--cap-inset) - var(--cap-height));
+                left: var(--cap-inset);
+                height: var(--cap-height);
+                background: var(--cap-front);
+                transform: rotateX(90deg);
+                transform-origin: 50% 0;
+            }
+
+            .lip {
+                position: relative;
+                display: flex;
+                align-items: center;
+                height: var(--lip-height);
+                padding: 0 12px;
+                border-radius: var(--lip-radius);
+                background: var(--lip-bg);
+                box-shadow: 0 3px 8px #00000050;
+            }
+
+            /* ---------- brand plates ---------- */
+
+            .brand {
+                color: var(--badge-color);
+                font-family: var(--badge-font);
+                font-size: 9px;
+                font-weight: 700;
+                letter-spacing: 2px;
+                text-transform: uppercase;
+                white-space: nowrap;
+            }
+
+            .brand-deck {
+                position: absolute;
+                top: 1.5%;
+                transform-style: preserve-3d;
+            }
+
+            .brand-deck.left {
+                left: 3.5%;
+            }
+            .brand-deck.right {
+                right: 6%;
+            }
+            .brand-deck.center {
+                left: 50%;
+                translate: -50% 0;
+            }
+
+            .brand-lip.left {
+                margin-right: auto;
+            }
+            .brand-lip.center {
+                margin: 0 auto;
+            }
+            .brand-lip.right {
+                margin-left: auto;
+            }
+
+            .plate {
+                padding: 1px 5px;
+                border-radius: 1px;
+                background: linear-gradient(#e9e9ec, #9d9da6);
+                color: #2c2c31;
+                box-shadow:
+                    inset 0 0 0 1px #ffffff90,
+                    0 1px 0 #00000040;
+            }
+
+            .kb:has(.brand-deck.right) .leds {
+                right: auto;
+                left: 4%;
+            }
+
+            .leds {
+                position: absolute;
+                top: 2%;
+                right: 3.5%;
+                display: flex;
+                gap: 5px;
+            }
+
+            .leds span {
+                width: 5px;
+                height: 3px;
+                border-radius: 1px;
+                background: #4d4636;
+                box-shadow: inset 0 0 0 1px #00000050;
+            }
+
+            .leds span:first-child {
+                background: #7be07b;
+                box-shadow: 0 0 5px #7be07b90;
+            }
+
+            .has-deck-brand {
+                --pad-top: 30%;
+                --pad-bottom: 11%;
+            }
+
+            /* ---------- manufacturers ---------- */
+
+            .retrotron {
+                --deck-bg: linear-gradient(#e3d8be, #b8ac90);
+                --cap-bg: linear-gradient(#efe6d1, #d8ccb2);
+                --cap-front: linear-gradient(#c2b79b, #9a8e72);
+                --badge-color: #7a6f57;
+            }
+
+            .kalkulon {
+                --ratio: 3.6;
+                --deck-bg: linear-gradient(#5a5c62, #3d3f44);
+                --cap-bg: linear-gradient(#d3d4d8, #aeb0b6);
+                --cap-shade: inset -1px -1px 0 #7f8187;
+                --cap-front: linear-gradient(#9ea0a6, #74767c);
+                --well: #2a2c30;
+                --lip-bg: linear-gradient(#45474c 30%, #2c2e32);
+                --deck-radius: 1px 1px 0 0;
+                --cap-radius: 0;
+                --badge-color: #c9cbd1;
+                --badge-font: 'Lucida Console', monospace;
+            }
+
+            .clackamax {
+                --ratio: 3.5;
+                --cap-height: 8px;
+                --cap-inset: 1.5px;
+                --row-gap: 9%;
+                --key-gap: 1.1%;
+                --deck-bg: linear-gradient(#efe8d5, #c8bda0);
+                --cap-bg: linear-gradient(#fdf8ec, #e7dcc4);
+                --cap-front: linear-gradient(#cfc4ab, #a2977e);
+                --well: #5f5745;
+                --badge-color: #8a2f22;
+                --lip-height: 14px;
+            }
+
+            .clackamax .main .row:first-child .key::after,
+            .clackamax .main .row .key:first-child::after,
+            .clackamax .main .row .key:last-child::after {
+                background: linear-gradient(#5d5346, #443d33);
+                box-shadow: inset -1px -1px 0 #2e2922;
+            }
+
+            .clackamax .main .row:first-child .key::before,
+            .clackamax .main .row .key:first-child::before,
+            .clackamax .main .row .key:last-child::before {
+                background: linear-gradient(#413a31, #2b2620);
+            }
+
+            .silentia {
+                --cap-height: 3px;
+                --cap-inset: 0.5px;
+                --cap-radius: 4px;
+                --ratio: 3.1;
+                --deck-bg: linear-gradient(#e8e9ea, #c3c5c8);
+                --cap-bg: linear-gradient(#fafbfc, #dfe1e4);
+                --cap-shade: inset -1px -1px 0 #b0b3b8;
+                --cap-front: linear-gradient(#c6c8cc, #a2a5aa);
+                --well: #a7aaae;
+                --lip-bg: linear-gradient(#ced0d3 30%, #9ea1a6);
+                --deck-radius: 9px 9px 0 0;
+                --lip-radius: 0 0 9px 9px;
+                --badge-color: #6d7075;
+            }
+
+            .datamat {
+                --ratio: 2.55;
+                --cap-height: 4px;
+                --cap-inset: 0.5px;
+                --key-gap: 0.5%;
+                --deck-bg: linear-gradient(#ded0a4, #b6a877);
+                --cap-bg: linear-gradient(#e9dcb4, #cbbe92);
+                --cap-shade: inset -1px -1px 0 #9b8f68;
+                --cap-front: linear-gradient(#b2a67c, #8b8059);
+                --well: #7d7250;
+                --lip-bg: linear-gradient(#b6a877 30%, #8a7e55);
+                --badge-color: #6e6340;
+            }
+
+            .datamat .brand {
+                rotate: -1.5deg;
+                letter-spacing: 1px;
+            }
+
+            .ergonova {
+                --ratio: 3.2;
+                --cap-radius: 3px;
+                --cap-height: 5px;
+                --deck-bg: linear-gradient(#f2efe8, #cfcabd);
+                --cap-bg: linear-gradient(#fbf9f4, #e4e0d6);
+                --cap-shade: inset -1px -1px 0 #b6b1a5;
+                --cap-front: linear-gradient(#cbc7bc, #a29e93);
+                --well: #9d988c;
+                --deck-radius: 14px 14px 0 0;
+                --lip-radius: 0 0 14px 14px;
+                --lip-bg: linear-gradient(#dcd8cd 30%, #aaa598);
+                --badge-color: #7d786c;
+            }
+
+            .ergonova .row:nth-child(1) {
+                transform: translateZ(3px);
+            }
+            .ergonova .row:nth-child(2) {
+                transform: translateZ(2px);
+            }
+            .ergonova .row:nth-child(3) {
+                transform: translateZ(1px);
+            }
+            .ergonova .row:nth-child(5) {
+                transform: translateZ(1px);
+            }
+            .ergonova .row:nth-child(6) {
+                transform: translateZ(2px);
+            }
+
+            .axiom {
+                --ratio: 3.6;
+                --cap-height: 6px;
+                --cap-inset: 1.5px;
+                --deck-bg: linear-gradient(#32333a, #1d1e23);
+                --cap-bg: linear-gradient(#f4f4f6, #d6d7db);
+                --cap-shade: inset -1px -1px 0 #9b9ca2;
+                --cap-front: linear-gradient(#bcbdc2, #909199);
+                --well: #131418;
+                --lip-bg: linear-gradient(#2a2b31 30%, #16171b);
+                --deck-radius: 3px 3px 0 0;
+                --badge-color: #d8d9de;
+            }
+
+            .axiom .deck {
+                box-shadow: inset 0 0 0 1px #ffffff18;
+            }
+        </style>
+    </head>
+    <body>
+        <header>
+            <strong>KEYBOARD LAB: HERSTELLER</strong>
+            <span>Basis E5, Perspektive P5 (79 Grad)</span>
+            <label
+                ><input id="plain" type="checkbox" /> ohne Schreibtisch</label
+            >
+            <a href="/keyboard-lab-e.html">E-Varianten</a>
+            <a href="/keyboard-lab.html">A-F</a>
+        </header>
+
+        <main></main>
+
+        <script>
+            const MAIN_ROWS = [
+                [1, -1, 1, 1, 1, 1, -0.5, 1, 1, 1, 1, -0.5, 1, 1, 1, 1],
+                [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2],
+                [1.5, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1.5],
+                [1.75, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2.25],
+                [2.25, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2.75],
+                [1.25, 1.25, 1.25, 6.25, 1.25, 1.25, 1.25, 1.25],
+            ];
+
+            const SPLIT_SPACE = [1.25, 1.25, 3.75, 1.5, 3.75, 1.25, 1.25, 1];
+
+            const PAD_ROWS = [
+                [-4],
+                [1, 1, 1, 1],
+                [1, 1, 1, 1],
+                [1, 1, 1, 1],
+                [1, 1, 1, 1],
+                [2, 1, 1],
+            ];
+
+            const BRANDS = [
+                {
+                    id: 'retrotron',
+                    name: 'RetroTron',
+                    model: 'KB-2 Standard',
+                    note: 'Liegt dem Rechner bei. Niemand hat sie ausgesucht, jeder hat sie. Name klein auf der Frontblende.',
+                    badge: { text: 'RetroTron', place: 'lip left' },
+                },
+                {
+                    id: 'kalkulon',
+                    name: 'Kalkulon',
+                    model: 'K-104 Professional',
+                    note: 'Vom Prozessorhersteller. Graphit, kantig, mit Zehnerblock und Kontrollleuchten. Beschriftung in Konsolenschrift.',
+                    layout: 'full',
+                    leds: true,
+                    badge: { text: 'Kalkulon K-104', place: 'deck right' },
+                },
+                {
+                    id: 'clackamax',
+                    name: 'Clackamax',
+                    model: '3000 Mechanical',
+                    note: 'Sehr hohe Kappen, dunkle Sondertasten, breites Gehaeuse. Man hoert den Kollegen tippen, bevor man ihn sieht.',
+                    layout: 'full',
+                    badge: { text: 'Clackamax 3000', place: 'deck left' },
+                },
+                {
+                    id: 'silentia',
+                    name: 'Silentia',
+                    model: 'Flat Office',
+                    note: 'Flache, runde Kappen in Bueroblau-Grau. Leise, unauffaellig, Beschaffungsabteilung kauft sie in Zehnerpacks.',
+                    badge: { text: 'Silentia', place: 'lip center' },
+                },
+                {
+                    id: 'datamat',
+                    name: 'Datamat',
+                    model: '40',
+                    note: 'Vergilbtes Plastik, enge Tasten, kaum Fugen. Das Typenschild sitzt schief. Kostet fast nichts.',
+                    badge: { text: 'Datamat 40', place: 'lip left' },
+                },
+                {
+                    id: 'ergonova',
+                    name: 'Ergonova',
+                    model: 'Curve',
+                    note: 'Geteilte Leertaste, gewoelbte Reihen, weiche Kanten. Wirbt mit Haltung, kostet das Dreifache.',
+                    splitSpace: true,
+                    badge: { text: 'Ergonova', place: 'deck center' },
+                },
+                {
+                    id: 'axiom',
+                    name: 'Axiom',
+                    model: 'Nine',
+                    note: 'Fast schwarzes Gehaeuse, weisse Kappen, Metallschild. Das teuerste Stueck auf jedem Schreibtisch.',
+                    layout: 'full',
+                    leds: true,
+                    badge: {
+                        text: 'Axiom Nine',
+                        place: 'deck right',
+                        plate: true,
+                    },
+                },
+            ];
+
+            function buildBlock(rows, kind) {
+                const block = document.createElement('div');
+                block.className = `block ${kind}`;
+
+                for (const row of rows) {
+                    const line = document.createElement('div');
+                    line.className = 'row';
+
+                    for (const unit of row) {
+                        const cell = document.createElement('span');
+                        cell.className = unit < 0 ? 'gap' : 'key';
+                        cell.style.flex = `${Math.abs(unit)} 0 0`;
+                        line.append(cell);
+                    }
+
+                    block.append(line);
+                }
+
+                return block;
+            }
+
+            function buildBadge(badge, area) {
+                const [place, align] = badge.place.split(' ');
+
+                if (place !== area) {
+                    return null;
+                }
+
+                const element = document.createElement('span');
+                element.className = `brand brand-${area} ${align} ${badge.plate ? 'plate' : ''}`;
+                element.textContent = badge.text;
+
+                return element;
+            }
+
+            function buildKeyboard(brand) {
+                const keyboard = document.createElement('div');
+                keyboard.className = `kb ${brand.id}`;
+
+                if (brand.badge.place.startsWith('deck')) {
+                    keyboard.classList.add('has-deck-brand');
+                }
+
+                const rows = MAIN_ROWS.map((row, index) =>
+                    brand.splitSpace && index === 5 ? SPLIT_SPACE : row,
+                );
+                const deck = document.createElement('div');
+                deck.className = 'deck';
+                deck.append(buildBlock(rows, 'main'));
+
+                if (brand.layout === 'full') {
+                    deck.append(buildBlock(PAD_ROWS, 'pad'));
+                }
+
+                const deckBadge = buildBadge(brand.badge, 'deck');
+
+                if (deckBadge) {
+                    deck.append(deckBadge);
+                }
+
+                if (brand.leds) {
+                    const leds = document.createElement('span');
+                    leds.className = 'leds';
+                    leds.innerHTML = '<span></span><span></span><span></span>';
+                    deck.append(leds);
+                }
+
+                const lip = document.createElement('div');
+                lip.className = 'lip';
+                const lipBadge = buildBadge(brand.badge, 'lip');
+
+                if (lipBadge) {
+                    lip.append(lipBadge);
+                }
+
+                keyboard.append(deck, lip);
+
+                return keyboard;
+            }
+
+            const main = document.querySelector('main');
+
+            for (const brand of BRANDS) {
+                const section = document.createElement('section');
+                section.innerHTML = `<h2>${brand.name}</h2><p class="model">${brand.model}</p><p class="note">${brand.note}</p>`;
+
+                const stage = document.createElement('div');
+                stage.className = 'stage';
+                stage.append(buildKeyboard(brand));
+                section.append(stage);
+                main.append(section);
+            }
+
+            document
+                .getElementById('plain')
+                .addEventListener('change', (event) => {
+                    document.body.classList.toggle(
+                        'plain',
+                        event.target.checked,
+                    );
+                });
+        </script>
+    </body>
+</html>

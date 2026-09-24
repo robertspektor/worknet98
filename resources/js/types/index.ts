@@ -11,5 +11,6 @@ export type * from './office';
 export type * from './player';
 export type * from './registry';
 export type * from './shop';
+export type * from './terminal';
 export type * from './work';
 export type * from './workplace';

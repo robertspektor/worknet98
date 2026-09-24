@@ -5,84 +5,625 @@
 @import './desk/boot.css';
 
 :root {
-    --page-back: #1b1924;
-    --page-face: #c0c0c0;
-    --page-paper: #efece3;
-    --page-ink: #1a1a1a;
-    --page-muted: #5a5a5a;
-    --page-link: #000080;
+    --page-bg: #f7f6f3;
+    --page-paper: #ffffff;
+    --page-ink: #15151b;
+    --page-muted: #6c6c75;
+    --page-line: #d7d4cb;
+    --page-accent: #e8451f;
+    --page-sans:
+        'Inter', -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
 }
 
 body {
     margin: 0;
-    background: radial-gradient(
-            ellipse at 50% 0%,
-            #332f43 0%,
-            #1b1924 55%,
-            #0d0c12 100%
-        )
-        fixed;
+    background: var(--page-bg);
     color: var(--page-ink);
-    font:
-        16px/1.6 Tahoma,
-        Verdana,
-        'Segoe UI',
-        sans-serif;
+    font: 400 16px/1.6 var(--page-sans);
+    -webkit-font-smoothing: antialiased;
 }
 
 .page {
+    position: relative;
     display: flex;
     flex-direction: column;
     min-height: 100vh;
 }
 
+/* ---------- header ---------- */
+
 .page-header {
-    padding: 14px 20px;
-    background: var(--page-face);
-    box-shadow: 0 2px 0 #00000040;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px 24px;
+    align-items: center;
+    justify-content: space-between;
+    width: min(1140px, 100%);
+    margin: 0 auto;
+    padding: 20px 24px;
 }
 
 .page-brand {
     display: inline-flex;
-    flex-direction: column;
+    flex-direction: row;
+    align-items: center;
+    gap: 13px;
     text-decoration: none;
     color: var(--page-ink);
 }
 
+.page-brand-words {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.25;
+}
+
 .page-brand-name {
-    font-family: 'Pixelify Sans', Tahoma, sans-serif;
-    font-size: 24px;
+    font-family: 'Pixelify Sans', var(--page-sans);
+    font-size: 21px;
     font-weight: 600;
-    letter-spacing: 1px;
+    letter-spacing: 0.5px;
 }
 
 .page-brand-tag {
-    font-size: 14px;
+    font-size: 13px;
     color: var(--page-muted);
 }
 
-.page-main {
-    width: min(1040px, 100%);
-    margin: 0 auto;
-    padding: 40px 20px 56px;
+.brand-mark {
+    image-rendering: pixelated;
 }
 
-.catalogue-body .field,
-.catalogue-note,
-.prose {
-    padding: 28px 32px;
-    background: var(--page-paper);
+/* Only the landing page has a scene for the header to sit on. */
+
+body.is-landing .page-header {
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    z-index: 3;
+}
+
+/* ---------- hero ---------- */
+
+.landing-intro {
+    width: min(1140px, 100%);
+    margin: 0 auto;
+    padding: 24px 24px 14px;
+    text-align: center;
+}
+
+.landing-intro h1 {
+    max-width: 20ch;
+    margin: 0 auto 16px;
+    font-size: clamp(34px, 5.4vw, 62px);
+    font-weight: 700;
+    line-height: 1.02;
+    letter-spacing: -0.035em;
+    text-wrap: balance;
+}
+
+.landing-intro p {
+    max-width: 44ch;
+    margin: 0 auto;
+    font-size: clamp(17px, 1.8vw, 23px);
+    line-height: 1.45;
+    color: #3f3f49;
+    text-wrap: balance;
+}
+
+.hero-accent {
+    color: var(--page-accent);
+}
+
+.hero-break {
+    display: none;
+}
+
+@media (min-width: 560px) {
+    .hero-break {
+        display: inline;
+    }
+}
+
+/* ---------- the hero as a lit desk ---------- */
+
+.hero {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-height: 100dvh;
+    overflow: hidden;
+    padding-top: 76px;
+    background:
+        radial-gradient(ellipse 58% 54% at 88% 20%, #fff8e6, #0000 66%),
+        linear-gradient(#f4ecdc, #e9dcc4 72%, #e2d3b8);
+}
+
+/* The window on the right: the evening over the city, seen through half
+   lowered blinds. It is what lights the desk, so it sits behind everything. */
+
+.hero-window {
+    --frame: clamp(9px, 0.9vw, 15px);
+    --blinds: 38%;
+    position: absolute;
+    top: clamp(66px, 9vh, 96px);
+    right: clamp(6px, 1.4vw, 28px);
+    z-index: 0;
+    width: clamp(215px, 21vw, 330px);
+    height: clamp(310px, 50vh, 520px);
+    font-size: clamp(11px, 1.15vw, 18px);
+    background: #f7f1e4;
+    border: var(--frame) solid #fcf9f2;
+    border-bottom-width: calc(var(--frame) * 1.3);
     box-shadow:
-        inset -1px -1px #00000030,
-        inset 1px 1px #ffffff,
-        0 12px 30px #0000004d;
+        inset 0 0 0 1px #cfc4ae,
+        0 0 0 1px #d8cdb8,
+        0 26px 60px #0000001f;
+    pointer-events: none;
+}
+
+.window-glass {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    overflow: hidden;
+    background: linear-gradient(
+        #8a9ec2 0%,
+        #c0b0c4 30%,
+        #f0b79e 58%,
+        #f6cfa8 80%,
+        #f7dcbe 100%
+    );
+}
+
+.window-sun {
+    position: absolute;
+    inset: 42% -20% -30% -20%;
+    background: radial-gradient(
+        ellipse 46% 60% at 72% 100%,
+        #ffe6bc,
+        #0000 70%
+    );
+}
+
+.window-haze {
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(
+        173deg,
+        #0000 0 1.1em,
+        #ffffff1a 1.9em 2.6em,
+        #0000 3.4em 4.6em
+    );
+}
+
+/* Two rows of houses: the pale ones stand behind, the dark ones in front. */
+
+.window-skyline {
+    position: absolute;
+    inset: auto 0 0 0;
+}
+
+.window-skyline.is-far {
+    height: 38%;
+    background: #6d7b9e;
+    opacity: 0.55;
+    clip-path: polygon(
+        0 74%,
+        9% 74%,
+        9% 48%,
+        19% 48%,
+        19% 66%,
+        28% 66%,
+        28% 30%,
+        38% 30%,
+        38% 58%,
+        52% 58%,
+        52% 40%,
+        63% 40%,
+        63% 62%,
+        74% 62%,
+        74% 34%,
+        86% 34%,
+        86% 56%,
+        100% 56%,
+        100% 100%,
+        0 100%
+    );
+}
+
+.window-skyline.is-near {
+    height: 30%;
+    background: linear-gradient(#414f70, #33405c);
+    clip-path: polygon(
+        0 62%,
+        12% 62%,
+        12% 34%,
+        23% 34%,
+        23% 72%,
+        35% 72%,
+        35% 46%,
+        48% 46%,
+        48% 20%,
+        58% 20%,
+        58% 58%,
+        70% 58%,
+        70% 38%,
+        82% 38%,
+        82% 66%,
+        100% 66%,
+        100% 100%,
+        0 100%
+    );
+}
+
+/* The city's television tower, the one landmark the skyline is known for. */
+
+.window-tower {
+    position: absolute;
+    left: 40%;
+    bottom: 0;
+    width: 0.42em;
+    height: 46%;
+    background: linear-gradient(90deg, #3a4767, #4d5b7d 55%, #35415f);
+}
+
+.window-tower::before {
+    content: '';
+    position: absolute;
+    top: 1.6em;
+    left: 50%;
+    width: 1.35em;
+    height: 0.85em;
+    translate: -50% 0;
+    border-radius: 50%;
+    background: linear-gradient(#55648a, #3a4767);
+}
+
+.window-tower::after {
+    content: '';
+    position: absolute;
+    top: -1.5em;
+    left: 50%;
+    width: 0.14em;
+    height: 1.6em;
+    translate: -50% 0;
+    background: #3a4767;
+    box-shadow: 0 -0.3em 0 0.1em #e8451f80;
+}
+
+/* The blinds are pulled down to just above the rooftops. */
+
+.window-blinds {
+    position: absolute;
+    inset: 0 0 auto 0;
+    height: var(--blinds);
+    background: repeating-linear-gradient(
+        #eef1f6 0 0.1em,
+        #ccd3dd 0.1em 0.44em,
+        #9aa4b2 0.44em 0.54em,
+        #b9c1cd 0.54em 0.6em
+    );
+    box-shadow: 0 0.5em 1.1em #00000033;
+}
+
+.window-blinds-rail {
+    position: absolute;
+    inset: auto 0 0 0;
+    height: 0.5em;
+    background: linear-gradient(#b8c0cc, #7d8796);
+}
+
+.window-cord {
+    position: absolute;
+    top: 0;
+    right: 1.1em;
+    width: 0.12em;
+    height: calc(var(--blinds) + 3.4em);
+    background: #b3aa98;
+}
+
+.window-cord::after {
+    content: '';
+    position: absolute;
+    bottom: -0.5em;
+    left: 50%;
+    width: 0.45em;
+    height: 0.8em;
+    translate: -50% 0;
+    border-radius: 0.25em;
+    background: linear-gradient(#cfc7b6, #9c927f);
+}
+
+/* On narrow pages the window would crowd the headline, so it shrinks and
+   then gives way entirely. */
+
+@media (max-width: 1100px) {
+    .hero-window {
+        width: clamp(170px, 22vw, 240px);
+        height: clamp(280px, 44vh, 420px);
+    }
+}
+
+@media (max-width: 760px) {
+    .hero-window {
+        display: none;
+    }
+}
+
+/* Daylight catching the pane, and the sill the light lands on. */
+
+/* The reveal: the pane sits deep enough in the wall to catch a shadow. */
+
+.window-reflection {
+    position: absolute;
+    inset: 0;
+    box-shadow:
+        inset 0.6em 0.6em 1em #3a44601f,
+        inset -0.35em -0.35em 0.7em #3a446014;
+    background: linear-gradient(
+        118deg,
+        #0000 40%,
+        #ffffff14 40% 47%,
+        #0000 47% 55%,
+        #ffffff0d 55% 58%,
+        #0000 58%
+    );
+}
+
+.window-sill {
+    position: absolute;
+    right: calc(var(--frame) * -1.6);
+    bottom: calc(var(--frame) * -1 - 1.1em);
+    left: calc(var(--frame) * -2.6);
+    height: 1.1em;
+    background: linear-gradient(#fefcf7 0 40%, #efe7d6 40%, #ddd1b8);
+    box-shadow:
+        inset 0 1px 0 #ffffff,
+        0 0.5em 1.1em #00000022;
+}
+
+.hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    background: repeating-linear-gradient(
+        -15deg,
+        #fffaee 0 22px,
+        #0000 22px 68px
+    );
+    mask-image:
+        radial-gradient(ellipse 72% 76% at 88% 16%, #000, #0000 62%),
+        linear-gradient(90deg, #000 62%, #0000 76%);
+    mask-composite: intersect;
+    pointer-events: none;
+}
+
+.landing-intro,
+.landing-stage {
+    position: relative;
+    z-index: 1;
+}
+
+.landing-stage {
+    margin-top: auto;
+}
+
+.landing-room {
+    position: relative;
+}
+
+.landing-stage .room {
+    --monitor-width: min(100vw - 48px, 800px, calc((100dvh - 190px) / 1.22));
+    --desk-height: calc(var(--monitor-width) * 0.42);
+    flex-direction: column;
+    gap: 14px;
+    height: auto;
+    padding-bottom: var(--desk-height);
+}
+
+.landing-stage .room.is-terminal {
+    background: none;
+}
+
+.landing-stage .monitor {
+    margin-bottom: 0;
+}
+
+/* The terminal carries the only switch, so it never leaves the picture: on a
+   narrow page it moves in front of the monitor instead. */
+
+.landing-stage .public-terminal {
+    left: min(
+        calc(50% + var(--monitor-width) * 0.9),
+        calc(100% - var(--monitor-width) / 40 * 8)
+    );
+    right: auto;
+    bottom: calc(var(--desk-height) * 0.86);
+    translate: -50% 0;
+    font-size: calc(var(--monitor-width) / 38);
+}
+
+/* Daylight in a hall, not a dark room: the case throws a short, soft shadow
+   on its shaded side and sits on the counter with a firm contact shadow. */
+
+.landing-stage .terminal-case {
+    box-shadow:
+        inset 0 2px 0 #ffffff5c,
+        inset 0 -0.4em 0 #00000021,
+        -1.2em 0.8em 1.6em #0000001f,
+        0 0.5em 0.8em #00000038;
+}
+
+.landing-stage .keyboard {
+    --kb-width: calc(var(--monitor-width) * 1.16);
+
+    bottom: calc(var(--desk-height) * 0.62);
+}
+
+.landing-stage .terminal-notice {
+    top: 26%;
+    left: max(calc(50% - var(--monitor-width) * 1.02), 6%);
+    width: calc(var(--monitor-width) * 0.42);
+    font-size: calc(var(--monitor-width) / 28);
+}
+
+.landing-stage .wall-clock {
+    top: 3%;
+    left: max(calc(50% - var(--monitor-width) * 0.98), 9%);
+    width: calc(var(--monitor-width) * 0.16);
+    font-size: calc(var(--monitor-width) / 16);
+}
+
+.landing-stage .desk-lamp {
+    left: max(calc(50% - var(--monitor-width) * 0.94), 12%);
+    bottom: calc(var(--desk-height) * 0.8);
+    font-size: calc(var(--monitor-width) / 36);
+}
+
+.landing-stage .filing-cabinet {
+    width: calc(var(--monitor-width) * 0.2);
+    height: 46%;
+    font-size: calc(var(--monitor-width) / 26);
+}
+
+.landing-stage .desk-form {
+    left: max(calc(50% - var(--monitor-width) * 0.78), 17%);
+    bottom: calc(var(--desk-height) * 0.34);
+    font-size: calc(var(--monitor-width) / 40);
+}
+
+/* Below this the wall beside the screen is gone and with it the room: the
+   notice, the clock and the workplace next door step out of the picture. */
+
+@media (max-width: 820px) {
+    .landing-stage .terminal-notice,
+    .landing-stage .wall-clock,
+    .landing-stage .desk-lamp,
+    .landing-stage .desk-form,
+    .landing-stage .filing-cabinet {
+        display: none;
+    }
+}
+
+/* The game scene shrinks its tower to a stub on small screens. The terminal
+   has to stay whole, because the power switch is on it. */
+
+@media (max-width: 900px) {
+    .landing-stage .room {
+        --monitor-width: min(76vw, 800px, calc((100dvh - 190px) / 1.22));
+    }
+
+    /* Once it runs, the screen needs the whole width and the switch is done. */
+
+    .landing-room.is-running .public-terminal {
+        display: none;
+    }
+}
+
+/* A short window cannot hold a poster headline and the whole machine, so
+   both give way until the call to action is above the fold again. */
+
+@media (max-height: 900px) {
+    .landing-intro {
+        padding: 8px 24px 10px;
+    }
+
+    .landing-intro h1 {
+        margin-bottom: 10px;
+        font-size: clamp(28px, 3.5vw, 38px);
+    }
+
+    .landing-intro p {
+        font-size: 15px;
+    }
+
+    .hero-accent {
+        color: var(--page-accent);
+    }
+
+    .hero-break {
+        display: none;
+    }
+
+    @media (min-width: 560px) {
+        .hero-break {
+            display: inline;
+        }
+    }
+}
+
+/* ---------- main content ---------- */
+
+.page-main {
+    width: min(1140px, 100%);
+    margin: 0 auto;
+    padding: 28px 24px 72px;
+}
+
+.cards {
+    display: grid;
+    gap: 0;
+    margin-bottom: 72px;
+    border-top: 1px solid var(--page-line);
+}
+
+.card-item {
+    padding: 22px 0;
+    border-bottom: 1px solid var(--page-line);
+}
+
+.card-index {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    color: var(--page-accent);
+}
+
+.card-title {
+    margin: 10px 0 6px;
+    font-size: 18px;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+}
+
+.card-body {
+    margin: 0;
+    font-size: 15px;
+    color: var(--page-muted);
+}
+
+@media (min-width: 640px) {
+    .cards {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        column-gap: 36px;
+    }
+}
+
+@media (min-width: 1000px) {
+    .cards {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+
+    .card-item {
+        padding-bottom: 4px;
+        border-bottom: 0;
+    }
+}
+
+.prose {
+    max-width: 66ch;
 }
 
 .prose h1,
 .prose h2 {
-    margin: 28px 0 8px;
-    font-family: 'Pixelify Sans', Tahoma, sans-serif;
-    font-size: 25px;
+    margin: 48px 0 12px;
+    font-size: clamp(22px, 2.6vw, 30px);
+    font-weight: 700;
+    letter-spacing: -0.025em;
+    line-height: 1.15;
 }
 
 .prose h1:first-child,
@@ -91,8 +632,24 @@ body {
 }
 
 .prose p {
-    max-width: 68ch;
-    margin: 0 0 14px;
+    margin: 0 0 16px;
+    font-size: 17px;
+    line-height: 1.7;
+    color: #31313a;
+}
+
+.prose-lead {
+    font-size: 19px;
+}
+
+.catalogue-body .field,
+.catalogue-note {
+    padding: 28px 32px;
+    background: var(--page-paper);
+    box-shadow:
+        inset -1px -1px #00000030,
+        inset 1px 1px #ffffff,
+        0 12px 30px #0000004d;
 }
 
 .placeholder {
@@ -101,185 +658,272 @@ body {
     border: 2px dashed #a08a2a;
 }
 
-.page-footer {
-    margin-top: auto;
-    padding: 16px 20px;
-    background: var(--page-face);
-    box-shadow: 0 -2px 0 #00000040;
+/* ---------- showcase sections ---------- */
+
+.showcase {
+    padding: 64px 0;
+    border-top: 1px solid var(--page-line);
 }
 
-.page-footer-links {
-    display: flex;
-    gap: 18px;
+.showcase-title {
+    max-width: 18ch;
+    margin: 0 0 10px;
+    font-size: clamp(26px, 3.4vw, 40px);
+    font-weight: 700;
+    line-height: 1.08;
+    letter-spacing: -0.03em;
 }
 
-.page-footer-links a {
-    color: var(--page-link);
+.showcase-lead,
+.showcase-body {
+    max-width: 58ch;
+    margin: 0;
+    font-size: 17px;
+    color: #31313a;
 }
 
-.page-footer-note {
-    margin: 8px 0 0;
-    font-size: 14px;
+.showcase-caption {
+    margin: 22px 0 0;
+    font-size: 15px;
+    font-weight: 500;
     color: var(--page-muted);
 }
 
-/* The game sizes its room to the viewport. On a scrollable page the stage
-   grows with the machine instead. */
-.landing-stage {
-    border-bottom: 3px solid #00000055;
-}
-
-.landing-stage .room {
-    --monitor-width: min(100vw - 32px, 460px);
-    height: auto;
-    padding-bottom: 96px;
-}
-
-.stage-hint {
-    margin: 0 0 32px;
-    text-align: center;
-    color: #cfc9bd;
-}
-
-.cards {
+.progress-pair {
     display: grid;
-    gap: 16px;
-    margin-bottom: 44px;
+    gap: 14px;
+    margin: 30px 0 0;
 }
 
-.card-window {
-    position: static;
+.progress-arrow {
+    justify-self: center;
+    font-size: 26px;
+    line-height: 1;
+    color: var(--page-accent);
 }
 
-.card-window .window {
-    position: static;
+.progress-arrow::before {
+    content: '\2193';
 }
 
-.card-body {
-    padding: 12px 14px;
-    overflow: visible;
-}
+@media (min-width: 760px) {
+    .progress-pair {
+        grid-template-columns: 1fr auto 1fr;
+        gap: 26px;
+        align-items: center;
+    }
 
-.card-body p {
-    margin: 0;
-}
-
-@media (min-width: 640px) {
-    .cards {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
+    .progress-arrow::before {
+        content: '\2192';
     }
 }
 
-@media (min-width: 1000px) {
-    .cards {
+.spec {
+    padding: 22px 24px;
+    background: var(--page-paper);
+    border: 1px solid var(--page-line);
+    border-radius: 3px;
+}
+
+.spec.is-later {
+    border-color: #c8c4b9;
+    box-shadow: 0 10px 30px #00000012;
+}
+
+.spec-label {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--page-muted);
+}
+
+.spec.is-later .spec-label {
+    color: var(--page-accent);
+}
+
+.spec-list {
+    display: grid;
+    gap: 4px;
+    margin: 14px 0 0;
+    padding: 0;
+    list-style: none;
+}
+
+.spec-list li {
+    position: relative;
+    padding-left: 18px;
+    font:
+        21px/1.35 'VT323',
+        monospace;
+    color: #2a2a31;
+}
+
+.spec-list li::before {
+    content: '';
+    position: absolute;
+    top: 0.62em;
+    left: 0;
+    width: 9px;
+    height: 1px;
+    background: #b9b5aa;
+}
+
+.spec.is-later .spec-list li::before {
+    background: var(--page-accent);
+}
+
+.city-map {
+    height: 128px;
+    margin: 28px 0 0;
+    border: 1px solid var(--page-line);
+    border-radius: 3px;
+    background:
+        radial-gradient(circle at 22% 38%, var(--page-accent) 0 3px, #0000 3px),
+        radial-gradient(circle at 61% 22%, var(--page-accent) 0 3px, #0000 3px),
+        radial-gradient(circle at 78% 66%, var(--page-accent) 0 3px, #0000 3px),
+        radial-gradient(circle at 40% 74%, var(--page-accent) 0 3px, #0000 3px),
+        linear-gradient(104deg, #0000 47.4%, #ded9cd 47.4% 48.6%, #0000 48.6%),
+        repeating-linear-gradient(90deg, #0000 0 47px, #e2ded2 47px 48px),
+        repeating-linear-gradient(0deg, #0000 0 31px, #e2ded2 31px 32px),
+        #f5f3ee;
+}
+
+.figures {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 22px 18px;
+    margin: 26px 0 26px;
+}
+
+@media (min-width: 760px) {
+    .figures {
         grid-template-columns: repeat(4, minmax(0, 1fr));
     }
 }
 
-.page-header {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 12px 24px;
-    align-items: center;
-    justify-content: space-between;
-}
-
-.page-brand {
-    flex-direction: row;
-    align-items: center;
-    gap: 12px;
-}
-
-.page-brand-words {
+.figure {
     display: flex;
     flex-direction: column;
+    gap: 2px;
 }
 
-.brand-mark {
-    image-rendering: pixelated;
+.figure-value {
+    font-size: clamp(26px, 3.2vw, 40px);
+    font-weight: 700;
+    line-height: 1;
+    letter-spacing: -0.035em;
+    font-variant-numeric: tabular-nums;
 }
 
-.page-resident {
-    margin: 0;
+.figure-label {
     font-size: 14px;
     color: var(--page-muted);
 }
 
-.prose-lead {
-    font-size: 18px;
-}
-
-.landing-intro {
-    width: min(1040px, 100%);
-    margin: 0 auto;
-    padding: 24px 20px 14px;
-    text-align: center;
-}
-
-.landing-intro h1 {
-    margin: 0 0 10px;
-    font-family: 'Pixelify Sans', Tahoma, sans-serif;
-    font-size: clamp(30px, 4.4vw, 48px);
-    line-height: 1.15;
-    text-wrap: balance;
-    color: #f4f1e6;
-}
-
-.landing-intro p {
-    max-width: 52ch;
-    margin: 0 auto;
-    font-size: 18px;
-    color: #cfc9bd;
-}
-
-.landing-stage .room {
-    flex-direction: column;
-    gap: 18px;
-}
-
-.landing-stage .desk {
-    height: 84px;
-}
-
-.landing-stage .monitor {
-    margin-bottom: 0;
-}
-
-.power-action {
-    position: relative;
-    z-index: 2;
-    padding: 10px 26px;
+.terminal {
+    max-width: 30em;
+    margin: 28px 0 24px;
+    padding: 20px 24px;
+    overflow-x: auto;
+    border-radius: 3px;
+    background: #15151b;
+    color: #cfe0c6;
     font:
-        600 18px 'Pixelify Sans',
-        Tahoma,
-        sans-serif;
-    color: #101010;
-    background: var(--plastic);
-    border: 0;
-    box-shadow:
-        inset -2px -2px #8e856d,
-        inset 2px 2px #fff,
-        0 6px 16px #0007;
-    cursor: pointer;
+        22px/1.45 'VT323',
+        monospace;
 }
 
-.power-action:active {
-    box-shadow:
-        inset 2px 2px #8e856d,
-        inset -2px -2px #fff;
+.terminal-flag {
+    color: var(--page-accent);
 }
 
-/* Off, the machine is a picture on a page. Running, it takes the stage, so the
-   setup window is rendered near the scale the game is designed for. */
-body:has(.landing-room.is-running) .landing-intro {
+.terminal-caret {
+    background: #cfe0c6;
+    color: #15151b;
+}
+
+/* ---------- footer ---------- */
+
+.page-footer {
+    margin-top: auto;
+    border-top: 1px solid var(--page-line);
+}
+
+.page-footer-inner {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px 24px;
+    align-items: center;
+    justify-content: space-between;
+    width: min(1140px, 100%);
+    margin: 0 auto;
+    padding: 22px 24px;
+}
+
+.page-footer-links {
+    display: flex;
+    gap: 20px;
+}
+
+.page-footer-links a {
+    font-size: 14px;
+    color: var(--page-ink);
+    text-decoration: none;
+    border-bottom: 1px solid var(--page-line);
+}
+
+.page-footer-links a:hover {
+    border-bottom-color: var(--page-accent);
+}
+
+.page-footer-note {
+    margin: 0;
+    font-size: 13px;
+    color: var(--page-muted);
+}
+
+/* Off, the machine is a picture on a page under a headline. Running, the page
+   text goes and the desk takes the whole window: the screen moves in as far as
+   the height allows while everything on it keeps its proportions.
+
+   The text is dropped rather than faded: a transition on display keeps the
+   headline in the layout while it runs, which pushes the scene down. */
+
+body.is-running .landing-intro {
     display: none;
 }
 
-.landing-room.is-running .room {
-    --monitor-width: min(100vw - 32px, 1000px, calc((96vh - 110px) * 1.12));
-    padding-bottom: 28px;
+body.is-running .hero {
+    height: 100dvh;
+    padding-top: 12px;
 }
 
+.landing-room.is-running .room {
+    --monitor-width: min(100vw - 48px, 940px, calc((100dvh - 44px) / 1.13));
+}
+
+/* Where the height is the limit the scene starts at the top, so the screen is
+   always whole and the front edge of the desk is what leaves the picture. */
+
+@media (min-width: 900px) {
+    body.is-running .landing-stage {
+        margin-top: 0;
+    }
+}
+
+/* On a tall window the desk may fall short of the lower edge, so its top
+   carries on down and no wall shows underneath. */
+
 .landing-room.is-running .desk {
-    height: 28px;
+    top: calc(100% - var(--desk-height));
+    bottom: -60vh;
+    height: auto;
+}
+
+/* Once the terminal runs, the screen takes the room and there is no wall
+   left beside it for the notice. */
+
+.landing-room.is-running .terminal-notice {
+    display: none;
 }

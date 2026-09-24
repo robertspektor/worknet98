@@ -8,7 +8,7 @@ it('uses the browser language for guests', function () {
     $this->withHeader('Accept-Language', 'de-DE,de;q=0.9,en;q=0.8')
         ->get(route('landing'))
         ->assertOk()
-        ->assertSee('Ein Computer. Ein Job. Ein Leben.', false);
+        ->assertSee('Ein Computer. Ein Leben.', false);
 });
 
 it('gives a signed in player their translations', function () {
@@ -24,7 +24,7 @@ it('falls back to English for unsupported browser languages', function () {
     $this->withHeader('Accept-Language', 'fr-FR')
         ->get(route('landing'))
         ->assertOk()
-        ->assertSee('One computer. One job. One life.', false);
+        ->assertSee('One computer. One life.', false);
 });
 
 it('prefers the player language over the browser language', function () {
@@ -41,7 +41,7 @@ it('lets guests switch the language for their session', function () {
 
     $this->get(route('landing'))
         ->assertOk()
-        ->assertSee('Ein Computer. Ein Job. Ein Leben.', false);
+        ->assertSee('Ein Computer. Ein Leben.', false);
 });
 
 it('stores the language on the player', function () {

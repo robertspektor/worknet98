@@ -6,7 +6,6 @@ use App\Auth\LoginLinks\LoginLinkRedeemer;
 use App\Http\Controllers\Controller;
 use App\Localization\LocaleSwitcher;
 use Illuminate\Contracts\View\View;
-use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Inertia\Inertia;
@@ -31,10 +30,13 @@ class LoginController extends Controller
         $request->session()->regenerate();
         $request->session()->flash('status', 'signed-in');
 
-        return Inertia::location(route('home'));
+        return Inertia::location(route('terminal'));
     }
 
-    public function destroy(Request $request, LocaleSwitcher $switcher): RedirectResponse
+    /* Leaving the game means leaving its root view, so the public page is
+       loaded as a whole page instead of being rendered into the game. */
+
+    public function destroy(Request $request, LocaleSwitcher $switcher): Response
     {
         $locale = app()->getLocale();
 
@@ -43,6 +45,6 @@ class LoginController extends Controller
         $request->session()->regenerateToken();
         $switcher->switch($request, $locale);
 
-        return redirect()->route('landing');
+        return Inertia::location(route('landing'));
     }
 }

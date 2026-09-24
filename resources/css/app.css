@@ -1,8 +1,12 @@
 @import 'tailwindcss';
 @import './desk/monitor.css';
 @import './desk/room.css';
+@import './desk/camera.css';
+@import './desk/home.css';
 @import './desk/desk-items.css';
 @import './desk/office.css';
+@import './desk/terminal.css';
+@import './desk/travel.css';
 @import './desk/boot.css';
 @import './desk/os.css';
 @import './desk/apps.css';

@@ -17,7 +17,7 @@ it('creates a verified player and signs them in', function () {
     LoginLink::factory()->forToken('first-day')->create(['email' => 'new@example.com', 'locale' => 'de']);
 
     $this->post(route('login.store', 'first-day'))
-        ->assertRedirect(route('home'))
+        ->assertRedirect(route('terminal'))
         ->assertSessionHas('status', 'signed-in');
 
     $player = User::sole();
@@ -33,7 +33,7 @@ it('signs in an existing player without changing their language', function () {
     $player = User::factory()->locale('en')->create(['email' => 'back@example.com']);
     LoginLink::factory()->forToken('welcome-back')->create(['email' => 'back@example.com', 'locale' => 'de']);
 
-    $this->post(route('login.store', 'welcome-back'))->assertRedirect(route('home'));
+    $this->post(route('login.store', 'welcome-back'))->assertRedirect(route('terminal'));
 
     expect($player->fresh()?->locale)->toBe('en');
     $this->assertAuthenticatedAs($player);
@@ -68,7 +68,7 @@ it('keeps the player language after logging out', function () {
     $this->withHeader('Accept-Language', 'de')
         ->get(route('landing'))
         ->assertOk()
-        ->assertSee('One computer. One job. One life.', false);
+        ->assertSee('One computer. One life.', false);
 });
 
 it('logs a player out', function () {

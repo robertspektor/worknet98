@@ -3,10 +3,10 @@
 }
 
 :root {
-    --room-light: #2e2a3a;
-    --room-dark: #0c0b11;
-    --desk-top: #6b4a32;
-    --desk-bottom: #3a281b;
+    --room-light: #2b3346;
+    --room-dark: #171c26;
+    --desk-top: #a5703f;
+    --desk-bottom: #5f3d21;
     --note: #fff27a;
 }
 
@@ -15,6 +15,10 @@ body {
     margin: 0;
 }
 
+/* The game fills the window: without a height on the root the room is only
+   as tall as the monitor and the wall stops short of the bottom edge. */
+
+html:has(body.is-game),
 body.is-game,
 body.is-game #app {
     height: 100%;
@@ -25,18 +29,156 @@ body.is-game {
 }
 
 body {
-    background: radial-gradient(
-        ellipse at 50% 25%,
-        var(--room-light) 0%,
-        #1b1924 50%,
-        var(--room-dark) 100%
-    );
+    background: linear-gradient(var(--room-light), var(--room-dark));
     font-family: Tahoma, Verdana, sans-serif;
+}
+
+/* The camera sits at the desk and looks across it: the table top runs from
+   the lower edge of the picture to the wall, and everything on it is placed
+   by how far back on that band it stands. */
+
+.room.is-home {
+    --monitor-width: min(
+        calc((100vw - 32px) * 0.4),
+        calc(100dvh * 0.59),
+        620px
+    );
+    --desk-depth: 34%;
+    --desk-height: calc(var(--monitor-width) * 0.4);
+
+    /* Warm oak at home: dark where the plate meets the wall, light where the
+       lamp falls on its front edge. */
+    --desk-top: #7d4f27;
+    --desk-bottom: #a5703e;
+
+    background: #c9c0b1;
+}
+
+/* At home the camera sits at the player's desk and looks across it: the
+   table top is a surface tilted away from the viewer and runs from the lower
+   edge of the picture to the wall. */
+
+.room.is-home .desk-item {
+    font-size: clamp(8px, calc(var(--monitor-width) / 37), 18px);
+}
+
+/* The plate is wider than the picture, so its far edge still reaches both
+   side edges after the perspective has pulled it in. The eye distance goes
+   with the height of the room, so the band keeps its depth on every
+   window. */
+
+.room.is-home .desk {
+    right: -45%;
+    bottom: 0;
+    left: -45%;
+    height: 108%;
+    border-radius: 0;
+    transform: perspective(calc(100dvh * 1.28)) rotateX(57.5deg);
+    transform-origin: 50% 100%;
+}
+
+/* Where the table top runs into the wall the light does not get in. */
+
+.room.is-home .desk::before {
+    content: '';
+    position: absolute;
+    inset: 0 0 auto 0;
+    height: 30%;
+    background: linear-gradient(#000000a6, #00000026 55%, #0000);
+}
+
+/* The machine does not sit in the middle of the desk: it stands a little to
+   the left, the way it does in the reference shot, and the keyboard goes
+   with it. */
+
+.room.is-home .monitor {
+    position: absolute;
+    bottom: calc(var(--desk-depth) * 0.92);
+    left: calc(50% - var(--monitor-width) * 0.25);
+    margin-bottom: 0;
+    translate: -50% 0;
+}
+
+.room.is-home .pc-tower {
+    left: calc(50% + var(--monitor-width) * 0.52);
+    bottom: calc(var(--desk-depth) * 0.84);
+    translate: -50% 0;
+}
+
+.room.is-home .keyboard {
+    --kb-width: calc(var(--monitor-width) * 1.11);
+
+    left: calc(50% - var(--monitor-width) * 0.25);
+    bottom: calc(var(--desk-depth) * 0.5);
+}
+
+.room.is-home .desk-mouse {
+    left: calc(50% + var(--monitor-width) * 0.56);
+    bottom: calc(var(--desk-depth) * 0.36);
+}
+
+.room.is-home .desk-plant {
+    left: calc(50% + var(--monitor-width) * 1.18);
+    width: calc(var(--monitor-width) * 0.3);
+    bottom: calc(var(--desk-depth) * 0.88);
+}
+
+.room.is-home .floppy-box {
+    left: calc(50% - var(--monitor-width) * 0.85);
+    bottom: calc(var(--desk-depth) * 0.55);
+    translate: -50% 0;
+}
+
+.room.is-home .parcel-stack {
+    left: calc(50% - var(--monitor-width) * 1.02);
+    bottom: calc(var(--desk-depth) * 0.3);
+}
+
+.room.is-home .employee-badge {
+    left: calc(50% + var(--monitor-width) * 0.26);
+    bottom: calc(var(--desk-depth) * 0.25);
+}
+
+/* A block of sticky notes is a square the size of a hand, not a banner: the
+   note keeps that shape, the writing wraps inside it. It is stuck on the
+   wall above the tower, where nothing on the desk is in front of it. */
+
+.room.is-home .sticky-note {
+    top: calc(var(--monitor-width) * -0.26);
+    right: auto;
+    left: calc(100% + var(--monitor-width) * 0.16);
+    display: grid;
+    align-content: center;
+    width: calc(var(--monitor-width) * 0.26);
+    min-height: calc(var(--monitor-width) * 0.26);
+    box-sizing: border-box;
+    white-space: normal;
+    font-size: calc(var(--monitor-width) / 34);
+    rotate: -2deg;
+}
+
+/* The back wall carries the poster and the calendar. */
+
+/* The poster hangs on the free wall left of the machine, as wide as half
+   the monitor. */
+
+.room.is-home .wall-poster {
+    top: 3%;
+    right: calc(50% + var(--monitor-width) * 0.85);
+    width: calc(var(--monitor-width) * 0.5);
+    font-size: calc(var(--monitor-width) / 19);
+}
+
+.room.is-home .wall-calendar {
+    top: 4%;
+    right: 1.5%;
+    width: calc(var(--monitor-width) * 0.4);
 }
 
 .room {
     --monitor-width: min(100vw - 32px, 1000px, calc((100dvh - 150px) * 1.12));
     --side-space: calc((100vw - var(--monitor-width)) / 2);
+    --desk-height: 12vh;
     position: relative;
     height: 100%;
     display: flex;
@@ -48,11 +190,15 @@ body {
 .desk {
     position: absolute;
     inset: auto 0 0 0;
-    height: 12vh;
-    background: linear-gradient(var(--desk-top), var(--desk-bottom));
+    height: var(--desk-height);
+    background:
+        repeating-linear-gradient(90deg, #00000012 0 3px, #0000 3px 26px),
+        linear-gradient(var(--desk-top), var(--desk-bottom));
     box-shadow:
-        0 -3px 0 #7d5a3f,
-        0 -30px 60px #0006;
+        0 -3px 0 #c89158,
+        inset 0 calc(var(--desk-height) * -0.11) 0 #00000038,
+        inset 0 calc(var(--desk-height) * -0.12) 0 #c8915859,
+        0 -30px 60px #00000055;
 }
 
 .sticky-note {
@@ -61,18 +207,18 @@ body {
     left: min(97%, 100% + var(--side-space) - 11em);
     white-space: nowrap;
     z-index: 2;
-    padding: 12px 14px;
+    padding: 0.5em 0.6em;
     font:
-        600 clamp(13px, 1.8vw, 20px) / 1.15 'Caveat',
+        600 clamp(11px, 1.5vw, 17px) / 1.2 'Caveat',
         cursive;
     color: #3a3520;
     background: linear-gradient(#fff49a, var(--note));
-    box-shadow: 2px 6px 10px #0006;
+    box-shadow: 0.1em 0.25em 0.4em #0006;
     transform: rotate(5deg);
 }
 
 @media (max-width: 640px) {
-    .vents,
+    .monitor-vents,
     .sticky-note {
         display: none;
     }

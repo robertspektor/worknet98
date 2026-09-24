@@ -6,7 +6,7 @@ it('serves the description of the game in the delivered html', function () {
     $response = $this->get(route('landing'))->assertOk();
 
     expect($response->content())
-        ->toContain('One computer. One job. One life.')
+        ->toContain('One computer. One life.')
         ->toContain('WorkNet 98')
         ->toContain('RetroTron Modular')
         ->toContain('<meta name="description"');
@@ -25,7 +25,7 @@ it('serves the landing page in the language the player picked', function () {
     $this->withSession(['locale' => 'de'])
         ->get(route('landing'))
         ->assertOk()
-        ->assertSee('Ein Computer. Ein Job. Ein Leben.', false);
+        ->assertSee('Ein Computer. Ein Leben.', false);
 });
 
 it('sends a guest who asks for the desk to the catalogue', function () {
@@ -39,12 +39,12 @@ it('sends a signed in player straight to their desk', function () {
         ->assertRedirect(route('home'));
 });
 
-it('registers a player from the order form and drops them at their desk', function () {
+it('registers a player at the terminal and leaves the public page behind', function () {
     $this->post(route('sign-in.store'), [
         'email' => 'new@desklife98.test',
         'age_confirmed' => '1',
         'locale' => 'en',
-    ])->assertRedirect(route('home'));
+    ])->assertRedirect(route('terminal'));
 
     expect(User::query()->where('email', 'new@desklife98.test')->exists())->toBeTrue();
 });
@@ -57,7 +57,7 @@ it('leaves the public page with a hard visit so the game is not framed by it', f
             'locale' => 'en',
         ])
         ->assertStatus(409)
-        ->assertHeader('X-Inertia-Location', route('home'));
+        ->assertHeader('X-Inertia-Location', route('terminal'));
 });
 
 it('shows the order form again with an error when the age is not confirmed', function () {

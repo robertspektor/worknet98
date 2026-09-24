@@ -1,0 +1,325 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="robots" content="noindex" />
+        <title>Mouse lab</title>
+        <style>
+            :root {
+                --desk-top: #d9c0a0;
+                --desk-bottom: #bd9a6b;
+                --ink: #15151b;
+            }
+
+            * {
+                box-sizing: border-box;
+            }
+
+            body {
+                margin: 0;
+                background: #f7f6f3;
+                color: var(--ink);
+                font:
+                    400 15px/1.6 -apple-system,
+                    'Segoe UI',
+                    Roboto,
+                    Helvetica,
+                    Arial,
+                    sans-serif;
+            }
+
+            header {
+                display: flex;
+                flex-wrap: wrap;
+                align-items: center;
+                gap: 18px;
+                padding: 16px 24px;
+                border-bottom: 1px solid #d7d4cb;
+            }
+
+            header strong {
+                letter-spacing: 0.06em;
+                text-transform: uppercase;
+                font-size: 13px;
+            }
+
+            main {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(330px, 1fr));
+            }
+
+            section {
+                padding: 18px 24px 26px;
+                border-right: 1px solid #e6e3da;
+                border-bottom: 1px solid #e6e3da;
+            }
+
+            h2 {
+                margin: 0 0 2px;
+                font-size: 14px;
+                font-weight: 700;
+                letter-spacing: -0.01em;
+            }
+
+            p.note {
+                margin: 0 0 14px;
+                min-height: 42px;
+                font-size: 14px;
+                color: #6c6c75;
+            }
+
+            .stage {
+                display: flex;
+                align-items: flex-end;
+                justify-content: center;
+                min-height: 190px;
+                padding: 40px 20px 46px;
+                background:
+                    repeating-linear-gradient(
+                        0deg,
+                        #0000000a 0 2px,
+                        #0000 2px 13px
+                    ),
+                    linear-gradient(var(--desk-top), var(--desk-bottom));
+            }
+
+            /* ---------- the shared model ---------- */
+
+            .mouse {
+                --width: 128px;
+                --ratio: 1.34;
+                --shell: linear-gradient(168deg, #f4eedc, #d5cbb0 58%, #ab9f85);
+                --radius: 50% 50% 44% 44% / 60% 60% 40% 40%;
+                --seam: #00000026;
+
+                position: relative;
+                width: var(--width);
+            }
+
+            .body {
+                position: relative;
+                display: block;
+                aspect-ratio: var(--ratio);
+                border-radius: var(--radius);
+                background: var(--shell);
+                box-shadow:
+                    inset 0 2px 0 #ffffffbb,
+                    inset -2px -3px 0 #00000012,
+                    0 7px 14px #00000033;
+            }
+
+            .seam {
+                position: absolute;
+                top: 5%;
+                left: 50%;
+                width: 2px;
+                height: 44%;
+                background: var(--seam);
+                translate: -50% 0;
+            }
+
+            .wheel,
+            .pad,
+            .cable,
+            .buttons {
+                display: none;
+            }
+
+            .has-wheel .wheel {
+                position: absolute;
+                top: 9%;
+                left: 50%;
+                display: block;
+                width: 11%;
+                height: 18%;
+                border-radius: 40%;
+                background: linear-gradient(#45454d, #17171c);
+                box-shadow: inset 0 1px 0 #ffffff33;
+                translate: -50% 0;
+            }
+
+            .has-buttons .buttons {
+                position: absolute;
+                top: 3%;
+                right: 12%;
+                left: 12%;
+                display: block;
+                height: 34%;
+                border-radius: 46% 46% 18% 18% / 70% 70% 30% 30%;
+                background: linear-gradient(#fbf6e8, #e3dbc6);
+                box-shadow: inset 0 -1px 0 #00000018;
+            }
+
+            .has-pad .pad {
+                position: absolute;
+                right: -34%;
+                bottom: -12%;
+                left: -34%;
+                display: block;
+                height: 46%;
+                border-radius: 6px;
+                background: linear-gradient(#5a5f6c, #3e424d);
+                box-shadow: 0 4px 10px #00000030;
+            }
+
+            .has-cable .cable {
+                position: absolute;
+                bottom: 62%;
+                left: 52%;
+                display: block;
+                width: 66%;
+                height: 52%;
+                border-top: 3px solid #4a453e;
+                border-left: 3px solid #4a453e;
+                border-radius: 60% 0 0 0;
+            }
+
+            .shadow {
+                position: absolute;
+                right: 2%;
+                bottom: -8px;
+                left: 2%;
+                height: 16px;
+                background: radial-gradient(
+                    ellipse 50% 50% at 50% 50%,
+                    #00000040,
+                    #0000 72%
+                );
+            }
+
+            /* ---------- variants ---------- */
+
+            .m1 {
+                --ratio: 0.72;
+                --radius: 45% 45% 38% 38%;
+                --shell: linear-gradient(160deg, #eee8d6, #b7ae96);
+            }
+
+            .m2 {
+                --ratio: 1.34;
+            }
+
+            .m3 {
+                --ratio: 1.34;
+            }
+
+            .m4 {
+                --ratio: 1.2;
+            }
+
+            .m5 {
+                --ratio: 1.34;
+            }
+
+            .m6 {
+                --ratio: 1.34;
+            }
+
+            .m7 {
+                --ratio: 1.34;
+                --shell: linear-gradient(168deg, #7b818e, #4c515c 58%, #2f333c);
+                --seam: #00000055;
+            }
+
+            .m7 .buttons {
+                background: linear-gradient(#848a97, #5c626e);
+            }
+
+            .m8 {
+                --ratio: 1.28;
+            }
+
+            .m9 {
+                --ratio: 1.5;
+                --radius: 52% 52% 40% 40% / 66% 66% 34% 34%;
+            }
+        </style>
+    </head>
+    <body>
+        <header>
+            <strong>Mouse lab</strong>
+            <span>gleiche Kameraperspektive wie die Tastatur, 79 Grad</span>
+            <a href="/keyboard-lab-flat.html">Tastatur-Lab</a>
+        </header>
+
+        <main></main>
+
+        <script>
+            const VARIANTS = [
+                {
+                    id: 'm1',
+                    title: 'M1 - Referenz',
+                    note: 'Der aktuelle Stand: von oben gezeichnet, hochkant, 5:7. Passt nicht zur Kamera der Tastatur.',
+                },
+                {
+                    id: 'm2',
+                    title: 'M2 - Korrekte Silhouette',
+                    note: 'Bei 79 Grad verkuerzt sich die Laenge stark. Uebrig bleibt eine breite Kuppel, 4:3 statt hochkant.',
+                },
+                {
+                    id: 'm3',
+                    title: 'M3 - Kuppel mit Tasten',
+                    note: 'Zusaetzlich die abgesetzte Tastenflaeche vorn.',
+                    traits: 'has-buttons',
+                },
+                {
+                    id: 'm4',
+                    title: 'M4 - Kompakter',
+                    note: 'Etwas kuerzer und hoeher, wirkt gedrungener.',
+                    traits: 'has-buttons',
+                },
+                {
+                    id: 'm5',
+                    title: 'M5 - Mit Kabel',
+                    note: 'Kabel laeuft nach hinten links aus dem Bild.',
+                    traits: 'has-buttons has-cable',
+                },
+                {
+                    id: 'm6',
+                    title: 'M6 - Auf Mauspad',
+                    note: 'Dunkles Pad als Kontrastflaeche auf dem hellen Tisch.',
+                    traits: 'has-buttons has-pad',
+                },
+                {
+                    id: 'm7',
+                    title: 'M7 - Graphit',
+                    note: 'Dunkle Variante, falls die Maus sich vom beigen Rechner absetzen soll.',
+                    traits: 'has-buttons',
+                },
+                {
+                    id: 'm8',
+                    title: 'M8 - Mit Scrollrad',
+                    note: 'Spaetere Baureihe: Rad zwischen den Tasten.',
+                    traits: 'has-buttons has-wheel',
+                },
+                {
+                    id: 'm9',
+                    title: 'M9 - Breit und flach',
+                    note: 'Flachere Bauform, staerker verkuerzt.',
+                    traits: 'has-buttons has-cable',
+                },
+            ];
+
+            const main = document.querySelector('main');
+
+            for (const variant of VARIANTS) {
+                const section = document.createElement('section');
+                section.innerHTML = `<h2>${variant.title}</h2><p class="note">${variant.note}</p>
+        <div class="stage">
+            <div class="mouse ${variant.id} ${variant.traits ?? ''}">
+                <span class="pad"></span>
+                <span class="cable"></span>
+                <span class="shadow"></span>
+                <span class="body">
+                    <span class="buttons"></span>
+                    <span class="seam"></span>
+                    <span class="wheel"></span>
+                </span>
+            </div>
+        </div>`;
+                main.append(section);
+            }
+        </script>
+    </body>
+</html>

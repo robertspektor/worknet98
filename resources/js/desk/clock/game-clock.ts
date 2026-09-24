@@ -20,3 +20,43 @@ export function formatGameTime(gameTime: Date, locale: string): string {
         timeZone: 'UTC',
     });
 }
+
+export function formatGameDate(gameTime: Date, locale: string): string {
+    return gameTime.toLocaleDateString(locale, {
+        weekday: 'long',
+        day: 'numeric',
+        month: 'long',
+        year: 'numeric',
+        timeZone: 'UTC',
+    });
+}
+
+/* Angles of the two hands on a round dial, measured from twelve. */
+
+export function clockHands(gameTime: Date): { hours: number; minutes: number } {
+    const minutes = gameTime.getUTCMinutes();
+
+    return {
+        hours: ((gameTime.getUTCHours() % 12) * 60 + minutes) * 0.5,
+        minutes: minutes * 6,
+    };
+}
+
+export function formatGameStamp(gameTime: Date, locale: string): string {
+    const date = gameTime.toLocaleDateString(locale, {
+        day: '2-digit',
+        month: '2-digit',
+        year: 'numeric',
+        timeZone: 'UTC',
+    });
+
+    return `${date}  ${formatGameTime(gameTime, locale)}`;
+}
+
+export function formatGameMonth(gameTime: Date, locale: string): string {
+    return gameTime.toLocaleDateString(locale, {
+        month: 'long',
+        year: 'numeric',
+        timeZone: 'UTC',
+    });
+}

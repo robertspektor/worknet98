@@ -1,7 +1,7 @@
 import type { ReactNode } from 'react';
 import { usePlacements } from '../placement/placement-provider';
 
-export type Scene = 'home' | 'office';
+export type Scene = 'home' | 'office' | 'terminal';
 
 export function Room({
     scene,

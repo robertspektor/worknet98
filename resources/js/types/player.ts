@@ -8,5 +8,8 @@ export type Player = {
 export type SessionStatus =
     | 'login-link-sent'
     | 'login-link-invalid'
+    | 'registered'
     | 'signed-in'
+    | 'arriving'
+    | 'returning'
     | null;

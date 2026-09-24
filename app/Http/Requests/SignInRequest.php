@@ -27,8 +27,8 @@ class SignInRequest extends FormRequest
     public function messages(): array
     {
         return [
-            'email.*' => __('setup.error_email'),
-            'age_confirmed.accepted' => __('setup.error_age'),
+            'email.*' => __('terminal.error_email'),
+            'age_confirmed.accepted' => __('terminal.error_age'),
         ];
     }
 

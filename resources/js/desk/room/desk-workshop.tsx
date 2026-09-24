@@ -1,13 +1,9 @@
-import { useState } from 'react';
 import { useTranslation } from '@/i18n/use-translation';
 import type { DeskPart } from '@/types';
-import type { SwapGoal } from '../hardware/cpu-swap-state';
-import { usePlaceable } from '../placement/use-placeable';
 import { useHomeComputer } from '../hardware/home-computer-provider';
+import { useWorkbench } from '../hardware/workbench-provider';
+import { usePlaceable } from '../placement/use-placeable';
 import { CpuChipArt } from './cpu-chip-art';
-import { TowerWorkbench } from './workbench/tower-workbench';
-
-const FINISH_DELAY_MS = 1800;
 
 function DeskPartItem({ part }: { part: DeskPart }) {
     const { t } = useTranslation();
@@ -60,47 +56,24 @@ function Screwdriver({ onPickUp }: { onPickUp: () => void }) {
     );
 }
 
-export function DeskWorkshop() {
-    const { homeComputer, replace } = useHomeComputer();
-    const [goal, setGoal] = useState<SwapGoal | null>(null);
-    const parts = homeComputer?.desk_parts ?? [];
-    const newCpu = parts.find((part) => !part.is_used) ?? null;
-    const availableGoal: SwapGoal | null = newCpu
-        ? 'swap'
-        : homeComputer?.cpu.needs_thermal_paste
-          ? 'repaste'
-          : null;
+/* What lies next to the machine while there is work on it: the processor
+   that came in the post and the screwdriver that opens the case. */
 
-    if (parts.length === 0 && availableGoal === null) {
+export function DeskWorkshop() {
+    const { homeComputer } = useHomeComputer();
+    const { job, open } = useWorkbench();
+    const parts = homeComputer?.desk_parts ?? [];
+
+    if (parts.length === 0 && job === null) {
         return null;
     }
 
     return (
-        <>
-            <div className="desk-item desk-workshop">
-                {availableGoal && (
-                    <Screwdriver onPickUp={() => setGoal(availableGoal)} />
-                )}
-                {parts.map((part) => (
-                    <DeskPartItem key={part.id} part={part} />
-                ))}
-            </div>
-            {goal && (
-                <TowerWorkbench
-                    goal={goal}
-                    newCpu={newCpu}
-                    onClose={() => setGoal(null)}
-                    onFinished={(updated) =>
-                        setTimeout(() => {
-                            if (updated) {
-                                replace(updated);
-                            }
-
-                            setGoal(null);
-                        }, FINISH_DELAY_MS)
-                    }
-                />
-            )}
-        </>
+        <div className="desk-item desk-workshop">
+            {job !== null && <Screwdriver onPickUp={open} />}
+            {parts.map((part) => (
+                <DeskPartItem key={part.id} part={part} />
+            ))}
+        </div>
     );
 }

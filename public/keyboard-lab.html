@@ -1,0 +1,525 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="robots" content="noindex" />
+        <title>Keyboard lab</title>
+        <style>
+            :root {
+                --desk-top: #a5703f;
+                --desk-bottom: #5f3d21;
+                --case: #d2c6aa;
+                --case-mid: #bcb094;
+                --case-dark: #8e8369;
+                --case-light: #e7ddc5;
+                --key: #ddd2b8;
+                --key-face: #ebe2cc;
+                --key-dark: #ab9f83;
+                --key-edge: #7d7359;
+                --ink: #e8e3d7;
+            }
+
+            * {
+                box-sizing: border-box;
+            }
+
+            body {
+                margin: 0;
+                background: #1b2130;
+                color: var(--ink);
+                font:
+                    13px/1.5 'Lucida Console',
+                    'DejaVu Sans Mono',
+                    monospace;
+            }
+
+            header {
+                position: sticky;
+                top: 0;
+                z-index: 10;
+                display: flex;
+                flex-wrap: wrap;
+                align-items: center;
+                gap: 18px;
+                padding: 12px 20px;
+                border-bottom: 1px solid #ffffff20;
+                background: #151a26f0;
+            }
+
+            header strong {
+                letter-spacing: 1px;
+            }
+
+            label {
+                display: flex;
+                align-items: center;
+                gap: 8px;
+            }
+
+            input[type='range'] {
+                width: 180px;
+            }
+
+            main {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(460px, 1fr));
+                gap: 2px;
+            }
+
+            section {
+                padding: 18px 20px 26px;
+            }
+
+            h2 {
+                margin: 0 0 4px;
+                font-size: 13px;
+                letter-spacing: 1px;
+                text-transform: uppercase;
+            }
+
+            p.note {
+                margin: 0 0 16px;
+                color: #ffffff80;
+            }
+
+            .stage {
+                display: flex;
+                align-items: flex-end;
+                justify-content: center;
+                min-height: 260px;
+                padding: 40px 20px 34px;
+                border-radius: 2px;
+                background:
+                    repeating-linear-gradient(
+                        0deg,
+                        #00000014 0 2px,
+                        #0000 2px 11px
+                    ),
+                    linear-gradient(var(--desk-top), var(--desk-bottom));
+                box-shadow: inset 0 1px 0 #ffffff30;
+            }
+
+            body.plain .stage {
+                background: #2b3242;
+                box-shadow: none;
+            }
+
+            .kb {
+                position: relative;
+                width: var(--kb-width, 420px);
+            }
+
+            .deck {
+                display: flex;
+                flex-direction: column;
+                background: linear-gradient(var(--case-light), var(--case-mid));
+            }
+
+            .row {
+                display: flex;
+                flex: 1;
+                min-height: 0;
+            }
+
+            .key {
+                position: relative;
+                background: var(--key);
+            }
+
+            .gap {
+                background: none;
+            }
+
+            /* ---------- A: perspective deck, flat caps (current implementation) ---------- */
+
+            .kb-a {
+                perspective: 26em;
+                perspective-origin: 50% -60%;
+            }
+
+            .kb-a .deck {
+                aspect-ratio: 2.9 / 1;
+                gap: 3.5%;
+                padding: 4% 3%;
+                transform: rotateX(62deg);
+                transform-origin: 50% 100%;
+                border-radius: 2px 2px 0 0;
+                box-shadow: inset 0 0 0 1px #00000025;
+            }
+
+            .kb-a .row {
+                gap: 1.2%;
+            }
+
+            .kb-a .key {
+                border-radius: 1px;
+                box-shadow:
+                    inset 1px 1px 0 #ffffffce,
+                    inset -1px -1px 0 var(--key-dark);
+            }
+
+            .kb-a .lip {
+                height: 10px;
+                border-radius: 0 0 3px 3px;
+                background: linear-gradient(var(--case-mid), var(--case-dark));
+            }
+
+            /* ---------- B: trapezoid, no 3D transform ---------- */
+
+            .kb-b .deck {
+                aspect-ratio: 3.2 / 1;
+                gap: 5%;
+                padding: 7% 2% 6%;
+                clip-path: polygon(9% 0, 91% 0, 100% 100%, 0 100%);
+                background: linear-gradient(#ded3b9, #b3a78b);
+            }
+
+            .kb-b .row {
+                gap: 1.4%;
+            }
+
+            .kb-b .row:nth-child(1) {
+                transform: scaleX(0.845);
+            }
+            .kb-b .row:nth-child(2) {
+                transform: scaleX(0.885);
+            }
+            .kb-b .row:nth-child(3) {
+                transform: scaleX(0.925);
+            }
+            .kb-b .row:nth-child(4) {
+                transform: scaleX(0.955);
+            }
+            .kb-b .row:nth-child(5) {
+                transform: scaleX(0.98);
+            }
+            .kb-b .row:nth-child(6) {
+                transform: scaleX(1);
+            }
+
+            .kb-b .key {
+                background: linear-gradient(var(--key-face), var(--key-dark));
+                box-shadow: 0 1px 0 #00000035;
+            }
+
+            .kb-b .lip {
+                height: 9px;
+                background: linear-gradient(var(--case-dark), #6f6650);
+            }
+
+            /* ---------- C: isometric, angled to the right ---------- */
+
+            .kb-c {
+                perspective: 40em;
+                perspective-origin: 50% -30%;
+            }
+
+            .kb-c .deck {
+                aspect-ratio: 2.7 / 1;
+                gap: 3%;
+                padding: 4% 3%;
+                transform: rotateX(56deg) rotateZ(-14deg);
+                transform-origin: 50% 100%;
+                box-shadow:
+                    0 0 0 1px #00000030,
+                    8px 14px 0 #00000030;
+            }
+
+            .kb-c .row {
+                gap: 1.2%;
+            }
+
+            .kb-c .key {
+                background: var(--key-face);
+                box-shadow:
+                    inset -1px -2px 0 var(--key-dark),
+                    inset 1px 1px 0 #ffffffd0;
+            }
+
+            .kb-c .lip {
+                display: none;
+            }
+
+            /* ---------- D: pixel art, straight on ---------- */
+
+            .kb-d {
+                image-rendering: pixelated;
+            }
+
+            .kb-d .deck {
+                aspect-ratio: 3.4 / 1;
+                gap: 4px;
+                padding: 8px 6px;
+                background: var(--case);
+                border: 2px solid var(--key-edge);
+                border-bottom-width: 0;
+                box-shadow:
+                    inset 2px 2px 0 var(--case-light),
+                    inset -2px 0 0 var(--case-dark);
+            }
+
+            .kb-d .row {
+                gap: 2px;
+            }
+
+            .kb-d .key {
+                background: var(--key);
+                box-shadow:
+                    inset 2px 2px 0 #fffffff0,
+                    inset -2px -2px 0 var(--key-dark);
+            }
+
+            .kb-d .lip {
+                height: 12px;
+                background: var(--case-mid);
+                border: 2px solid var(--key-edge);
+                border-top-width: 0;
+                box-shadow:
+                    inset 2px 0 0 var(--case-light),
+                    inset -2px -2px 0 var(--case-dark);
+            }
+
+            /* ---------- E: perspective with extruded key caps ---------- */
+
+            .kb-e {
+                perspective: 30em;
+                perspective-origin: 50% -45%;
+            }
+
+            .kb-e .deck {
+                aspect-ratio: 2.8 / 1;
+                gap: 3.6%;
+                padding: 4.5% 3%;
+                transform: rotateX(60deg);
+                transform-origin: 50% 100%;
+                transform-style: preserve-3d;
+                background: linear-gradient(var(--case-light), var(--case-mid));
+                box-shadow: inset 0 0 0 1px #00000025;
+            }
+
+            .kb-e .row {
+                gap: 1.3%;
+                transform-style: preserve-3d;
+            }
+
+            .kb-e .key {
+                background: var(--key-edge);
+                transform-style: preserve-3d;
+            }
+
+            .kb-e .key::after {
+                content: '';
+                position: absolute;
+                inset: 0;
+                border-radius: 1px;
+                background: linear-gradient(#f2ead7, var(--key));
+                box-shadow: inset -1px -1px 0 var(--key-dark);
+                transform: translateZ(7px);
+            }
+
+            .kb-e .lip {
+                height: 14px;
+                border-radius: 0 0 4px 4px;
+                background: linear-gradient(
+                    var(--case-mid) 30%,
+                    var(--case-dark)
+                );
+                box-shadow: 0 3px 8px #00000050;
+            }
+
+            /* ---------- F: shallow angle, curved rows, rounded case ---------- */
+
+            .kb-f {
+                perspective: 34em;
+                perspective-origin: 50% -20%;
+            }
+
+            .kb-f .deck {
+                aspect-ratio: 3 / 1;
+                gap: 3.2%;
+                padding: 5% 3.5%;
+                transform: rotateX(52deg);
+                transform-origin: 50% 100%;
+                transform-style: preserve-3d;
+                border-radius: 6px 6px 0 0;
+                background: linear-gradient(
+                    var(--case-light),
+                    var(--case-mid) 70%
+                );
+                box-shadow: inset 0 0 0 1px #00000020;
+            }
+
+            .kb-f .row {
+                gap: 1.2%;
+                transform-style: preserve-3d;
+            }
+
+            .kb-f .row:nth-child(1) {
+                transform: translateZ(6px);
+            }
+            .kb-f .row:nth-child(2) {
+                transform: translateZ(4px);
+            }
+            .kb-f .row:nth-child(3) {
+                transform: translateZ(2px);
+            }
+            .kb-f .row:nth-child(4) {
+                transform: translateZ(1px);
+            }
+            .kb-f .row:nth-child(5) {
+                transform: translateZ(2px);
+            }
+            .kb-f .row:nth-child(6) {
+                transform: translateZ(4px);
+            }
+
+            .kb-f .key {
+                border-radius: 2px;
+                background: linear-gradient(#f4ecd9, var(--key));
+                box-shadow:
+                    0 1px 0 var(--key-dark),
+                    inset 0 1px 0 #fff;
+            }
+
+            .kb-f .lip {
+                height: 12px;
+                border-radius: 0 0 6px 6px;
+                background: linear-gradient(var(--case-mid), var(--case-dark));
+                box-shadow: 0 4px 10px #00000055;
+            }
+        </style>
+    </head>
+    <body>
+        <header>
+            <strong>KEYBOARD LAB</strong>
+            <label
+                >Breite
+                <input
+                    id="width"
+                    type="range"
+                    min="220"
+                    max="720"
+                    value="420"
+                />
+                <output id="width-out">420</output>px</label
+            >
+            <label
+                ><input id="plain" type="checkbox" /> ohne Schreibtisch</label
+            >
+        </header>
+
+        <main>
+            <section>
+                <h2>A - Perspektive, flache Tasten</h2>
+                <p class="note">
+                    Aktuelle Implementierung: rotateX(62deg), Tasten nur mit
+                    Inset-Bevel.
+                </p>
+                <div class="stage"><div class="kb kb-a"></div></div>
+            </section>
+
+            <section>
+                <h2>B - Trapez ohne 3D</h2>
+                <p class="note">
+                    clip-path plus zeilenweises scaleX. Pixelgenau, keine
+                    Rasterung durch Transform.
+                </p>
+                <div class="stage"><div class="kb kb-b"></div></div>
+            </section>
+
+            <section>
+                <h2>C - Isometrisch, angeschraegt</h2>
+                <p class="note">
+                    rotateX(56deg) rotateZ(-14deg), wie auf einem Schreibtisch
+                    schraeg abgelegt.
+                </p>
+                <div class="stage"><div class="kb kb-c"></div></div>
+            </section>
+
+            <section>
+                <h2>D - Pixel Art, frontal</h2>
+                <p class="note">
+                    Keine Transformation, harte 2px-Kanten. Passt zur
+                    Icon-Sprache des OS.
+                </p>
+                <div class="stage"><div class="kb kb-d"></div></div>
+            </section>
+
+            <section>
+                <h2>E - Perspektive mit echten Tastenkappen</h2>
+                <p class="note">
+                    translateZ pro Taste, dadurch sichtbare Hoehe und
+                    Schattenkanten.
+                </p>
+                <div class="stage"><div class="kb kb-e"></div></div>
+            </section>
+
+            <section>
+                <h2>F - Flacher Winkel, gewoelbte Reihen</h2>
+                <p class="note">
+                    rotateX(52deg), Reihen unterschiedlich hoch, abgerundetes
+                    Gehaeuse.
+                </p>
+                <div class="stage"><div class="kb kb-f"></div></div>
+            </section>
+        </main>
+
+        <script>
+            const ROWS = [
+                [1, -1, 1, 1, 1, 1, -0.5, 1, 1, 1, 1, -0.5, 1, 1, 1, 1],
+                [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2],
+                [1.5, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1.5],
+                [1.75, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2.25],
+                [2.25, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2.75],
+                [1.25, 1.25, 1.25, 6.25, 1.25, 1.25, 1.25, 1.25],
+            ];
+
+            function buildKeyboard(keyboard) {
+                const deck = document.createElement('div');
+                deck.className = 'deck';
+
+                for (const row of ROWS) {
+                    const line = document.createElement('div');
+                    line.className = 'row';
+
+                    for (const unit of row) {
+                        const cell = document.createElement('span');
+                        cell.className = unit < 0 ? 'gap' : 'key';
+                        cell.style.flex = `${Math.abs(unit)} 0 0`;
+                        line.append(cell);
+                    }
+
+                    deck.append(line);
+                }
+
+                const lip = document.createElement('div');
+                lip.className = 'lip';
+
+                keyboard.append(deck, lip);
+            }
+
+            document.querySelectorAll('.kb').forEach(buildKeyboard);
+
+            const width = document.getElementById('width');
+            const widthOut = document.getElementById('width-out');
+
+            width.addEventListener('input', () => {
+                document.documentElement.style.setProperty(
+                    '--kb-width',
+                    `${width.value}px`,
+                );
+                widthOut.textContent = width.value;
+            });
+
+            document
+                .getElementById('plain')
+                .addEventListener('change', (event) => {
+                    document.body.classList.toggle(
+                        'plain',
+                        event.target.checked,
+                    );
+                });
+        </script>
+    </body>
+</html>

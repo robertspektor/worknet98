@@ -1,0 +1,165 @@
+/* The camera knows two views: the room as a whole, and one thing in it seen
+   up close. The stage carries the shot, everything else in here is the
+   chrome that belongs to the close view. */
+
+.camera {
+    position: relative;
+    height: 100%;
+    overflow: hidden;
+}
+
+.stage {
+    position: absolute;
+    inset: 0;
+    transform-origin: 0 0;
+    transition: transform 640ms cubic-bezier(0.22, 0.75, 0.2, 1);
+}
+
+/* From across the room the screen is part of the monitor and not something
+   to work on, so the picture on it takes no clicks. */
+
+.camera.is-room .screen {
+    pointer-events: none;
+}
+
+/* In front of the screen the room steps out of the light, and the scan lines
+   of the tube go with it: blown up by the shot they would be bars across the
+   desktop, not the grain of a picture. */
+
+.camera.is-monitor .room-light {
+    opacity: 0;
+}
+
+.camera.is-monitor .screen::before {
+    opacity: 0;
+}
+
+/* What the thing in focus can be told to do. */
+
+.detail-menu {
+    position: absolute;
+    bottom: 26px;
+    left: 26px;
+    z-index: 20;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    min-width: 210px;
+    padding: 14px;
+    background: #15151b;
+    box-shadow: 0 8px 22px #00000059;
+}
+
+/* The disk box brings a whole collection with it, so its panel is wider and
+   scrolls. */
+
+.detail-menu.is-disk-box {
+    width: min(560px, 48vw);
+}
+
+.detail-menu-title {
+    margin-bottom: 4px;
+    font: 700 11px/1 var(--plastic-font);
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: #938d7d;
+}
+
+.detail-action {
+    padding: 9px 12px;
+    border: 0;
+    font: 500 14px/1 var(--plastic-font);
+    text-align: left;
+    color: #f2efe6;
+    background: #ffffff14;
+    cursor: pointer;
+}
+
+.detail-action:hover:not(:disabled) {
+    background: #ffffff2e;
+}
+
+.detail-action:disabled {
+    color: #ffffff47;
+    cursor: default;
+}
+
+.detail-action:focus-visible {
+    outline: 2px solid #ffd85e;
+    outline-offset: -2px;
+}
+
+.detail-note {
+    font: 500 14px/1.4 var(--plastic-font);
+    color: #efece1;
+}
+
+/* The way back out: a picture frame in the corner of the window. */
+
+.overview-button {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    z-index: 20;
+    display: grid;
+    place-items: center;
+    width: 44px;
+    height: 44px;
+    padding: 0;
+    border: 0;
+    background: #15151bbf;
+    opacity: 0.7;
+    cursor: pointer;
+    transition: opacity 160ms;
+}
+
+.overview-button:hover,
+.overview-button:focus-visible {
+    opacity: 1;
+}
+
+.overview-button:focus-visible {
+    outline: 2px solid #ffd85e;
+    outline-offset: 2px;
+}
+
+.overview-icon {
+    position: relative;
+    width: 22px;
+    height: 16px;
+}
+
+.overview-corner {
+    position: absolute;
+    width: 6px;
+    height: 5px;
+    border: 2px solid #efece1;
+}
+
+.overview-corner.is-top-left {
+    top: 0;
+    left: 0;
+    border-right: 0;
+    border-bottom: 0;
+}
+
+.overview-corner.is-top-right {
+    top: 0;
+    right: 0;
+    border-bottom: 0;
+    border-left: 0;
+}
+
+.overview-corner.is-bottom-left {
+    bottom: 0;
+    left: 0;
+    border-top: 0;
+    border-right: 0;
+}
+
+.overview-corner.is-bottom-right {
+    right: 0;
+    bottom: 0;
+    border-top: 0;
+    border-left: 0;
+}

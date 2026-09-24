@@ -1,4 +1,5 @@
 import { Head } from '@inertiajs/react';
+import { ComputerProvider } from '@/desk/computer/computer-provider';
 import { BUSINESS_EDITION } from '@/desk/computer/editions';
 import { Workstation } from '@/desk/computer/workstation';
 import { AssetTag } from '@/desk/room/asset-tag';
@@ -18,19 +19,26 @@ export default function Office({ workplace }: { workplace: Workplace }) {
             <Head />
             <PlacementProvider isSignedIn>
                 <ShiftClockProvider>
-                    <Room scene="office">
-                        <Workstation
-                            edition={BUSINESS_EDITION}
-                            accessory={<AssetTag company={workplace.company} />}
-                        />
-                        <InTray />
-                        <NamePlate title={workplace.jobTitle} />
-                        {workplace.award && (
-                            <EmployeePlaque period={workplace.award} />
-                        )}
-                        <CoffeeMug company={workplace.company} />
-                        <HouseKeys />
-                    </Room>
+                    {/* The tower stands under the office desk, out of sight,
+                        so the machine is already coming up when the shift
+                        starts. */}
+                    <ComputerProvider initialState="booting">
+                        <Room scene="office">
+                            <Workstation
+                                edition={BUSINESS_EDITION}
+                                accessory={
+                                    <AssetTag company={workplace.company} />
+                                }
+                            />
+                            <InTray />
+                            <NamePlate title={workplace.jobTitle} />
+                            {workplace.award && (
+                                <EmployeePlaque period={workplace.award} />
+                            )}
+                            <CoffeeMug company={workplace.company} />
+                            <HouseKeys />
+                        </Room>
+                    </ComputerProvider>
                 </ShiftClockProvider>
             </PlacementProvider>
         </>

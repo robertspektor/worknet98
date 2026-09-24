@@ -118,3 +118,752 @@ a.desk-item:focus-visible {
         font-size: 10px;
     }
 }
+
+/* Home desk: keyboard, mouse and plant scale with the monitor so the desk
+   keeps its proportions at every screen size. */
+
+.keyboard {
+    --kb-angle: 79deg;
+    --kb-ratio: 2.8;
+    --kb-cap-height: 0.4em;
+    --kb-cap-inset: 0.08em;
+    --kb-row-gap: 7%;
+    --kb-key-gap: 0.9%;
+
+    --kb-width: min(
+        calc(var(--monitor-width) * 0.95),
+        calc(var(--desk-height) * 4.6)
+    );
+
+    left: 50%;
+    bottom: calc(var(--desk-height) * 0.42);
+    width: var(--kb-width);
+    font-size: calc(var(--kb-width) / 32);
+    translate: -50% 0;
+    perspective: 30em;
+    perspective-origin: 50% -4%;
+
+    /* The deck is tilted, its layout box is not: without this the untilted
+       box covers the monitor chin and swallows clicks on the power button. */
+    pointer-events: none;
+}
+
+.keyboard-deck,
+.keyboard-lip {
+    pointer-events: auto;
+}
+
+.keyboard-deck {
+    display: flex;
+    flex-direction: column;
+    gap: calc(var(--kb-row-gap) / var(--kb-ratio));
+    z-index: 1;
+    aspect-ratio: var(--kb-ratio) / 1;
+    padding: calc(13% / var(--kb-ratio)) 3%;
+    border-radius: 0.3em 0.3em 0 0;
+    background: linear-gradient(var(--plastic-light), var(--plastic));
+    box-shadow: inset 0 0 0 1px #00000025;
+    transform: rotateX(var(--kb-angle));
+    transform-origin: 50% 100%;
+    transform-style: preserve-3d;
+}
+
+.key-row {
+    display: flex;
+    flex: 1;
+    gap: var(--kb-key-gap);
+    min-height: 0;
+    transform-style: preserve-3d;
+}
+
+.key {
+    position: relative;
+    background: var(--plastic-shadow);
+    transform-style: preserve-3d;
+}
+
+.key::before,
+.key::after {
+    content: '';
+    position: absolute;
+    right: var(--kb-cap-inset);
+    left: var(--kb-cap-inset);
+}
+
+.key::after {
+    top: var(--kb-cap-inset);
+    bottom: var(--kb-cap-inset);
+    background: linear-gradient(var(--plastic-light), var(--plastic));
+    box-shadow: inset -1px -1px 0 var(--plastic-dark);
+    transform: translateZ(var(--kb-cap-height));
+}
+
+.key::before {
+    bottom: calc(var(--kb-cap-inset) - var(--kb-cap-height));
+    height: var(--kb-cap-height);
+    background: linear-gradient(var(--plastic), var(--plastic-dark));
+    transform: rotateX(90deg);
+    transform-origin: 50% 0;
+}
+
+.keyboard-lip {
+    position: relative;
+    display: flex;
+    align-items: center;
+    height: 0.9em;
+    padding: 0 1em;
+    border-radius: 0 0 0.3em 0.3em;
+    background: linear-gradient(var(--plastic), var(--plastic-shadow));
+    box-shadow: 0 6px 14px #00000055;
+}
+
+.keyboard-brand {
+    color: var(--plastic-text);
+    font-size: 0.5em;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+}
+
+.desk-mouse {
+    --mouse-angle: 79deg;
+    --mouse-height: 1.5em;
+    --shell-low: #aa9f85;
+    --shell-high: #f6f0dd;
+
+    left: calc(50% + min(var(--monitor-width) * 0.42, var(--desk-height) * 2));
+    bottom: calc(var(--desk-height) * 0.04);
+    width: min(
+        calc(var(--monitor-width) * 0.32),
+        calc(var(--desk-height) * 1.5)
+    );
+    font-size: calc(var(--monitor-width) / 30);
+    perspective: 34em;
+    perspective-origin: 50% -4%;
+}
+
+/* Pad, cable and mouse share one tilted plane, the same camera the keyboard
+   deck uses. The shell is a dome stacked out of that plane, so it keeps its
+   shape instead of being a drawn silhouette. */
+
+.mouse-pad {
+    position: relative;
+    display: block;
+    aspect-ratio: 1.42;
+    border-radius: 0.2em;
+    background: linear-gradient(#5c6270, #3f434e);
+    box-shadow: inset 0 0 0 1px #ffffff14;
+    transform: rotateX(var(--mouse-angle));
+    transform-origin: 50% 100%;
+    transform-style: preserve-3d;
+}
+
+.mouse-shell {
+    position: absolute;
+    top: 24%;
+    left: 33%;
+    width: 33%;
+    aspect-ratio: 1.15;
+    transform-style: preserve-3d;
+}
+
+.shell-layer {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: calc(46% + var(--spread) * 54%);
+    height: calc(42% + var(--spread) * 58%);
+    border-radius: 50%;
+    background: color-mix(
+        in oklab,
+        var(--shell-high) calc(var(--height) * 100%),
+        var(--shell-low)
+    );
+    transform: translate(-50%, -50%) translateY(calc(var(--height) * -12%))
+        translateZ(calc(var(--height) * var(--mouse-height)));
+}
+
+.mouse-split {
+    position: absolute;
+    top: 8%;
+    left: 50%;
+    width: 2.5%;
+    height: 42%;
+    background: #0000003d;
+    transform: translateX(-50%) translateZ(var(--mouse-height));
+}
+
+.desk-plant {
+    left: calc(
+        50% - min(var(--monitor-width) * 0.74, var(--desk-height) * 4.3)
+    );
+    bottom: calc(var(--desk-height) * 0.45);
+    width: min(calc(var(--monitor-width) * 0.22), calc(var(--desk-height) * 1));
+    aspect-ratio: 1 / 1.5;
+}
+
+/* Terracotta pot with its rolled rim, the soil dark under the leaves. */
+
+.plant-pot {
+    position: absolute;
+    right: 19%;
+    bottom: 0;
+    left: 19%;
+    height: 34%;
+    background:
+        linear-gradient(#00000042 0 7%, #0000 16%),
+        linear-gradient(
+            90deg,
+            #8f4a2a,
+            #b9663d 22%,
+            #c87b50 40%,
+            #a85630 72%,
+            #83441f
+        );
+    clip-path: polygon(7% 0, 93% 0, 84% 100%, 16% 100%);
+    box-shadow:
+        inset 0 -0.35em 0.5em #00000038,
+        0 0.35em 0.6em #00000047;
+}
+
+.pot-rim {
+    position: absolute;
+    top: -14%;
+    right: -7%;
+    left: -7%;
+    height: 34%;
+    border-radius: 0.08em;
+    background: linear-gradient(
+        90deg,
+        #94512a,
+        #c3703f 24%,
+        #d78c5f 42%,
+        #b05e33 74%,
+        #8a4722
+    );
+    box-shadow:
+        inset 0 1px 0 #ffffff2e,
+        inset 0 -0.15em 0.2em #00000038;
+}
+
+.pot-soil {
+    position: absolute;
+    top: -22%;
+    right: 6%;
+    left: 6%;
+    height: 17%;
+    border-radius: 50%;
+    background: radial-gradient(ellipse at 50% 34%, #50392a, #281c13);
+}
+
+/* The leaves stand in the soil, so they are drawn behind the pot. */
+
+.plant-leaves {
+    position: absolute;
+    inset: 0 0 24%;
+}
+
+.plant-leaf {
+    position: absolute;
+    bottom: 0;
+    left: calc(50% + var(--shift));
+    width: var(--width);
+    height: var(--height);
+    translate: -50% 0;
+    rotate: var(--angle);
+    transform-origin: 50% 100%;
+    clip-path: polygon(
+        50% 0,
+        70% 11%,
+        82% 40%,
+        78% 74%,
+        62% 100%,
+        38% 100%,
+        22% 74%,
+        18% 40%,
+        30% 11%
+    );
+    background: linear-gradient(#d8d07a, #bdb25c);
+}
+
+.leaf-blade {
+    position: absolute;
+    inset: 3% 10%;
+    clip-path: polygon(
+        50% 0,
+        70% 11%,
+        82% 40%,
+        78% 74%,
+        62% 100%,
+        38% 100%,
+        22% 74%,
+        18% 40%,
+        30% 11%
+    );
+    background:
+        linear-gradient(90deg, #00000038, #0000 32%, #0000 66%, #00000042),
+        repeating-linear-gradient(
+            186deg,
+            #0000 0 4%,
+            #93bd6ea8 6% 8%,
+            #0000 11% 14%
+        ),
+        repeating-linear-gradient(
+            172deg,
+            #0000 0 8%,
+            #7fae5a80 11% 13%,
+            #0000 17% 23%
+        ),
+        linear-gradient(#3f7338, #2b5629);
+}
+
+.plant-leaf:nth-child(even) .leaf-blade {
+    background:
+        linear-gradient(90deg, #00000042, #0000 34%, #0000 68%, #00000038),
+        repeating-linear-gradient(
+            174deg,
+            #0000 0 5%,
+            #88b364a8 7% 9%,
+            #0000 12% 16%
+        ),
+        repeating-linear-gradient(
+            188deg,
+            #0000 0 9%,
+            #74a35180 12% 14%,
+            #0000 18% 25%
+        ),
+        linear-gradient(#37672f, #24491f);
+}
+
+.desk-lamp {
+    width: 8em;
+    height: 8.6em;
+}
+
+.lamp-base {
+    position: absolute;
+    bottom: 0;
+    left: 0.6em;
+    width: 3.9em;
+    height: 0.62em;
+    border-radius: 50%;
+    background: linear-gradient(#4d5462, #262b34);
+    box-shadow:
+        inset 0 1px 0 #ffffff33,
+        0 3px 7px #00000038;
+}
+
+.lamp-stem {
+    position: absolute;
+    bottom: 0.4em;
+    left: 2.4em;
+    width: 0.3em;
+    height: 5.7em;
+    border-radius: 0.15em;
+    background: linear-gradient(90deg, #656d80, #333a47);
+    transform-origin: 50% 100%;
+    rotate: 11deg;
+}
+
+.lamp-head {
+    position: absolute;
+    bottom: 5.3em;
+    left: 1.3em;
+    width: 4.7em;
+    height: 2.7em;
+    border-radius: 72% 72% 14% 14% / 92% 92% 12% 12%;
+    background: linear-gradient(200deg, #8b93a5, #454c5b 62%, #2e3440);
+    box-shadow:
+        inset 0 2px 0 #ffffff2e,
+        0 4px 10px #00000030;
+    rotate: -20deg;
+}
+
+.lamp-bulb {
+    position: absolute;
+    right: 11%;
+    bottom: -0.16em;
+    left: 11%;
+    height: 0.42em;
+    border-radius: 50%;
+    background: linear-gradient(#fff3cf, #ffca6a);
+    box-shadow: 0 0 0.9em 0.3em #ffcf7e80;
+}
+
+.lamp-glow {
+    position: absolute;
+    bottom: 0.4em;
+    left: -0.6em;
+    width: 8em;
+    height: 7em;
+    border-radius: 50%;
+    background: radial-gradient(
+        ellipse 60% 70% at 46% 74%,
+        #ffd68f70,
+        #0000 72%
+    );
+}
+
+.wall-poster {
+    position: absolute;
+    z-index: 1;
+    width: 9em;
+}
+
+.poster-art {
+    position: relative;
+    display: block;
+    overflow: hidden;
+    aspect-ratio: 5 / 6;
+    padding: 0.7em;
+    background: linear-gradient(#f6b374, #c25f7c 52%, #46356a);
+    border: 0.45em solid #f3efe6;
+    box-shadow:
+        0 8px 22px #00000020,
+        inset 0 0 0 1px #00000014;
+}
+
+.poster-caption {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    line-height: 1.05;
+    color: #fdf6ea;
+    text-shadow: 0 1px 2px #0000004d;
+}
+
+.poster-city {
+    font-size: 0.82em;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+}
+
+.poster-year {
+    font-size: 0.72em;
+    letter-spacing: 0.18em;
+}
+
+.poster-skyline {
+    position: absolute;
+    inset: 46% 0 0;
+    background: #2d2247;
+    clip-path: polygon(
+        0 62%,
+        8% 62%,
+        8% 40%,
+        16% 40%,
+        16% 70%,
+        26% 70%,
+        26% 26%,
+        31% 26%,
+        31% 12%,
+        36% 12%,
+        36% 52%,
+        47% 52%,
+        47% 34%,
+        57% 34%,
+        57% 66%,
+        67% 66%,
+        67% 42%,
+        77% 42%,
+        77% 58%,
+        87% 58%,
+        87% 32%,
+        100% 32%,
+        100% 100%,
+        0 100%
+    );
+}
+
+.book-stack {
+    display: flex;
+    flex-direction: column-reverse;
+    width: 7.5em;
+}
+
+.book {
+    height: 0.9em;
+    border-radius: 0.12em;
+    box-shadow:
+        inset 0 1px 0 #ffffff33,
+        0 1px 2px #00000030;
+}
+
+.book.is-navy {
+    width: 100%;
+    background: linear-gradient(#3b4a6b, #26314a);
+}
+
+.book.is-rust {
+    width: 94%;
+    height: 0.75em;
+    background: linear-gradient(#a8563a, #7c3c28);
+}
+
+.book.is-olive {
+    width: 98%;
+    height: 0.8em;
+    background: linear-gradient(#6f7a44, #4c5430);
+}
+
+.book.is-cream {
+    width: 88%;
+    height: 0.62em;
+    background: linear-gradient(#e2dac4, #bcb296);
+}
+
+.memo-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 0.34em;
+    width: 5.4em;
+    height: 4em;
+    padding: 0.55em;
+    background: linear-gradient(#fffdf6, #efe9d8);
+    box-shadow:
+        0 4px 10px #00000033,
+        inset 0 0 0 1px #00000010;
+    rotate: -3deg;
+}
+
+.memo-line {
+    height: 2px;
+    border-radius: 1px;
+    background: #b9b09a;
+}
+
+.memo-line:nth-child(2) {
+    width: 82%;
+}
+
+.memo-line:nth-child(3) {
+    width: 68%;
+}
+
+.memo-line:nth-child(4) {
+    width: 76%;
+}
+
+.paper-ball {
+    width: 2.4em;
+    height: 2.4em;
+    border-radius: 54% 46% 58% 42% / 48% 56% 44% 52%;
+    background:
+        radial-gradient(circle at 36% 30%, #fffdf6, #0000 58%),
+        radial-gradient(circle at 70% 68%, #cfc7b2, #0000 52%),
+        linear-gradient(150deg, #f3eee0, #d6cdb6);
+    box-shadow:
+        inset -2px -3px 0 #00000012,
+        0 3px 7px #00000030;
+}
+
+.wall-sign {
+    position: absolute;
+    z-index: 1;
+    width: 7.5em;
+}
+
+.sign-face {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.1em;
+    aspect-ratio: 4 / 5;
+    background: #f7f4ec;
+    border: 0.4em solid #e3ddcd;
+    box-shadow:
+        0 8px 20px #0000001f,
+        inset 0 0 0 1px #00000012;
+}
+
+.sign-word {
+    font-size: 0.95em;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    color: #2b2b32;
+}
+
+.sign-year {
+    font-size: 0.7em;
+    letter-spacing: 0.3em;
+    color: #8a8579;
+}
+
+.desk-letter {
+    width: 5.6em;
+    height: 3.6em;
+    border-radius: 0.12em;
+    background: linear-gradient(#fdfaf0, #e9e1cc);
+    box-shadow:
+        0 4px 9px #00000030,
+        inset 0 0 0 1px #00000012;
+    rotate: -6deg;
+}
+
+.letter-flap {
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    height: 52%;
+    background: linear-gradient(#f4eeda, #e2d9c0);
+    clip-path: polygon(0 0, 100% 0, 50% 100%);
+    box-shadow: inset 0 -1px 0 #00000014;
+}
+
+.letter-stamp {
+    position: absolute;
+    top: 0.32em;
+    right: 0.32em;
+    width: 1em;
+    height: 1.2em;
+    background: linear-gradient(#c8623f, #9b4227);
+    box-shadow: inset 0 0 0 2px #fdfaf0;
+}
+
+.book-stack {
+    display: flex;
+    flex-direction: column-reverse;
+    width: 8em;
+}
+
+.book {
+    position: relative;
+    height: 1em;
+    border-radius: 0.1em;
+    box-shadow:
+        inset 0 1px 0 #ffffff26,
+        0 1px 2px #00000030;
+}
+
+.book-band {
+    position: absolute;
+    top: 18%;
+    bottom: 18%;
+    left: 6%;
+    width: 0.16em;
+    border-radius: 0.1em;
+    background: #f2e9cf;
+}
+
+.book.is-navy {
+    width: 100%;
+    background: linear-gradient(#37425e, #222b41);
+}
+
+.book.is-rust {
+    width: 95%;
+    height: 0.82em;
+    background: linear-gradient(#a4553c, #77382a);
+}
+
+.book.is-olive {
+    width: 99%;
+    height: 0.88em;
+    background: linear-gradient(#6d783f, #49512d);
+}
+
+.book.is-slate {
+    width: 90%;
+    height: 0.7em;
+    background: linear-gradient(#5d6470, #3d434d);
+}
+
+.pencil-cup {
+    width: 3.6em;
+    height: 4.8em;
+}
+
+.pencils {
+    position: absolute;
+    right: 14%;
+    bottom: 40%;
+    left: 14%;
+    height: 66%;
+}
+
+.pencil {
+    position: absolute;
+    bottom: 0;
+    width: 0.4em;
+    height: 100%;
+    border-radius: 0.2em 0.2em 0 0;
+    transform-origin: 50% 100%;
+}
+
+.pencil.is-blue {
+    left: 2%;
+    height: 86%;
+    rotate: -11deg;
+    background: linear-gradient(#5f8fd8, #35578c);
+}
+
+.pencil.is-amber {
+    left: 32%;
+    background: linear-gradient(#e8b23c, #a9781f);
+}
+
+.pencil.is-red {
+    left: 60%;
+    height: 92%;
+    rotate: 7deg;
+    background: linear-gradient(#d86a5f, #8e3d35);
+}
+
+.pencil.is-grey {
+    left: 82%;
+    height: 78%;
+    rotate: 15deg;
+    background: linear-gradient(#8e94a1, #5a606c);
+}
+
+.cup {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    height: 44%;
+    border-radius: 0.15em 0.15em 0.4em 0.4em;
+    background: linear-gradient(
+        90deg,
+        #3c424e,
+        #6b7382 26%,
+        #474d59 64%,
+        #2e333d
+    );
+    box-shadow:
+        inset 0 1px 0 #ffffff40,
+        0 3px 6px #0000003d;
+}
+
+.paper-tray {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25em;
+    width: 7.4em;
+}
+
+.paper-shelf {
+    position: relative;
+    height: 1.1em;
+    border-radius: 0.12em;
+    background: linear-gradient(#3b414c, #22262e);
+    box-shadow:
+        inset 0 1px 0 #ffffff26,
+        0 2px 4px #00000030;
+}
+
+.paper-sheet {
+    position: absolute;
+    right: 7%;
+    bottom: 34%;
+    left: 7%;
+    height: 0.3em;
+    border-radius: 0.06em;
+    background: linear-gradient(#fdfaf0, #e6dfcc);
+    box-shadow: 0 1px 0 #00000020;
+}

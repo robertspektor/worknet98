@@ -1,4 +1,4 @@
-export type SwapGoal = 'swap' | 'repaste';
+export type SwapGoal = 'swap' | 'repaste' | 'look';
 
 export type SwapStep =
     | 'unplug'
@@ -84,6 +84,18 @@ const CPU_STEPS: SwapStep[] = [
     'close-lever',
 ];
 
+/* Everything that has to come off the processor before it can be worked on.
+   Looking into the case leaves the cooler where it is. */
+
+const COOLER_STEPS: SwapStep[] = [
+    'unclip-cooler',
+    'lift-cooler',
+    'clean',
+    'paste',
+    'place-cooler',
+    'clip-cooler',
+];
+
 const RIGHT_ANGLE = 90;
 const FULL_TURN = 360;
 
@@ -101,9 +113,14 @@ export function startSwap(goal: SwapGoal): SwapState {
 }
 
 export function stepsFor(goal: SwapGoal): SwapStep[] {
-    return goal === 'swap'
-        ? STEP_ORDER
-        : STEP_ORDER.filter((step) => !CPU_STEPS.includes(step));
+    if (goal === 'swap') {
+        return STEP_ORDER;
+    }
+
+    const skipped =
+        goal === 'repaste' ? CPU_STEPS : [...CPU_STEPS, ...COOLER_STEPS];
+
+    return STEP_ORDER.filter((step) => !skipped.includes(step));
 }
 
 function stepAfter(state: SwapState, step: SwapStep = state.step): SwapStep {

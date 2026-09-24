@@ -12,7 +12,7 @@
 .room.is-office::before {
     content: '';
     position: absolute;
-    inset: auto 0 12vh 0;
+    inset: auto 0 var(--desk-height) 0;
     height: 60vh;
     background:
         repeating-linear-gradient(45deg, #0000 0 2px, #ffffff0a 2px 3px),
@@ -215,11 +215,14 @@
     letter-spacing: 0;
 }
 
+/* A mug holds a quarter litre, so it stands as tall as the pencil cup. */
+
 .coffee-mug {
     right: max(calc(var(--side-space) / 2), 4em);
     bottom: 3vh;
     width: 5.6em;
     height: 7em;
+    font-size: 1.45em;
     transform: translateX(50%);
 }
 

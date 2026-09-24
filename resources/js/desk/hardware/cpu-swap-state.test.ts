@@ -6,6 +6,7 @@ import {
     MIN_PASTE,
     SCREW_COUNT,
     startSwap,
+    stepsFor,
 } from './cpu-swap-state';
 
 function run(state: SwapState, ...actions: SwapAction[]): SwapState {
@@ -183,5 +184,31 @@ describe('cpuSwapReducer', () => {
         expect(cpuSwapReducer(state, { type: 'turn-screw', screw: 0 })).toBe(
             state,
         );
+    });
+
+    /* Opening the case just to look leaves the cooler and the processor
+       alone: panel off, panel back on. */
+
+    it('only takes the panel off when there is nothing to do', () => {
+        expect(stepsFor('look')).toEqual([
+            'unplug',
+            'unscrew',
+            'remove-panel',
+            'attach-panel',
+            'screw',
+            'plug-in',
+            'done',
+        ]);
+    });
+
+    it('closes the case again after a look', () => {
+        const looked = run(
+            startSwap('look'),
+            { type: 'pull-plug', isPoweredOn: false },
+            ...screws(),
+            { type: 'slide-panel' },
+        );
+
+        expect(looked.step).toBe('attach-panel');
     });
 });
